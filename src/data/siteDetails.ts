@@ -1,13 +1,19 @@
 export const siteDetails = {
   siteName: 'Loka',
-  siteUrl: 'https://loka-pos.vercel.app/',
+  siteUrl: 'https://lokakasir.id',
   metadata: {
-    title: 'Loka POS - Aplikasi Kasir Modern dan Mudah Digunakan',
+    title: 'Loka Kasir - Aplikasi Kasir Digital Gratis untuk UMKM',
     description:
-      'Loka adalah aplikasi POS (Point of Sale) modern yang membantu bisnis Anda mengelola penjualan, inventaris, dan laporan keuangan dengan mudah dan efisien.',
+      'Loka Kasir adalah solusi kasir modern untuk warung, toko, dan UMKM. Kelola stok, transaksi, dan laporan dengan mudah dan gratis.',
   },
   language: 'id',
   locale: 'id-ID',
   siteLogo: `${process.env.BASE_PATH || ''}/images/logo.png`,
-  googleAnalyticsId: '', // Masukkan ID jika tersedia
+  googleAnalyticsId: '', // Masukkan jika pakai GA4: G-XXXX
+  sitemapUrl: 'https://lokakasir.id/sitemap.xml',
+  robotsUrl: 'https://lokakasir.id/robots.txt',
+  // social: {
+  //   twitter: '@LokaKasir',
+  //   facebookPage: 'https://facebook.com/LokaKasir',
+  // },
 };
