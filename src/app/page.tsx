@@ -33,8 +33,6 @@ const HomePage: React.FC = () => {
           <Testimonials />
         </Section>
         <FAQ />
-        {/* <Stats /> */}
-        {/* <CTA /> */}
       </Container>
     </>
   );

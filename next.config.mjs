@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async redirects() {
+  redirects() {
     return [
       {
-        source: '/sitemap.xml',
-        destination: '/sitemap/xml',
-        permanent: true, // atau false jika ingin temporary
+        source: "/sitemap.xml",
+        destination: "/sitemap/xml",
+        permanent: true,
       },
     ];
   },

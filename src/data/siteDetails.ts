@@ -8,12 +8,11 @@ export const siteDetails = {
   },
   language: 'id',
   locale: 'id-ID',
-  siteLogo: `${process.env.BASE_PATH || ''}/images/logo.png`,
+  siteLogo: '/images/logo.png', // ✅ Perbaikan: tanda kutip ditutup
   googleAnalyticsId: '', // Masukkan jika pakai GA4: G-XXXX
   sitemapUrl: 'https://lokakasir.id/sitemap.xml',
   robotsUrl: 'https://lokakasir.id/robots.txt',
-  // social: {
-  //   twitter: '@LokaKasir',
-  //   facebookPage: 'https://facebook.com/LokaKasir',
-  // },
+  social: {
+    instagramPage: 'https://instagram.com/lokakasir.id',
+  },
 };
