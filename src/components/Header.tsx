@@ -31,12 +31,9 @@ const Header: React.FC = () => {
     >
       <Container className="!px-0">
         <nav className="mx-auto flex justify-between items-center py-2 px-5 md:py-4">
-          {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image src="/images/logo.png" width={150} height={80} alt="Logo" />
           </Link>
-
-          {/* Desktop Menu */}
           <ul className="hidden md:flex space-x-6">
             {menuItems.map((item) => (
               <li key={item.text}>
@@ -57,8 +54,6 @@ const Header: React.FC = () => {
               </Link>
             </li>
           </ul>
-
-          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <button
               onClick={toggleMenu}
@@ -77,8 +72,6 @@ const Header: React.FC = () => {
           </div>
         </nav>
       </Container>
-
-      {/* Mobile Menu */}
       <Transition
         show={isOpen}
         enter="transition ease-out duration-200 transform"

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import clsx from "clsx";
 
@@ -7,6 +9,12 @@ const PlayStoreButton = ({ dark }: { dark?: boolean }) => {
   return (
     <a href={ctaDetails.googlePlayUrl}>
       <button
+        onClick={() =>
+          window.open(
+            "https://play.google.com/store/apps/details?id=com.loka.app",
+            "_blank"
+          )
+        }
         type="button"
         className={clsx(
           "flex items-center justify-center min-w-[205px] mt-3 px-6 h-14 rounded-full w-full sm:w-fit",

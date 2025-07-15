@@ -1,6 +1,8 @@
 export const ctaDetails = {
-    heading: 'Join Over 1 Million Users To Transform Your Finances',
-    subheading: 'Your journey to financial freedom starts here. Download Finwise today and take the first step towards a brighter financial future!',
-    appStoreUrl: '#',
-    googlePlayUrl: '#'
-}
+  heading: "Mulai Bisnis Lebih Rapi dengan Loka Kasir",
+  subheading:
+    "Kelola transaksi, stok, dan laporan penjualan dengan mudah. Cocok untuk warung, toko, dan UMKM. Unduh sekarang dan rasakan kemudahannya!",
+  appStoreUrl: "#", // Ganti jika nanti tersedia di App Store
+  googlePlayUrl:
+    "https://play.google.com/store/apps/details?id=com.lokakasir.app",
+};

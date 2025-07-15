@@ -78,17 +78,17 @@ const Footer: React.FC = () => {
         <p className="text-sm mt-2 text-gray-500">
           Dibuat dengan &hearts; oleh{" "}
           <a
-            href="https://nexilaunch.com"
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Nexi Launch
+            Kreativita Sinergi
           </a>
         </p>
         <p className="text-sm mt-2 text-gray-500">
           UI kit oleh{" "}
           <a
-            href="https://ui8.net/youthmind/products/fintech-finance-mobile-app-ui-kit"
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
           >
