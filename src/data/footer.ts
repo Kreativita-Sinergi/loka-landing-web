@@ -22,7 +22,7 @@ export const footerDetails: {
             url: "#testimonials"
         }
     ],
-    email: 'kontak@lokakasir.id',
+    email: 'help@lokakasir.id',
     telephone: '+62 853-9373-7313',
     socials: {
         instagram: 'https://www.instagram.com/lokakasir.id',
