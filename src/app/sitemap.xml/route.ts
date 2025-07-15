@@ -1,27 +1,29 @@
-import { siteDetails } from '@/data/siteDetails';
+// src/app/sitemap.xml/route.ts
+import { siteDetails } from "@/data/siteDetails";
 
 export async function GET() {
-  const baseUrl = siteDetails.siteUrl;
   const pages = ["", "/features", "/pricing", "/testimonials", "/faq"];
 
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+  const baseUrl = siteDetails.siteUrl.replace(/\/$/, ""); // hapus trailing slash
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages
   .map((page) => {
-    return `
-  <url>
+    return `  <url>
     <loc>${baseUrl}${page}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>`;
   })
-  .join("")}
+  .join("\n")}
 </urlset>`;
 
-  return new Response(sitemap, {
+  return new Response(xml, {
+    status: 200,
     headers: {
-      "Content-Type": "application/xml",
+      "Content-Type": "application/xml; charset=UTF-8",
     },
   });
 }
