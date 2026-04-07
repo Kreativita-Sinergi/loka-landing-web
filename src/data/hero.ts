@@ -1,6 +1,6 @@
 export const heroDetails = {
-  heading: "Mudah, Cepat, dan Aman untuk Kelola Bisnis Anda",
+  heading: "Loka Kasir: Solusi Cerdas Kelola Bisnis Anda",
   subheading:
-    "Dari pencatatan transaksi hingga laporan penjualan real-time — POS kami membantu Anda mengelola toko dengan lebih efisien dan profesional.",
-  centerImageSrc: "/images/hero-mockup.webp",
+    "Dari pencatatan transaksi harian di App Kasir hingga laporan mendalam di Web Admin — Loka membantu Anda mengelola outlet dengan lebih efisien, profesional, dan real-time.",
+  centerImageSrc: "/images/app-order-grid.png", // ✅ Menggunakan screenshot utama aplikasi
 };

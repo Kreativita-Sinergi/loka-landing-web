@@ -6,12 +6,8 @@ export const menuItems: IMenuItem[] = [
     url: "#features",
   },
   {
-    text: "Harga",
-    url: "#pricing",
-  },
-  {
-    text: "Testimoni",
-    url: "#testimonials",
+    text: "Ekosistem",
+    url: "#ecosystem",
   },
   {
     text: "FAQ",

@@ -1,11 +1,12 @@
+import React from "react";
+
 import Hero from "@/components/Hero";
-import Testimonials from "@/components/Testimonials";
-import Pricing from "@/components/Pricing/Pricing";
 import FAQ from "@/components/FAQ";
 import Benefits from "@/components/Benefits/Benefits";
 import Container from "@/components/Container";
 import Section from "@/components/Section";
 import CTA from "@/components/Cta";
+import Ecosystem from "@/components/Ecosystem";
 
 const HomePage: React.FC = () => {
   return (
@@ -15,26 +16,20 @@ const HomePage: React.FC = () => {
         <Section
           id="features"
           title="Fitur Unggulan"
-          description="Dirancang untuk mendukung operasional bisnis Anda dengan cepat, efisien, dan mudah digunakan."
+          description="Aplikasi Kasir yang dirancang khusus untuk kecepatan dan kemudahan operasional toko Anda."
         >
           <Benefits />
         </Section>
+
         <Section
-          id="pricing"
-          title="Paket Harga"
-          description="Harga transparan dan terjangkau, tanpa biaya tersembunyi."
+          id="ecosystem"
+          title="Satu Ekosistem, Dua Kekuatan"
+          description="Loka menghubungkan operasional di toko dengan manajemen di kantor secara real-time."
         >
-          <Pricing />
-        </Section>
-        <Section
-          id="testimonials"
-          title="Apa Kata Mereka"
-          description="Testimoni dari para pelaku bisnis yang telah menggunakan Loka POS."
-        >
-          <Testimonials />
+          <Ecosystem />
         </Section>
       
-          <CTA />
+        <CTA />
    
         <FAQ />
       </Container>

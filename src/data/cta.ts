@@ -1,7 +1,7 @@
 export const ctaDetails = {
-  heading: "Mulai Bisnis Lebih Rapi dengan Loka Kasir",
+  heading: "Siap Level Up Bisnis Anda Bersama Loka?",
   subheading:
-    "Kelola transaksi, stok, dan laporan penjualan dengan mudah. Cocok untuk warung, toko, dan UMKM. Unduh sekarang dan rasakan kemudahannya!",
+    "Pantau operasional dari Web Admin dan layani pelanggan lebih cepat dengan App Kasir. Gabung dengan ribuan pengusaha yang telah beralih ke solusi cerdas Loka.",
   appStoreUrl: "#", // Ganti jika nanti tersedia di App Store
   googlePlayUrl:
     "https://play.google.com/store/apps/details?id=com.lokakasir.app",

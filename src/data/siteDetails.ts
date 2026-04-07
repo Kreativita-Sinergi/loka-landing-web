@@ -2,9 +2,9 @@ export const siteDetails = {
   siteName: 'Loka',
   siteUrl: 'https://lokakasir.id',
   metadata: {
-    title: 'Loka Kasir - Aplikasi Kasir Digital Gratis untuk UMKM',
+    title: 'Loka Kasir - Solusi Kasir Digital Modern untuk UMKM',
     description:
-      'Loka Kasir adalah solusi kasir modern untuk warung, toko, dan UMKM. Kelola stok, transaksi, dan laporan dengan mudah dan gratis.',
+      'Loka Kasir adalah aplikasi kasir (POS) modern untuk warung, toko, dan UMKM. Kelola stok, transaksi, shift, dan laporan bisnis Anda dengan mudah dan profesional.',
   },
   language: 'id',
   locale: 'id-ID',
