@@ -8,6 +8,7 @@ import { HiOutlineXMark, HiBars3 } from "react-icons/hi2";
 
 import Container from "./Container";
 import { menuItems } from "@/data/menuItems";
+import { siteDetails } from "@/data/siteDetails";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,8 +48,17 @@ const Header: React.FC = () => {
             ))}
             <li>
               <Link
+                href={siteDetails.dashboardUrl}
+                target="_blank"
+                className="text-gray-700 hover:text-blue-600 px-4 py-3 font-medium transition-colors"
+              >
+                Login
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="#cta"
-                className="text-white bg-[#007BFF] hover:bg-blue-600 px-8 py-3 rounded-full transition-colors"
+                className="text-white bg-[#007BFF] hover:bg-blue-600 px-8 py-3 rounded-full transition-colors font-medium"
               >
                 Download
               </Link>
@@ -96,11 +106,21 @@ const Header: React.FC = () => {
             ))}
             <li>
               <Link
+                href={siteDetails.dashboardUrl}
+                target="_blank"
+                className="text-black hover:text-[#007BFF] block py-2"
+                onClick={toggleMenu}
+              >
+                Login Admin
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="#cta"
                 className="text-white bg-[#007BFF] hover:bg-blue-600 px-5 py-2 rounded-full block w-fit"
                 onClick={toggleMenu}
               >
-                Get Started
+                Download
               </Link>
             </li>
           </ul>

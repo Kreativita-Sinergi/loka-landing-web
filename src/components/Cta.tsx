@@ -1,4 +1,5 @@
 import { ctaDetails } from "@/data/cta"
+import { siteDetails } from "@/data/siteDetails"
 
 import PlayStoreButton from "./PlayStoreButton"
 
@@ -17,7 +18,14 @@ const CTA: React.FC = () => {
                         <p className="mx-auto max-w-xl md:px-5">{ctaDetails.subheading}</p>
 
                         <div className="mt-4 flex flex-col sm:flex-row items-center sm:gap-4">
-                        <PlayStoreButton />
+                            <PlayStoreButton />
+                            <a
+                                href={siteDetails.dashboardUrl}
+                                target="_blank"
+                                className="flex items-center justify-center min-w-[205px] mt-3 px-6 h-14 rounded-full w-full sm:w-fit text-foreground bg-white hover:bg-gray-100 transition-colors font-semibold"
+                            >
+                                Buka Dashboard
+                            </a>
                         </div>
                     </div>
                 </div>
