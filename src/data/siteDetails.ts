@@ -1,7 +1,7 @@
 export const siteDetails = {
   siteName: 'Loka',
   siteUrl: 'https://lokakasir.id',
-  dashboardUrl: 'https://admin.lokakasir.id',
+  dashboardUrl: 'https://app.lokakasir.id',
   metadata: {
     title: 'Loka Kasir - Solusi Kasir Digital Modern untuk UMKM',
     description:
