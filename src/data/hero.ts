@@ -1,6 +1,6 @@
 export const heroDetails = {
-  heading: "Loka Kasir: Solusi Cerdas Kelola Bisnis Anda",
+  heading: "Kasir Digital untuk Bisnis Anda yang Terus Tumbuh",
   subheading:
-    "Dari pencatatan transaksi harian di App Kasir hingga laporan mendalam di Web Admin — Loka membantu Anda mengelola outlet dengan lebih efisien, profesional, dan real-time.",
-  centerImageSrc: "/images/app-order-grid.png", // ✅ Menggunakan screenshot utama aplikasi
+    "Loka Kasir hadir untuk warung, kafe, restoran, dan toko yang ingin beroperasi lebih cepat, lebih rapi, dan lebih untung. Satu aplikasi untuk transaksi, shift, laporan, dan tim Anda.",
+  centerImageSrc: "/images/app-order-grid.png",
 };

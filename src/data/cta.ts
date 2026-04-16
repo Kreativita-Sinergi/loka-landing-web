@@ -1,8 +1,8 @@
 export const ctaDetails = {
-  heading: "Siap Kelola Bisnis Lebih Teratur?",
+  heading: "Coba Gratis 30 Hari — Tanpa Risiko",
   subheading:
-    "Pantau operasional dari Web Admin dan layani pelanggan lebih cepat dengan App Kasir. Mulai gratis 30 hari — tanpa kartu kredit, tanpa komitmen.",
-  appStoreUrl: "#", // Ganti jika nanti tersedia di App Store
+    "Download App Kasir sekarang dan akses semua fitur gratis selama 30 hari. Tidak perlu kartu kredit, tidak ada komitmen. Setelah itu, lanjutkan dengan paket mulai Rp 100.000/bulan.",
+  appStoreUrl: "#", // Tersedia segera di App Store
   googlePlayUrl:
     "https://play.google.com/store/apps/details?id=com.lokakasir.app",
 };

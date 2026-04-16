@@ -5,25 +5,20 @@ export const footerDetails: {
     quickLinks: IMenuItem[];
     email: string;
     telephone: string;
+    address: string;
     socials: ISocials;
 } = {
-    subheading: "Memberdayakan pelaku usaha dengan teknologi kasir modern yang efisien dan andal.",
+    subheading: "Memberdayakan pelaku UMKM dengan teknologi kasir modern yang efisien, andal, dan terjangkau.",
     quickLinks: [
-        {
-            text: "Fitur",
-            url: "#features"
-        },
-        {
-            text: "Harga",
-            url: "#pricing"
-        },
-        {
-            text: "Testimoni",
-            url: "#testimonials"
-        }
+        { text: "Fitur", url: "#features" },
+        { text: "Ekosistem", url: "#ecosystem" },
+        { text: "Harga", url: "#pricing" },
+        { text: "Testimoni", url: "#testimonials" },
+        { text: "FAQ", url: "#faq" },
     ],
     email: 'help@lokakasir.id',
     telephone: '+62 853-9373-7313',
+    address: 'Jl. Air Camar No. 24, RT 5/RW 007, Kel. Parak Gadang Timur, Kec. Padang Timur, Kota Padang, Sumatera Barat, Indonesia',
     socials: {
         instagram: 'https://www.instagram.com/lokakasir.id',
     }

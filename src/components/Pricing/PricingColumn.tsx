@@ -11,56 +11,91 @@ interface Props {
 }
 
 const PricingColumn: React.FC<Props> = ({ tier, highlight }: Props) => {
-  const { name, price, features } = tier;
+  const { name, price, period, badge, description, features, ctaLabel, ctaUrl } = tier;
+  const isFreeTrial = typeof price === "string";
 
-  const isBulanan = name.toLowerCase().includes("bulan");
-  const isTahunan = name.toLowerCase().includes("tahun");
+  const displayPrice = isFreeTrial
+    ? price
+    : `Rp ${(price as number).toLocaleString("id-ID")}`;
 
   return (
     <div
       className={clsx(
-        "w-full max-w-sm mx-auto bg-white rounded-xl border border-gray-200 text-center",
-        { "shadow-lg": highlight }
+        "relative w-full max-w-sm mx-auto bg-white rounded-2xl border text-center flex flex-col",
+        highlight
+          ? "border-secondary shadow-2xl shadow-secondary/20 scale-[1.02]"
+          : "border-gray-200 shadow-md"
       )}
     >
-      <div className="p-6 border-b border-gray-200 rounded-t-xl">
-        <h3 className="text-2xl font-semibold mb-4">{name}</h3>
-        <p className="text-3xl md:text-5xl font-bold mb-6">
-          <span className={clsx({ "text-secondary": highlight })}>
-            Rp {price.toLocaleString("id-ID")}
+      {/* Badge */}
+      {badge && (
+        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+          <span className="bg-secondary text-white text-xs font-bold px-4 py-1 rounded-full shadow">
+            {badge}
           </span>
-          <span className="block text-lg font-normal text-gray-600">
-            /{isBulanan ? "bulan" : isTahunan ? "tahun" : ""}
+        </div>
+      )}
+
+      {/* Header */}
+      <div className="p-6 pb-4 border-b border-gray-100 rounded-t-2xl">
+        <h3 className="text-xl font-bold mb-1">{name}</h3>
+        {description && (
+          <p className="text-sm text-gray-500 mb-4">{description}</p>
+        )}
+        <div className="mb-5">
+          <span
+            className={clsx("text-4xl md:text-5xl font-extrabold", {
+              "text-secondary": highlight,
+              "text-primary-accent": isFreeTrial,
+            })}
+          >
+            {displayPrice}
           </span>
-        </p>
-        <button
-          onClick={() =>
-            window.open(
-              "https://play.google.com/store/apps/details?id=com.loka.app",
-              "_blank"
-            )
-          }
+          {period && (
+            <span className="block text-sm font-normal text-gray-500 mt-0.5">
+              {period}
+            </span>
+          )}
+          {!isFreeTrial && (
+            <span className="block text-xs text-gray-400 mt-1">
+              ≈ Rp {Math.round((price as number) / (period?.includes("tahun") ? 12 : 1)).toLocaleString("id-ID")} / bulan
+            </span>
+          )}
+        </div>
+        <a
+          href={ctaUrl ?? "https://play.google.com/store/apps/details?id=com.lokakasir.app"}
+          target="_blank"
+          rel="noopener noreferrer"
           className={clsx(
-            "w-full py-3 px-4 rounded-full transition-colors font-semibold",
+            "block w-full py-3 px-4 rounded-full font-semibold text-sm transition-all",
             {
-              "bg-primary text-white hover:bg-primary-accent": highlight,
-              "bg-gray-100 text-black hover:bg-gray-200": !highlight,
+              "bg-secondary text-white hover:bg-blue-700 shadow-lg shadow-secondary/30":
+                highlight,
+              "bg-primary text-gray-900 hover:bg-primary-accent":
+                isFreeTrial,
+              "bg-gray-100 text-gray-800 hover:bg-gray-200": !highlight && !isFreeTrial,
             }
           )}
         >
-          Langganan Sekarang
-        </button>
+          {ctaLabel ?? "Mulai Sekarang"}
+        </a>
       </div>
-      <div className="p-6 mt-1 text-left">
-        <p className="font-bold mb-0 text-center">FITUR</p>
-        <p className="text-foreground-accent mb-5 text-center">
-          Semua fitur yang Anda butuhkan
+
+      {/* Features */}
+      <div className="p-6 flex-1 text-left">
+        <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">
+          Yang Anda dapatkan
         </p>
-        <ul className="space-y-4 mb-8">
+        <ul className="space-y-3">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-center">
-              <BsFillCheckCircleFill className="h-5 w-5 text-secondary mr-2" />
-              <span className="text-foreground-accent">{feature}</span>
+            <li key={index} className="flex items-start gap-2.5">
+              <BsFillCheckCircleFill
+                className={clsx("mt-0.5 h-4 w-4 flex-shrink-0", {
+                  "text-secondary": highlight,
+                  "text-green-500": !highlight,
+                })}
+              />
+              <span className="text-sm text-gray-600">{feature}</span>
             </li>
           ))}
         </ul>

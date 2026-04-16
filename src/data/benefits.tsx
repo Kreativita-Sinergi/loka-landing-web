@@ -3,10 +3,13 @@ import {
     FiClock,
     FiFileText,
     FiGrid,
+    FiLayers,
     FiPrinter,
     FiSettings,
+    FiShield,
     FiShoppingCart,
-    FiUser
+    FiUsers,
+    FiWifi,
 } from "react-icons/fi";
 
 import { IBenefit } from "@/types"
@@ -14,69 +17,84 @@ import { IBenefit } from "@/types"
 export const benefits: IBenefit[] = [
     {
         title: "Tampilan POS yang Modern & Cepat",
-        description: "App Kasir dirancang untuk kecepatan transaksi harian dengan pilihan tampilan yang dapat disesuaikan sesuai kebutuhan toko Anda.",
+        description: "Dirancang untuk kecepatan transaksi harian. Kasir bisa melayani lebih banyak pelanggan tanpa antrian panjang.",
         bullets: [
             {
-                title: "Grid & List View",
-                description: "Gunakan Grid untuk visual produk yang jelas, atau List untuk detail SKU dan stok yang lebih lengkap.",
+                title: "Grid & List View Produk",
+                description: "Tampilkan produk dalam Grid bergambar untuk visual yang menarik, atau List untuk detail SKU dan stok yang lebih lengkap.",
                 icon: <FiGrid size={26} />
             },
             {
-                title: "Tipe Order Fleksibel",
-                description: "Dukungan penuh untuk Dine-in, Take Away, dan Delivery dalam satu aplikasi.",
+                title: "Tipe Order: Dine-in, Take Away & Delivery",
+                description: "Satu aplikasi untuk semua jenis layanan. Pisahkan pesanan meja, bawa pulang, dan delivery tanpa ribet.",
                 icon: <FiShoppingCart size={26} />
-            }
+            },
+            {
+                title: "Pembayaran Split & Multi-Metode",
+                description: "Terima pembayaran tunai dan non-tunai sekaligus dalam satu transaksi — cocok untuk pelanggan yang bayar patungan.",
+                icon: <FiLayers size={26} />
+            },
         ],
         imageSrc: "/images/app-order-grid.png"
     },
     {
         title: "Manajemen Shift & Transparansi Kas",
-        description: "Pastikan setiap rupiah tercatat dengan benar. Fitur shift kami membantu mencegah selisih kas dan memantau performa kasir.",
+        description: "Tidak ada lagi selisih kas yang membingungkan. Setiap rupiah tercatat otomatis dari buka hingga tutup toko.",
         bullets: [
             {
-                title: "Ringkasan Kas Otomatis",
-                description: "Hitung total penjualan, refund, dan aliran kas (masuk/keluar) secara otomatis per sesi.",
+                title: "Rekap Kas Otomatis per Shift",
+                description: "Total penjualan, refund, kas masuk, dan kas keluar dihitung otomatis. Bandingkan dengan uang fisik di laci untuk laporan yang akurat.",
                 icon: <FiActivity size={26} />
             },
             {
-                title: "Verifikasi Kas Fisik",
-                description: "Bandingkan angka sistem dengan uang fisik di laci untuk laporan yang akurat.",
-                icon: <FiUser size={26} />
-            }
+                title: "Multi-Kasir, Satu Akun",
+                description: "Tetapkan PIN unik untuk setiap kasir. Lacak performa dan aktivitas setiap karyawan secara terpisah.",
+                icon: <FiUsers size={26} />
+            },
+            {
+                title: "Verifikasi PIN Supervisor",
+                description: "Tindakan sensitif seperti void transaksi membutuhkan persetujuan supervisor — keamanan berlapis tanpa birokrasi.",
+                icon: <FiShield size={26} />
+            },
         ],
         imageSrc: "/images/app-shift-summary.png"
     },
     {
-        title: "Riwayat Transaksi & Kelola Refund",
-        description: "Akses riwayat transaksi harian dengan mudah. Lakukan refund atau pembatalan transaksi langsung dari aplikasi kasir.",
+        title: "Riwayat Transaksi Lengkap & Kelola Refund",
+        description: "Temukan transaksi mana pun dalam hitungan detik. Proses refund dan pembatalan dengan prosedur yang tercatat rapi.",
         bullets: [
             {
-                title: "Detail Transaksi Instan",
-                description: "Lihat status lunas, nomor bill, dan waktu transaksi secara mendalam.",
+                title: "Cari & Filter Transaksi Instan",
+                description: "Cari berdasarkan nomor bill, nama pelanggan, atau status pembayaran. Semua riwayat tersimpan dan bisa difilter kapan saja.",
                 icon: <FiFileText size={26} />
             },
             {
-                title: "Proses Refund Cepat",
-                description: "Tangani pembatalan pesanan dengan prosedur yang tercatat rapi di sistem.",
+                title: "Proses Refund & Void Terpandu",
+                description: "Tangani pengembalian uang dan pembatalan pesanan dengan alur yang jelas, disertai catatan alasan untuk audit.",
                 icon: <FiClock size={26} />
-            }
+            },
         ],
         imageSrc: "/images/app-history.png"
     },
     {
-        title: "Hardware & Sinkronisasi Cloud",
-        description: "Hubungkan dengan berbagai perangkat pendukung dan nikmati kemudahan data yang selalu terupdate ke Web Admin.",
+        title: "Hardware Siap & Cloud Selalu Terkini",
+        description: "Hubungkan perangkat pendukung dalam menit. Data tersinkronisasi otomatis sehingga Web Admin selalu menampilkan kondisi terkini.",
         bullets: [
             {
-                title: "Printer Thermal Bluetooth/USB",
-                description: "Cetak struk belanja secara otomatis atau manual dengan berbagai merek printer thermal.",
+                title: "Printer Thermal Bluetooth / USB",
+                description: "Cetak struk otomatis setelah transaksi selesai. Mendukung berbagai merek dan ukuran kertas printer thermal populer.",
                 icon: <FiPrinter size={26} />
             },
             {
-                title: "Auto-Sync Real-time",
-                description: "Data transaksi otomatis terkirim ke server. Tarik data produk terbaru hanya dengan satu tombol.",
+                title: "Sinkronisasi Real-time & Offline Mode",
+                description: "Internet terputus? Kasir tetap jalan. Data tersinkronisasi otomatis ke server begitu koneksi kembali.",
+                icon: <FiWifi size={26} />
+            },
+            {
+                title: "Pengaturan Terpusat dari Web Admin",
+                description: "Atur menu, harga, promo, dan karyawan langsung dari browser — perubahan langsung tampil di semua perangkat kasir.",
                 icon: <FiSettings size={26} />
-            }
+            },
         ],
         imageSrc: "/images/app-settings.png"
     }
