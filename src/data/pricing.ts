@@ -1,21 +1,29 @@
 import { IPricing } from "@/types";
 
-const allFeatures = [
+const liteFeatures = [
+  "1 outlet",
   "Transaksi tidak terbatas",
-  "Manajemen shift & rekap kas otomatis",
-  "Multi-role karyawan (Owner, Manager, Admin, Kasir, Koki)",
-  "Kelola produk, kategori & harga",
-  "Laporan penjualan harian & bulanan",
-  "Riwayat transaksi, refund & pembatalan",
-  "Pembayaran split (tunai + non-tunai sekaligus)",
-  "Cetak struk printer thermal (Bluetooth / USB)",
-  "Manajemen meja & pesanan dine-in",
-  "Kitchen Display System (KDS)",
-  "Mode offline otomatis — transaksi tetap jalan",
+  "Kelola produk & kategori",
+  "Laporan penjualan 30 hari terakhir",
+  "Mode offline otomatis",
   "Sinkronisasi cloud real-time",
-  "Web Admin dashboard untuk pemilik usaha",
+  "Web Admin dashboard untuk pemilik",
+  "Cetak struk printer thermal (Bluetooth / USB)",
   "Update fitur gratis selamanya",
-  "Bantuan teknis via WhatsApp & email",
+];
+
+const proFeatures = [
+  "Semua fitur Lite",
+  "Multi-outlet (kelola dari satu akun)",
+  "Laporan penjualan tanpa batas waktu",
+  "Inventori & varian produk",
+  "Manajemen shift kasir & rekap kas",
+  "E-receipt via WhatsApp",
+  "Kitchen Display System (KDS)",
+  "Multi-role karyawan (Owner, Manager, Admin, Kasir, Koki)",
+  "Manajemen meja & pesanan dine-in",
+  "Pembayaran split (tunai + non-tunai)",
+  "Bantuan teknis prioritas via WhatsApp & email",
 ];
 
 export const tiers: IPricing[] = [
@@ -24,10 +32,9 @@ export const tiers: IPricing[] = [
     price: "Gratis",
     period: "30 hari",
     description:
-      "Akses penuh semua fitur tanpa syarat. Tidak perlu kartu kredit.",
+      "Akses penuh semua fitur Pro tanpa syarat. Tidak perlu kartu kredit.",
     features: [
-      ...allFeatures,
-      "Tidak perlu kartu kredit",
+      ...proFeatures,
       "Aktif langsung setelah download",
     ],
     ctaLabel: "Mulai Gratis Sekarang",
@@ -35,28 +42,24 @@ export const tiers: IPricing[] = [
       "https://play.google.com/store/apps/details?id=com.lokakasir.app",
   },
   {
-    name: "Bulanan",
-    price: 100000,
+    name: "Lite",
+    price: 39000,
     period: "per bulan",
-    description: "Fleksibel untuk bisnis yang masih berkembang.",
-    features: allFeatures,
-    ctaLabel: "Langganan Bulanan",
+    description: "Untuk 1 outlet. Ideal untuk usaha kecil yang baru memulai.",
+    features: liteFeatures,
+    ctaLabel: "Pilih Lite",
     ctaUrl:
       "https://play.google.com/store/apps/details?id=com.lokakasir.app",
   },
   {
-    name: "Tahunan",
-    price: 800000,
-    period: "per tahun",
-    badge: "Hemat 33%",
+    name: "Pro",
+    price: 89000,
+    period: "per outlet / bulan",
+    badge: "Paling Populer",
     description:
-      "Bayar setahun, hemat Rp 400.000. Paling populer di kalangan pemilik bisnis.",
-    features: [
-      ...allFeatures,
-      "Hemat Rp 400.000 dibanding paket bulanan",
-      "Prioritas layanan dukungan teknis",
-    ],
-    ctaLabel: "Langganan Tahunan",
+      "Outlet pertama sudah termasuk. Outlet tambahan +Rp 49.000/outlet/bulan.",
+    features: proFeatures,
+    ctaLabel: "Pilih Pro",
     ctaUrl:
       "https://play.google.com/store/apps/details?id=com.lokakasir.app",
   },

@@ -8,7 +8,6 @@ import Section from "@/components/Section";
 import CTA from "@/components/Cta";
 import Ecosystem from "@/components/Ecosystem";
 import Pricing from "@/components/Pricing/Pricing";
-import Testimonials from "@/components/Testimonials";
 import Stats from "@/components/Stats";
 
 const HomePage: React.FC = () => {
@@ -45,15 +44,6 @@ const HomePage: React.FC = () => {
           description="Mulai gratis 30 hari dengan akses penuh. Lanjutkan dengan paket yang paling sesuai — tidak ada biaya tersembunyi, tidak ada biaya per transaksi."
         >
           <Pricing />
-        </Section>
-
-        {/* Testimoni */}
-        <Section
-          id="testimonials"
-          title="Dipercaya Pelaku Bisnis di Indonesia"
-          description="Lebih dari 100 outlet aktif dari berbagai jenis usaha sudah merasakan manfaat Loka Kasir setiap hari."
-        >
-          <Testimonials />
         </Section>
 
         <CTA />
