@@ -56,11 +56,6 @@ const PricingColumn: React.FC<Props> = ({ tier, highlight }: Props) => {
               {period}
             </span>
           )}
-          {!isFreeTrial && (
-            <span className="block text-xs text-gray-400 mt-1">
-              ≈ Rp {Math.round((price as number) / (period?.includes("tahun") ? 12 : 1)).toLocaleString("id-ID")} / bulan
-            </span>
-          )}
         </div>
         <a
           href={ctaUrl ?? "https://play.google.com/store/apps/details?id=com.lokakasir.app"}
