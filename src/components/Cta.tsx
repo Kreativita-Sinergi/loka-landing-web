@@ -1,7 +1,4 @@
 import { ctaDetails } from "@/data/cta"
-import { siteDetails } from "@/data/siteDetails"
-
-import PlayStoreButton from "./PlayStoreButton"
 
 const CTA: React.FC = () => {
     return (
@@ -17,16 +14,30 @@ const CTA: React.FC = () => {
 
                         <p className="mx-auto max-w-xl md:px-5">{ctaDetails.subheading}</p>
 
-                        <div className="mt-4 flex flex-col sm:flex-row items-center sm:gap-4">
-                            <PlayStoreButton />
+                        <div className="mt-6 flex flex-col sm:flex-row items-center gap-3">
                             <a
-                                href={siteDetails.dashboardUrl}
+                                href={ctaDetails.dashboardUrl}
                                 target="_blank"
-                                className="flex items-center justify-center min-w-[205px] mt-3 px-6 h-14 rounded-full w-full sm:w-fit text-foreground bg-white hover:bg-gray-100 transition-colors font-semibold"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center min-w-[220px] px-8 h-14 rounded-full font-bold text-base bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
+                            >
+                                Daftar & Mulai Gratis
+                            </a>
+                            <a
+                                href={ctaDetails.dashboardUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center min-w-[220px] px-8 h-14 rounded-full font-semibold text-base text-gray-900 bg-white hover:bg-gray-100 transition-colors"
                             >
                                 Buka Dashboard
                             </a>
                         </div>
+
+                        <p className="mt-4 text-xs text-blue-200">
+                            Daftar di{" "}
+                            <span className="font-semibold text-white">app.lokakasir.id</span>
+                            {" "}→ pilih paket → selesaikan pembayaran
+                        </p>
                     </div>
                 </div>
             </div>

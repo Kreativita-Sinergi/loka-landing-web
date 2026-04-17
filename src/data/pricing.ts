@@ -1,10 +1,11 @@
 import { IPricing } from "@/types";
 
 const liteFeatures = [
-  "1 outlet",
+  "Maksimal 1 outlet",
   "Transaksi tidak terbatas",
+  "Fitur Kasir (POS) Standar",
   "Kelola produk & kategori",
-  "Laporan penjualan 30 hari terakhir",
+  "Laporan transaksi 30 hari terakhir",
   "Mode offline otomatis",
   "Sinkronisasi cloud real-time",
   "Web Admin dashboard untuk pemilik",
@@ -13,12 +14,12 @@ const liteFeatures = [
 ];
 
 const proFeatures = [
-  "Semua fitur Lite",
-  "Multi-outlet (kelola dari satu akun)",
-  "Laporan penjualan tanpa batas waktu",
-  "Inventori & varian produk",
-  "Manajemen shift kasir & rekap kas",
-  "E-receipt via WhatsApp",
+  "Manajemen multi-outlet (harga × jumlah outlet)",
+  "Fitur Kasir (POS) Lengkap",
+  "Laporan keuangan lengkap (tanpa batas waktu)",
+  "Manajemen inventori & stok varian",
+  "Sistem shift kasir & rekap kas",
+  "Gratis e-receipt & notifikasi via WhatsApp",
   "Kitchen Display System (KDS)",
   "Multi-role karyawan (Owner, Manager, Admin, Kasir, Koki)",
   "Manajemen meja & pesanan dine-in",
@@ -30,16 +31,15 @@ export const tiers: IPricing[] = [
   {
     name: "Coba Gratis",
     price: "Gratis",
-    period: "30 hari",
+    period: "14 hari",
     description:
       "Akses penuh semua fitur Pro tanpa syarat. Tidak perlu kartu kredit.",
     features: [
       ...proFeatures,
-      "Aktif langsung setelah download",
+      "Aktif langsung setelah daftar",
     ],
     ctaLabel: "Mulai Gratis Sekarang",
-    ctaUrl:
-      "https://play.google.com/store/apps/details?id=com.lokakasir.app",
+    ctaUrl: "https://app.lokakasir.id",
   },
   {
     name: "Lite",
@@ -48,8 +48,7 @@ export const tiers: IPricing[] = [
     description: "Untuk 1 outlet. Ideal untuk usaha kecil yang baru memulai.",
     features: liteFeatures,
     ctaLabel: "Pilih Lite",
-    ctaUrl:
-      "https://play.google.com/store/apps/details?id=com.lokakasir.app",
+    ctaUrl: "https://app.lokakasir.id",
   },
   {
     name: "Pro",
@@ -60,7 +59,6 @@ export const tiers: IPricing[] = [
       "Outlet pertama sudah termasuk. Outlet tambahan +Rp 49.000/outlet/bulan.",
     features: proFeatures,
     ctaLabel: "Pilih Pro",
-    ctaUrl:
-      "https://play.google.com/store/apps/details?id=com.lokakasir.app",
+    ctaUrl: "https://app.lokakasir.id",
   },
 ];

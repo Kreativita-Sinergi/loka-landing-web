@@ -13,19 +13,23 @@ const Ecosystem: React.FC = () => {
                 <p className="text-gray-600 mb-6 leading-relaxed">
                     Alat tempur harian di toko. Proses transaksi kilat, cetak struk otomatis, dan manajemen shift yang akurat.
                 </p>
-                <ul className="space-y-4 mb-8">
-                    <li className="flex items-center gap-3 text-gray-700">
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                        <span className="text-sm font-medium">Login PIN 4-Digit Cepat</span>
-                    </li>
-                    <li className="flex items-center gap-3 text-gray-700">
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                        <span className="text-sm font-medium">Offline Mode & Auto-Sync</span>
-                    </li>
-                    <li className="flex items-center gap-3 text-gray-700">
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                        <span className="text-sm font-medium">Cetak Struk Bluetooth/USB</span>
-                    </li>
+                <ul className="space-y-3">
+                    {[
+                        "Login PIN 4-Digit Cepat per Kasir",
+                        "Tampilan POS Modern — Grid & List View",
+                        "Multi Tipe Order: Dine-in, Take Away, Delivery",
+                        "Pembayaran Tunai, Non-Tunai & Split",
+                        "Cetak Struk Printer Bluetooth / USB",
+                        "Manajemen Shift Kasir & Rekap Kas Otomatis",
+                        "Kitchen Display System (KDS) untuk Dapur",
+                        "E-receipt Otomatis via WhatsApp",
+                        "Offline Mode & Auto-Sync ke Cloud",
+                    ].map((item) => (
+                        <li key={item} className="flex items-center gap-3 text-gray-700">
+                            <div className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />
+                            <span className="text-sm font-medium">{item}</span>
+                        </li>
+                    ))}
                 </ul>
             </div>
 
@@ -38,19 +42,23 @@ const Ecosystem: React.FC = () => {
                 <p className="text-gray-600 mb-6 leading-relaxed">
                     Pusat kendali bisnis Anda. Pantau laporan real-time, kelola inventori, dan atur karyawan dari mana saja.
                 </p>
-                <ul className="space-y-4 mb-8">
-                    <li className="flex items-center gap-3 text-gray-700">
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                        <span className="text-sm font-medium">Analitik Laporan Mendalam</span>
-                    </li>
-                    <li className="flex items-center gap-3 text-gray-700">
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                        <span className="text-sm font-medium">Manajemen Produk & Stok Massal</span>
-                    </li>
-                    <li className="flex items-center gap-3 text-gray-700">
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                        <span className="text-sm font-medium">Multi Outlet & Role Karyawan</span>
-                    </li>
+                <ul className="space-y-3">
+                    {[
+                        "Dashboard Laporan Keuangan Real-time",
+                        "Analitik Penjualan Mendalam & Grafik",
+                        "Manajemen Produk, Kategori & Varian",
+                        "Kelola Stok & Inventori Massal",
+                        "Multi-Outlet dari Satu Akun",
+                        "Manajemen Karyawan & Hak Akses Role",
+                        "Kelola Meja & Denah Restoran",
+                        "Riwayat Transaksi & Manajemen Refund",
+                        "Pengaturan Outlet & Langganan",
+                    ].map((item) => (
+                        <li key={item} className="flex items-center gap-3 text-gray-700">
+                            <div className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />
+                            <span className="text-sm font-medium">{item}</span>
+                        </li>
+                    ))}
                 </ul>
             </div>
         </div>

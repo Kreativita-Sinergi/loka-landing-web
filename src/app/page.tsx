@@ -8,15 +8,11 @@ import Section from "@/components/Section";
 import CTA from "@/components/Cta";
 import Ecosystem from "@/components/Ecosystem";
 import Pricing from "@/components/Pricing/Pricing";
-import Stats from "@/components/Stats";
 
 const HomePage: React.FC = () => {
   return (
     <>
       <Hero />
-
-      {/* Stats — fakta singkat untuk membangun kepercayaan */}
-      <Stats />
 
       <Container>
         {/* Fitur Unggulan */}
@@ -41,7 +37,7 @@ const HomePage: React.FC = () => {
         <Section
           id="pricing"
           title="Harga Transparan, Tanpa Kejutan"
-          description="Mulai gratis 30 hari dengan akses penuh. Lanjutkan dengan paket yang paling sesuai — tidak ada biaya tersembunyi, tidak ada biaya per transaksi."
+          description="Mulai gratis 14 hari dengan akses penuh. Lanjutkan dengan paket yang paling sesuai — tidak ada biaya tersembunyi, tidak ada biaya per transaksi."
         >
           <Pricing />
         </Section>

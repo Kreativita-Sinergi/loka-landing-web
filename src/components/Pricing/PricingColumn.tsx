@@ -58,7 +58,7 @@ const PricingColumn: React.FC<Props> = ({ tier, highlight }: Props) => {
           )}
         </div>
         <a
-          href={ctaUrl ?? "https://play.google.com/store/apps/details?id=com.lokakasir.app"}
+          href={ctaUrl ?? "https://app.lokakasir.id"}
           target="_blank"
           rel="noopener noreferrer"
           className={clsx(

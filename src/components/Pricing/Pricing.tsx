@@ -13,13 +13,27 @@ const Pricing: React.FC = () => {
           />
         ))}
       </div>
-      <p className="mt-8 text-center text-sm text-gray-400">
-        Harga belum termasuk PPN. Pembayaran melalui transfer bank atau dompet digital.{" "}
-        <a href="mailto:help@lokakasir.id" className="underline hover:text-gray-600">
-          Hubungi kami
-        </a>{" "}
-        untuk pertanyaan seputar harga.
-      </p>
+      <div className="mt-8 space-y-2 text-center">
+        <p className="text-sm font-medium text-gray-600">
+          Untuk berlangganan:{" "}
+          <a
+            href="https://app.lokakasir.id"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 underline hover:text-blue-800 font-semibold"
+          >
+            Daftar akun di app.lokakasir.id
+          </a>
+          {" "}terlebih dahulu, kemudian pilih paket dan selesaikan pembayaran.
+        </p>
+        <p className="text-sm text-gray-400">
+          Harga sudah termasuk PPN. Pembayaran melalui transfer bank atau dompet digital.{" "}
+          <a href="mailto:help@lokakasir.id" className="underline hover:text-gray-600">
+            Hubungi kami
+          </a>{" "}
+          untuk pertanyaan seputar harga.
+        </p>
+      </div>
     </div>
   );
 };
