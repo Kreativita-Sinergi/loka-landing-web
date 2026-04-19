@@ -12,14 +12,35 @@ const MOBILE_SCREENS = [
 ];
 
 const TABLET_SCREENS = [
-  { src: "/images/tablet/Screenshot_1776574478.png", label: "Dashboard" },
-  { src: "/images/tablet/Screenshot_1776574642.png", label: "Kasir — Grid" },
-  { src: "/images/tablet/Screenshot_1776574650.png", label: "Kasir — List" },
+  {
+    src: "/images/tablet/Screenshot_1776574642.png",
+    label: "Layar Transaksi (Grid)",
+    description: "Antarmuka kasir yang bersih dengan dukungan grid view untuk identifikasi produk cepat.",
+  },
+  {
+    src: "/images/tablet/Screenshot_1776574650.png",
+    label: "Layar Transaksi (List)",
+    description: "Tampilan list untuk melihat SKU dan detail stok produk secara langsung saat transaksi.",
+  },
+  {
+    src: "/images/tablet/Screenshot_1776574679.png",
+    label: "Riwayat Transaksi",
+    description: "Pantau semua transaksi harian, status pembayaran, dan kelola refund langsung dari perangkat.",
+  },
+  {
+    src: "/images/tablet/Screenshot_1776574482.png",
+    label: "Manajemen Shift",
+    description: "Laporan ringkasan kas yang akurat di setiap akhir sesi untuk transparansi keuangan.",
+  },
+  {
+    src: "/images/tablet/Screenshot_1776574686.png",
+    label: "Pengaturan Perangkat",
+    description: "Pusat konfigurasi printer thermal, laci uang, dan sinkronisasi data dari server.",
+  },
 ];
 
 const AppScreenshots: React.FC = () => {
   const [tab, setTab] = useState<"mobile" | "tablet">("mobile");
-  const [activeTablet, setActiveTablet] = useState(0);
 
   return (
     <div className="mt-12">
@@ -84,32 +105,27 @@ const AppScreenshots: React.FC = () => {
 
       {/* Tablet showcase */}
       {tab === "tablet" && (
-        <div className="flex flex-col items-center gap-6">
-          <div className="w-full max-w-3xl bg-gray-900 rounded-[20px] p-[7px] shadow-2xl ring-1 ring-gray-800">
-            <div className="relative w-full aspect-[16/10] rounded-[14px] overflow-hidden bg-black">
-              <Image
-                src={TABLET_SCREENS[activeTablet].src}
-                alt={TABLET_SCREENS[activeTablet].label}
-                fill
-                unoptimized
-                className="object-cover object-top"
-                sizes="(max-width: 768px) 100vw, 768px"
-              />
-            </div>
-          </div>
-          <div className="flex gap-3">
-            {TABLET_SCREENS.map((s, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveTablet(i)}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                  activeTablet === i
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                }`}
-              >
-                {s.label}
-              </button>
+        <div className="overflow-x-auto pb-6 -mx-4 px-4">
+          <div className="flex gap-5 min-w-max">
+            {TABLET_SCREENS.map((screen, i) => (
+              <div key={i} className="flex flex-col gap-3 w-[280px] md:w-[320px] flex-shrink-0">
+                <div className="bg-gray-900 rounded-[14px] p-[5px] shadow-xl ring-1 ring-gray-800">
+                  <div className="relative w-full aspect-[16/10] rounded-[10px] overflow-hidden bg-black">
+                    <Image
+                      src={screen.src}
+                      alt={screen.label}
+                      fill
+                      unoptimized
+                      className="object-cover object-top"
+                      sizes="320px"
+                    />
+                  </div>
+                </div>
+                <div className="px-1">
+                  <p className="text-sm font-semibold text-gray-900">{screen.label}</p>
+                  <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{screen.description}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>

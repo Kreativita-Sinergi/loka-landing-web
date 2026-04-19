@@ -36,7 +36,7 @@ export const benefits: IBenefit[] = [
                 icon: <FiLayers size={26} />
             },
         ],
-        imageSrc: "/images/app-order-grid.png"
+        imageSrc: "/images/tablet/Screenshot_1776574650.png"
     },
     {
         title: "Manajemen Shift, Kas & Absensi Karyawan",
@@ -63,7 +63,7 @@ export const benefits: IBenefit[] = [
                 icon: <FiShield size={26} />
             },
         ],
-        imageSrc: "/images/app-shift-summary.png"
+        imageSrc: "/images/tablet/Screenshot_1776574482.png"
     },
     {
         title: "Riwayat Transaksi Lengkap & Kelola Refund",
@@ -80,7 +80,7 @@ export const benefits: IBenefit[] = [
                 icon: <FiClock size={26} />
             },
         ],
-        imageSrc: "/images/app-history.png"
+        imageSrc: "/images/tablet/Screenshot_1776574679.png"
     },
     {
         title: "Hardware Siap & Cloud Selalu Terkini",
@@ -102,6 +102,6 @@ export const benefits: IBenefit[] = [
                 icon: <FiSettings size={26} />
             },
         ],
-        imageSrc: "/images/app-settings.png"
+        imageSrc: "/images/tablet/Screenshot_1776574686.png"
     }
 ]
