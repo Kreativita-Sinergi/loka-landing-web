@@ -5,32 +5,71 @@ import Image from "next/image";
 import PlayStoreButton from "./PlayStoreButton";
 import { heroDetails } from "@/data/hero";
 
+const BADGES = [
+  { emoji: "⚡", text: "Transaksi Kilat" },
+  { emoji: "📊", text: "Laporan Real-time" },
+  { emoji: "🖨️", text: "Cetak Struk Otomatis" },
+  { emoji: "☁️", text: "Sync Cloud" },
+];
+
 const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative flex items-center justify-center pb-0 pt-32 md:pt-40 px-5"
+      className="relative flex items-center justify-center pb-0 pt-28 md:pt-36 px-5 overflow-hidden"
     >
+      {/* Grid background */}
       <div className="absolute left-0 top-0 bottom-0 -z-10 w-full">
-        <div className="absolute inset-0 h-full w-full bg-hero-background bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"></div>
+        <div className="absolute inset-0 h-full w-full bg-hero-background bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]" />
       </div>
 
-      <div className="absolute left-0 right-0 bottom-0 backdrop-blur-[2px] h-40 bg-gradient-to-b from-transparent via-[rgba(233,238,255,0.5)] to-[rgba(202,208,230,0.5)]"></div>
+      {/* Glow blobs */}
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-blue-400/10 rounded-full blur-3xl -z-10 pointer-events-none" />
 
-      <div className="text-center">
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight font-sans text-gray-900 max-w-lg md:max-w-2xl mx-auto">
+      {/* Bottom fade */}
+      <div className="absolute left-0 right-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-[rgba(202,208,230,0.4)] -z-10" />
+
+      <div className="text-center w-full max-w-4xl mx-auto">
+        {/* Pill badge */}
+        <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-6">
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+          Kasir Digital untuk UMKM Indonesia
+        </div>
+
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight font-sans text-gray-900 max-w-2xl mx-auto leading-tight">
           {heroDetails.heading}
         </h1>
-        <p className="mt-4 text-gray-600 text-lg md:text-xl leading-relaxed max-w-lg mx-auto">
+        <p className="mt-5 text-gray-500 text-lg md:text-xl leading-relaxed max-w-xl mx-auto">
           {heroDetails.subheading}
         </p>
 
-        <div className="mt-6 flex items-center justify-center">
+        <div className="mt-8 flex items-center justify-center">
           <PlayStoreButton dark />
         </div>
 
-        <div className="relative mt-12 md:mt-16 mx-auto z-10 w-full max-w-2xl px-4">
-          <div className="bg-gray-900 rounded-[18px] p-[5px] shadow-2xl ring-1 ring-gray-800">
+        {/* Feature badges */}
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+          {BADGES.map((b) => (
+            <span
+              key={b.text}
+              className="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-600 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm"
+            >
+              <span>{b.emoji}</span>
+              {b.text}
+            </span>
+          ))}
+        </div>
+
+        {/* Tablet mockup */}
+        <div className="relative mt-14 mx-auto z-10 w-full max-w-3xl px-4">
+          {/* Glow behind tablet */}
+          <div className="absolute inset-x-8 top-4 bottom-0 bg-blue-500/10 blur-2xl rounded-3xl -z-10" />
+
+          <div className="bg-gray-900 rounded-[20px] p-[6px] shadow-[0_32px_80px_-12px_rgba(0,0,0,0.35)] ring-1 ring-white/10">
+            {/* Tablet top notch bar */}
+            <div className="flex items-center justify-center py-1.5 px-4">
+              <div className="w-16 h-1 bg-gray-700 rounded-full" />
+            </div>
             <div className="relative w-full aspect-[16/10] rounded-[14px] overflow-hidden bg-black">
               <Image
                 src={heroDetails.centerImageSrc}
@@ -39,10 +78,13 @@ const Hero: React.FC = () => {
                 unoptimized
                 alt="app mockup"
                 className="object-cover object-top"
-                sizes="(max-width: 768px) 100vw, 672px"
+                sizes="(max-width: 768px) 100vw, 768px"
               />
             </div>
           </div>
+
+          {/* Reflection / bottom shine */}
+          <div className="h-8 mx-6 bg-gradient-to-b from-gray-900/20 to-transparent rounded-b-3xl blur-sm" />
         </div>
       </div>
     </section>
