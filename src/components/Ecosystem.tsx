@@ -25,7 +25,7 @@ const Ecosystem: React.FC = () => {
                         "Cetak Struk Printer Bluetooth / USB",
                         "Manajemen Shift Kasir & Rekap Kas Otomatis",
                         "Kitchen Display System (KDS) untuk Dapur",
-                        "E-receipt Otomatis via WhatsApp",
+                        "Absensi Karyawan — Kiosk Clock-in / Clock-out",
                         "Offline Mode & Auto-Sync ke Cloud",
                     ].map((item) => (
                         <li key={item} className="flex items-center gap-3 text-gray-700">

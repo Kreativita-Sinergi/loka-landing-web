@@ -8,6 +8,7 @@ import Section from "@/components/Section";
 import CTA from "@/components/Cta";
 import Ecosystem from "@/components/Ecosystem";
 import Pricing from "@/components/Pricing/Pricing";
+import AppScreenshots from "@/components/AppScreenshots";
 
 const HomePage: React.FC = () => {
   return (
@@ -31,6 +32,15 @@ const HomePage: React.FC = () => {
           description="App Kasir di tangan kasir Anda, Web Admin di tangan pemilik bisnis. Keduanya terhubung real-time — tidak ada data yang tertinggal."
         >
           <Ecosystem />
+        </Section>
+
+        {/* Tampilan Aplikasi */}
+        <Section
+          id="screenshots"
+          title="Lihat Langsung Tampilannya"
+          description="Antarmuka yang intuitif, cepat, dan nyaman — dari smartphone kasir hingga tablet di meja."
+        >
+          <AppScreenshots />
         </Section>
 
         {/* Harga */}
