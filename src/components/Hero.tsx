@@ -29,17 +29,21 @@ const Hero: React.FC = () => {
           <PlayStoreButton dark />
         </div>
 
-        <Image
-          src={heroDetails.centerImageSrc}
-          width={384}
-          height={340}
-          quality={100}
-          sizes="(max-width: 768px) 100vw, 384px"
-          priority={true}
-          unoptimized={true}
-          alt="app mockup"
-          className="relative mt-12 md:mt-16 mx-auto z-10"
-        />
+        <div className="relative mt-12 md:mt-16 mx-auto z-10 w-full max-w-2xl px-4">
+          <div className="bg-gray-900 rounded-[18px] p-[5px] shadow-2xl ring-1 ring-gray-800">
+            <div className="relative w-full aspect-[16/10] rounded-[14px] overflow-hidden bg-black">
+              <Image
+                src={heroDetails.centerImageSrc}
+                fill
+                priority
+                unoptimized
+                alt="app mockup"
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 100vw, 672px"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
