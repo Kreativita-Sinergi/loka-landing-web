@@ -31,34 +31,34 @@ const Header: React.FC = () => {
       }`}
     >
       <Container className="!px-0">
-        <nav className="mx-auto flex justify-between items-center py-2 px-5 md:py-4">
+        <nav className="mx-auto flex justify-between items-center py-3 px-5 md:py-4">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/images/logo.png" width={150} height={80} alt="Logo" />
+            <Image src="/images/logo.png" width={130} height={70} alt="Logo" />
           </Link>
-          <ul className="hidden md:flex space-x-6">
+          <ul className="hidden md:flex items-center gap-1">
             {menuItems.map((item) => (
               <li key={item.text}>
                 <Link
                   href={item.url}
-                  className="text-black hover:text-[#007BFF] transition-colors"
+                  className="text-sm font-medium text-gray-500 hover:text-gray-900 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all"
                 >
                   {item.text}
                 </Link>
               </li>
             ))}
-            <li>
+            <li className="ml-2">
               <Link
                 href={siteDetails.dashboardUrl}
                 target="_blank"
-                className="text-gray-700 hover:text-blue-600 px-4 py-3 font-medium transition-colors"
+                className="text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all"
               >
                 Login
               </Link>
             </li>
-            <li>
+            <li className="ml-1">
               <Link
                 href="#cta"
-                className="text-white bg-[#007BFF] hover:bg-blue-600 px-8 py-3 rounded-full transition-colors font-medium"
+                className="text-sm text-white bg-blue-600 hover:bg-blue-700 px-5 py-2.5 rounded-xl transition-colors font-semibold shadow-sm"
               >
                 Download
               </Link>
