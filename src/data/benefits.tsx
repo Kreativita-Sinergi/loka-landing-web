@@ -9,6 +9,7 @@ import {
     FiShield,
     FiShoppingCart,
     FiUsers,
+    FiUserCheck,
     FiWifi,
 } from "react-icons/fi";
 
@@ -38,8 +39,8 @@ export const benefits: IBenefit[] = [
         imageSrc: "/images/app-order-grid.png"
     },
     {
-        title: "Manajemen Shift & Transparansi Kas",
-        description: "Tidak ada lagi selisih kas yang membingungkan. Setiap rupiah tercatat otomatis dari buka hingga tutup toko.",
+        title: "Manajemen Shift, Kas & Absensi Karyawan",
+        description: "Tidak ada lagi selisih kas yang membingungkan. Setiap rupiah tercatat otomatis dari buka hingga tutup toko — dan kehadiran karyawan terpantau langsung.",
         bullets: [
             {
                 title: "Rekap Kas Otomatis per Shift",
@@ -50,6 +51,11 @@ export const benefits: IBenefit[] = [
                 title: "Multi-Kasir, Satu Akun",
                 description: "Tetapkan PIN unik untuk setiap kasir. Lacak performa dan aktivitas setiap karyawan secara terpisah.",
                 icon: <FiUsers size={26} />
+            },
+            {
+                title: "Absensi Karyawan (Clock-in / Clock-out)",
+                description: "Tablet kasir berfungsi ganda sebagai kiosk absensi. Karyawan cukup memilih nama dan memasukkan PIN untuk mencatat kehadiran — tanpa aplikasi tambahan.",
+                icon: <FiUserCheck size={26} />
             },
             {
                 title: "Verifikasi PIN Supervisor",

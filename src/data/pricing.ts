@@ -19,11 +19,12 @@ const proFeatures = [
   "Laporan keuangan lengkap (tanpa batas waktu)",
   "Manajemen inventori & stok varian",
   "Sistem shift kasir & rekap kas",
-  "Gratis e-receipt & notifikasi via WhatsApp",
+  "Absensi Karyawan — kiosk clock-in / out",
   "Kitchen Display System (KDS)",
   "Multi-role karyawan (Owner, Manager, Admin, Kasir, Koki)",
   "Manajemen meja & pesanan dine-in",
   "Pembayaran split (tunai + non-tunai)",
+  "Cetak struk otomatis printer thermal (Bluetooth / USB)",
   "Bantuan teknis prioritas via WhatsApp & email",
 ];
 
