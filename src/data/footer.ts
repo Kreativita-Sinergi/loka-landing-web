@@ -15,6 +15,7 @@ export const footerDetails: {
         { text: "Harga", url: "#pricing" },
         { text: "Testimoni", url: "#testimonials" },
         { text: "FAQ", url: "#faq" },
+        { text: "Kebijakan Privasi", url: "/privacy-policy" },
     ],
     email: 'help@lokakasir.id',
     telephone: '+62 853-9373-7313',
