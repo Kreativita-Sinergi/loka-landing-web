@@ -9,11 +9,15 @@ import CTA from "@/components/Cta";
 import Ecosystem from "@/components/Ecosystem";
 import Pricing from "@/components/Pricing/Pricing";
 import AppScreenshots from "@/components/AppScreenshots";
+import Stats from "@/components/Stats";
+import Testimonials from "@/components/Testimonials";
 
 const HomePage: React.FC = () => {
   return (
     <>
       <Hero />
+
+      <Stats />
 
       <Container>
         {/* Fitur Unggulan */}
@@ -41,6 +45,15 @@ const HomePage: React.FC = () => {
           description="Antarmuka yang intuitif, cepat, dan nyaman — dari smartphone kasir hingga tablet di meja."
         >
           <AppScreenshots />
+        </Section>
+
+        {/* Testimoni */}
+        <Section
+          id="testimonials"
+          title="Apa Kata Mereka"
+          description="Lebih dari ratusan bisnis di Indonesia sudah mempercayakan operasional kasir mereka kepada Loka Kasir."
+        >
+          <Testimonials />
         </Section>
 
         {/* Harga */}

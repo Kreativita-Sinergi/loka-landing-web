@@ -89,7 +89,7 @@ const BenefitSection: React.FC<Props> = ({ benefit, imageAtRight }: Props) => {
                 <div className={clsx("mt-5 lg:mt-0 w-full max-w-lg", { "lg:order-2": imageAtRight })}>
                     <div className="bg-gray-900 rounded-[16px] p-[5px] shadow-2xl ring-1 ring-gray-800">
                         <div className="relative w-full aspect-[16/10] rounded-[12px] overflow-hidden bg-black">
-                            <Image src={imageSrc} alt={title} fill unoptimized className="object-cover object-top" sizes="(max-width: 1024px) 100vw, 512px" />
+                            <Image src={imageSrc} alt={title} fill className="object-cover object-top" sizes="(max-width: 1024px) 100vw, 512px" />
                         </div>
                     </div>
                 </div>

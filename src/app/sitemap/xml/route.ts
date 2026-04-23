@@ -1,7 +1,8 @@
 import { siteDetails } from "@/data/siteDetails";
 
 export async function GET() {
-  const pages = ["", "/features", "/pricing", "/testimonials", "/faq"];
+  // Only list real crawlable routes; hash-anchor sections (#features, #faq, etc.) are not separate pages.
+  const pages = ["", "/privacy-policy"];
   const baseUrl = siteDetails.siteUrl;
 
   const urls = pages

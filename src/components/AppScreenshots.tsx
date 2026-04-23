@@ -90,8 +90,7 @@ const AppScreenshots: React.FC = () => {
                       src={screen.src}
                       alt={screen.label}
                       fill
-                      unoptimized
-                      className="object-cover object-top"
+                                            className="object-cover object-top"
                       sizes="160px"
                     />
                   </div>
@@ -115,8 +114,7 @@ const AppScreenshots: React.FC = () => {
                       src={screen.src}
                       alt={screen.label}
                       fill
-                      unoptimized
-                      className="object-cover object-top"
+                                            className="object-cover object-top"
                       sizes="320px"
                     />
                   </div>

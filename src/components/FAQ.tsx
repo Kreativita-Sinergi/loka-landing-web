@@ -20,7 +20,7 @@ const FAQ: React.FC = () => {
                         Masih ada pertanyaan? Jangan ragu untuk menghubungi kami.
                     </p>
                     <a
-                        href="mailto:help@loka-pos.com"
+                        href="mailto:help@lokakasir.id"
                         className="mt-3 block text-xl lg:text-4xl text-secondary font-semibold hover:underline text-center lg:text-left"
                     >
                         help@lokakasir.id

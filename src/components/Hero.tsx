@@ -75,7 +75,6 @@ const Hero: React.FC = () => {
                 src={heroDetails.centerImageSrc}
                 fill
                 priority
-                unoptimized
                 alt="app mockup"
                 className="object-cover object-top"
                 sizes="(max-width: 768px) 100vw, 768px"
