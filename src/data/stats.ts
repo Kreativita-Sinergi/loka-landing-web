@@ -6,23 +6,23 @@ export interface IStat {
 
 export const stats: IStat[] = [
   {
-    value: "1.000+",
-    label: "Transaksi / Hari",
-    description: "Diproses setiap hari di seluruh outlet pengguna Loka Kasir",
-  },
-  {
-    value: "100+",
-    label: "Outlet Aktif",
-    description: "Dari warung hingga restoran di berbagai kota di Indonesia",
-  },
-  {
     value: "10+",
-    label: "Jenis Bisnis",
-    description: "Warung makan, kafe, minimarket, fashion, salon, dan lainnya",
+    label: "Tipe Bisnis",
+    description: "Warung makan, kafe, minimarket, salon, laundry, restoran, dan lainnya",
   },
   {
-    value: "< 1 dtk",
+    value: "50+",
+    label: "Fitur Siap Pakai",
+    description: "POS, KDS, absensi, inventori, laporan, multi-outlet — semua dalam satu app",
+  },
+  {
+    value: "< 2 dtk",
     label: "Proses Transaksi",
-    description: "Kecepatan rata-rata kasir memproses satu item pesanan",
+    description: "Dari pilih produk hingga struk tercetak, tanpa hambatan jaringan",
+  },
+  {
+    value: "Android",
+    label: "Platform Kasir",
+    description: "Berjalan di tablet atau HP Android biasa — tanpa perangkat kasir khusus",
   },
 ];

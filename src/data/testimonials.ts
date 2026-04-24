@@ -2,21 +2,21 @@ import { ITestimonial } from "@/types";
 
 export const testimonials: ITestimonial[] = [
     {
-        name: 'Rizky Pratama',
-        role: 'Pemilik Warung Makan, Padang',
-        message: `Dulu saya catat transaksi manual di buku, sering ada selisih kas tiap malam. Sekarang pakai Loka Kasir, semua tercatat otomatis dan laporan bisa saya cek dari HP kapan saja. Selisih kas sudah tidak pernah terjadi lagi.`,
-        avatar: '/images/testimonial-1.webp',
+        name: 'Warung & Restoran',
+        role: 'Masalah umum: pesanan tertukar, selisih kas, struk manual',
+        message: `Dengan Kitchen Display System (KDS), pesanan langsung muncul di layar dapur — tidak ada lagi teriakan dari kasir ke dapur. Kas tercatat otomatis per shift, laporan penjualan bisa dicek dari HP kapan saja.`,
+        avatar: '',
     },
     {
-        name: 'Nadia Larasati',
-        role: 'Owner Kafe, Bandung',
-        message: `Staf kasir saya yang baru pun bisa langsung pakai aplikasinya dalam satu hari — tidak perlu pelatihan panjang. Fitur KDS-nya sangat membantu dapur kami, pesanan dine-in dan take-away tidak pernah tertukar lagi.`,
-        avatar: '/images/testimonial-2.webp',
+        name: 'Kafe & Minuman',
+        role: 'Masalah umum: kasir baru susah belajar, antrian panjang',
+        message: `Tampilan kasir yang sederhana membuat staf baru bisa langsung pakai tanpa pelatihan panjang. Sistem antrian nomor antre otomatis membantu mengelola pelanggan saat ramai tanpa kekacauan.`,
+        avatar: '',
     },
     {
-        name: 'Anita Rahma',
-        role: 'Pemilik Toko Fashion, Jakarta',
-        message: `Saya buka 2 cabang dan semua bisa dipantau dari satu dashboard. Laporan per outlet, stok, dan performa kasir semuanya real-time. Loka Kasir benar-benar membantu saya buat keputusan bisnis lebih cepat.`,
-        avatar: '/images/testimonial-3.webp',
+        name: 'Multi-Outlet & Franchise',
+        role: 'Masalah umum: sulit pantau performa tiap cabang',
+        message: `Semua outlet terhubung ke satu dashboard admin. Laporan pendapatan, stok, dan performa kasir per cabang tersedia real-time — tidak perlu telfon ke setiap outlet untuk tahu kondisi bisnis hari ini.`,
+        avatar: '',
     },
 ];

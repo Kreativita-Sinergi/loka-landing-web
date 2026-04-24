@@ -50,8 +50,8 @@ const HomePage: React.FC = () => {
         {/* Testimoni */}
         <Section
           id="testimonials"
-          title="Apa Kata Mereka"
-          description="Lebih dari ratusan bisnis di Indonesia sudah mempercayakan operasional kasir mereka kepada Loka Kasir."
+          title="Cocok untuk Bisnis Anda"
+          description="Loka Kasir dirancang fleksibel — dari warung kecil hingga bisnis multi-outlet, semua bisa langsung pakai tanpa setup rumit."
         >
           <Testimonials />
         </Section>
