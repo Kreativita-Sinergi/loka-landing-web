@@ -30,6 +30,7 @@ export interface IPricing {
 export interface IFAQ {
     question: string;
     answer: string;
+    category?: string;
 }
 
 export interface ITestimonial {
