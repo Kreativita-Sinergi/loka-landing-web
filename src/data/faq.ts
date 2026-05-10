@@ -36,7 +36,12 @@ Untuk bisnis FNB: tambahkan juga data meja dan aktifkan Kitchen Display System (
     category: "Memulai",
     question: "Apakah ada masa percobaan gratis?",
     answer:
-      `Ya! Setiap akun baru mendapat masa percobaan 14 hari gratis dengan akses penuh ke semua fitur — tanpa kartu kredit, tanpa komitmen. Setelah 14 hari, pilih paket Bulanan (Rp 100.000/bulan) atau Tahunan (Rp 800.000/tahun, hemat 33%).`,
+      `Ya! Setiap akun baru mendapat masa percobaan 14 hari gratis dengan akses penuh ke semua fitur Pro — tanpa kartu kredit, tanpa komitmen.
+
+Setelah 14 hari, pilih paket yang sesuai:
+• Gratis — fitur POS inti, 1 outlet, selamanya gratis
+• Lite — Rp 39.000/bulan, operasional lengkap (karyawan, inventori, supplier, PO, analitik)
+• Pro — Rp 89.000/outlet/bulan, semua fitur Lite + HPP, Smart Pricing, Profitabilitas, Loyalty`,
   },
   {
     category: "Memulai",
@@ -188,9 +193,13 @@ Di App Kasir, kasir memilih variasi langsung saat menambah item ke keranjang.`,
     category: "Produk & Inventori",
     question: "Bagaimana cara memantau stok yang hampir habis?",
     answer:
-      `Setiap produk memiliki batas stok minimum yang bisa diatur per outlet. Ketika stok turun di bawah batas tersebut, muncul indikator peringatan di halaman Stok Saat Ini.
+      `Ada dua lapisan pemantauan stok menipis:
 
-Untuk bahan baku: halaman Bahan Baku menampilkan status Habis (merah), Rendah (kuning ≤5 satuan), atau Tersedia (hijau) per item, dilengkapi summary card di atas tabel.`,
+Produk jadi (semua paket):
+Setiap produk memiliki batas stok minimum yang bisa diatur per outlet. Ketika stok turun di bawah batas tersebut, muncul indikator peringatan di halaman Stok Saat Ini.
+
+Bahan Baku (paket Lite & Pro):
+Setiap bahan baku memiliki field "Stok Minimum (Alert)". Ketika stok bahan turun di bawah angka tersebut, muncul banner peringatan berwarna oranye di bagian atas halaman Bahan Baku — menampilkan daftar bahan yang perlu segera direstok beserta stok saat ini vs minimum yang ditetapkan.`,
   },
   {
     category: "Produk & Inventori",
@@ -328,20 +337,52 @@ Catatan waste penting untuk akurasi HPP dan analisis kebocoran biaya operasional
 PO membantu melacak riwayat pembelian, harga dari supplier berbeda, dan rekonsiliasi stok.`,
   },
 
+  // ─── Loyalty & Pelanggan ────────────────────────────────────────────────────
+
+  {
+    category: "Loyalty & Pelanggan",
+    question: "Apakah Loka Kasir punya program loyalty poin untuk pelanggan?",
+    answer:
+      `Ya, tersedia di paket Pro. Program Loyalty memungkinkan pelanggan mengumpulkan poin dari setiap transaksi dan menukarnya sebagai diskon di kunjungan berikutnya.
+
+Cara kerja:
+• Owner mengatur konfigurasi: berapa poin per Rp 1.000 yang dibelanjakan, nilai tukar poin (1 poin = Rp X), dan minimum poin untuk redeem
+• Poin terakumulasi otomatis (atau bisa ditambah manual oleh kasir/manager)
+• Saat redeem, kasir menukar poin menjadi potongan harga
+• Semua riwayat poin per pelanggan tercatat di Web Admin (tambah, redeem, saldo)
+
+Contoh: 1 poin per Rp 1.000 belanja, 1 poin = Rp 100. Pelanggan belanja Rp 50.000 → dapat 50 poin → bisa ditukar Rp 5.000 diskon.`,
+  },
+  {
+    category: "Loyalty & Pelanggan",
+    question: "Apakah database pelanggan tersedia di semua paket?",
+    answer:
+      `Database pelanggan (nama, telepon, email, alamat) tersedia di paket Lite dan Pro. Paket Gratis tidak menyertakan fitur manajemen pelanggan.
+
+Di paket Pro, setiap pelanggan juga memiliki saldo poin loyalty yang bisa dipantau dan dikelola langsung dari Web Admin.`,
+  },
+
   // ─── Laporan & Analitik ──────────────────────────────────────────────────────
 
   {
     category: "Laporan & Analitik",
     question: "Laporan apa saja yang tersedia di Loka Kasir?",
     answer:
-      `Loka Kasir menyediakan beberapa jenis laporan:
+      `Loka Kasir menyediakan laporan berlapis sesuai paket:
 
-• Dashboard Harian — total transaksi, pendapatan, produk terlaris, jam tersibuk (peak hours), perbandingan antar outlet
-• Laporan Keuangan — tren pendapatan harian/mingguan/bulanan, breakdown per metode bayar
-• Laporan Shift — ringkasan per shift: total transaksi, kas awal vs akhir, selisih
-• Riwayat Stok — semua pergerakan stok: IN, OUT, ADJUSTMENT, WASTE, TRANSFER
-• Laporan Profitabilitas HPP — per produk: Revenue vs COGS vs Gross Profit vs Margin %
-• Analitik Karyawan — performa kasir per shift`,
+Tersedia di semua paket (Gratis ke atas):
+• Riwayat transaksi 30 hari — cari, filter, dan lihat detail setiap transaksi
+
+Tersedia di paket Lite & Pro:
+• Laporan Keuangan Shift — rekap kas per shift: kas awal, penjualan, refund, selisih kas, breakdown per metode bayar
+• Analitik Lanjutan — peak hours, performa produk terlaris, perbandingan antar outlet, tren pendapatan mingguan/bulanan
+• Riwayat Stok — semua pergerakan stok: masuk, keluar, penyesuaian, waste, transfer
+• Export CSV — semua laporan bisa diunduh sebagai spreadsheet
+
+Tersedia eksklusif di paket Pro:
+• Laporan Profitabilitas HPP — per produk: Revenue, COGS, Gross Profit, Margin %
+• Net Profit & Net Margin — setelah dikurangi biaya overhead (OPEX)
+• Export Jurnal Akuntansi — format double-entry CSV kompatibel dengan Accurate & Buku Warung`,
   },
   {
     category: "Laporan & Analitik",
@@ -372,7 +413,11 @@ Untuk tampilan keseluruhan bisnis (semua outlet digabung), pilih "Semua Outlet".
     category: "Laporan & Analitik",
     question: "Bisakah laporan diekspor ke Excel atau PDF?",
     answer:
-      `Saat ini laporan dapat diekspor dalam format CSV langsung dari halaman laporan. Fitur ekspor PDF sedang dalam pengembangan. CSV dapat dibuka di Microsoft Excel, Google Sheets, atau aplikasi spreadsheet lainnya untuk analisis lebih lanjut.`,
+      `Ya, laporan dapat diekspor dalam format CSV langsung dari halaman laporan (tersedia di paket Lite & Pro). CSV dapat dibuka di Microsoft Excel, Google Sheets, atau aplikasi spreadsheet lainnya.
+
+Untuk paket Pro, tersedia tambahan Export Jurnal Akuntansi dalam format double-entry (debit/kredit) yang kompatibel dengan software akuntansi seperti Accurate atau Buku Warung — memudahkan rekonsiliasi keuangan bulanan.
+
+Fitur ekspor PDF sedang dalam pengembangan.`,
   },
 
   // ─── Karyawan & Hak Akses ───────────────────────────────────────────────────
@@ -435,15 +480,22 @@ Fitur ini mencegah kasir memiliki akses berlebihan sekaligus tidak mengganggu an
     category: "Teknis & Langganan",
     question: "Berapa banyak outlet dan pengguna yang bisa ditambahkan?",
     answer:
-      `Tergantung paket yang dipilih. Paket Free mendukung 1 outlet dengan pengguna terbatas. Paket berbayar mendukung outlet dan pengguna tidak terbatas sesuai kebutuhan bisnis Anda.
+      `Tergantung paket yang dipilih:
 
-Detail limit per paket tersedia di halaman Harga. Upgrade atau downgrade paket bisa dilakukan kapan saja tanpa kehilangan data.`,
+• Gratis — 1 outlet, karyawan & transaksi tidak terbatas
+• Trial (14 hari) — akses Pro penuh, multi-outlet diizinkan selama trial
+• Lite — 1 outlet; untuk outlet kedua dan seterusnya perlu upgrade ke Pro
+• Pro — multi-outlet tanpa batas; outlet pertama sudah termasuk harga paket, outlet tambahan dikenakan Rp 49.000/outlet/bulan
+
+Untuk jumlah karyawan (user), semua paket tidak membatasi jumlah karyawan yang bisa didaftarkan. Upgrade atau downgrade paket bisa dilakukan kapan saja tanpa kehilangan data.`,
   },
   {
     category: "Teknis & Langganan",
     question: "Apakah ada biaya tambahan di luar harga langganan?",
     answer:
-      `Tidak ada. Harga langganan sudah mencakup semua fitur, update rutin, dan bantuan teknis. Tidak ada biaya setup, biaya per transaksi, biaya per pengguna, atau biaya tersembunyi lainnya.`,
+      `Tidak ada biaya tersembunyi. Harga langganan sudah mencakup semua fitur sesuai paket, update rutin, dan bantuan teknis.
+
+Satu-satunya biaya tambahan yang mungkin berlaku adalah outlet tambahan pada paket Pro: Rp 49.000/outlet/bulan untuk outlet ke-2 dan seterusnya. Tidak ada biaya setup, biaya per transaksi, atau biaya per karyawan.`,
   },
   {
     category: "Teknis & Langganan",
