@@ -76,7 +76,7 @@ Jenis bisnis menentukan alur order: Retail menggunakan INSTANT_SALE (bayar → s
 
 1. Buka Shift — input saldo kas awal, pilih terminal
 2. Proses Transaksi — pilih produk → tentukan qty → terapkan diskon jika ada
-3. Pilih Metode Bayar — tunai, QRIS, kartu, atau split payment
+3. Pilih Metode Bayar — sesuai metode yang diaktifkan pemilik bisnis (tunai, QRIS, kartu, transfer)
 4. Konfirmasi Pembayaran — sistem hitung kembalian otomatis
 5. Struk — cetak atau kirim via WhatsApp/email
 6. Tutup Shift — input saldo kas akhir, lihat ringkasan shift
@@ -122,9 +122,11 @@ Status setiap item bisa dipantau real-time oleh kasir dan waiter dari App Kasir,
   },
   {
     category: "Operasi Harian",
-    question: "Apakah bisa split payment (bayar dengan dua metode sekaligus)?",
+    question: "Metode pembayaran apa saja yang didukung?",
     answer:
-      `Ya. Loka Kasir mendukung split payment — pelanggan bisa membayar sebagian dengan tunai dan sisanya dengan QRIS atau kartu dalam satu transaksi yang sama. Setiap porsi pembayaran dicatat terpisah dan terangkum di laporan.`,
+      `Loka Kasir mendukung berbagai metode pembayaran — tunai, QRIS, kartu debit/kredit, maupun transfer bank. Metode mana yang tersedia di kasir sepenuhnya ditentukan oleh pemilik bisnis melalui pengaturan di Web Admin.
+
+Setiap transaksi menggunakan satu metode pembayaran. Split bill dan pembayaran multi-metode dalam satu transaksi tidak didukung.`,
   },
   {
     category: "Operasi Harian",

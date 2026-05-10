@@ -31,8 +31,8 @@ export const benefits: IBenefit[] = [
                 icon: <FiShoppingCart size={26} />
             },
             {
-                title: "Pembayaran Split & Multi-Metode",
-                description: "Terima pembayaran tunai dan non-tunai sekaligus dalam satu transaksi — cocok untuk pelanggan yang bayar patungan.",
+                title: "Metode Pembayaran Fleksibel",
+                description: "Terima pembayaran tunai atau non-tunai sesuai metode yang dikonfigurasi oleh pemilik bisnis — tunai, QRIS, kartu, maupun transfer.",
                 icon: <FiLayers size={26} />
             },
         ],

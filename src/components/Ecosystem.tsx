@@ -21,7 +21,7 @@ const Ecosystem: React.FC = () => {
                         "Login PIN 4-Digit Cepat per Kasir",
                         "Tampilan POS Modern — Grid & List View",
                         "Multi Tipe Order: Dine-in, Take Away, Delivery",
-                        "Pembayaran Tunai, Non-Tunai & Split",
+                        "Metode Pembayaran Sesuai Konfigurasi Bisnis",
                         "Cetak Struk Printer Bluetooth / USB",
                         "Manajemen Shift Kasir & Rekap Kas Otomatis",
                         "Kitchen Display System (KDS) untuk Dapur",
