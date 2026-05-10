@@ -482,7 +482,7 @@ Fitur ini mencegah kasir memiliki akses berlebihan sekaligus tidak mengganggu an
     answer:
       `Tergantung paket yang dipilih:
 
-• Gratis — 1 outlet, karyawan & transaksi tidak terbatas
+• Gratis — 1 outlet, maks. 500 transaksi/bulan
 • Trial (14 hari) — akses Pro penuh, multi-outlet diizinkan selama trial
 • Lite — 1 outlet; untuk outlet kedua dan seterusnya perlu upgrade ke Pro
 • Pro — multi-outlet tanpa batas; outlet pertama sudah termasuk harga paket, outlet tambahan dikenakan Rp 49.000/outlet/bulan

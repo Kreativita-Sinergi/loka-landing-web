@@ -2,7 +2,7 @@ import { IPricing } from "@/types";
 
 const freeFeatures = [
   "1 outlet",
-  "Transaksi tidak terbatas",
+  "Maks. 500 transaksi per bulan",
   "Manajemen produk & kategori dasar",
   "Shift kasir & rekap penjualan harian",
   "Laporan transaksi 30 hari terakhir",
