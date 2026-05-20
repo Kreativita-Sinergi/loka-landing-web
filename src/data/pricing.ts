@@ -7,26 +7,26 @@ const liteFeatures = [
   "Manajemen & database pelanggan",
   "Manajemen meja & pesanan dine-in (FNB)",
   "Kitchen Display System / KDS (FNB)",
-  "Inventori & stok varian lengkap",
+  "Stok & varian produk per outlet",
   "Pengaturan hak akses (RBAC) per role",
   "Metode pembayaran sesuai konfigurasi bisnis",
+  "Laporan keuangan shift & export CSV",
 ];
 
 const proFeatures = [
   "Semua fitur Lite, plus:",
   "Multi-outlet tanpa batas (+Rp 49.000/outlet tambahan)",
-  "Transfer stok antar outlet",
+  "Transfer stok antar outlet & riwayat pergerakan stok",
   "Bahan Baku & alert stok menipis",
   "Manajemen Supplier & Purchase Order",
   "Absensi karyawan — kiosk clock-in/out",
-  "Analitik lanjutan & laporan keuangan",
+  "Analitik lanjutan: tren, produk terlaris, peak hours",
   "HPP Moving Average & resep produk (BOM)",
   "Kalkulasi biaya overhead / OPEX",
   "Rekomendasi harga otomatis (Smart Pricing)",
   "Laporan Profitabilitas per produk (Revenue, COGS, Margin)",
   "Net Profit & Net Margin dashboard",
   "Program Loyalty Pelanggan — poin & reward",
-  "Export Jurnal Akuntansi (CSV double-entry)",
   "Bantuan teknis prioritas via WhatsApp & email",
 ];
 

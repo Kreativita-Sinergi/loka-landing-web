@@ -39,9 +39,9 @@ Untuk bisnis FNB: tambahkan juga data meja dan aktifkan Kitchen Display System (
       `Ya! Setiap akun baru mendapat masa percobaan 14 hari gratis dengan akses penuh ke semua fitur Pro — tanpa kartu kredit, tanpa komitmen.
 
 Setelah 14 hari, pilih paket yang sesuai:
-• Gratis — fitur POS inti, 1 outlet, selamanya gratis
-• Lite — Rp 39.000/bulan, operasional lengkap (karyawan, inventori, supplier, PO, analitik)
-• Pro — Rp 89.000/outlet/bulan, semua fitur Lite + HPP, Smart Pricing, Profitabilitas, Loyalty`,
+• Gratis — fitur POS inti, 1 outlet, maks. 500 transaksi/bulan, selamanya gratis
+• Lite — Rp 39.000/bulan, 1 outlet — kasir lengkap, karyawan, pelanggan, diskon, stok, laporan shift
+• Pro — Rp 89.000/outlet/bulan, multi-outlet — semua fitur Lite + Analitik, Absensi, Supplier, PO, HPP, Smart Pricing, Profitabilitas, Loyalty`,
   },
   {
     category: "Memulai",
@@ -200,7 +200,7 @@ Di App Kasir, kasir memilih variasi langsung saat menambah item ke keranjang.`,
 Produk jadi (semua paket):
 Setiap produk memiliki batas stok minimum yang bisa diatur per outlet. Ketika stok turun di bawah batas tersebut, muncul indikator peringatan di halaman Stok Saat Ini.
 
-Bahan Baku (paket Lite & Pro):
+Bahan Baku (paket Pro):
 Setiap bahan baku memiliki field "Stok Minimum (Alert)". Ketika stok bahan turun di bawah angka tersebut, muncul banner peringatan berwarna oranye di bagian atas halaman Bahan Baku — menampilkan daftar bahan yang perlu segera direstok beserta stok saat ini vs minimum yang ditetapkan.`,
   },
   {
@@ -377,14 +377,13 @@ Tersedia di semua paket (Gratis ke atas):
 
 Tersedia di paket Lite & Pro:
 • Laporan Keuangan Shift — rekap kas per shift: kas awal, penjualan, refund, selisih kas, breakdown per metode bayar
-• Analitik Lanjutan — peak hours, performa produk terlaris, perbandingan antar outlet, tren pendapatan mingguan/bulanan
-• Riwayat Stok — semua pergerakan stok: masuk, keluar, penyesuaian, waste, transfer
-• Export CSV — semua laporan bisa diunduh sebagai spreadsheet
+• Export CSV — laporan transaksi dan keuangan shift bisa diunduh sebagai spreadsheet
 
 Tersedia eksklusif di paket Pro:
+• Analitik Lanjutan — peak hours, performa produk terlaris, perbandingan antar outlet, tren pendapatan mingguan/bulanan
+• Riwayat Pergerakan Stok — semua mutasi stok: masuk, keluar, penyesuaian, waste, transfer antar outlet
 • Laporan Profitabilitas HPP — per produk: Revenue, COGS, Gross Profit, Margin %
-• Net Profit & Net Margin — setelah dikurangi biaya overhead (OPEX)
-• Export Jurnal Akuntansi — format double-entry CSV kompatibel dengan Accurate & Buku Warung`,
+• Net Profit & Net Margin — setelah dikurangi biaya overhead (OPEX)`,
   },
   {
     category: "Laporan & Analitik",
@@ -485,7 +484,7 @@ Fitur ini mencegah kasir memiliki akses berlebihan sekaligus tidak mengganggu an
       `Tergantung paket yang dipilih:
 
 • Gratis — 1 outlet, maks. 500 transaksi/bulan
-• Trial (14 hari) — akses Pro penuh, multi-outlet diizinkan selama trial
+• Trial (14 hari) — akses Pro penuh, 1 outlet (upgrade ke Pro untuk multi-outlet)
 • Lite — 1 outlet; untuk outlet kedua dan seterusnya perlu upgrade ke Pro
 • Pro — multi-outlet tanpa batas; outlet pertama sudah termasuk harga paket, outlet tambahan dikenakan Rp 49.000/outlet/bulan
 
