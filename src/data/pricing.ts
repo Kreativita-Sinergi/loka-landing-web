@@ -27,7 +27,7 @@ const proFeatures = [
   "Laporan Profitabilitas per produk (Revenue, COGS, Margin)",
   "Net Profit & Net Margin dashboard",
   "Program Loyalty Pelanggan — poin & reward",
-  "Bantuan teknis prioritas via WhatsApp & email",
+  "Bantuan teknis prioritas via email",
 ];
 
 export const tiers: IPricing[] = [
