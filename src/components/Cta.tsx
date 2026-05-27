@@ -14,32 +14,48 @@ const steps = [
   {
     number: "2",
     title: "Minta Akses App",
-    desc: "Masukkan email Google akun Android Anda. Admin kami akan kirim undangan download via Firebase.",
+    desc: "Masukkan email Google akun Android Anda yang terdaftar di smartphone atau tablet. Email bisa lebih dari satu.",
   },
   {
     number: "3",
-    title: "Login & Mulai Jualan",
-    desc: "Install app dari undangan, login dengan akun Anda. Siap menerima transaksi hari ini!",
+    title: "Install & Mulai Jualan",
+    desc: "Terima undangan Google Play, install app, login dengan akun Anda. Siap menerima transaksi hari ini!",
   },
 ];
 
-function buildMailtoLink(email: string) {
-  const subject = encodeURIComponent("Permintaan Akses Download Loka Kasir (Beta)");
+function buildMailtoLink(emails: string[]) {
+  const filled = emails.map((e) => e.trim()).filter(Boolean);
+  const emailList = filled.map((e, i) => `  ${i + 1}. ${e}`).join("\n");
+  const subject = encodeURIComponent("Permintaan Akses Aplikasi Loka Kasir");
   const body = encodeURIComponent(
-    `Halo Admin Loka,\n\nSaya ingin mengajukan akses download aplikasi Loka Kasir (Beta).\n\nEmail Google (akun Android) saya:\n${email}\n\nMohon kirimkan undangan download-nya. Terima kasih!`
+    `Halo Admin Loka,\n\nSaya ingin mengajukan akses download aplikasi Loka Kasir.\n\nEmail Google (akun Android) yang digunakan:\n${emailList}\n\nMohon kirimkan undangan Google Play-nya. Terima kasih!`
   );
   return `mailto:${ADMIN_EMAIL}?subject=${subject}&body=${body}`;
 }
 
 export default function CTA() {
-  const [email, setEmail] = useState("");
+  const [emails, setEmails] = useState<string[]>([""]);
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
 
+  const updateEmail = (index: number, value: string) => {
+    setEmails((prev) => prev.map((e, i) => (i === index ? value : e)));
+  };
+
+  const addEmail = () => {
+    if (emails.length < 5) setEmails((prev) => [...prev, ""]);
+  };
+
+  const removeEmail = (index: number) => {
+    if (emails.length === 1) return;
+    setEmails((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const hasValidEmail = emails.some((e) => e.trim() !== "");
+
   const handleRequest = () => {
-    const e = email.trim();
-    if (!e) return;
-    window.open(buildMailtoLink(e), "_blank");
+    if (!hasValidEmail) return;
+    window.open(buildMailtoLink(emails), "_blank");
     setSent(true);
   };
 
@@ -102,9 +118,9 @@ export default function CTA() {
                 Daftar & Mulai Gratis
               </a>
 
-              {/* Download beta request button */}
+              {/* Download request button */}
               <button
-                onClick={() => { setOpen(true); setSent(false); }}
+                onClick={() => { setOpen(true); setSent(false); setEmails([""]); }}
                 className="flex items-center justify-center gap-2.5 min-w-[220px] px-6 h-14 rounded-full font-semibold text-base text-gray-900 bg-white hover:bg-gray-100 transition-colors"
               >
                 {/* Android icon */}
@@ -114,12 +130,6 @@ export default function CTA() {
                 Minta Akses Android
               </button>
             </div>
-
-            {/* Beta note */}
-            <p className="mt-4 text-xs text-gray-500">
-              * App Android saat ini didistribusikan via Firebase App Distribution (Beta).
-              Tersedia segera di Google Play Store.
-            </p>
           </div>
         </div>
       </div>
@@ -155,9 +165,9 @@ export default function CTA() {
                 {/* Header */}
                 <div className="flex items-start justify-between mb-5">
                   <div>
-                    <h3 className="text-base font-bold text-gray-900">Minta Akses Download App</h3>
+                    <h3 className="text-base font-bold text-gray-900">Minta Akses Aplikasi</h3>
                     <p className="text-xs text-gray-400 mt-0.5">
-                      Distribusi via Firebase App Distribution — gratis untuk pengguna terdaftar
+                      Akses via Google Play — tersedia untuk pengguna terdaftar
                     </p>
                   </div>
                   <button
@@ -168,19 +178,45 @@ export default function CTA() {
                   </button>
                 </div>
 
-                {/* Email input */}
-                <label className="block text-xs font-semibold text-gray-600 mb-1.5">
-                  Email Google (akun di HP Android / Tablet Anda)
+                {/* Email inputs */}
+                <label className="block text-xs font-semibold text-gray-600 mb-2">
+                  Email Google (akun di smartphone / tablet Android Anda)
                 </label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && handleRequest()}
-                  placeholder="contoh@gmail.com"
-                  className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-xl outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-50 transition placeholder-gray-300 mb-3"
-                  autoFocus
-                />
+
+                <div className="space-y-2 mb-3">
+                  {emails.map((email, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => updateEmail(index, e.target.value)}
+                        onKeyDown={(e) => e.key === "Enter" && index === emails.length - 1 && addEmail()}
+                        placeholder="contoh@gmail.com"
+                        className="flex-1 px-3 py-2.5 text-sm border border-gray-200 rounded-xl outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-50 transition placeholder-gray-300"
+                        autoFocus={index === 0}
+                      />
+                      {emails.length > 1 && (
+                        <button
+                          onClick={() => removeEmail(index)}
+                          className="w-8 h-8 flex items-center justify-center rounded-lg text-gray-300 hover:text-red-400 hover:bg-red-50 transition flex-shrink-0"
+                          title="Hapus email ini"
+                        >
+                          ✕
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {emails.length < 5 && (
+                  <button
+                    onClick={addEmail}
+                    className="flex items-center gap-1.5 text-xs text-blue-500 hover:text-blue-700 font-medium mb-4 transition"
+                  >
+                    <span className="text-base leading-none">+</span>
+                    Tambah email lain
+                  </button>
+                )}
 
                 {/* Info */}
                 <div className="flex items-start gap-2 px-3 py-2.5 bg-blue-50 rounded-xl mb-5">
@@ -188,8 +224,7 @@ export default function CTA() {
                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                   </svg>
                   <p className="text-xs text-blue-600 leading-relaxed">
-                    Gunakan email Google yang sama dengan akun di HP/tablet Android Anda.
-                    Undangan download akan dikirim ke email tersebut.
+                    Pastikan email yang dimasukkan adalah email Google yang terdaftar di smartphone atau tablet Android Anda. Undangan Google Play akan dikirim ke email tersebut.
                   </p>
                 </div>
 
@@ -197,10 +232,9 @@ export default function CTA() {
                 <div className="flex flex-col gap-2">
                   <button
                     onClick={handleRequest}
-                    disabled={!email.trim()}
+                    disabled={!hasValidEmail}
                     className="w-full flex items-center justify-center gap-2 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white text-sm font-bold rounded-xl transition"
                   >
-                    {/* Email icon */}
                     <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
