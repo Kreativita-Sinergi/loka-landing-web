@@ -59,36 +59,42 @@ const FAQ: React.FC = () => {
                 )}
 
                 {/* FAQ list */}
-                <div className="w-full max-w-3xl mx-auto border-b">
-                    {filtered.map((faq, index) => (
-                        <div key={`${active}-${index}`} className="mb-5">
-                            <Disclosure>
-                                {({ open }) => (
-                                    <>
-                                        <DisclosureButton className="flex items-start justify-between w-full px-4 pt-6 text-left border-t gap-4">
-                                            <span className="text-lg font-semibold leading-snug">{faq.question}</span>
-                                            <span className="mt-1 shrink-0">
-                                                {open
-                                                    ? <BiMinus className="w-5 h-5 text-secondary" />
-                                                    : <BiPlus className="w-5 h-5 text-secondary" />
-                                                }
-                                            </span>
-                                        </DisclosureButton>
-                                        <DisclosurePanel className="px-4 pt-3 pb-2 text-foreground-accent leading-relaxed whitespace-pre-line">
-                                            {faq.answer}
-                                        </DisclosurePanel>
-                                    </>
-                                )}
-                            </Disclosure>
-                        </div>
-                    ))}
-
-                    {filtered.length === 0 && (
-                        <p className="text-center text-foreground-accent py-10">
-                            Tidak ada pertanyaan di kategori ini.
-                        </p>
-                    )}
-                </div>
+                {filtered.length === 0 ? (
+                    <p className="text-center text-foreground-accent py-10">
+                        Tidak ada pertanyaan di kategori ini.
+                    </p>
+                ) : (
+                    <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 lg:gap-x-10">
+                        {[0, 1].map(col => (
+                            <div key={col} className="border-b">
+                                {filtered
+                                    .filter((_, i) => i % 2 === col)
+                                    .map((faq, index) => (
+                                        <div key={`${active}-${col}-${index}`}>
+                                            <Disclosure>
+                                                {({ open }) => (
+                                                    <>
+                                                        <DisclosureButton className="flex items-start justify-between w-full px-4 pt-5 pb-1 text-left border-t gap-4">
+                                                            <span className="text-base font-semibold leading-snug">{faq.question}</span>
+                                                            <span className="mt-0.5 shrink-0">
+                                                                {open
+                                                                    ? <BiMinus className="w-4 h-4 text-secondary" />
+                                                                    : <BiPlus className="w-4 h-4 text-secondary" />
+                                                                }
+                                                            </span>
+                                                        </DisclosureButton>
+                                                        <DisclosurePanel className="px-4 pt-2 pb-4 text-sm text-foreground-accent leading-relaxed whitespace-pre-line">
+                                                            {faq.answer}
+                                                        </DisclosurePanel>
+                                                    </>
+                                                )}
+                                            </Disclosure>
+                                        </div>
+                                    ))}
+                            </div>
+                        ))}
+                    </div>
+                )}
 
                 {/* Footer CTA */}
                 <p className="text-center text-foreground-accent text-sm">
