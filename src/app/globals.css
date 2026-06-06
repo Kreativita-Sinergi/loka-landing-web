@@ -1,16 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  --color-primary: #fed835;
+  --color-secondary: #304fff;
+
+  --color-primary-accent: #e5c230;
+  --color-foreground-accent: #454545;
+  --color-hero-background: #f3f3f5;
+
+  --font-sans: var(--font-inter), Inter, system-ui, sans-serif;
+}
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #FED835;
+  --primary: #fed835;
   --secondary: #304fff;
 
   --primary-accent: #e5c230;
   --foreground-accent: #454545;
-  --hero-background: #F3F3F5;
+  --hero-background: #f3f3f5;
 }
 
 html {
@@ -19,7 +30,7 @@ html {
 
 body {
   @apply text-lg;
-  
+
   color: var(--foreground);
   background: var(--background);
   font-family: "Source Sans 3", sans-serif;
@@ -27,10 +38,8 @@ body {
   font-style: normal;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+@utility text-balance {
+  text-wrap: balance;
 }
 
 .manrope {
