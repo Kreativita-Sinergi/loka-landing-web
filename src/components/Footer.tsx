@@ -100,7 +100,7 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Bottom */}
-      <div className="mt-10 border-t border-gray-200 pt-6 px-6 text-center text-sm text-gray-400">
+      <div className="mt-10 border-t border-gray-200 pt-6 px-6 text-center text-sm text-gray-400 dark:border-surface-border dark:text-gray-500">
         <p>
           Hak Cipta &copy; {new Date().getFullYear()}{" "}
           <span className="font-semibold text-foreground">{siteDetails.siteName}</span>.

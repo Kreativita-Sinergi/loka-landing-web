@@ -9,12 +9,12 @@ const Ecosystem: React.FC = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
             {/* App Card */}
-            <div className="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col">
-                <div className="w-12 h-12 bg-gray-900 rounded-2xl flex items-center justify-center mb-6 text-white">
+            <div className="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col dark:bg-surface dark:border-surface-border dark:shadow-black/30">
+                <div className="w-12 h-12 bg-gray-900 rounded-2xl flex items-center justify-center mb-6 text-white dark:bg-white/10">
                     <Smartphone size={24} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">App Kasir: Sang Tangan</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 dark:text-white">App Kasir: Sang Tangan</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed dark:text-gray-400">
                     Alat tempur harian di toko. Proses transaksi kilat, cetak struk otomatis, dan manajemen shift yang akurat.
                 </p>
                 <ul className="space-y-3 flex-1">
@@ -29,7 +29,7 @@ const Ecosystem: React.FC = () => {
                         "Absensi Karyawan — Kiosk Clock-in / Clock-out",
                         "Offline Mode & Auto-Sync ke Cloud",
                     ].map((item) => (
-                        <li key={item} className="flex items-center gap-3 text-gray-700">
+                        <li key={item} className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                             <div className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />
                             <span className="text-sm font-medium">{item}</span>
                         </li>
@@ -37,10 +37,10 @@ const Ecosystem: React.FC = () => {
                 </ul>
 
                 {/* Daftar via web — app belum rilis publik di Play Store */}
-                <div className="mt-8 pt-6 border-t border-gray-100">
-                    <p className="text-xs text-gray-500 mb-3">
+                <div className="mt-8 pt-6 border-t border-gray-100 dark:border-surface-border">
+                    <p className="text-xs text-gray-500 mb-3 dark:text-gray-400">
                         Tersedia untuk Android — daftar dulu untuk request akses aplikasi di{" "}
-                        <span className="font-semibold text-gray-700">app.lokakasir.id</span>
+                        <span className="font-semibold text-gray-700 dark:text-gray-200">app.lokakasir.id</span>
                     </p>
                     <a
                         href={REGISTER_URL}
@@ -58,12 +58,12 @@ const Ecosystem: React.FC = () => {
             </div>
 
             {/* Web Card */}
-            <div className="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm hover:shadow-md transition-shadow dark:bg-surface dark:border-surface-border dark:shadow-black/30">
                 <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center mb-6 text-white">
                     <Monitor size={24} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Web Admin: Sang Otak</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 dark:text-white">Web Admin: Sang Otak</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed dark:text-gray-400">
                     Pusat kendali bisnis Anda. Pantau laporan real-time, kelola inventori, dan atur karyawan dari mana saja.
                 </p>
                 <ul className="space-y-3">
@@ -78,7 +78,7 @@ const Ecosystem: React.FC = () => {
                         "Riwayat Transaksi & Manajemen Refund",
                         "Pengaturan Outlet & Langganan",
                     ].map((item) => (
-                        <li key={item} className="flex items-center gap-3 text-gray-700">
+                        <li key={item} className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                             <div className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />
                             <span className="text-sm font-medium">{item}</span>
                         </li>

@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode (toggled via `.dark` on <html>) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-background: #ffffff;
   --color-foreground: #171717;
@@ -9,6 +12,8 @@
   --color-primary-accent: #e5c230;
   --color-foreground-accent: #454545;
   --color-hero-background: #f3f3f5;
+  --color-surface: #ffffff;
+  --color-surface-border: #e5e7eb;
 
   --font-sans: var(--font-inter), Inter, system-ui, sans-serif;
 }
@@ -22,6 +27,25 @@
   --primary-accent: #e5c230;
   --foreground-accent: #454545;
   --hero-background: #f3f3f5;
+  --surface: #ffffff;
+  --surface-border: #e5e7eb;
+}
+
+/* Dark theme token overrides — applied when <html class="dark"> */
+.dark {
+  --color-background: #0a0f1a;
+  --color-foreground: #e6e8ee;
+  --color-foreground-accent: #9aa3b2;
+  --color-hero-background: #0d1322;
+  --color-surface: #111827;
+  --color-surface-border: #1f2937;
+
+  --background: #0a0f1a;
+  --foreground: #e6e8ee;
+  --foreground-accent: #9aa3b2;
+  --hero-background: #0d1322;
+  --surface: #111827;
+  --surface-border: #1f2937;
 }
 
 html {
@@ -36,6 +60,7 @@ body {
   font-family: "Source Sans 3", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @utility text-balance {

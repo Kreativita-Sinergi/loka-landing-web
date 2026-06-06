@@ -66,7 +66,7 @@ const FAQ: React.FC = () => {
                 ) : (
                     <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 lg:gap-x-10">
                         {[0, 1].map(col => (
-                            <div key={col} className="border-b">
+                            <div key={col} className="border-b border-gray-200 dark:border-surface-border">
                                 {filtered
                                     .filter((_, i) => i % 2 === col)
                                     .map((faq, index) => (
@@ -74,7 +74,7 @@ const FAQ: React.FC = () => {
                                             <Disclosure>
                                                 {({ open }) => (
                                                     <>
-                                                        <DisclosureButton className="flex items-start justify-between w-full px-4 pt-5 pb-1 text-left border-t gap-4">
+                                                        <DisclosureButton className="flex items-start justify-between w-full px-4 pt-5 pb-1 text-left border-t border-gray-200 dark:border-surface-border gap-4">
                                                             <span className="text-base font-semibold leading-snug">{faq.question}</span>
                                                             <span className="mt-0.5 shrink-0">
                                                                 {open

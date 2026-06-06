@@ -21,10 +21,10 @@ const PricingColumn: React.FC<Props> = ({ tier, highlight }: Props) => {
   return (
     <div
       className={clsx(
-        "relative w-full max-w-sm mx-auto bg-white rounded-2xl border text-center flex flex-col",
+        "relative w-full max-w-sm mx-auto bg-white rounded-2xl border text-center flex flex-col dark:bg-surface",
         highlight
           ? "border-secondary shadow-2xl shadow-secondary/20 scale-[1.02]"
-          : "border-gray-200 shadow-md"
+          : "border-gray-200 shadow-md dark:border-surface-border dark:shadow-black/30"
       )}
     >
       {/* Badge */}
@@ -37,10 +37,10 @@ const PricingColumn: React.FC<Props> = ({ tier, highlight }: Props) => {
       )}
 
       {/* Header */}
-      <div className="p-6 pb-4 border-b border-gray-100 rounded-t-2xl">
+      <div className="p-6 pb-4 border-b border-gray-100 rounded-t-2xl dark:border-surface-border">
         <h3 className="text-xl font-bold mb-1">{name}</h3>
         {description && (
-          <p className="text-sm text-gray-500 mb-4">{description}</p>
+          <p className="text-sm text-gray-500 mb-4 dark:text-gray-400">{description}</p>
         )}
         <div className="mb-5">
           <span
@@ -52,7 +52,7 @@ const PricingColumn: React.FC<Props> = ({ tier, highlight }: Props) => {
             {displayPrice}
           </span>
           {period && (
-            <span className="block text-sm font-normal text-gray-500 mt-0.5">
+            <span className="block text-sm font-normal text-gray-500 mt-0.5 dark:text-gray-400">
               {period}
             </span>
           )}
@@ -68,7 +68,7 @@ const PricingColumn: React.FC<Props> = ({ tier, highlight }: Props) => {
                 highlight,
               "bg-primary text-gray-900 hover:bg-primary-accent":
                 isFreeTrial,
-              "bg-gray-100 text-gray-800 hover:bg-gray-200": !highlight && !isFreeTrial,
+              "bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-white/10 dark:text-gray-100 dark:hover:bg-white/15": !highlight && !isFreeTrial,
             }
           )}
         >
@@ -78,7 +78,7 @@ const PricingColumn: React.FC<Props> = ({ tier, highlight }: Props) => {
 
       {/* Features */}
       <div className="p-6 flex-1 text-left">
-        <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">
+        <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 dark:text-gray-500">
           Yang Anda dapatkan
         </p>
         <ul className="space-y-3">
@@ -90,7 +90,7 @@ const PricingColumn: React.FC<Props> = ({ tier, highlight }: Props) => {
                   "text-green-500": !highlight,
                 })}
               />
-              <span className="text-sm text-gray-600">{feature}</span>
+              <span className="text-sm text-gray-600 dark:text-gray-300">{feature}</span>
             </li>
           ))}
         </ul>

@@ -7,6 +7,7 @@ import { Transition } from "@headlessui/react";
 import { HiOutlineXMark, HiBars3 } from "react-icons/hi2";
 
 import Container from "./Container";
+import ThemeToggle from "./ThemeToggle";
 import { menuItems } from "@/data/menuItems";
 import { siteDetails } from "@/data/siteDetails";
 
@@ -26,8 +27,8 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md" : "bg-white"
+      className={`sticky top-0 z-50 w-full transition-all duration-300 dark:bg-background ${
+        scrolled ? "bg-white shadow-md dark:shadow-black/40" : "bg-white"
       }`}
     >
       <Container className="!px-0">
@@ -40,7 +41,7 @@ const Header: React.FC = () => {
               <li key={item.text}>
                 <Link
                   href={item.url}
-                  className="text-sm font-medium text-gray-500 hover:text-gray-900 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all"
+                  className="text-sm font-medium text-gray-500 hover:text-gray-900 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/5"
                 >
                   {item.text}
                 </Link>
@@ -50,7 +51,7 @@ const Header: React.FC = () => {
               <Link
                 href={siteDetails.dashboardUrl}
                 target="_blank"
-                className="text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all"
+                className="text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all dark:text-gray-300 dark:hover:text-white dark:hover:bg-white/5"
               >
                 Login
               </Link>
@@ -63,8 +64,12 @@ const Header: React.FC = () => {
                 Download
               </Link>
             </li>
+            <li className="ml-1">
+              <ThemeToggle />
+            </li>
           </ul>
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
             <button
               onClick={toggleMenu}
               type="button"
@@ -91,13 +96,13 @@ const Header: React.FC = () => {
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <div id="mobile-menu" className="md:hidden bg-white shadow-lg">
+        <div id="mobile-menu" className="md:hidden bg-white shadow-lg dark:bg-background dark:border-t dark:border-surface-border">
           <ul className="flex flex-col space-y-4 pt-1 pb-6 px-6">
             {menuItems.map((item) => (
               <li key={item.text}>
                 <Link
                   href={item.url}
-                  className="text-black hover:text-[#007BFF] block"
+                  className="text-black hover:text-[#007BFF] block dark:text-gray-200 dark:hover:text-[#4d8dff]"
                   onClick={toggleMenu}
                 >
                   {item.text}
@@ -108,7 +113,7 @@ const Header: React.FC = () => {
               <Link
                 href={siteDetails.dashboardUrl}
                 target="_blank"
-                className="text-black hover:text-[#007BFF] block py-2"
+                className="text-black hover:text-[#007BFF] block py-2 dark:text-gray-200 dark:hover:text-[#4d8dff]"
                 onClick={toggleMenu}
               >
                 Login Admin

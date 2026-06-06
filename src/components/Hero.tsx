@@ -27,19 +27,19 @@ const Hero: React.FC = () => {
       <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-blue-400/10 rounded-full blur-3xl -z-10 pointer-events-none" />
 
       {/* Bottom fade */}
-      <div className="absolute left-0 right-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-[rgba(202,208,230,0.4)] -z-10" />
+      <div className="absolute left-0 right-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-[rgba(202,208,230,0.4)] dark:to-[rgba(10,15,26,0.8)] -z-10" />
 
       <div className="text-center w-full max-w-4xl mx-auto">
         {/* Pill badge */}
-        <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-6">
+        <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 dark:bg-blue-500/10 dark:border-blue-400/20 dark:text-blue-300">
           <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
           Kasir Digital untuk UMKM Indonesia
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight font-sans text-gray-900 max-w-2xl mx-auto leading-tight">
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight font-sans text-gray-900 max-w-2xl mx-auto leading-tight dark:text-white">
           {heroDetails.heading}
         </h1>
-        <p className="mt-5 text-gray-500 text-lg md:text-xl leading-relaxed max-w-xl mx-auto">
+        <p className="mt-5 text-gray-500 text-lg md:text-xl leading-relaxed max-w-xl mx-auto dark:text-gray-400">
           {heroDetails.subheading}
         </p>
 
@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
           {BADGES.map((b) => (
             <span
               key={b.text}
-              className="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-600 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm"
+              className="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-600 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm dark:bg-surface dark:border-surface-border dark:text-gray-300"
             >
               <span>{b.emoji}</span>
               {b.text}

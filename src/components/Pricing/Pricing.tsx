@@ -15,10 +15,10 @@ const Pricing: React.FC = () => {
       </div>
 
       {/* Paket Gratis info */}
-      <div className="mt-6 flex items-center justify-center gap-3 bg-gray-50 border border-gray-200 rounded-2xl px-6 py-4">
+      <div className="mt-6 flex items-center justify-center gap-3 bg-gray-50 border border-gray-200 rounded-2xl px-6 py-4 dark:bg-surface dark:border-surface-border">
         <span className="text-lg">🆓</span>
-        <p className="text-sm text-gray-600">
-          <span className="font-semibold text-gray-800">Paket Gratis selamanya</span>
+        <p className="text-sm text-gray-600 dark:text-gray-300">
+          <span className="font-semibold text-gray-800 dark:text-white">Paket Gratis selamanya</span>
           {" "}— 1 outlet, maks. 500 transaksi/bulan, fitur POS dasar.{" "}
           <a
             href="https://app.lokakasir.id"
@@ -32,7 +32,7 @@ const Pricing: React.FC = () => {
       </div>
 
       <div className="mt-4 space-y-2 text-center">
-        <p className="text-sm font-medium text-gray-600">
+        <p className="text-sm font-medium text-gray-600 dark:text-gray-300">
           Untuk berlangganan:{" "}
           <a
             href="https://app.lokakasir.id"
@@ -44,7 +44,7 @@ const Pricing: React.FC = () => {
           </a>
           {" "}terlebih dahulu, kemudian pilih paket dan selesaikan pembayaran.
         </p>
-        <p className="text-sm text-gray-400">
+        <p className="text-sm text-gray-400 dark:text-gray-500">
           Harga sudah termasuk PPN. Pembayaran melalui transfer bank atau dompet digital.{" "}
           <a href="mailto:help@lokakasir.id" className="underline hover:text-gray-600">
             Hubungi kami

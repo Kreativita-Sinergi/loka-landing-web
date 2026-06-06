@@ -46,13 +46,13 @@ const AppScreenshots: React.FC = () => {
     <div className="mt-12">
       {/* Tab switcher */}
       <div className="flex justify-center mb-10">
-        <div className="inline-flex bg-gray-100 rounded-2xl p-1">
+        <div className="inline-flex bg-gray-100 rounded-2xl p-1 dark:bg-surface dark:border dark:border-surface-border">
           <button
             onClick={() => setTab("mobile")}
             className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all ${
               tab === "mobile"
-                ? "bg-white text-gray-900 shadow-sm"
-                : "text-gray-500 hover:text-gray-700"
+                ? "bg-white text-gray-900 shadow-sm dark:bg-white/10 dark:text-white"
+                : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
             }`}
           >
             📱 App Mobile
@@ -61,8 +61,8 @@ const AppScreenshots: React.FC = () => {
             onClick={() => setTab("tablet")}
             className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all ${
               tab === "tablet"
-                ? "bg-white text-gray-900 shadow-sm"
-                : "text-gray-500 hover:text-gray-700"
+                ? "bg-white text-gray-900 shadow-sm dark:bg-white/10 dark:text-white"
+                : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
             }`}
           >
             📟 Tablet / iPad
@@ -95,7 +95,7 @@ const AppScreenshots: React.FC = () => {
                     />
                   </div>
                 </div>
-                <span className="text-xs text-gray-500 font-medium">{screen.label}</span>
+                <span className="text-xs text-gray-500 font-medium dark:text-gray-400">{screen.label}</span>
               </div>
             );
           })}
@@ -120,8 +120,8 @@ const AppScreenshots: React.FC = () => {
                   </div>
                 </div>
                 <div className="px-1">
-                  <p className="text-sm font-semibold text-gray-900">{screen.label}</p>
-                  <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{screen.description}</p>
+                  <p className="text-sm font-semibold text-gray-900 dark:text-white">{screen.label}</p>
+                  <p className="text-xs text-gray-500 mt-0.5 leading-relaxed dark:text-gray-400">{screen.description}</p>
                 </div>
               </div>
             ))}
