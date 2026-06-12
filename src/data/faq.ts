@@ -47,7 +47,7 @@ Setelah 14 hari, pilih paket yang sesuai:
     category: "Memulai",
     question: "Apa bedanya App Kasir dan Web Admin Loka Kasir?",
     answer:
-      `App Kasir (mobile, tersedia di iOS & Android) adalah alat operasional harian untuk kasir di toko — proses order, terima pembayaran, buka/tutup shift, dan tampilkan antrian dapur (KDS). Kasir menggunakan PIN, bukan email.
+      `App Kasir (mobile Android) adalah alat operasional harian untuk kasir di toko — proses order, terima pembayaran, buka/tutup shift, dan tampilkan antrian dapur (KDS). Kasir menggunakan PIN, bukan email.
 
 Web Admin (browser) adalah pusat kendali untuk Owner, Manager, dan Admin — pantau laporan real-time, atur produk & harga, kelola karyawan, analisis HPP, dan konfigurasi sistem. Keduanya terhubung secara real-time melalui satu backend yang sama.`,
   },
@@ -502,13 +502,11 @@ Satu-satunya biaya tambahan yang mungkin berlaku adalah outlet tambahan pada pak
     category: "Teknis & Langganan",
     question: "Di perangkat apa saja App Kasir bisa dijalankan?",
     answer:
-      `App Kasir tersedia di:
-• iOS (iPhone & iPad) — App Store
-• Android (smartphone & tablet) — Google Play Store
+      `App Kasir tersedia untuk Android (smartphone & tablet) — saat ini bisa diunduh langsung sebagai APK, dan segera hadir di Google Play Store.
 
 Web Admin dapat diakses dari browser apa pun (Chrome, Safari, Firefox, Edge) di PC, laptop, atau tablet.
 
-Untuk performa terbaik di App Kasir, disarankan menggunakan perangkat dengan OS iOS 14+ atau Android 8+ dan RAM minimal 3 GB.`,
+Untuk performa terbaik di App Kasir, disarankan menggunakan perangkat Android 8+ dengan RAM minimal 3 GB.`,
   },
   {
     category: "Teknis & Langganan",

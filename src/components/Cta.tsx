@@ -11,13 +11,13 @@ const steps = [
   },
   {
     number: "2",
-    title: "Minta Akses App",
-    desc: "Masukkan email Google akun Android Anda yang terdaftar di smartphone atau tablet. Email bisa lebih dari satu.",
+    title: "Download Aplikasi",
+    desc: "Unduh APK Loka Kasir di HP atau tablet Android Anda, lalu pasang. Cukup sekali install.",
   },
   {
     number: "3",
-    title: "Install & Mulai Jualan",
-    desc: "Terima undangan Google Play, install app, login dengan akun Anda. Siap menerima transaksi hari ini!",
+    title: "Login & Mulai Jualan",
+    desc: "Buka aplikasi, login dengan akun Anda. Siap menerima transaksi hari ini!",
   },
 ];
 
