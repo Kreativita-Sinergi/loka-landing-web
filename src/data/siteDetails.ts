@@ -2,6 +2,10 @@ export const siteDetails = {
   siteName: 'Loka',
   siteUrl: 'https://lokakasir.id',
   dashboardUrl: 'https://app.lokakasir.id',
+  // Tautan unduh APK Android (Google Drive). Pengguna membuka halaman Drive
+  // lalu tap unduh — lebih andal untuk APK besar dibanding unduh langsung.
+  appDownloadUrl:
+    'https://drive.google.com/file/d/1who638FSNDPcAaUp5JJ9J6G16g1k35H_/view?usp=drive_link',
   metadata: {
     title: 'Loka Kasir - Solusi Kasir Digital Modern untuk UMKM',
     description:

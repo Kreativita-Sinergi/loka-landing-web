@@ -58,10 +58,12 @@ const Header: React.FC = () => {
             </li>
             <li className="ml-1">
               <Link
-                href="#cta"
+                href={siteDetails.appDownloadUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm text-white bg-blue-600 hover:bg-blue-700 px-5 py-2.5 rounded-xl transition-colors font-semibold shadow-sm"
               >
-                Download
+                ⬇ Download APK
               </Link>
             </li>
             <li className="ml-1">
@@ -121,11 +123,13 @@ const Header: React.FC = () => {
             </li>
             <li>
               <Link
-                href="#cta"
+                href={siteDetails.appDownloadUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white bg-[#007BFF] hover:bg-blue-600 px-5 py-2 rounded-full block w-fit"
                 onClick={toggleMenu}
               >
-                Download
+                ⬇ Download APK
               </Link>
             </li>
           </ul>

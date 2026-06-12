@@ -1,6 +1,7 @@
 "use client";
 
 import { ctaDetails } from "@/data/cta";
+import { siteDetails } from "@/data/siteDetails";
 
 const steps = [
   {
@@ -70,6 +71,14 @@ export default function CTA() {
                 className="flex items-center justify-center min-w-[220px] px-8 h-14 rounded-full font-bold text-base bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
               >
                 Daftar & Mulai Gratis
+              </a>
+              <a
+                href={siteDetails.appDownloadUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 min-w-[220px] px-8 h-14 rounded-full font-bold text-base bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-colors"
+              >
+                ⬇ Download APK (Android)
               </a>
             </div>
           </div>

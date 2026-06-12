@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import PlayStoreButton from "./PlayStoreButton";
 import { heroDetails } from "@/data/hero";
+import { siteDetails } from "@/data/siteDetails";
 
 const BADGES = [
   { emoji: "⚡", text: "Transaksi Kilat" },
@@ -43,8 +44,16 @@ const Hero: React.FC = () => {
           {heroDetails.subheading}
         </p>
 
-        <div className="mt-8 flex items-center justify-center">
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
           <PlayStoreButton dark />
+          <a
+            href={siteDetails.appDownloadUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 min-w-[205px] px-6 h-14 rounded-full w-full sm:w-fit font-bold text-base transition-colors border border-gray-300 text-gray-900 hover:bg-gray-100 dark:border-surface-border dark:text-white dark:hover:bg-white/5"
+          >
+            ⬇ Download APK (Android)
+          </a>
         </div>
 
         {/* Feature badges */}

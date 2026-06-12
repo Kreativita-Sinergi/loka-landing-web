@@ -50,6 +50,16 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
             ))}
+            <li>
+              <a
+                href={siteDetails.appDownloadUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-secondary hover:underline"
+              >
+                ⬇ Download Aplikasi (APK)
+              </a>
+            </li>
           </ul>
         </div>
 
