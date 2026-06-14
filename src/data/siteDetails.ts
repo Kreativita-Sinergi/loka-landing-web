@@ -5,7 +5,7 @@ export const siteDetails = {
   // Tautan unduh APK Android (Google Drive). Pengguna membuka halaman Drive
   // lalu tap unduh — lebih andal untuk APK besar dibanding unduh langsung.
   appDownloadUrl:
-    'https://drive.google.com/file/d/1who638FSNDPcAaUp5JJ9J6G16g1k35H_/view?usp=drive_link',
+    'https://drive.google.com/file/d/1RC47PWGOczKE5jbVQEzX_-m98xCWZx7k/view?usp=drive_link',
   metadata: {
     title: 'Loka Kasir - Solusi Kasir Digital Modern untuk UMKM',
     description:
