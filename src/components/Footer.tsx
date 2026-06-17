@@ -118,7 +118,15 @@ const Footer: React.FC = () => {
         </p>
         <p className="mt-1">
           Dibuat dengan ♥ oleh{" "}
-          <span className="font-medium text-foreground-accent">Kreativita Sinergi</span>
+          <a
+            href="https://www.kreativitasinergi.com"
+            target="_blank"
+            rel="noopener"
+            title="Jasa pembuatan website & aplikasi — Kreativita Sinergi"
+            className="font-medium text-foreground-accent hover:text-secondary transition-colors"
+          >
+            Kreativita Sinergi
+          </a>
         </p>
       </div>
     </footer>

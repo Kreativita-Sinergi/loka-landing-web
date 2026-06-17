@@ -11,6 +11,7 @@ import Pricing from "@/components/Pricing/Pricing";
 import AppScreenshots from "@/components/AppScreenshots";
 import Stats from "@/components/Stats";
 import Testimonials from "@/components/Testimonials";
+import ParentCompany from "@/components/ParentCompany";
 
 const HomePage: React.FC = () => {
   return (
@@ -68,6 +69,9 @@ const HomePage: React.FC = () => {
         <CTA />
 
         <FAQ />
+
+        {/* Loka Kasir adalah bagian dari Kreativita Sinergi */}
+        <ParentCompany />
       </Container>
     </>
   );
