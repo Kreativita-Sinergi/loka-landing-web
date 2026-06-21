@@ -1,6 +1,6 @@
 "use client";
 
-import { ctaDetails } from "@/data/cta";
+import { ctaDetails, supportDetails } from "@/data/cta";
 import { siteDetails } from "@/data/siteDetails";
 
 const steps = [
@@ -80,6 +80,42 @@ export default function CTA() {
               >
                 ⬇ Download APK (Android)
               </a>
+            </div>
+
+            {/* Support / bantuan admin */}
+            <div className="mt-12 w-full max-w-2xl rounded-2xl border border-white/15 bg-white/5 px-6 py-6 text-center">
+              <p className="text-base font-semibold text-white">
+                {supportDetails.heading}
+              </p>
+              <p className="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-gray-300">
+                {supportDetails.message}
+              </p>
+              <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a
+                  href={`https://wa.me/${supportDetails.whatsapp}?text=${encodeURIComponent(
+                    supportDetails.whatsappMessage
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 min-w-[200px] px-6 h-12 rounded-full font-semibold text-sm bg-green-600 text-white hover:bg-green-700 transition-colors"
+                >
+                  💬 Chat Admin via WhatsApp
+                </a>
+                <a
+                  href={`https://ig.me/m/${supportDetails.instagram}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 min-w-[200px] px-6 h-12 rounded-full font-semibold text-sm text-white bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 hover:opacity-90 transition-opacity"
+                >
+                  📷 Chat Admin via Instagram
+                </a>
+                <a
+                  href={`mailto:${supportDetails.email}`}
+                  className="flex items-center justify-center gap-2 min-w-[200px] px-6 h-12 rounded-full font-semibold text-sm bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-colors"
+                >
+                  ✉ {supportDetails.email}
+                </a>
+              </div>
             </div>
           </div>
         </div>
