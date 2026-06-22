@@ -1,5 +1,7 @@
 import {
     FiActivity,
+    FiBell,
+    FiCheckCircle,
     FiClock,
     FiFileText,
     FiGrid,
@@ -8,6 +10,7 @@ import {
     FiSettings,
     FiShield,
     FiShoppingCart,
+    FiSmartphone,
     FiUsers,
     FiUserCheck,
     FiWifi,
@@ -37,6 +40,33 @@ export const benefits: IBenefit[] = [
             },
         ],
         imageSrc: "/images/tablet/Screenshot_1776574650.png"
+    },
+    {
+        title: "Pesan via QR — Scan-to-Order (Pro)",
+        description: "Tempel QR di tiap meja. Pelanggan scan, lihat menu lengkap dengan foto & harga, lalu pesan sendiri dari ponsel — tanpa unduh aplikasi. Pesanan langsung masuk ke kasir untuk dikonfirmasi. Fitur eksklusif paket Pro.",
+        bullets: [
+            {
+                title: "Menu Digital per Meja",
+                description: "Setiap meja punya QR unik. Pelanggan memindai untuk membuka menu real-time — harga, foto, varian, dan add-on selalu sesuai katalog terbaru Anda.",
+                icon: <FiSmartphone size={26} />
+            },
+            {
+                title: "Pesan Sendiri, Antrian Berkurang",
+                description: "Pelanggan menyusun pesanan dari ponsel tanpa menunggu pelayan. Mengurangi antrian dan salah catat pesanan saat jam ramai.",
+                icon: <FiShoppingCart size={26} />
+            },
+            {
+                title: "Notifikasi & Konfirmasi Kasir",
+                description: "Pesanan masuk sebagai 'menunggu konfirmasi' dengan badge & notifikasi di kasir (web & aplikasi). Kasir tinggal tekan 'Terima'; pembayaran tetap di kasir.",
+                icon: <FiBell size={26} />
+            },
+            {
+                title: "Cetak QR Sekali, Pakai Selamanya",
+                description: "Generate & cetak QR tiap meja dari Web Admin. Bisa dibuat ulang kapan saja bila perlu diganti — QR lama otomatis nonaktif.",
+                icon: <FiCheckCircle size={26} />
+            },
+        ],
+        imageSrc: "/images/tablet/Screenshot_1776574642.png"
     },
     {
         title: "Manajemen Shift, Kas & Absensi Karyawan",

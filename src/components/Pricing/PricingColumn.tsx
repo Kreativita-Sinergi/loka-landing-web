@@ -11,7 +11,7 @@ interface Props {
 }
 
 const PricingColumn: React.FC<Props> = ({ tier, highlight }: Props) => {
-  const { name, price, period, badge, description, features, ctaLabel, ctaUrl } = tier;
+  const { name, price, period, priceAnnual, periodAnnual, annualNote, badge, description, features, ctaLabel, ctaUrl } = tier;
   const isFreeTrial = typeof price === "string";
 
   const displayPrice = isFreeTrial
@@ -55,6 +55,21 @@ const PricingColumn: React.FC<Props> = ({ tier, highlight }: Props) => {
             <span className="block text-sm font-normal text-gray-500 mt-0.5 dark:text-gray-400">
               {period}
             </span>
+          )}
+          {priceAnnual && (
+            <div className="mt-3 inline-flex flex-col items-center gap-0.5 rounded-xl bg-gray-50 px-3 py-2 dark:bg-white/5">
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">
+                atau Rp {priceAnnual.toLocaleString("id-ID")}
+                <span className="font-normal text-gray-500 dark:text-gray-400">
+                  {" "}/ {periodAnnual?.replace(/^per\s*/, "") ?? "tahun"}
+                </span>
+              </span>
+              {annualNote && (
+                <span className="text-xs font-medium text-green-600 dark:text-green-400">
+                  💸 {annualNote}
+                </span>
+              )}
+            </div>
           )}
         </div>
         <a

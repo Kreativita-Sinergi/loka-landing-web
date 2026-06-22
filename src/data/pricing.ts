@@ -15,7 +15,8 @@ const liteFeatures = [
 
 const proFeatures = [
   "Semua fitur Lite, plus:",
-  "Multi-outlet tanpa batas (+Rp 49.000/outlet tambahan)",
+  "Pesan via QR (Scan-to-Order) — pelanggan scan QR meja, lihat menu & pesan sendiri",
+  "Multi-outlet tanpa batas (+Rp 49.000/outlet per bulan, atau Rp 490.000/tahun)",
   "Transfer stok antar outlet & riwayat pergerakan stok",
   "Bahan Baku & alert stok menipis",
   "Manajemen Supplier & Purchase Order",
@@ -51,6 +52,9 @@ export const tiers: IPricing[] = [
     name: "Lite",
     price: 39000,
     period: "per bulan",
+    priceAnnual: 399000,
+    periodAnnual: "per tahun",
+    annualNote: "Hemat Rp 69.000 / tahun",
     description: "Untuk 1 outlet. Operasional kasir lengkap dengan manajemen produk & pelanggan.",
     features: liteFeatures,
     ctaLabel: "Pilih Lite",
@@ -60,9 +64,12 @@ export const tiers: IPricing[] = [
     name: "Pro",
     price: 89000,
     period: "per outlet / bulan",
+    priceAnnual: 890000,
+    periodAnnual: "per outlet / tahun",
+    annualNote: "Hemat Rp 178.000 / tahun (2 bulan gratis)",
     badge: "Paling Populer",
     description:
-      "Multi-outlet + inventori lanjutan, HPP & loyalty. Outlet pertama sudah termasuk.",
+      "Multi-outlet + inventori lanjutan, HPP & loyalty, plus Pesan via QR. Outlet pertama sudah termasuk.",
     features: proFeatures,
     ctaLabel: "Pilih Pro",
     ctaUrl: "https://app.lokakasir.id",
