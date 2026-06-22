@@ -85,26 +85,38 @@ const ParentCompany: React.FC = () => {
               ))}
             </div>
 
-            <div className="mt-9 flex flex-col sm:flex-row gap-3">
+            <div className="mt-9 flex flex-col sm:flex-row sm:items-center gap-3">
               <a
                 href={kc.website}
                 target="_blank"
                 rel="noopener"
                 title="Jasa pembuatan website & aplikasi — Kreativita Sinergi"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gray-900 text-white font-semibold px-6 py-3 hover:bg-gray-800 transition-colors dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gray-900 text-white font-semibold px-6 h-12 whitespace-nowrap hover:bg-gray-800 transition-colors dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
               >
-                <Globe size={18} /> Jasa Website & Aplikasi — {kc.websiteLabel}
-                <ArrowUpRight size={16} />
+                <Globe size={18} className="flex-shrink-0" /> Jasa Website &amp; Aplikasi
+                <ArrowUpRight size={16} className="flex-shrink-0" />
               </a>
               <a
                 href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-gray-200 text-gray-800 font-semibold px-6 py-3 hover:border-secondary hover:text-secondary transition-colors dark:border-surface-border dark:text-gray-200"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-gray-200 text-gray-800 font-semibold px-6 h-12 whitespace-nowrap hover:border-secondary hover:text-secondary transition-colors dark:border-surface-border dark:text-gray-200"
               >
                 Konsultasi Proyek
               </a>
             </div>
+
+            <p className="mt-3 text-xs text-foreground-accent">
+              Kunjungi{" "}
+              <a
+                href={kc.website}
+                target="_blank"
+                rel="noopener"
+                className="font-medium text-secondary hover:underline"
+              >
+                {kc.websiteLabel}
+              </a>
+            </p>
           </div>
 
           {/* Right: services offered */}

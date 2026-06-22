@@ -1,5 +1,7 @@
 "use client";
 
+import { Download, Mail, MessageCircle } from "lucide-react";
+import { FiInstagram } from "react-icons/fi";
 import { ctaDetails, supportDetails } from "@/data/cta";
 import { siteDetails } from "@/data/siteDetails";
 
@@ -78,7 +80,7 @@ export default function CTA() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 min-w-[220px] px-8 h-14 rounded-full font-bold text-base bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-colors"
               >
-                ⬇ Download APK (Android)
+                <Download size={18} className="flex-shrink-0" /> Download APK (Android)
               </a>
             </div>
 
@@ -90,30 +92,30 @@ export default function CTA() {
               <p className="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-gray-300">
                 {supportDetails.message}
               </p>
-              <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <a
                   href={`https://wa.me/${supportDetails.whatsapp}?text=${encodeURIComponent(
                     supportDetails.whatsappMessage
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 min-w-[200px] px-6 h-12 rounded-full font-semibold text-sm bg-green-600 text-white hover:bg-green-700 transition-colors"
+                  className="flex items-center justify-center gap-2 w-full px-5 h-12 rounded-full font-semibold text-sm whitespace-nowrap bg-green-600 text-white hover:bg-green-700 transition-colors"
                 >
-                  💬 Chat Admin via WhatsApp
+                  <MessageCircle size={16} className="flex-shrink-0" /> WhatsApp
                 </a>
                 <a
                   href={`https://ig.me/m/${supportDetails.instagram}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 min-w-[200px] px-6 h-12 rounded-full font-semibold text-sm text-white bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 hover:opacity-90 transition-opacity"
+                  className="flex items-center justify-center gap-2 w-full px-5 h-12 rounded-full font-semibold text-sm whitespace-nowrap text-white bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 hover:opacity-90 transition-opacity"
                 >
-                  📷 Chat Admin via Instagram
+                  <FiInstagram size={16} className="flex-shrink-0" /> Instagram
                 </a>
                 <a
                   href={`mailto:${supportDetails.email}`}
-                  className="flex items-center justify-center gap-2 min-w-[200px] px-6 h-12 rounded-full font-semibold text-sm bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-colors"
+                  className="flex items-center justify-center gap-2 w-full px-5 h-12 rounded-full font-semibold text-sm whitespace-nowrap bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-colors"
                 >
-                  ✉ {supportDetails.email}
+                  <Mail size={16} className="flex-shrink-0" /> {supportDetails.email}
                 </a>
               </div>
             </div>
