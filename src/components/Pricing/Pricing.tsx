@@ -14,21 +14,62 @@ const Pricing: React.FC = () => {
         ))}
       </div>
 
-      {/* Paket Gratis info */}
-      <div className="mt-6 flex items-center justify-center gap-3 bg-gray-50 border border-gray-200 rounded-2xl px-6 py-4 dark:bg-surface dark:border-surface-border">
-        <span className="text-lg">🆓</span>
-        <p className="text-sm text-gray-600 dark:text-gray-300">
-          <span className="font-semibold text-gray-800 dark:text-white">Paket Gratis selamanya</span>
-          {" "}— 1 outlet, maks. 500 transaksi/bulan, fitur POS dasar.{" "}
+      {/* Paket Gratis info — dijelaskan gamblang: apa yang termasuk, batasannya, dan yang tidak termasuk */}
+      <div className="mt-6 bg-gray-50 border border-gray-200 rounded-2xl px-6 py-5 dark:bg-surface dark:border-surface-border">
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-lg">🆓</span>
+          <h3 className="text-base font-bold text-gray-800 dark:text-white">
+            Paket Gratis — Selamanya (Rp 0)
+          </h3>
+        </div>
+        <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+          Cocok untuk usaha yang baru mulai. Tanpa kartu kredit, tanpa masa berlaku — gunakan selama yang Anda mau.
+        </p>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          {/* Yang termasuk */}
+          <div>
+            <p className="text-xs font-bold text-green-600 uppercase tracking-wider mb-2 dark:text-green-400">
+              ✓ Yang termasuk
+            </p>
+            <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-300">
+              <li>• Kasir / transaksi penjualan (POS)</li>
+              <li>• <span className="font-semibold text-gray-800 dark:text-white">500 transaksi</span> per bulan</li>
+              <li>• 1 outlet</li>
+              <li>• Kelola produk &amp; kategori</li>
+              <li>• Cetak struk &amp; laporan transaksi dasar</li>
+              <li>• Mode offline (kasir tetap jalan tanpa internet)</li>
+            </ul>
+          </div>
+
+          {/* Yang belum termasuk */}
+          <div>
+            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 dark:text-gray-500">
+              ✗ Belum termasuk (upgrade ke Lite / Pro)
+            </p>
+            <ul className="space-y-1.5 text-sm text-gray-500 dark:text-gray-400">
+              <li>• Database pelanggan, meja &amp; KDS (Lite)</li>
+              <li>• Karyawan multi-role &amp; diskon/bundle (Lite)</li>
+              <li>• Multi-outlet &amp; inventori lanjutan (Pro)</li>
+              <li>• HPP, Smart Pricing &amp; Loyalty (Pro)</li>
+              <li>• Pesan via QR / Scan-to-Order (Pro)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-4 pt-4 border-t border-gray-200 dark:border-surface-border flex flex-wrap items-center justify-between gap-2">
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            💡 Lewat batas 500 transaksi? Tinggal upgrade kapan saja — data Anda tetap aman.
+          </p>
           <a
             href="https://app.lokakasir.id"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 underline hover:text-blue-800 font-medium"
+            className="text-blue-600 underline hover:text-blue-800 font-semibold text-sm"
           >
             Daftar gratis →
           </a>
-        </p>
+        </div>
       </div>
 
       <div className="mt-4 space-y-2 text-center">
