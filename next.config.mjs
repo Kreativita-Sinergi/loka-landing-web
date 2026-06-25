@@ -1,13 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  redirects() {
-    return [
-      {
-        source: "/sitemap.xml",
-        destination: "/sitemap/xml",
-        permanent: true,
-      },
-    ];
+  images: {
+    // Sajikan format modern yang jauh lebih ringan bila browser mendukung.
+    formats: ["image/avif", "image/webp"],
   },
 };
 
