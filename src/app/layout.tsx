@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import { siteDetails } from '@/data/siteDetails';
 
 import "./globals.css";
@@ -24,20 +25,13 @@ export const metadata: Metadata = {
     type: 'website',
     siteName: siteDetails.siteName,
     locale: 'id_ID',
-    images: [
-      {
-        url: `${siteDetails.siteUrl}/images/og-image.jpg`,
-        width: 1200,
-        height: 675,
-        alt: siteDetails.siteName,
-      },
-    ],
+    // Gambar OG dibuat dinamis lewat src/app/opengraph-image.tsx (otomatis dipasang Next.js).
   },
   twitter: {
     card: 'summary_large_image',
     title: siteDetails.metadata.title,
     description: siteDetails.metadata.description,
-    images: [`${siteDetails.siteUrl}/images/twitter-image.jpg`],
+    // Gambar Twitter dibuat dinamis lewat src/app/twitter-image.tsx.
   },
   robots: {
     index: true,
@@ -107,6 +101,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <FloatingWhatsApp />
       </body>
     </html>
   );

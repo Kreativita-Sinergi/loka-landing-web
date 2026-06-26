@@ -4,7 +4,12 @@ import Image from "next/image";
 
 import { siteDetails } from "@/data/siteDetails";
 import { footerDetails } from "@/data/footer";
+import { appRequestDetails } from "@/data/cta";
 import { getPlatformIconByName } from "@/utils";
+
+const appRequestWaLink = `https://wa.me/${appRequestDetails.whatsapp}?text=${encodeURIComponent(
+  appRequestDetails.whatsappMessage
+)}`;
 
 const Footer: React.FC = () => {
   return (
@@ -52,12 +57,12 @@ const Footer: React.FC = () => {
             ))}
             <li>
               <a
-                href={siteDetails.appDownloadUrl}
+                href={appRequestWaLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-semibold text-secondary hover:underline"
               >
-                ⬇ Download Aplikasi (APK)
+                💬 Minta Aplikasi
               </a>
             </li>
           </ul>

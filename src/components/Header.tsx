@@ -10,6 +10,12 @@ import Container from "./Container";
 import ThemeToggle from "./ThemeToggle";
 import { menuItems } from "@/data/menuItems";
 import { siteDetails } from "@/data/siteDetails";
+import { appRequestDetails } from "@/data/cta";
+import { trackContactClick } from "@/utils/analytics";
+
+const appRequestWaLink = `https://wa.me/${appRequestDetails.whatsapp}?text=${encodeURIComponent(
+  appRequestDetails.whatsappMessage
+)}`;
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,12 +64,13 @@ const Header: React.FC = () => {
             </li>
             <li className="ml-1">
               <Link
-                href={siteDetails.appDownloadUrl}
+                href={appRequestWaLink}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackContactClick("whatsapp", "header")}
                 className="text-sm text-white bg-blue-600 hover:bg-blue-700 px-5 py-2.5 rounded-xl transition-colors font-semibold shadow-sm"
               >
-                ⬇ Download APK
+                💬 Minta Aplikasi
               </Link>
             </li>
             <li className="ml-1">
@@ -123,13 +130,16 @@ const Header: React.FC = () => {
             </li>
             <li>
               <Link
-                href={siteDetails.appDownloadUrl}
+                href={appRequestWaLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white bg-[#007BFF] hover:bg-blue-600 px-5 py-2 rounded-full block w-fit"
-                onClick={toggleMenu}
+                onClick={() => {
+                  trackContactClick("whatsapp", "header-mobile");
+                  toggleMenu();
+                }}
               >
-                ⬇ Download APK
+                💬 Minta Aplikasi
               </Link>
             </li>
           </ul>

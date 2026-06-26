@@ -1,9 +1,13 @@
 "use client";
 
-import { Download, Mail, MessageCircle } from "lucide-react";
+import { Mail, MessageCircle } from "lucide-react";
 import { FiInstagram } from "react-icons/fi";
-import { ctaDetails, supportDetails } from "@/data/cta";
-import { siteDetails } from "@/data/siteDetails";
+import { appRequestDetails, ctaDetails, supportDetails } from "@/data/cta";
+import { trackContactClick } from "@/utils/analytics";
+
+const appRequestWaLink = `https://wa.me/${appRequestDetails.whatsapp}?text=${encodeURIComponent(
+  appRequestDetails.whatsappMessage
+)}`;
 
 const steps = [
   {
@@ -13,8 +17,8 @@ const steps = [
   },
   {
     number: "2",
-    title: "Download Aplikasi",
-    desc: "Unduh APK Loka Kasir di HP atau tablet Android Anda, lalu pasang. Cukup sekali install.",
+    title: "Minta Aplikasi",
+    desc: "Hubungi tim Loka Kasir via WhatsApp atau Instagram untuk meminta aplikasinya.",
   },
   {
     number: "3",
@@ -75,12 +79,13 @@ export default function CTA() {
                 Daftar & Mulai Gratis
               </a>
               <a
-                href={siteDetails.appDownloadUrl}
+                href={appRequestWaLink}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackContactClick("whatsapp", "cta")}
                 className="flex items-center justify-center gap-2 min-w-[220px] px-8 h-14 rounded-full font-bold text-base bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-colors"
               >
-                <Download size={18} className="flex-shrink-0" /> Download APK (Android)
+                <MessageCircle size={18} className="flex-shrink-0" /> Minta Aplikasi via WhatsApp
               </a>
             </div>
 
@@ -99,6 +104,7 @@ export default function CTA() {
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackContactClick("whatsapp", "support")}
                   className="flex items-center justify-center gap-2 w-full px-5 h-12 rounded-full font-semibold text-sm whitespace-nowrap bg-green-600 text-white hover:bg-green-700 transition-colors"
                 >
                   <MessageCircle size={16} className="flex-shrink-0" /> WhatsApp
@@ -107,6 +113,7 @@ export default function CTA() {
                   href={`https://ig.me/m/${supportDetails.instagram}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackContactClick("instagram", "support")}
                   className="flex items-center justify-center gap-2 w-full px-5 h-12 rounded-full font-semibold text-sm whitespace-nowrap text-white bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 hover:opacity-90 transition-opacity"
                 >
                   <FiInstagram size={16} className="flex-shrink-0" /> Instagram

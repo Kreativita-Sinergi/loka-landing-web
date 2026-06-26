@@ -502,7 +502,7 @@ Satu-satunya biaya tambahan yang mungkin berlaku adalah outlet tambahan pada pak
     category: "Teknis & Langganan",
     question: "Di perangkat apa saja App Kasir bisa dijalankan?",
     answer:
-      `App Kasir tersedia untuk Android (smartphone & tablet) — saat ini bisa diunduh langsung sebagai APK, dan segera hadir di Google Play Store.
+      `App Kasir tersedia untuk Android (smartphone & tablet) — untuk mendapatkan aplikasinya, hubungi tim Loka Kasir terlebih dahulu via WhatsApp atau Instagram. Aplikasi juga segera hadir di Google Play Store.
 
 Web Admin dapat diakses dari browser apa pun (Chrome, Safari, Firefox, Edge) di PC, laptop, atau tablet.
 

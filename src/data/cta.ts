@@ -17,3 +17,12 @@ export const supportDetails = {
   // Username Instagram admin (untuk deep-link DM via ig.me/m/).
   instagram: "lokakasir.id",
 };
+
+// Detail untuk meminta aplikasi: pengguna menghubungi tim Loka Kasir
+// terlebih dahulu via WhatsApp atau Instagram untuk mendapatkan aplikasinya.
+export const appRequestDetails = {
+  whatsapp: "6285393737313",
+  whatsappMessage:
+    "Halo tim Loka Kasir, saya ingin meminta akses aplikasi Loka Kasir.",
+  instagram: "lokakasir.id",
+};

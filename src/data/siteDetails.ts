@@ -2,10 +2,6 @@ export const siteDetails = {
   siteName: 'Loka',
   siteUrl: 'https://lokakasir.id',
   dashboardUrl: 'https://app.lokakasir.id',
-  // Tautan unduh APK Android (Google Drive). Pengguna membuka halaman Drive
-  // lalu tap unduh — lebih andal untuk APK besar dibanding unduh langsung.
-  appDownloadUrl:
-    'https://drive.google.com/file/d/1p3u3WmXAxQzTwKSzIxdx6ndFMaizN2jt/view?usp=drive_link',
   metadata: {
     title: 'Loka Kasir - Solusi Kasir Digital Modern untuk UMKM',
     description:
@@ -14,7 +10,8 @@ export const siteDetails = {
   language: 'id',
   locale: 'id-ID',
   siteLogo: '/images/logo.png', // ✅ Perbaikan: tanda kutip ditutup
-  googleAnalyticsId: '', // Masukkan jika pakai GA4: G-XXXX
+  // ID GA4 (G-XXXX). Diisi lewat env var NEXT_PUBLIC_GA_ID — biarkan kosong jika belum ada.
+  googleAnalyticsId: process.env.NEXT_PUBLIC_GA_ID || '',
   sitemapUrl: 'https://lokakasir.id/sitemap.xml',
   robotsUrl: 'https://lokakasir.id/robots.txt',
   social: {
