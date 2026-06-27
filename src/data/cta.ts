@@ -1,7 +1,7 @@
 export const ctaDetails = {
   heading: "Coba Gratis 14 Hari — Tanpa Risiko",
   subheading:
-    "Minta aplikasinya via WhatsApp, daftar langsung di aplikasi, dan akses semua fitur gratis selama 14 hari. Tidak perlu kartu kredit, tidak ada komitmen. Setelah itu, lanjutkan dengan paket mulai Rp 39.000/bulan.",
+    "Minta aplikasinya via WhatsApp, daftar langsung di aplikasi, dan akses semua fitur gratis selama 14 hari. Tidak ada komitmen. Setelah itu, lanjutkan dengan paket mulai Rp 39.000/bulan.",
   dashboardUrl: "https://app.lokakasir.id",
 };
 

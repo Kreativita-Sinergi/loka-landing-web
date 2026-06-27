@@ -38,11 +38,11 @@ export const tiers: IPricing[] = [
     period: "14 hari",
     badge: "Mulai di Sini",
     description:
-      "Akses penuh semua fitur Pro tanpa syarat. Tidak perlu kartu kredit.",
+      "Akses penuh semua fitur Pro tanpa syarat. Tidak ada komitmen.",
     features: [
       "Akses semua fitur Pro tanpa syarat",
       "Aktif langsung setelah daftar",
-      "Tidak perlu kartu kredit",
+      "Tanpa komitmen",
       "Setelah 14 hari pilih paket yang sesuai",
     ],
     ctaLabel: "Coba Sekarang",

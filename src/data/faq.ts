@@ -9,7 +9,7 @@ export const faqs: IFAQ[] = [
     category: "Memulai",
     question: "Bagaimana cara mendaftar dan memulai menggunakan Loka Kasir?",
     answer:
-      `Hubungi tim Loka Kasir via WhatsApp atau Instagram untuk meminta aplikasinya, lalu daftarkan akun Owner langsung di dalam aplikasi: pilih jenis bisnis Anda (FNB, Retail, atau Jasa) dan buat outlet pertama. Setelah itu Anda mendapat 14 hari akses penuh gratis — tidak perlu kartu kredit.
+      `Hubungi tim Loka Kasir via WhatsApp untuk meminta aplikasinya, lalu daftarkan akun Owner langsung di dalam aplikasi: pilih jenis bisnis Anda (FNB, Retail, atau Jasa) dan buat outlet pertama. Setelah itu Anda mendapat 14 hari akses penuh gratis — tanpa komitmen.
 
 Urutan setup yang direkomendasikan:
 1. Buat outlet dan isi informasi toko
@@ -38,7 +38,7 @@ Untuk bisnis FNB: tambahkan juga data meja dan aktifkan Kitchen Display System (
     category: "Memulai",
     question: "Apakah ada masa percobaan gratis?",
     answer:
-      `Ya! Setiap akun baru mendapat masa percobaan 14 hari gratis dengan akses penuh ke semua fitur Pro — tanpa kartu kredit, tanpa komitmen.
+      `Ya! Setiap akun baru mendapat masa percobaan 14 hari gratis dengan akses penuh ke semua fitur Pro — tanpa komitmen.
 
 Setelah 14 hari, pilih paket yang sesuai:
 • Gratis — fitur POS inti, 1 outlet, maks. 500 transaksi/bulan, selamanya gratis
@@ -504,7 +504,7 @@ Satu-satunya biaya tambahan yang mungkin berlaku adalah outlet tambahan pada pak
     category: "Teknis & Langganan",
     question: "Di perangkat apa saja App Kasir bisa dijalankan?",
     answer:
-      `App Kasir tersedia untuk Android (smartphone & tablet) — untuk mendapatkan aplikasinya, hubungi tim Loka Kasir terlebih dahulu via WhatsApp atau Instagram. Aplikasi juga segera hadir di Google Play Store.
+      `App Kasir tersedia untuk Android (smartphone & tablet) — untuk mendapatkan aplikasinya, hubungi tim Loka Kasir terlebih dahulu via WhatsApp. Aplikasi juga segera hadir di Google Play Store.
 
 Web Admin dapat diakses dari browser apa pun (Chrome, Safari, Firefox, Edge) di PC, laptop, atau tablet.
 

@@ -29,7 +29,7 @@ const Pricing: React.FC = () => {
           </h3>
         </div>
         <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
-          Cocok untuk usaha yang baru mulai. Tanpa kartu kredit, tanpa masa berlaku — gunakan selama yang Anda mau.
+          Cocok untuk usaha yang baru mulai. Tanpa biaya, tanpa masa berlaku — gunakan selama yang Anda mau.
         </p>
 
         <div className="grid gap-4 sm:grid-cols-2">

@@ -18,7 +18,7 @@ export const howToStartDetails: {
 } = {
   title: "Cara Daftar & Mulai Pakai",
   description:
-    "Lima langkah sederhana — dari belum punya aplikasi sampai siap menerima transaksi pertama. Gratis 14 hari, tanpa kartu kredit.",
+    "Lima langkah sederhana — dari belum punya aplikasi sampai siap menerima transaksi pertama. Gratis 14 hari, tanpa komitmen.",
   steps: [
     {
       icon: "whatsapp",

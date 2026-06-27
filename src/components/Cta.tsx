@@ -23,7 +23,7 @@ const steps = [
   {
     number: "3",
     title: "Mulai Jualan",
-    desc: "Login dan langsung terima transaksi hari itu juga — tanpa kartu kredit.",
+    desc: "Login dan langsung terima transaksi hari itu juga — tanpa komitmen.",
   },
 ];
 
@@ -114,7 +114,7 @@ export default function CTA() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackContactClick("instagram", "support")}
-                  className="flex items-center justify-center gap-2 w-full px-5 h-12 rounded-full font-semibold text-sm whitespace-nowrap text-white bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 hover:opacity-90 transition-opacity"
+                  className="flex items-center justify-center gap-2 w-full px-5 h-12 rounded-full font-semibold text-sm whitespace-nowrap text-white bg-pink-600 hover:bg-pink-700 transition-colors"
                 >
                   <FiInstagram size={16} className="flex-shrink-0" /> Instagram
                 </a>
