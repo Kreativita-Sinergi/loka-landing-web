@@ -27,11 +27,12 @@ export const appRequestDetails = {
   instagram: "lokakasir.id",
 };
 
-// Detail untuk mendaftar/daftar gratis: pengguna diarahkan langsung ke
-// WhatsApp atau Instagram admin untuk memulai pendaftaran akun Loka Kasir.
+// Detail untuk mendaftar/daftar gratis. Pendaftaran akun dilakukan DI DALAM
+// aplikasi, jadi pengguna perlu meminta file aplikasinya (APK Android) lebih
+// dulu ke admin via WhatsApp — bukan Instagram, karena APK tidak bisa dikirim
+// lewat DM Instagram.
 export const registerDetails = {
   whatsapp: "6285393737313",
   whatsappMessage:
-    "Halo tim Loka Kasir, saya ingin mendaftar dan mulai mencoba aplikasi Loka Kasir.",
-  instagram: "lokakasir.id",
+    "Halo tim Loka Kasir, saya ingin mendaftar. Mohon kirimkan aplikasinya (APK Android) agar saya bisa daftar akun dan mulai mencoba gratis.",
 };

@@ -22,8 +22,8 @@ export const howToStartDetails: {
   steps: [
     {
       icon: "whatsapp",
-      title: "1. Minta Aplikasi",
-      desc: "Hubungi tim Loka Kasir via WhatsApp atau Instagram. Kami kirimkan aplikasi Android-nya langsung ke Anda.",
+      title: "1. Minta Aplikasi via WhatsApp",
+      desc: "Hubungi tim Loka Kasir via WhatsApp. Kami kirimkan file aplikasi (APK) Android-nya langsung ke Anda — pendaftaran akun nantinya dilakukan di dalam aplikasi.",
     },
     {
       icon: "download",

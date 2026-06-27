@@ -2,11 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import { HiOutlineXMark, HiBars3 } from "react-icons/hi2";
-import { FaInstagram } from "react-icons/fa";
-import { MessageCircle, UserPlus, ChevronDown } from "lucide-react";
+import { MessageCircle, UserPlus } from "lucide-react";
 
 import Container from "./Container";
 import ThemeToggle from "./ThemeToggle";
@@ -23,13 +22,10 @@ const appRequestWaLink = `https://wa.me/${appRequestDetails.whatsapp}?text=${enc
 const registerWaLink = `https://wa.me/${registerDetails.whatsapp}?text=${encodeURIComponent(
   registerDetails.whatsappMessage
 )}`;
-const registerIgLink = `https://ig.me/m/${registerDetails.instagram}`;
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [registerOpen, setRegisterOpen] = useState(false);
-  const registerRef = useRef<HTMLLIElement>(null);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -39,17 +35,6 @@ const Header: React.FC = () => {
     };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Tutup dropdown "Daftar" saat mengklik di luar area dropdown.
-  useEffect(() => {
-    const onClickOutside = (e: MouseEvent) => {
-      if (registerRef.current && !registerRef.current.contains(e.target as Node)) {
-        setRegisterOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", onClickOutside);
-    return () => document.removeEventListener("mousedown", onClickOutside);
   }, []);
 
   return (
@@ -74,62 +59,17 @@ const Header: React.FC = () => {
                 </Link>
               </li>
             ))}
-            <li ref={registerRef} className="relative ml-2">
-              <button
-                type="button"
-                onClick={() => setRegisterOpen((v) => !v)}
-                aria-haspopup="true"
-                aria-expanded={registerOpen}
-                className="inline-flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all dark:text-gray-300 dark:hover:text-white dark:hover:bg-white/5"
+            <li className="ml-2">
+              <Link
+                href={registerWaLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackContactClick("whatsapp", "header-register")}
+                title="Daftar dengan meminta aplikasi via WhatsApp — akun dibuat di dalam aplikasi"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all dark:text-gray-300 dark:hover:text-white dark:hover:bg-white/5"
               >
                 <UserPlus size={15} aria-hidden="true" /> Daftar
-                <ChevronDown
-                  size={14}
-                  aria-hidden="true"
-                  className={`transition-transform ${registerOpen ? "rotate-180" : ""}`}
-                />
-              </button>
-              <Transition
-                show={registerOpen}
-                enter="transition ease-out duration-150"
-                enterFrom="opacity-0 translate-y-1"
-                enterTo="opacity-100 translate-y-0"
-                leave="transition ease-in duration-100"
-                leaveFrom="opacity-100 translate-y-0"
-                leaveTo="opacity-0 translate-y-1"
-              >
-                <div className="absolute right-0 mt-2 w-60 rounded-xl border border-gray-100 bg-white shadow-lg p-2 z-50 dark:bg-background dark:border-surface-border">
-                  <p className="px-3 pt-1 pb-2 text-xs text-gray-400 dark:text-gray-500">
-                    Mulai daftar lewat:
-                  </p>
-                  <a
-                    href={registerWaLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => {
-                      trackContactClick("whatsapp", "header-register");
-                      setRegisterOpen(false);
-                    }}
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors dark:text-gray-200 dark:hover:bg-green-500/10"
-                  >
-                    <MessageCircle size={18} className="text-green-600" aria-hidden="true" />
-                    Daftar via WhatsApp
-                  </a>
-                  <a
-                    href={registerIgLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => {
-                      trackContactClick("instagram", "header-register");
-                      setRegisterOpen(false);
-                    }}
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-pink-50 hover:text-pink-700 transition-colors dark:text-gray-200 dark:hover:bg-pink-500/10"
-                  >
-                    <FaInstagram size={18} className="text-pink-600" aria-hidden="true" />
-                    Daftar via Instagram
-                  </a>
-                </div>
-              </Transition>
+              </Link>
             </li>
             <li className="ml-1">
               <Link
@@ -198,33 +138,21 @@ const Header: React.FC = () => {
               </li>
             ))}
             <li className="pt-2 border-t border-gray-100 dark:border-surface-border">
-              <p className="text-xs text-gray-400 dark:text-gray-500 mb-2">Daftar lewat:</p>
-              <div className="flex flex-col gap-2">
-                <a
-                  href={registerWaLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => {
-                    trackContactClick("whatsapp", "header-mobile-register");
-                    toggleMenu();
-                  }}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-green-700 dark:text-green-400"
-                >
-                  <MessageCircle size={16} aria-hidden="true" /> Daftar via WhatsApp
-                </a>
-                <a
-                  href={registerIgLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => {
-                    trackContactClick("instagram", "header-mobile-register");
-                    toggleMenu();
-                  }}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-pink-700 dark:text-pink-400"
-                >
-                  <FaInstagram size={16} aria-hidden="true" /> Daftar via Instagram
-                </a>
-              </div>
+              <Link
+                href={registerWaLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  trackContactClick("whatsapp", "header-mobile-register");
+                  toggleMenu();
+                }}
+                className="inline-flex items-center gap-2 text-sm font-medium text-green-700 dark:text-green-400"
+              >
+                <UserPlus size={16} aria-hidden="true" /> Daftar via WhatsApp
+              </Link>
+              <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                Minta aplikasinya dulu, lalu daftar akun di dalam aplikasi.
+              </p>
             </li>
             <li>
               <Link
