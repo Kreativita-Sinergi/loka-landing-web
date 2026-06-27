@@ -26,3 +26,12 @@ export const appRequestDetails = {
     "Halo tim Loka Kasir, saya ingin meminta akses aplikasi Loka Kasir.",
   instagram: "lokakasir.id",
 };
+
+// Detail untuk mendaftar/daftar gratis: pengguna diarahkan langsung ke
+// WhatsApp atau Instagram admin untuk memulai pendaftaran akun Loka Kasir.
+export const registerDetails = {
+  whatsapp: "6285393737313",
+  whatsappMessage:
+    "Halo tim Loka Kasir, saya ingin mendaftar dan mulai mencoba aplikasi Loka Kasir.",
+  instagram: "lokakasir.id",
+};
