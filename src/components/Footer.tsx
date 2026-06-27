@@ -21,7 +21,10 @@ const Footer: React.FC = () => {
           <Link href="/" className="flex items-center gap-2">
             <Image src="/images/logo.png" width={140} height={70} alt="Loka Kasir" />
           </Link>
-          <p className="mt-3 text-sm text-foreground-accent leading-relaxed">
+          <p className="mt-3 text-sm font-semibold text-foreground">
+            {footerDetails.tagline}
+          </p>
+          <p className="mt-1.5 text-sm text-foreground-accent leading-relaxed">
             {footerDetails.subheading}
           </p>
           {footerDetails.socials && (

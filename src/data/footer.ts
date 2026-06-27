@@ -1,6 +1,7 @@
 import { IMenuItem, ISocials } from "@/types";
 
 export const footerDetails: {
+    tagline: string;
     subheading: string;
     quickLinks: IMenuItem[];
     email: string;
@@ -8,6 +9,7 @@ export const footerDetails: {
     address: string;
     socials: ISocials;
 } = {
+    tagline: "Naik Kelas Tanpa Ribet",
     subheading: "Memberdayakan pelaku UMKM dengan teknologi kasir modern yang efisien, andal, dan terjangkau.",
     quickLinks: [
         { text: "Fitur", url: "#features" },
