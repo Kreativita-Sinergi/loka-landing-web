@@ -12,6 +12,7 @@ export const footerDetails: {
     quickLinks: [
         { text: "Fitur", url: "#features" },
         { text: "Ekosistem", url: "#ecosystem" },
+        { text: "Cara Mulai", url: "#cara-mulai" },
         { text: "Harga", url: "#pricing" },
         { text: "Testimoni", url: "#testimonials" },
         { text: "FAQ", url: "#faq" },

@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { Zap, BarChart3, Printer, RefreshCw, MessageCircle } from "lucide-react";
+import DemoVideo from "./DemoVideo";
 import { heroDetails } from "@/data/hero";
 import { appRequestDetails, ctaDetails } from "@/data/cta";
 import { trackContactClick } from "@/utils/analytics";
@@ -70,6 +71,11 @@ const Hero: React.FC = () => {
           >
             Login
           </a>
+        </div>
+
+        {/* Lihat demo aplikasi */}
+        <div className="mt-4 flex justify-center">
+          <DemoVideo label="Lihat Demo Aplikasi" />
         </div>
 
         {/* Feature badges */}

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Smartphone, Tablet } from "lucide-react";
+import DemoVideo from "./DemoVideo";
 
 const MOBILE_SCREENS = [
   { src: "/images/mobile/Screenshot_1776572485.png", label: "Login" },
@@ -45,6 +46,14 @@ const AppScreenshots: React.FC = () => {
 
   return (
     <div className="mt-12">
+      {/* Lihat demo video aplikasi */}
+      <div className="flex justify-center mb-8">
+        <DemoVideo
+          label="Lihat Demo Aplikasi"
+          className="inline-flex items-center gap-2 px-6 h-12 rounded-full font-semibold text-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
+        />
+      </div>
+
       {/* Tab switcher */}
       <div className="flex justify-center mb-10">
         <div className="inline-flex bg-gray-100 rounded-2xl p-1 dark:bg-surface dark:border dark:border-surface-border">

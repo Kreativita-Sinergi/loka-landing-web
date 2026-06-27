@@ -7,11 +7,13 @@ import Container from "@/components/Container";
 import Section from "@/components/Section";
 import CTA from "@/components/Cta";
 import Ecosystem from "@/components/Ecosystem";
+import HowToStart from "@/components/HowToStart";
 import Pricing from "@/components/Pricing/Pricing";
 import AppScreenshots from "@/components/AppScreenshots";
 import Stats from "@/components/Stats";
 import Testimonials from "@/components/Testimonials";
 import ParentCompany from "@/components/ParentCompany";
+import { howToStartDetails } from "@/data/howToStart";
 
 const HomePage: React.FC = () => {
   return (
@@ -37,6 +39,15 @@ const HomePage: React.FC = () => {
           description="App Kasir di tangan kasir Anda, Web Admin di tangan pemilik bisnis. Keduanya terhubung real-time — tidak ada data yang tertinggal."
         >
           <Ecosystem />
+        </Section>
+
+        {/* Cara Daftar & Mulai Pakai */}
+        <Section
+          id="cara-mulai"
+          title={howToStartDetails.title}
+          description={howToStartDetails.description}
+        >
+          <HowToStart />
         </Section>
 
         {/* Tampilan Aplikasi */}
