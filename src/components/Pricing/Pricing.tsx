@@ -1,5 +1,11 @@
+import { CheckCircle2, XCircle, Lightbulb } from "lucide-react";
 import PricingColumn from "./PricingColumn";
 import { tiers } from "@/data/pricing";
+import { appRequestDetails } from "@/data/cta";
+
+const appRequestWaLink = `https://wa.me/${appRequestDetails.whatsapp}?text=${encodeURIComponent(
+  appRequestDetails.whatsappMessage
+)}`;
 
 const Pricing: React.FC = () => {
   return (
@@ -29,8 +35,8 @@ const Pricing: React.FC = () => {
         <div className="grid gap-4 sm:grid-cols-2">
           {/* Yang termasuk */}
           <div>
-            <p className="text-xs font-bold text-green-600 uppercase tracking-wider mb-2 dark:text-green-400">
-              ✓ Yang termasuk
+            <p className="inline-flex items-center gap-1 text-xs font-bold text-green-600 uppercase tracking-wider mb-2 dark:text-green-400">
+              <CheckCircle2 size={14} aria-hidden="true" /> Yang termasuk
             </p>
             <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-300">
               <li>• Kasir / transaksi penjualan (POS)</li>
@@ -44,8 +50,8 @@ const Pricing: React.FC = () => {
 
           {/* Yang belum termasuk */}
           <div>
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 dark:text-gray-500">
-              ✗ Belum termasuk (upgrade ke Lite / Pro)
+            <p className="inline-flex items-center gap-1 text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 dark:text-gray-500">
+              <XCircle size={14} aria-hidden="true" /> Belum termasuk (upgrade ke Lite / Pro)
             </p>
             <ul className="space-y-1.5 text-sm text-gray-500 dark:text-gray-400">
               <li>• Database pelanggan, meja &amp; KDS (Lite)</li>
@@ -58,16 +64,16 @@ const Pricing: React.FC = () => {
         </div>
 
         <div className="mt-4 pt-4 border-t border-gray-200 dark:border-surface-border flex flex-wrap items-center justify-between gap-2">
-          <p className="text-xs text-gray-500 dark:text-gray-400">
-            💡 Lewat batas 500 transaksi? Tinggal upgrade kapan saja — data Anda tetap aman.
+          <p className="inline-flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
+            <Lightbulb size={14} className="shrink-0 text-amber-500" aria-hidden="true" /> Lewat batas 500 transaksi? Tinggal upgrade kapan saja — data Anda tetap aman.
           </p>
           <a
-            href="https://app.lokakasir.id"
+            href={appRequestWaLink}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 underline hover:text-blue-800 font-semibold text-sm"
           >
-            Daftar gratis →
+            Minta aplikasi via WhatsApp →
           </a>
         </div>
       </div>
@@ -76,14 +82,14 @@ const Pricing: React.FC = () => {
         <p className="text-sm font-medium text-gray-600 dark:text-gray-300">
           Untuk berlangganan:{" "}
           <a
-            href="https://app.lokakasir.id"
+            href={appRequestWaLink}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 underline hover:text-blue-800 font-semibold"
           >
-            Daftar akun di app.lokakasir.id
+            minta aplikasinya via WhatsApp
           </a>
-          {" "}terlebih dahulu, kemudian pilih paket dan selesaikan pembayaran.
+          {" "}lalu daftar langsung di aplikasi, kemudian pilih paket dan selesaikan pembayaran.
         </p>
         <p className="text-sm text-gray-400 dark:text-gray-500">
           Harga sudah termasuk PPN. Pembayaran melalui transfer bank atau dompet digital.{" "}

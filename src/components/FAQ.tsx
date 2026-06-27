@@ -41,6 +41,7 @@ const FAQ: React.FC = () => {
                             <button
                                 key={cat}
                                 onClick={() => setActive(cat)}
+                                aria-pressed={active === cat}
                                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors border ${
                                     active === cat
                                         ? "bg-secondary text-white border-secondary"

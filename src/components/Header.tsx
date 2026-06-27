@@ -5,6 +5,7 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import { HiOutlineXMark, HiBars3 } from "react-icons/hi2";
+import { MessageCircle } from "lucide-react";
 
 import Container from "./Container";
 import ThemeToggle from "./ThemeToggle";
@@ -40,7 +41,7 @@ const Header: React.FC = () => {
       <Container className="!px-0">
         <nav className="mx-auto flex justify-between items-center py-3 px-5 md:py-4">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/images/logo.png" width={130} height={70} alt="Logo" />
+            <Image src="/images/logo.png" width={130} height={70} alt="Loka Kasir" priority />
           </Link>
           <ul className="hidden md:flex items-center gap-1">
             {menuItems.map((item) => (
@@ -57,6 +58,7 @@ const Header: React.FC = () => {
               <Link
                 href={siteDetails.dashboardUrl}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all dark:text-gray-300 dark:hover:text-white dark:hover:bg-white/5"
               >
                 Login
@@ -68,9 +70,9 @@ const Header: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackContactClick("whatsapp", "header")}
-                className="text-sm text-white bg-blue-600 hover:bg-blue-700 px-5 py-2.5 rounded-xl transition-colors font-semibold shadow-sm"
+                className="inline-flex items-center gap-1.5 text-sm text-white bg-blue-600 hover:bg-blue-700 px-5 py-2.5 rounded-xl transition-colors font-semibold shadow-sm"
               >
-                💬 Minta Aplikasi
+                <MessageCircle size={16} aria-hidden="true" /> Minta Aplikasi
               </Link>
             </li>
             <li className="ml-1">
@@ -122,6 +124,7 @@ const Header: React.FC = () => {
               <Link
                 href={siteDetails.dashboardUrl}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-black hover:text-[#007BFF] block py-2 dark:text-gray-200 dark:hover:text-[#4d8dff]"
                 onClick={toggleMenu}
               >
@@ -133,13 +136,13 @@ const Header: React.FC = () => {
                 href={appRequestWaLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white bg-[#007BFF] hover:bg-blue-600 px-5 py-2 rounded-full block w-fit"
+                className="inline-flex items-center gap-1.5 text-white bg-[#007BFF] hover:bg-blue-600 px-5 py-2 rounded-full w-fit"
                 onClick={() => {
                   trackContactClick("whatsapp", "header-mobile");
                   toggleMenu();
                 }}
               >
-                💬 Minta Aplikasi
+                <MessageCircle size={16} aria-hidden="true" /> Minta Aplikasi
               </Link>
             </li>
           </ul>

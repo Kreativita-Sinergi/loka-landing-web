@@ -12,18 +12,18 @@ const appRequestWaLink = `https://wa.me/${appRequestDetails.whatsapp}?text=${enc
 const steps = [
   {
     number: "1",
-    title: "Daftar Akun",
-    desc: "Buat akun gratis di app.lokakasir.id. Verifikasi email dan mulai trial 14 hari.",
-  },
-  {
-    number: "2",
     title: "Minta Aplikasi",
     desc: "Hubungi tim Loka Kasir via WhatsApp atau Instagram untuk meminta aplikasinya.",
   },
   {
+    number: "2",
+    title: "Daftar di Aplikasi",
+    desc: "Buka aplikasi, buat akun gratis langsung di HP/tablet Anda, dan mulai trial 14 hari.",
+  },
+  {
     number: "3",
-    title: "Login & Mulai Jualan",
-    desc: "Buka aplikasi, login dengan akun Anda. Siap menerima transaksi hari ini!",
+    title: "Mulai Jualan",
+    desc: "Login dan langsung terima transaksi hari itu juga — tanpa kartu kredit.",
   },
 ];
 
@@ -71,21 +71,21 @@ export default function CTA() {
             {/* Action buttons */}
             <div className="mt-8 flex flex-col sm:flex-row items-center gap-3">
               <a
-                href={ctaDetails.dashboardUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center min-w-[220px] px-8 h-14 rounded-full font-bold text-base bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
-              >
-                Daftar & Mulai Gratis
-              </a>
-              <a
                 href={appRequestWaLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackContactClick("whatsapp", "cta")}
-                className="flex items-center justify-center gap-2 min-w-[220px] px-8 h-14 rounded-full font-bold text-base bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-colors"
+                className="flex items-center justify-center gap-2 min-w-[220px] px-8 h-14 rounded-full font-bold text-base bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
               >
                 <MessageCircle size={18} className="flex-shrink-0" /> Minta Aplikasi via WhatsApp
+              </a>
+              <a
+                href={ctaDetails.dashboardUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center min-w-[220px] px-8 h-14 rounded-full font-bold text-base bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-colors"
+              >
+                Login
               </a>
             </div>
 

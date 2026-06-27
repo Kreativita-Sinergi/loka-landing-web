@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { Smartphone, Tablet } from "lucide-react";
 
 const MOBILE_SCREENS = [
   { src: "/images/mobile/Screenshot_1776572485.png", label: "Login" },
@@ -49,23 +50,25 @@ const AppScreenshots: React.FC = () => {
         <div className="inline-flex bg-gray-100 rounded-2xl p-1 dark:bg-surface dark:border dark:border-surface-border">
           <button
             onClick={() => setTab("mobile")}
-            className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+            aria-pressed={tab === "mobile"}
+            className={`inline-flex items-center gap-1.5 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all ${
               tab === "mobile"
                 ? "bg-white text-gray-900 shadow-sm dark:bg-white/10 dark:text-white"
                 : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
             }`}
           >
-            📱 App Mobile
+            <Smartphone size={16} aria-hidden="true" /> App Mobile
           </button>
           <button
             onClick={() => setTab("tablet")}
-            className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+            aria-pressed={tab === "tablet"}
+            className={`inline-flex items-center gap-1.5 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all ${
               tab === "tablet"
                 ? "bg-white text-gray-900 shadow-sm dark:bg-white/10 dark:text-white"
                 : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
             }`}
           >
-            📟 Tablet
+            <Tablet size={16} aria-hidden="true" /> Tablet
           </button>
         </div>
       </div>

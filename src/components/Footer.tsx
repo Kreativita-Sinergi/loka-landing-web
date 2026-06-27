@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
+import { MessageCircle, Mail, Phone } from "lucide-react";
 
 import { siteDetails } from "@/data/siteDetails";
 import { footerDetails } from "@/data/footer";
@@ -18,7 +19,7 @@ const Footer: React.FC = () => {
         {/* Brand */}
         <div className="md:col-span-1">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/images/logo.png" width={140} height={70} alt="Logo" />
+            <Image src="/images/logo.png" width={140} height={70} alt="Loka Kasir" />
           </Link>
           <p className="mt-3 text-sm text-foreground-accent leading-relaxed">
             {footerDetails.subheading}
@@ -60,9 +61,9 @@ const Footer: React.FC = () => {
                 href={appRequestWaLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-secondary hover:underline"
+                className="inline-flex items-center gap-1.5 font-semibold text-secondary hover:underline"
               >
-                💬 Minta Aplikasi
+                <MessageCircle size={15} aria-hidden="true" /> Minta Aplikasi
               </a>
             </li>
           </ul>
@@ -76,9 +77,9 @@ const Footer: React.FC = () => {
               <li>
                 <a
                   href={`mailto:${footerDetails.email}`}
-                  className="hover:text-foreground transition-colors"
+                  className="inline-flex items-center gap-2 hover:text-foreground transition-colors"
                 >
-                  ✉ {footerDetails.email}
+                  <Mail size={15} className="shrink-0" aria-hidden="true" /> {footerDetails.email}
                 </a>
               </li>
             )}
@@ -86,9 +87,9 @@ const Footer: React.FC = () => {
               <li>
                 <a
                   href={`tel:${footerDetails.telephone}`}
-                  className="hover:text-foreground transition-colors"
+                  className="inline-flex items-center gap-2 hover:text-foreground transition-colors"
                 >
-                  ☎ {footerDetails.telephone}
+                  <Phone size={15} className="shrink-0" aria-hidden="true" /> {footerDetails.telephone}
                 </a>
               </li>
             )}

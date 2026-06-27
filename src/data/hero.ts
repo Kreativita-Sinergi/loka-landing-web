@@ -1,6 +1,8 @@
 export const heroDetails = {
-  heading: "Kasir Digital untuk Bisnis Anda yang Terus Tumbuh",
+  // Headline dipecah agar bagian penekanan ("highlight") bisa diberi warna gradien.
+  headingLead: "Jualan Lebih Cepat,",
+  headingHighlight: "Untung Lebih Jelas",
   subheading:
-    "Loka Kasir hadir untuk warung, kafe, restoran, dan toko yang ingin beroperasi lebih cepat, lebih rapi, dan lebih untung. Satu aplikasi untuk transaksi, shift, laporan, dan tim Anda.",
+    "Aplikasi kasir all-in-one untuk warung, kafe, resto, dan toko. Kelola transaksi, stok, shift, laporan, dan tim Anda dalam satu tempat — coba gratis 14 hari, tanpa kartu kredit.",
   centerImageSrc: "/images/tablet/Screenshot_1776574650.png",
 };

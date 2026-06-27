@@ -1,9 +1,12 @@
 import React from 'react';
-import { Monitor, Smartphone } from 'lucide-react';
+import { Monitor, Smartphone, MessageCircle } from 'lucide-react';
+import { appRequestDetails } from '@/data/cta';
 
-// Aplikasi belum rilis publik di Play Store. Arahkan pengguna untuk
-// mendaftar / request akses lewat web terlebih dahulu.
-const REGISTER_URL = 'https://app.lokakasir.id';
+// Aplikasi belum rilis publik di Play Store. Pendaftaran kini dilakukan langsung
+// di aplikasi — arahkan pengguna menghubungi tim untuk meminta aplikasinya.
+const appRequestWaLink = `https://wa.me/${appRequestDetails.whatsapp}?text=${encodeURIComponent(
+    appRequestDetails.whatsappMessage,
+)}`;
 
 const Ecosystem: React.FC = () => {
     return (
@@ -36,22 +39,22 @@ const Ecosystem: React.FC = () => {
                     ))}
                 </ul>
 
-                {/* Daftar via web — app belum rilis publik di Play Store */}
+                {/* Minta aplikasi via WhatsApp — pendaftaran dilakukan di dalam aplikasi */}
                 <div className="mt-8 pt-6 border-t border-gray-100 dark:border-surface-border">
                     <p className="text-xs text-gray-500 mb-3 dark:text-gray-400">
-                        Tersedia untuk Android — daftar dulu untuk request akses aplikasi di{" "}
-                        <span className="font-semibold text-gray-700 dark:text-gray-200">app.lokakasir.id</span>
+                        Tersedia untuk Android — hubungi tim kami untuk meminta aplikasinya,
+                        lalu daftar langsung di dalam aplikasi.
                     </p>
                     <a
-                        href={REGISTER_URL}
+                        href={appRequestWaLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-3 bg-black text-white px-5 py-3 rounded-xl hover:bg-gray-800 transition-colors"
+                        className="inline-flex items-center gap-3 bg-[#25D366] text-white px-5 py-3 rounded-xl hover:bg-[#1ebe57] transition-colors"
                     >
-                        <Smartphone size={22} className="flex-shrink-0" />
+                        <MessageCircle size={22} className="flex-shrink-0" />
                         <div className="text-left">
-                            <div className="text-[10px] text-gray-400 leading-none">Daftar & request akses di</div>
-                            <div className="text-base font-semibold leading-tight">app.lokakasir.id</div>
+                            <div className="text-[10px] text-white/70 leading-none">Minta aplikasi via</div>
+                            <div className="text-base font-semibold leading-tight">WhatsApp</div>
                         </div>
                     </a>
                 </div>

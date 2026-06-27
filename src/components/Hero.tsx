@@ -2,9 +2,9 @@
 
 import React from "react";
 import Image from "next/image";
-import PlayStoreButton from "./PlayStoreButton";
+import { Zap, BarChart3, Printer, RefreshCw, MessageCircle } from "lucide-react";
 import { heroDetails } from "@/data/hero";
-import { appRequestDetails } from "@/data/cta";
+import { appRequestDetails, ctaDetails } from "@/data/cta";
 import { trackContactClick } from "@/utils/analytics";
 
 const appRequestWaLink = `https://wa.me/${appRequestDetails.whatsapp}?text=${encodeURIComponent(
@@ -12,10 +12,10 @@ const appRequestWaLink = `https://wa.me/${appRequestDetails.whatsapp}?text=${enc
 )}`;
 
 const BADGES = [
-  { emoji: "⚡", text: "Transaksi Kilat" },
-  { emoji: "📊", text: "Laporan Real-time" },
-  { emoji: "🖨️", text: "Cetak Struk Otomatis" },
-  { emoji: "☁️", text: "Sync Cloud" },
+  { Icon: Zap, text: "Transaksi Kilat" },
+  { Icon: BarChart3, text: "Laporan Real-time" },
+  { Icon: Printer, text: "Cetak Struk Otomatis" },
+  { Icon: RefreshCw, text: "Sync Cloud" },
 ];
 
 const Hero: React.FC = () => {
@@ -43,22 +43,32 @@ const Hero: React.FC = () => {
         </div>
 
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight font-sans text-gray-900 max-w-2xl mx-auto leading-tight dark:text-white">
-          {heroDetails.heading}
+          {heroDetails.headingLead}{" "}
+          <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+            {heroDetails.headingHighlight}
+          </span>
         </h1>
         <p className="mt-5 text-gray-500 text-lg md:text-xl leading-relaxed max-w-xl mx-auto dark:text-gray-400">
           {heroDetails.subheading}
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-          <PlayStoreButton dark />
           <a
             href={appRequestWaLink}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackContactClick("whatsapp", "hero")}
+            className="flex items-center justify-center gap-2 min-w-[205px] px-6 h-14 rounded-full w-full sm:w-fit font-bold text-base text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
+          >
+            <MessageCircle size={18} aria-hidden="true" /> Minta Aplikasi via WhatsApp
+          </a>
+          <a
+            href={ctaDetails.dashboardUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 min-w-[205px] px-6 h-14 rounded-full w-full sm:w-fit font-bold text-base transition-colors border border-gray-300 text-gray-900 hover:bg-gray-100 dark:border-surface-border dark:text-white dark:hover:bg-white/5"
           >
-            💬 Minta Aplikasi via WhatsApp
+            Login
           </a>
         </div>
 
@@ -69,7 +79,7 @@ const Hero: React.FC = () => {
               key={b.text}
               className="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-600 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm dark:bg-surface dark:border-surface-border dark:text-gray-300"
             >
-              <span>{b.emoji}</span>
+              <b.Icon size={14} className="text-blue-600 dark:text-blue-400" aria-hidden="true" />
               {b.text}
             </span>
           ))}
@@ -90,7 +100,7 @@ const Hero: React.FC = () => {
                 src={heroDetails.centerImageSrc}
                 fill
                 priority
-                alt="app mockup"
+                alt="Tampilan aplikasi kasir Loka Kasir di tablet"
                 className="object-cover object-top"
                 sizes="(max-width: 768px) 100vw, 768px"
               />

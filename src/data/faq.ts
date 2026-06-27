@@ -9,14 +9,16 @@ export const faqs: IFAQ[] = [
     category: "Memulai",
     question: "Bagaimana cara mendaftar dan memulai menggunakan Loka Kasir?",
     answer:
-      `Daftarkan akun Owner di ${siteDetails.dashboardUrl}, pilih jenis bisnis Anda (FNB, Retail, atau Jasa), lalu buat outlet pertama. Setelah itu Anda mendapat 14 hari akses penuh gratis — tidak perlu kartu kredit.
+      `Hubungi tim Loka Kasir via WhatsApp atau Instagram untuk meminta aplikasinya, lalu daftarkan akun Owner langsung di dalam aplikasi: pilih jenis bisnis Anda (FNB, Retail, atau Jasa) dan buat outlet pertama. Setelah itu Anda mendapat 14 hari akses penuh gratis — tidak perlu kartu kredit.
 
 Urutan setup yang direkomendasikan:
 1. Buat outlet dan isi informasi toko
 2. Tambah karyawan dan atur hak akses
 3. Buat kategori dan tambah produk
 4. Konfigurasikan terminal kasir di perangkat
-5. Lakukan transaksi percobaan`,
+5. Lakukan transaksi percobaan
+
+Pengelolaan lanjutan (laporan, inventori, multi-outlet) bisa diakses lewat Web Admin di ${siteDetails.dashboardUrl} menggunakan akun yang sama.`,
   },
   {
     category: "Memulai",
