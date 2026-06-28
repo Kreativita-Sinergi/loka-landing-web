@@ -59,7 +59,7 @@ const Hero: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackContactClick("whatsapp", "hero")}
-            className="flex items-center justify-center gap-2 px-6 h-14 rounded-full w-full sm:flex-1 font-bold text-base text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
+            className="flex items-center justify-center gap-2 px-6 h-14 rounded-full w-full sm:flex-1 font-bold text-base leading-none text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
           >
             <MessageCircle size={18} aria-hidden="true" /> Minta Aplikasi via WhatsApp
           </a>
@@ -67,7 +67,7 @@ const Hero: React.FC = () => {
             href={ctaDetails.dashboardUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 px-6 h-14 rounded-full w-full sm:flex-1 font-bold text-base transition-colors border border-gray-300 text-gray-900 hover:bg-gray-100 dark:border-surface-border dark:text-white dark:hover:bg-white/5"
+            className="flex items-center justify-center gap-2 px-6 h-14 rounded-full w-full sm:flex-1 font-bold text-base leading-none transition-colors border border-gray-300 text-gray-900 hover:bg-gray-100 dark:border-surface-border dark:text-white dark:hover:bg-white/5"
           >
             Login
           </a>

@@ -91,7 +91,7 @@ const ParentCompany: React.FC = () => {
                 target="_blank"
                 rel="noopener"
                 title="Jasa pembuatan website & aplikasi — Kreativita Sinergi"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gray-900 text-white font-semibold w-full sm:flex-1 px-6 h-12 whitespace-nowrap hover:bg-gray-800 transition-colors dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gray-900 text-white font-semibold w-full sm:flex-1 px-6 h-12 leading-none whitespace-nowrap hover:bg-gray-800 transition-colors dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
               >
                 <Globe size={18} className="flex-shrink-0" /> Jasa Website &amp; Aplikasi
                 <ArrowUpRight size={16} className="flex-shrink-0" />
@@ -100,7 +100,7 @@ const ParentCompany: React.FC = () => {
                 href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-gray-200 text-gray-800 font-semibold w-full sm:flex-1 px-6 h-12 whitespace-nowrap hover:border-secondary hover:text-secondary transition-colors dark:border-surface-border dark:text-gray-200"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-gray-200 text-gray-800 font-semibold w-full sm:flex-1 px-6 h-12 leading-none whitespace-nowrap hover:border-secondary hover:text-secondary transition-colors dark:border-surface-border dark:text-gray-200"
               >
                 Konsultasi Proyek
               </a>
