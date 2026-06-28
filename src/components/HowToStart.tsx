@@ -59,7 +59,7 @@ export default function HowToStart() {
           onClick={() => trackContactClick("whatsapp", "how-to-start")}
           className="flex items-center justify-center gap-2 px-8 h-14 rounded-full font-bold text-base leading-none text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
         >
-          <MessageCircle size={18} aria-hidden="true" /> Mulai — Minta Aplikasi via WhatsApp
+          <MessageCircle size={18} aria-hidden="true" className="relative -top-px" /> Mulai — Minta Aplikasi via WhatsApp
         </a>
       </div>
     </div>

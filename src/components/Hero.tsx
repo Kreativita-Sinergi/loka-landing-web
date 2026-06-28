@@ -61,7 +61,7 @@ const Hero: React.FC = () => {
             onClick={() => trackContactClick("whatsapp", "hero")}
             className="flex items-center justify-center gap-2 px-6 h-14 rounded-full w-full sm:flex-1 font-bold text-base leading-none text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
           >
-            <MessageCircle size={18} aria-hidden="true" /> Minta Aplikasi via WhatsApp
+            <MessageCircle size={18} aria-hidden="true" className="relative -top-px" /> Minta Aplikasi via WhatsApp
           </a>
           <a
             href={ctaDetails.dashboardUrl}

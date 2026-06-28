@@ -77,7 +77,7 @@ export default function CTA() {
                 onClick={() => trackContactClick("whatsapp", "cta")}
                 className="flex items-center justify-center gap-2 w-full sm:flex-1 px-8 h-14 rounded-full font-bold text-base leading-none bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
               >
-                <MessageCircle size={18} className="flex-shrink-0" /> Minta Aplikasi via WhatsApp
+                <MessageCircle size={18} className="flex-shrink-0 relative -top-px" /> Minta Aplikasi via WhatsApp
               </a>
               <a
                 href={ctaDetails.dashboardUrl}
@@ -97,7 +97,7 @@ export default function CTA() {
               <p className="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-gray-300">
                 {supportDetails.message}
               </p>
-              <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="mt-5 flex flex-col gap-3 max-w-sm mx-auto">
                 <a
                   href={`https://wa.me/${supportDetails.whatsapp}?text=${encodeURIComponent(
                     supportDetails.whatsappMessage
@@ -105,9 +105,9 @@ export default function CTA() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackContactClick("whatsapp", "support")}
-                  className="flex items-center justify-center gap-2 w-full px-5 h-12 rounded-full font-semibold text-sm leading-none whitespace-nowrap bg-green-600 text-white hover:bg-green-700 transition-colors"
+                  className="flex items-center justify-start gap-3 w-full px-6 h-12 rounded-full font-semibold text-sm leading-none whitespace-nowrap bg-green-600 text-white hover:bg-green-700 transition-colors"
                 >
-                  <MessageCircle size={16} className="flex-shrink-0" />
+                  <MessageCircle size={16} className="flex-shrink-0 relative -top-px" />
                   WhatsApp
                 </a>
                 <a
@@ -115,16 +115,16 @@ export default function CTA() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackContactClick("instagram", "support")}
-                  className="flex items-center justify-center gap-2 w-full px-5 h-12 rounded-full font-semibold text-sm leading-none whitespace-nowrap text-white bg-pink-600 hover:bg-pink-700 transition-colors"
+                  className="flex items-center justify-start gap-3 w-full px-6 h-12 rounded-full font-semibold text-sm leading-none whitespace-nowrap text-white bg-pink-600 hover:bg-pink-700 transition-colors"
                 >
-                  <FiInstagram size={16} className="flex-shrink-0" />
+                  <FiInstagram size={16} className="flex-shrink-0 relative -top-px" />
                   Instagram
                 </a>
                 <a
                   href={`mailto:${supportDetails.email}`}
-                  className="flex items-center justify-center gap-2 w-full px-5 h-12 rounded-full font-semibold text-sm leading-none whitespace-nowrap bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-colors"
+                  className="flex items-center justify-start gap-3 w-full px-6 h-12 rounded-full font-semibold text-sm leading-none whitespace-nowrap bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-colors"
                 >
-                  <Mail size={16} className="flex-shrink-0" />
+                  <Mail size={16} className="flex-shrink-0 relative -top-px" />
                   {supportDetails.email}
                 </a>
               </div>

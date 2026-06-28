@@ -68,7 +68,7 @@ const Header: React.FC = () => {
                 title="Daftar dengan meminta aplikasi via WhatsApp — akun dibuat di dalam aplikasi"
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all dark:text-gray-300 dark:hover:text-white dark:hover:bg-white/5"
               >
-                <UserPlus size={15} aria-hidden="true" /> Daftar
+                <UserPlus size={15} aria-hidden="true" className="relative -top-px" /> Daftar
               </Link>
             </li>
             <li className="ml-1">
@@ -89,7 +89,7 @@ const Header: React.FC = () => {
                 onClick={() => trackContactClick("whatsapp", "header")}
                 className="inline-flex items-center gap-1.5 text-sm text-white bg-blue-600 hover:bg-blue-700 px-5 py-2.5 rounded-xl transition-colors font-semibold shadow-sm"
               >
-                <MessageCircle size={16} aria-hidden="true" /> Minta Aplikasi
+                <MessageCircle size={16} aria-hidden="true" className="relative -top-px" /> Minta Aplikasi
               </Link>
             </li>
             <li className="ml-1">
@@ -148,7 +148,7 @@ const Header: React.FC = () => {
                 }}
                 className="inline-flex items-center gap-2 text-sm font-medium text-green-700 dark:text-green-400"
               >
-                <UserPlus size={16} aria-hidden="true" /> Daftar via WhatsApp
+                <UserPlus size={16} aria-hidden="true" className="relative -top-px" /> Daftar via WhatsApp
               </Link>
               <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
                 Minta aplikasinya dulu, lalu daftar akun di dalam aplikasi.
@@ -176,7 +176,7 @@ const Header: React.FC = () => {
                   toggleMenu();
                 }}
               >
-                <MessageCircle size={16} aria-hidden="true" /> Minta Aplikasi
+                <MessageCircle size={16} aria-hidden="true" className="relative -top-px" /> Minta Aplikasi
               </Link>
             </li>
           </ul>
