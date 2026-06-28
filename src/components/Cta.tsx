@@ -105,27 +105,27 @@ export default function CTA() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackContactClick("whatsapp", "support")}
-                  className="flex items-center gap-3 w-full px-7 h-12 rounded-full font-semibold text-sm whitespace-nowrap bg-green-600 text-white hover:bg-green-700 transition-colors"
+                  className="flex items-center justify-center gap-2 w-full px-5 h-12 rounded-full font-semibold text-sm whitespace-nowrap bg-green-600 text-white hover:bg-green-700 transition-colors"
                 >
                   <MessageCircle size={16} className="flex-shrink-0" />
-                  <span className="flex-1 text-center">WhatsApp</span>
+                  WhatsApp
                 </a>
                 <a
                   href={`https://ig.me/m/${supportDetails.instagram}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackContactClick("instagram", "support")}
-                  className="flex items-center gap-3 w-full px-7 h-12 rounded-full font-semibold text-sm whitespace-nowrap text-white bg-pink-600 hover:bg-pink-700 transition-colors"
+                  className="flex items-center justify-center gap-2 w-full px-5 h-12 rounded-full font-semibold text-sm whitespace-nowrap text-white bg-pink-600 hover:bg-pink-700 transition-colors"
                 >
                   <FiInstagram size={16} className="flex-shrink-0" />
-                  <span className="flex-1 text-center">Instagram</span>
+                  Instagram
                 </a>
                 <a
                   href={`mailto:${supportDetails.email}`}
-                  className="flex items-center gap-3 w-full px-7 h-12 rounded-full font-semibold text-sm whitespace-nowrap bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-colors"
+                  className="flex items-center justify-center gap-2 w-full px-5 h-12 rounded-full font-semibold text-sm whitespace-nowrap bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-colors"
                 >
                   <Mail size={16} className="flex-shrink-0" />
-                  <span className="flex-1 text-center">{supportDetails.email}</span>
+                  {supportDetails.email}
                 </a>
               </div>
             </div>
