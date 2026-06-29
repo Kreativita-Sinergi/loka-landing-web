@@ -16,21 +16,21 @@ const Ecosystem: React.FC = () => {
                 <div className="w-12 h-12 bg-gray-900 rounded-2xl flex items-center justify-center mb-6 text-white dark:bg-white/10">
                     <Smartphone size={24} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 dark:text-white">App Kasir: Sang Tangan</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 dark:text-white">Aplikasi Kasir</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed dark:text-gray-400">
-                    Alat tempur harian di toko. Proses transaksi kilat, cetak struk otomatis, dan manajemen shift yang akurat.
+                    Teman kerja kasir setiap hari. Transaksinya cepat, struk langsung tercetak, dan tutup shift jadi gampang.
                 </p>
                 <ul className="space-y-3 flex-1">
                     {[
-                        "Login PIN 4-Digit Cepat per Kasir",
-                        "Tampilan POS Modern — Grid & List View",
-                        "Multi Tipe Order: Dine-in, Take Away, Delivery",
-                        "Metode Pembayaran Sesuai Konfigurasi Bisnis",
-                        "Cetak Struk Printer Bluetooth / USB",
-                        "Manajemen Shift Kasir & Rekap Kas Otomatis",
-                        "Kitchen Display System (KDS) untuk Dapur",
-                        "Absensi Karyawan — Kiosk Clock-in / Clock-out",
-                        "Offline Mode & Auto-Sync ke Cloud",
+                        "Kasir cukup login pakai PIN 4 angka",
+                        "Tampilan kasir simpel, bisa mode grid atau daftar",
+                        "Melayani dine-in, take away, sampai delivery",
+                        "Pilihan pembayaran menyesuaikan toko Anda",
+                        "Cetak struk lewat printer Bluetooth atau USB",
+                        "Buka-tutup shift dan rekap kas otomatis",
+                        "Layar dapur (KDS) untuk memantau pesanan masuk",
+                        "Absen karyawan cukup clock-in dan clock-out",
+                        "Tetap jalan walau offline, sinkron sendiri saat online",
                     ].map((item) => (
                         <li key={item} className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                             <div className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />
@@ -42,8 +42,8 @@ const Ecosystem: React.FC = () => {
                 {/* Minta aplikasi via WhatsApp — pendaftaran dilakukan di dalam aplikasi */}
                 <div className="mt-8 pt-6 border-t border-gray-100 dark:border-surface-border">
                     <p className="text-xs text-gray-500 mb-3 dark:text-gray-400">
-                        Tersedia untuk Android — hubungi tim kami untuk meminta aplikasinya,
-                        lalu daftar langsung di dalam aplikasi.
+                        Aplikasinya untuk Android. Chat tim kami untuk minta aplikasinya,
+                        lalu daftar langsung dari aplikasi.
                     </p>
                     <a
                         href={appRequestWaLink}
@@ -65,21 +65,21 @@ const Ecosystem: React.FC = () => {
                 <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center mb-6 text-white">
                     <Monitor size={24} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 dark:text-white">Web Admin: Sang Otak</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 dark:text-white">Web Admin</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed dark:text-gray-400">
-                    Pusat kendali bisnis Anda. Pantau laporan real-time, kelola inventori, dan atur karyawan dari mana saja.
+                    Tempat Anda memantau dan mengatur bisnis dari mana saja. Lihat laporan terbaru, urus stok, dan kelola karyawan.
                 </p>
                 <ul className="space-y-3">
                     {[
-                        "Dashboard Laporan Keuangan Real-time",
-                        "Analitik Penjualan Mendalam & Grafik",
-                        "Manajemen Produk, Kategori & Varian",
-                        "Kelola Stok & Inventori Massal",
-                        "Multi-Outlet dari Satu Akun",
-                        "Manajemen Karyawan & Hak Akses Role",
-                        "Kelola Meja & Denah Restoran",
-                        "Riwayat Transaksi & Manajemen Refund",
-                        "Pengaturan Outlet & Langganan",
+                        "Laporan keuangan yang selalu terbarui",
+                        "Lihat tren penjualan lengkap dengan grafiknya",
+                        "Atur produk, kategori, dan variannya",
+                        "Kelola stok, bisa sekaligus banyak item",
+                        "Pegang banyak outlet dari satu akun",
+                        "Atur karyawan beserta hak aksesnya",
+                        "Tata meja dan denah ruangan resto",
+                        "Lihat riwayat transaksi dan proses refund",
+                        "Atur outlet dan langganan Anda",
                     ].map((item) => (
                         <li key={item} className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                             <div className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />

@@ -11,7 +11,7 @@ export const supportDetails = {
     "Jangan sungkan menghubungi admin kami. Setiap pertanyaan, kendala, maupun saran perbaikan sangat kami hargai — Loka Kasir terus kami kembangkan bersama Anda.",
   email: "help@lokakasir.id",
   // Nomor WhatsApp admin (format internasional tanpa "+").
-  whatsapp: "6285393737313",
+  whatsapp: "6283878960539",
   whatsappMessage:
     "Halo Admin Loka Kasir, saya ingin bertanya/menyampaikan masukan terkait aplikasi.",
   // Username Instagram admin (untuk deep-link DM via ig.me/m/).
@@ -21,7 +21,7 @@ export const supportDetails = {
 // Detail untuk meminta aplikasi: pengguna menghubungi tim Loka Kasir
 // terlebih dahulu via WhatsApp atau Instagram untuk mendapatkan aplikasinya.
 export const appRequestDetails = {
-  whatsapp: "6285393737313",
+  whatsapp: "6283878960539",
   whatsappMessage:
     "Halo tim Loka Kasir, saya ingin meminta akses aplikasi Loka Kasir.",
   instagram: "lokakasir.id",
@@ -32,7 +32,7 @@ export const appRequestDetails = {
 // dulu ke admin via WhatsApp — bukan Instagram, karena APK tidak bisa dikirim
 // lewat DM Instagram.
 export const registerDetails = {
-  whatsapp: "6285393737313",
+  whatsapp: "6283878960539",
   whatsappMessage:
     "Halo tim Loka Kasir, saya ingin mendaftar. Mohon kirimkan aplikasinya (APK Android) agar saya bisa daftar akun dan mulai mencoba gratis.",
 };

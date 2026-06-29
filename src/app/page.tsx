@@ -35,8 +35,8 @@ const HomePage: React.FC = () => {
         {/* Ekosistem */}
         <Section
           id="ecosystem"
-          title="Satu Ekosistem, Dua Kekuatan"
-          description="App Kasir di tangan kasir Anda, Web Admin di tangan pemilik bisnis. Keduanya terhubung real-time — tidak ada data yang tertinggal."
+          title="Satu Sistem untuk Kasir & Pemilik"
+          description="Aplikasi Kasir dipakai tim di toko, Web Admin dipegang pemilik. Keduanya langsung terhubung, jadi datanya selalu sinkron."
         >
           <Ecosystem />
         </Section>
