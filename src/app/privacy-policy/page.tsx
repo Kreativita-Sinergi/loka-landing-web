@@ -34,10 +34,10 @@ const permissions = [
   },
   {
     icon: '🖼️',
-    name: 'Galeri / Penyimpanan Foto',
-    androidPermission: 'READ_MEDIA_IMAGES',
-    why: 'Mengunggah foto produk ke katalog dan logo bisnis yang tampil di struk transaksi. Pengguna memilih sendiri gambar dari galeri perangkat.',
-    dataCollected: 'Gambar yang dipilih pengguna diunggah ke server (Cloudinary) dan dikaitkan dengan akun bisnis. Gambar lain di galeri tidak diakses.',
+    name: 'Galeri Foto (tanpa izin khusus)',
+    androidPermission: 'Android Photo Picker — tidak memerlukan permission',
+    why: 'Mengunggah foto produk ke katalog dan logo bisnis yang tampil di struk transaksi. Aplikasi menggunakan pemilih foto bawaan Android (Photo Picker), sehingga tidak memerlukan izin akses galeri.',
+    dataCollected: 'Hanya gambar yang dipilih sendiri oleh pengguna yang diunggah ke server (Cloudinary) dan dikaitkan dengan akun bisnis. Aplikasi tidak dapat mengakses gambar lain di galeri.',
     optional: true,
   },
 ]
