@@ -20,6 +20,7 @@ export const footerDetails: {
         { text: "FAQ", url: "#faq" },
         { text: "Kreativita Sinergi", url: "#kreativita" },
         { text: "Kebijakan Privasi", url: "/privacy-policy" },
+        { text: "Hapus Akun", url: "/hapus-akun" },
     ],
     email: 'help@lokakasir.id',
     telephone: '+62 853-9373-7313',
