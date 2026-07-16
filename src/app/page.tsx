@@ -25,6 +25,15 @@ const HomePage: React.FC = () => {
       <Stats />
 
       <Container>
+        {/* Video Tutorial — section teratas: tunjukkan aplikasi bekerja sebelum menjelaskan fiturnya */}
+        <Section
+          id="tutorial"
+          title={tutorialDetails.title}
+          description={tutorialDetails.description}
+        >
+          <Tutorials />
+        </Section>
+
         {/* Fitur Unggulan */}
         <Section
           id="features"
@@ -50,15 +59,6 @@ const HomePage: React.FC = () => {
           description={howToStartDetails.description}
         >
           <HowToStart />
-        </Section>
-
-        {/* Video Tutorial */}
-        <Section
-          id="tutorial"
-          title={tutorialDetails.title}
-          description={tutorialDetails.description}
-        >
-          <Tutorials />
         </Section>
 
         {/* Tampilan Aplikasi */}
