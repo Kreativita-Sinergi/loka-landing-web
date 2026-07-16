@@ -13,7 +13,9 @@ import AppScreenshots from "@/components/AppScreenshots";
 import Stats from "@/components/Stats";
 import Testimonials from "@/components/Testimonials";
 import ParentCompany from "@/components/ParentCompany";
+import Tutorials from "@/components/Tutorials";
 import { howToStartDetails } from "@/data/howToStart";
+import { tutorialDetails } from "@/data/tutorials";
 
 const HomePage: React.FC = () => {
   return (
@@ -48,6 +50,15 @@ const HomePage: React.FC = () => {
           description={howToStartDetails.description}
         >
           <HowToStart />
+        </Section>
+
+        {/* Video Tutorial */}
+        <Section
+          id="tutorial"
+          title={tutorialDetails.title}
+          description={tutorialDetails.description}
+        >
+          <Tutorials />
         </Section>
 
         {/* Tampilan Aplikasi */}
