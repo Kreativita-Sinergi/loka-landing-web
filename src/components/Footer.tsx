@@ -137,6 +137,18 @@ const Footer: React.FC = () => {
             Kreativita Sinergi
           </a>
         </p>
+        <p className="mt-1">
+          Dikembangkan oleh{" "}
+          <a
+            href="https://odhiahmad.github.io/"
+            target="_blank"
+            rel="noopener"
+            title="Odhi Ahmad Hidayat — Full Stack Developer (Go, Flutter, React)"
+            className="font-medium text-foreground-accent hover:text-secondary transition-colors"
+          >
+            Odhi Ahmad Hidayat
+          </a>
+        </p>
       </div>
     </footer>
   );
