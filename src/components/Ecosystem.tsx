@@ -1,12 +1,9 @@
 import React from 'react';
-import { Monitor, Smartphone, MessageCircle } from 'lucide-react';
-import { appRequestDetails } from '@/data/cta';
+import { Monitor, Smartphone, Download } from 'lucide-react';
+import { appDownloadDetails } from '@/data/cta';
 
-// Aplikasi belum rilis publik di Play Store. Pendaftaran kini dilakukan langsung
-// di aplikasi — arahkan pengguna menghubungi tim untuk meminta aplikasinya.
-const appRequestWaLink = `https://wa.me/${appRequestDetails.whatsapp}?text=${encodeURIComponent(
-    appRequestDetails.whatsappMessage,
-)}`;
+// Aplikasi belum rilis publik di Play Store — APK-nya bisa diunduh langsung
+// dari sini, lalu pendaftaran akun dilakukan di dalam aplikasi.
 
 const Ecosystem: React.FC = () => {
     return (
@@ -39,22 +36,22 @@ const Ecosystem: React.FC = () => {
                     ))}
                 </ul>
 
-                {/* Minta aplikasi via WhatsApp — pendaftaran dilakukan di dalam aplikasi */}
+                {/* Download APK langsung — pendaftaran dilakukan di dalam aplikasi */}
                 <div className="mt-8 pt-6 border-t border-gray-100 dark:border-surface-border">
                     <p className="text-xs text-gray-500 mb-3 dark:text-gray-400">
-                        Aplikasinya untuk Android. Chat tim kami untuk minta aplikasinya,
-                        lalu daftar langsung dari aplikasi.
+                        Aplikasinya untuk Android. Unduh langsung dari sini,
+                        lalu daftar akun dari dalam aplikasi.
                     </p>
                     <a
-                        href={appRequestWaLink}
+                        href={appDownloadDetails.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-3 bg-[#25D366] text-white px-5 py-3 rounded-xl hover:bg-[#1ebe57] transition-colors"
+                        className="inline-flex items-center gap-3 bg-blue-600 text-white px-5 py-3 rounded-xl hover:bg-blue-700 transition-colors"
                     >
-                        <MessageCircle size={22} className="flex-shrink-0" />
+                        <Download size={22} className="flex-shrink-0" />
                         <div className="text-left">
-                            <div className="text-[10px] text-white/70 leading-none">Minta aplikasi via</div>
-                            <div className="text-base font-semibold leading-tight">WhatsApp</div>
+                            <div className="text-[10px] text-white/70 leading-none">Download langsung</div>
+                            <div className="text-base font-semibold leading-tight">Aplikasi Android (APK)</div>
                         </div>
                     </a>
                 </div>

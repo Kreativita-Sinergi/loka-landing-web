@@ -53,9 +53,9 @@ export default function FloatingWhatsApp() {
           >
             <HiOutlineXMark className="h-3.5 w-3.5" />
           </button>
-          <p className="font-semibold text-gray-900 dark:text-white">Mau coba Loka Kasir?</p>
+          <p className="font-semibold text-gray-900 dark:text-white">Butuh bantuan?</p>
           <p className="mt-0.5 leading-relaxed">
-            Chat tim kami untuk minta aplikasinya — gratis, dibalas cepat.
+            Aplikasinya bisa langsung di-download di halaman ini. Ada kendala? Chat tim kami — dibalas cepat.
           </p>
         </div>
       )}

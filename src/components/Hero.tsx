@@ -2,15 +2,11 @@
 
 import React from "react";
 import Image from "next/image";
-import { Zap, BarChart3, Printer, RefreshCw, MessageCircle } from "lucide-react";
+import { Zap, BarChart3, Printer, RefreshCw, Download } from "lucide-react";
 import DemoVideo from "./DemoVideo";
 import { heroDetails } from "@/data/hero";
-import { appRequestDetails, ctaDetails } from "@/data/cta";
-import { trackContactClick } from "@/utils/analytics";
-
-const appRequestWaLink = `https://wa.me/${appRequestDetails.whatsapp}?text=${encodeURIComponent(
-  appRequestDetails.whatsappMessage
-)}`;
+import { appDownloadDetails, ctaDetails } from "@/data/cta";
+import { trackDownloadClick } from "@/utils/analytics";
 
 const BADGES = [
   { Icon: Zap, text: "Transaksi Kilat" },
@@ -55,13 +51,13 @@ const Hero: React.FC = () => {
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-2xl mx-auto">
           <a
-            href={appRequestWaLink}
+            href={appDownloadDetails.url}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackContactClick("whatsapp", "hero")}
+            onClick={() => trackDownloadClick("hero")}
             className="flex items-center justify-center gap-2 px-6 h-14 rounded-full w-full sm:flex-1 font-bold text-base leading-none text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
           >
-            <MessageCircle size={18} aria-hidden="true" className="relative -top-px" /> Minta Aplikasi via WhatsApp
+            <Download size={18} aria-hidden="true" className="relative -top-px" /> {appDownloadDetails.label}
           </a>
           <a
             href={ctaDetails.dashboardUrl}
@@ -72,6 +68,10 @@ const Hero: React.FC = () => {
             Login
           </a>
         </div>
+
+        <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
+          {appDownloadDetails.note}
+        </p>
 
         {/* Lihat demo aplikasi */}
         <div className="mt-4 flex justify-center">

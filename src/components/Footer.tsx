@@ -1,16 +1,12 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import { MessageCircle, Mail, Phone } from "lucide-react";
+import { Download, Mail, Phone } from "lucide-react";
 
 import { siteDetails } from "@/data/siteDetails";
 import { footerDetails } from "@/data/footer";
-import { appRequestDetails } from "@/data/cta";
+import { appDownloadDetails } from "@/data/cta";
 import { getPlatformIconByName } from "@/utils";
-
-const appRequestWaLink = `https://wa.me/${appRequestDetails.whatsapp}?text=${encodeURIComponent(
-  appRequestDetails.whatsappMessage
-)}`;
 
 const Footer: React.FC = () => {
   return (
@@ -61,12 +57,12 @@ const Footer: React.FC = () => {
             ))}
             <li>
               <a
-                href={appRequestWaLink}
+                href={appDownloadDetails.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 font-semibold text-secondary hover:underline"
               >
-                <MessageCircle size={15} aria-hidden="true" /> Minta Aplikasi
+                <Download size={15} aria-hidden="true" /> Download Aplikasi
               </a>
             </li>
           </ul>

@@ -1,6 +1,7 @@
 export type HowToIcon =
   | "whatsapp"
   | "download"
+  | "install"
   | "register"
   | "setup"
   | "sell";
@@ -21,14 +22,14 @@ export const howToStartDetails: {
     "Lima langkah sederhana — dari belum punya aplikasi sampai siap menerima transaksi pertama. Gratis 14 hari, tanpa komitmen.",
   steps: [
     {
-      icon: "whatsapp",
-      title: "1. Minta Aplikasi via WhatsApp",
-      desc: "Hubungi tim Loka Kasir via WhatsApp. Kami kirimkan file aplikasi (APK) Android-nya langsung ke Anda — pendaftaran akun nantinya dilakukan di dalam aplikasi.",
+      icon: "download",
+      title: "1. Download Aplikasi",
+      desc: "Klik tombol download di halaman ini untuk mengunduh file aplikasi (APK) Android-nya. Tidak perlu minta ke admin — langsung unduh sendiri.",
     },
     {
-      icon: "download",
+      icon: "install",
       title: "2. Pasang Aplikasi",
-      desc: "Install aplikasi di HP atau tablet Android Anda. Cukup sekali pasang untuk mulai dipakai.",
+      desc: "Buka file APK yang terunduh dan install di HP atau tablet Android Anda. Izinkan pemasangan dari sumber ini bila diminta.",
     },
     {
       icon: "register",

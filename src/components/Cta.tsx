@@ -1,19 +1,15 @@
 "use client";
 
-import { Mail, MessageCircle } from "lucide-react";
+import { Download, Mail, MessageCircle } from "lucide-react";
 import { FiInstagram } from "react-icons/fi";
-import { appRequestDetails, ctaDetails, supportDetails } from "@/data/cta";
-import { trackContactClick } from "@/utils/analytics";
-
-const appRequestWaLink = `https://wa.me/${appRequestDetails.whatsapp}?text=${encodeURIComponent(
-  appRequestDetails.whatsappMessage
-)}`;
+import { appDownloadDetails, ctaDetails, supportDetails } from "@/data/cta";
+import { trackContactClick, trackDownloadClick } from "@/utils/analytics";
 
 const steps = [
   {
     number: "1",
-    title: "Minta Aplikasi",
-    desc: "Hubungi tim Loka Kasir via WhatsApp untuk meminta aplikasinya.",
+    title: "Download Aplikasi",
+    desc: "Klik tombol download di bawah untuk mengunduh aplikasinya (APK Android).",
   },
   {
     number: "2",
@@ -71,13 +67,13 @@ export default function CTA() {
             {/* Action buttons */}
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-2xl mx-auto">
               <a
-                href={appRequestWaLink}
+                href={appDownloadDetails.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackContactClick("whatsapp", "cta")}
+                onClick={() => trackDownloadClick("cta")}
                 className="flex items-center justify-center gap-2 w-full sm:flex-1 px-8 h-14 rounded-full font-bold text-base leading-none bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
               >
-                <MessageCircle size={18} className="flex-shrink-0 relative -top-px" /> Minta Aplikasi via WhatsApp
+                <Download size={18} className="flex-shrink-0 relative -top-px" /> {appDownloadDetails.label}
               </a>
               <a
                 href={ctaDetails.dashboardUrl}
@@ -88,6 +84,8 @@ export default function CTA() {
                 Login
               </a>
             </div>
+
+            <p className="mt-3 text-xs text-gray-400">{appDownloadDetails.note}</p>
 
             {/* Support / bantuan admin */}
             <div className="mt-12 w-full max-w-2xl rounded-2xl border border-white/15 bg-white/5 px-6 py-6 text-center">

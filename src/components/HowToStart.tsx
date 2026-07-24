@@ -3,26 +3,24 @@
 import {
   MessageCircle,
   Download,
+  Smartphone,
   UserPlus,
   Settings2,
   ShoppingCart,
   type LucideIcon,
 } from "lucide-react";
 import { howToStartDetails, type HowToIcon } from "@/data/howToStart";
-import { appRequestDetails } from "@/data/cta";
-import { trackContactClick } from "@/utils/analytics";
+import { appDownloadDetails } from "@/data/cta";
+import { trackDownloadClick } from "@/utils/analytics";
 
 const ICONS: Record<HowToIcon, LucideIcon> = {
   whatsapp: MessageCircle,
   download: Download,
+  install: Smartphone,
   register: UserPlus,
   setup: Settings2,
   sell: ShoppingCart,
 };
-
-const appRequestWaLink = `https://wa.me/${appRequestDetails.whatsapp}?text=${encodeURIComponent(
-  appRequestDetails.whatsappMessage
-)}`;
 
 export default function HowToStart() {
   const { steps } = howToStartDetails;
@@ -51,16 +49,17 @@ export default function HowToStart() {
         })}
       </ol>
 
-      <div className="mt-10 flex justify-center">
+      <div className="mt-10 flex flex-col items-center gap-3">
         <a
-          href={appRequestWaLink}
+          href={appDownloadDetails.url}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => trackContactClick("whatsapp", "how-to-start")}
+          onClick={() => trackDownloadClick("how-to-start")}
           className="flex items-center justify-center gap-2 px-8 h-14 rounded-full font-bold text-base leading-none text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
         >
-          <MessageCircle size={18} aria-hidden="true" className="relative -top-px" /> Mulai — Minta Aplikasi via WhatsApp
+          <Download size={18} aria-hidden="true" className="relative -top-px" /> Mulai — {appDownloadDetails.label}
         </a>
+        <p className="text-xs text-gray-500 dark:text-gray-400">{appDownloadDetails.note}</p>
       </div>
     </div>
   );
