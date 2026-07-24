@@ -24,7 +24,7 @@ export const howToStartDetails: {
     {
       icon: "download",
       title: "1. Download Aplikasi",
-      desc: "Klik tombol download di halaman ini untuk mengunduh file aplikasi (APK) Android-nya. Tidak perlu minta ke admin — langsung unduh sendiri.",
+      desc: "Klik tombol download di halaman ini untuk mengunduh file aplikasi (APK) Android-nya. Prosesnya cepat dan bisa langsung dilakukan sendiri.",
     },
     {
       icon: "install",
