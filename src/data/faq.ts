@@ -9,7 +9,7 @@ export const faqs: IFAQ[] = [
     category: "Memulai",
     question: "Bagaimana cara mendaftar dan memulai menggunakan Loka Kasir?",
     answer:
-      `Download aplikasinya (APK Android) langsung dari tombol "Download Aplikasi" di situs ini, pasang di HP/tablet Anda, lalu daftarkan akun Owner langsung di dalam aplikasi: pilih jenis bisnis Anda (FNB, Retail, atau Jasa) dan buat outlet pertama. Setelah itu Anda mendapat 14 hari akses penuh gratis — tanpa komitmen.
+      `Download aplikasinya (APK Android) langsung dari tombol "Download Aplikasi" di situs ini, pasang di HP/tablet Anda, lalu daftarkan akun Owner langsung di dalam aplikasi: pilih jenis bisnis Anda (FNB, Retail, atau Jasa) dan buat outlet pertama. Setelah itu Anda mendapat 3 bulan pertama gratis dengan akses penuh — tanpa komitmen.
 
 Urutan setup yang direkomendasikan:
 1. Buat outlet dan isi informasi toko
@@ -38,9 +38,9 @@ Untuk bisnis FNB: tambahkan juga data meja dan aktifkan Kitchen Display System (
     category: "Memulai",
     question: "Apakah ada masa percobaan gratis?",
     answer:
-      `Ya! Setiap akun baru mendapat masa percobaan 14 hari gratis dengan akses penuh ke semua fitur Pro — tanpa komitmen.
+      `Ya! Setiap akun baru mendapat 3 bulan pertama gratis dengan akses penuh ke semua fitur Pro — tanpa batas transaksi, tanpa kartu kredit, tanpa komitmen.
 
-Setelah 14 hari, pilih paket yang sesuai:
+Setelah 3 bulan, pilih paket yang sesuai:
 • Gratis — fitur POS inti, 1 outlet, maks. 500 transaksi/bulan, selamanya gratis
 • Lite — Rp 39.000/bulan, 1 outlet — kasir lengkap, karyawan, pelanggan, diskon, stok, laporan shift
 • Pro — Rp 89.000/outlet/bulan, multi-outlet — semua fitur Lite + Analitik, Absensi, Supplier, PO, HPP, Smart Pricing, Profitabilitas, Loyalty`,
@@ -486,7 +486,7 @@ Fitur ini mencegah kasir memiliki akses berlebihan sekaligus tidak mengganggu an
       `Tergantung paket yang dipilih:
 
 • Gratis — 1 outlet, maks. 500 transaksi/bulan
-• Trial (14 hari) — akses Pro penuh, 1 outlet (upgrade ke Pro untuk multi-outlet)
+• Gratis 3 bulan pertama — akses Pro penuh, 1 outlet (upgrade ke Pro untuk multi-outlet)
 • Lite — 1 outlet; untuk outlet kedua dan seterusnya perlu upgrade ke Pro
 • Pro — multi-outlet tanpa batas; outlet pertama sudah termasuk harga paket, outlet tambahan dikenakan Rp 49.000/outlet/bulan
 

@@ -14,7 +14,7 @@ const steps = [
   {
     number: "2",
     title: "Daftar di Aplikasi",
-    desc: "Buka aplikasi, buat akun gratis langsung di HP/tablet Anda, dan mulai trial 14 hari.",
+    desc: "Buka aplikasi, buat akun gratis langsung di HP/tablet Anda, dan langsung dapat 3 bulan gratis.",
   },
   {
     number: "3",

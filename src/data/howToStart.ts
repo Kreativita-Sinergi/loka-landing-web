@@ -19,7 +19,7 @@ export const howToStartDetails: {
 } = {
   title: "Cara Daftar & Mulai Pakai",
   description:
-    "Lima langkah sederhana — dari belum punya aplikasi sampai siap menerima transaksi pertama. Gratis 14 hari, tanpa komitmen.",
+    "Lima langkah sederhana — dari belum punya aplikasi sampai siap menerima transaksi pertama. Gratis 3 bulan pertama, tanpa komitmen.",
   steps: [
     {
       icon: "download",

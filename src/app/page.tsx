@@ -83,7 +83,7 @@ const HomePage: React.FC = () => {
         <Section
           id="pricing"
           title="Harga Transparan, Tanpa Kejutan"
-          description="Mulai gratis 14 hari dengan akses penuh. Lanjutkan dengan paket yang paling sesuai — tidak ada biaya tersembunyi, tidak ada biaya per transaksi."
+          description="Mulai gratis 3 bulan pertama dengan akses penuh ke semua fitur Pro. Lanjutkan dengan paket yang paling sesuai — tidak ada biaya tersembunyi, tidak ada biaya per transaksi."
         >
           <Pricing />
         </Section>

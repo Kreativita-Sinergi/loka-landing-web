@@ -84,7 +84,7 @@ export default function OpengraphImage() {
             gap: 16,
           }}
         >
-          {["Gratis 14 hari", "Android & Web", "Tanpa komitmen"].map((t) => (
+          {["Gratis 3 bulan pertama", "Android & Web", "Tanpa komitmen"].map((t) => (
             <div
               key={t}
               style={{

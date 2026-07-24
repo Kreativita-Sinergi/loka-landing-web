@@ -1,7 +1,7 @@
 export const ctaDetails = {
-  heading: "Coba Gratis 14 Hari — Tanpa Risiko",
+  heading: "Gratis 3 Bulan Pertama — Tanpa Risiko",
   subheading:
-    "Download aplikasinya langsung dari sini, daftar di aplikasi, dan akses semua fitur gratis selama 14 hari. Tidak ada komitmen. Setelah itu, lanjutkan dengan paket mulai Rp 39.000/bulan.",
+    "Download aplikasinya langsung dari sini, daftar di aplikasi, dan pakai semua fitur Pro gratis selama 3 bulan pertama — tanpa kartu kredit, tanpa komitmen. Setelah itu, lanjutkan dengan paket mulai Rp 39.000/bulan.",
   dashboardUrl: "https://app.lokakasir.id",
 };
 
@@ -25,7 +25,7 @@ export const appDownloadDetails = {
   url: "https://drive.google.com/file/d/1Vvg7uXC4sH5_AN7-e0US-ADYs8NMMiJ5/view?usp=drive_link",
   label: "Download Aplikasi (APK)",
   // Catatan singkat yang ditampilkan di dekat tombol unduh.
-  note: "Android · Gratis 14 hari · Daftar akun langsung di aplikasi",
+  note: "Android · Gratis 3 bulan pertama · Daftar akun langsung di aplikasi",
 };
 
 // Detail untuk menghubungi tim Loka Kasir (bantuan pemasangan, pertanyaan, dll).
