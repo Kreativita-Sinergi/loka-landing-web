@@ -38,7 +38,7 @@ Untuk bisnis FNB: tambahkan juga data meja dan aktifkan Kitchen Display System (
     category: "Memulai",
     question: "Apakah ada masa percobaan gratis?",
     answer:
-      `Ya! Setiap akun baru mendapat 3 bulan pertama gratis dengan akses penuh ke semua fitur Pro — tanpa batas transaksi, tanpa kartu kredit, tanpa komitmen.
+      `Ya! Setiap akun baru mendapat 3 bulan pertama gratis dengan akses penuh ke semua fitur Pro — tanpa batas transaksi, multi-outlet sampai 5 cabang, tanpa kartu kredit, tanpa komitmen.
 
 Setelah 3 bulan, pilih paket yang sesuai:
 • Gratis — fitur POS inti, 1 outlet, maks. 500 transaksi/bulan, selamanya gratis
@@ -486,7 +486,7 @@ Fitur ini mencegah kasir memiliki akses berlebihan sekaligus tidak mengganggu an
       `Tergantung paket yang dipilih:
 
 • Gratis — 1 outlet, maks. 500 transaksi/bulan
-• Gratis 3 bulan pertama — akses Pro penuh, 1 outlet (upgrade ke Pro untuk multi-outlet)
+• Gratis 3 bulan pertama — akses Pro penuh, sampai 5 outlet
 • Lite — 1 outlet; untuk outlet kedua dan seterusnya perlu upgrade ke Pro
 • Pro — multi-outlet tanpa batas; outlet pertama sudah termasuk harga paket, outlet tambahan dikenakan Rp 49.000/outlet/bulan
 

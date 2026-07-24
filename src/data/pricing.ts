@@ -42,6 +42,7 @@ export const tiers: IPricing[] = [
     features: [
       "Akses semua fitur Pro tanpa syarat",
       "Transaksi tanpa batas",
+      "Multi-outlet — sampai 5 cabang",
       "Aktif langsung setelah daftar",
       "Tanpa kartu kredit, tanpa komitmen",
       "Setelah 3 bulan pilih paket yang sesuai",

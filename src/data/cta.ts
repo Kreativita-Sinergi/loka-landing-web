@@ -22,7 +22,7 @@ export const supportDetails = {
 // membuka halaman Drive dengan tombol unduh, jadi pengguna tidak perlu lagi
 // meminta file-nya ke admin via WhatsApp.
 export const appDownloadDetails = {
-  url: "https://drive.google.com/file/d/1Vvg7uXC4sH5_AN7-e0US-ADYs8NMMiJ5/view?usp=drive_link",
+  url: "https://drive.google.com/file/d/1cPZGMlYH4cX7yGrkxOc0nRiLLfgdIIBl/view?usp=sharing",
   label: "Download Aplikasi (APK)",
   // Catatan singkat yang ditampilkan di dekat tombol unduh.
   note: "Android · Gratis 3 bulan pertama · Daftar akun langsung di aplikasi",

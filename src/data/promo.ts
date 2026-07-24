@@ -9,5 +9,5 @@ export const promoDetails = {
   short: "Gratis 3 bulan pertama",
   duration: "3 bulan",
   description:
-    "Setiap akun baru mendapat 3 bulan pertama gratis dengan akses penuh ke semua fitur Pro — tanpa kartu kredit, tanpa komitmen. Setelah masa itu, lanjutkan dengan paket mulai Rp 39.000/bulan.",
+    "Setiap akun baru mendapat 3 bulan pertama gratis dengan akses penuh ke semua fitur Pro — termasuk multi-outlet sampai 5 cabang, tanpa kartu kredit, tanpa komitmen. Setelah masa itu, lanjutkan dengan paket mulai Rp 39.000/bulan.",
 };
