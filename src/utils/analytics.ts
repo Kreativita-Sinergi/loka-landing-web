@@ -16,7 +16,7 @@ export function trackContactClick(channel: "whatsapp" | "instagram", source: str
   trackEvent("contact_click", { channel, source });
 }
 
-// Event khusus: pengunjung mengklik tombol "Download Aplikasi (APK)".
+// Event khusus: pengunjung mengklik tombol "Download di Google Play".
 // `source` menandai dari komponen mana klik berasal (hero, header, cta, dll).
 export function trackDownloadClick(source: string) {
   trackEvent("app_download_click", { source });

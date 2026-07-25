@@ -79,7 +79,7 @@ const Pricing: React.FC = () => {
             rel="noopener noreferrer"
             className="text-blue-600 underline hover:text-blue-800 font-semibold text-sm"
           >
-            Download aplikasi (APK) →
+            Download di Google Play →
           </a>
         </div>
       </div>
@@ -93,7 +93,7 @@ const Pricing: React.FC = () => {
             rel="noopener noreferrer"
             className="text-blue-600 underline hover:text-blue-800 font-semibold"
           >
-            download aplikasinya (APK)
+            download aplikasinya di Google Play
           </a>
           {" "}lalu daftar langsung di aplikasi — {promoDetails.duration} pertama gratis. Pemilihan paket &amp; pembayaran baru dilakukan setelah masa gratis berakhir.
         </p>

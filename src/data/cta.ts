@@ -1,7 +1,7 @@
 export const ctaDetails = {
   heading: "Gratis 3 Bulan Pertama — Tanpa Risiko",
   subheading:
-    "Download aplikasinya langsung dari sini, daftar di aplikasi, dan pakai semua fitur Pro gratis selama 3 bulan pertama — tanpa kartu kredit, tanpa komitmen. Setelah itu, lanjutkan dengan paket mulai Rp 39.000/bulan.",
+    "Download aplikasinya di Google Play, daftar di aplikasi, dan pakai semua fitur Pro gratis selama 3 bulan pertama — tanpa kartu kredit, tanpa komitmen. Setelah itu, lanjutkan dengan paket mulai Rp 39.000/bulan.",
   dashboardUrl: "https://app.lokakasir.id",
 };
 
@@ -18,12 +18,11 @@ export const supportDetails = {
   instagram: "lokakasir.id",
 };
 
-// Link unduh aplikasi (APK Android). File di-host di Google Drive — tautan
-// membuka halaman Drive dengan tombol unduh, jadi pengguna tidak perlu lagi
-// meminta file-nya ke admin via WhatsApp.
+// Link unduh aplikasi. Aplikasi sudah rilis di Google Play Store — pengguna
+// memasang langsung dari Play Store, tidak perlu lagi unduh APK manual.
 export const appDownloadDetails = {
-  url: "https://drive.google.com/file/d/1cPZGMlYH4cX7yGrkxOc0nRiLLfgdIIBl/view?usp=sharing",
-  label: "Download Aplikasi (APK)",
+  url: "https://play.google.com/store/apps/details?id=id.lokakasir.app",
+  label: "Download di Google Play",
   // Catatan singkat yang ditampilkan di dekat tombol unduh.
   note: "Android · Gratis 3 bulan pertama · Daftar akun langsung di aplikasi",
 };
@@ -38,7 +37,7 @@ export const appRequestDetails = {
 };
 
 // Detail untuk mendaftar/daftar gratis. Pendaftaran akun dilakukan DI DALAM
-// aplikasi, jadi pengguna cukup mengunduh APK-nya lalu daftar sendiri.
+// aplikasi, jadi pengguna cukup memasangnya dari Play Store lalu daftar sendiri.
 // WhatsApp hanya dipakai bila pengguna butuh bantuan saat pemasangan.
 export const registerDetails = {
   whatsapp: "6283878960539",

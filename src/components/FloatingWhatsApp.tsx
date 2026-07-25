@@ -55,7 +55,7 @@ export default function FloatingWhatsApp() {
           </button>
           <p className="font-semibold text-gray-900 dark:text-white">Butuh bantuan?</p>
           <p className="mt-0.5 leading-relaxed">
-            Aplikasinya bisa langsung di-download di halaman ini. Ada kendala? Chat tim kami — dibalas cepat.
+            Aplikasinya bisa langsung di-download di Google Play. Ada kendala? Chat tim kami — dibalas cepat.
           </p>
         </div>
       )}

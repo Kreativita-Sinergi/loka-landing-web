@@ -2,8 +2,8 @@ import React from 'react';
 import { Monitor, Smartphone, Download } from 'lucide-react';
 import { appDownloadDetails } from '@/data/cta';
 
-// Aplikasi belum rilis publik di Play Store — APK-nya bisa diunduh langsung
-// dari sini, lalu pendaftaran akun dilakukan di dalam aplikasi.
+// Aplikasi sudah rilis di Google Play Store — pengguna memasangnya dari sana,
+// lalu pendaftaran akun dilakukan di dalam aplikasi.
 
 const Ecosystem: React.FC = () => {
     return (
@@ -36,10 +36,10 @@ const Ecosystem: React.FC = () => {
                     ))}
                 </ul>
 
-                {/* Download APK langsung — pendaftaran dilakukan di dalam aplikasi */}
+                {/* Download dari Play Store — pendaftaran dilakukan di dalam aplikasi */}
                 <div className="mt-8 pt-6 border-t border-gray-100 dark:border-surface-border">
                     <p className="text-xs text-gray-500 mb-3 dark:text-gray-400">
-                        Aplikasinya untuk Android. Unduh langsung dari sini,
+                        Aplikasinya untuk Android. Pasang langsung dari Google Play,
                         lalu daftar akun dari dalam aplikasi.
                     </p>
                     <a
@@ -50,8 +50,8 @@ const Ecosystem: React.FC = () => {
                     >
                         <Download size={22} className="flex-shrink-0" />
                         <div className="text-left">
-                            <div className="text-[10px] text-white/70 leading-none">Download langsung</div>
-                            <div className="text-base font-semibold leading-tight">Aplikasi Android (APK)</div>
+                            <div className="text-[10px] text-white/70 leading-none">Download di</div>
+                            <div className="text-base font-semibold leading-tight">Google Play Store</div>
                         </div>
                     </a>
                 </div>

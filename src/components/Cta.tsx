@@ -9,7 +9,7 @@ const steps = [
   {
     number: "1",
     title: "Download Aplikasi",
-    desc: "Klik tombol download di bawah untuk mengunduh aplikasinya (APK Android).",
+    desc: "Klik tombol download di bawah untuk memasang aplikasinya dari Google Play Store.",
   },
   {
     number: "2",

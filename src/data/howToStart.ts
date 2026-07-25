@@ -24,12 +24,12 @@ export const howToStartDetails: {
     {
       icon: "download",
       title: "1. Download Aplikasi",
-      desc: "Klik tombol download di halaman ini untuk mengunduh file aplikasi (APK) Android-nya. Prosesnya cepat dan bisa langsung dilakukan sendiri.",
+      desc: "Klik tombol download di halaman ini untuk membuka Loka Kasir di Google Play Store. Gratis dan bisa langsung dilakukan sendiri.",
     },
     {
       icon: "install",
       title: "2. Pasang Aplikasi",
-      desc: "Buka file APK yang terunduh dan install di HP atau tablet Android Anda. Izinkan pemasangan dari sumber ini bila diminta.",
+      desc: "Tekan Install di Play Store, lalu tunggu aplikasinya terpasang di HP atau tablet Android Anda.",
     },
     {
       icon: "register",
