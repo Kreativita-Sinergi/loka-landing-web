@@ -40,6 +40,16 @@ const permissions = [
     dataCollected: 'Hanya gambar yang dipilih sendiri oleh pengguna yang diunggah ke server (Cloudinary) dan dikaitkan dengan akun bisnis. Aplikasi tidak dapat mengakses gambar lain di galeri.',
     optional: true,
   },
+  {
+    icon: '💰',
+    name: 'Akses Notifikasi (Konfirmasi QRIS Statis)',
+    androidPermission: 'BIND_NOTIFICATION_LISTENER_SERVICE',
+    why:
+      'Khusus untuk fitur opsional "Konfirmasi Otomatis QRIS Statis". Pembayaran QRIS statis masuk langsung ke rekening merchant tanpa gateway, sehingga tidak ada konfirmasi resmi yang bisa diterima aplikasi. Dengan izin ini, aplikasi membaca notifikasi dana masuk dari aplikasi bank/e-wallet MILIK PEMILIK TOKO di perangkat yang sama, lalu mencocokkan nominalnya dengan tagihan yang sedang menunggu agar transaksi dapat dilunasi otomatis — menggantikan konfirmasi manual kasir.',
+    dataCollected:
+      'Hanya notifikasi dari daftar aplikasi perbankan/e-wallet yang telah ditentukan yang dibaca. Notifikasi dari aplikasi lain (pesan pribadi, media sosial, email, dan sebagainya) tidak pernah dibaca, disimpan, maupun dikirim. Teks notifikasi pembayaran yang terbaca dikirim ke server Loka Kasir untuk dicocokkan dan disimpan sebagai bukti pembayaran yang bisa dilihat pemilik di Web Admin. Fitur ini MATI secara bawaan dan hanya aktif bila pemilik toko mengaktifkannya sendiri serta memberikan izin secara manual di Pengaturan Android.',
+    optional: true,
+  },
 ]
 
 export default function PrivacyPolicyPage() {
@@ -51,7 +61,7 @@ export default function PrivacyPolicyPage() {
         <div className="mb-10">
           <p className="text-sm font-medium text-blue-600 mb-2 dark:text-blue-400">Loka Kasir</p>
           <h1 className="text-3xl font-bold text-gray-900 mb-3 dark:text-white">Kebijakan Privasi</h1>
-          <p className="text-gray-500 text-sm dark:text-gray-400">Terakhir diperbarui: 20 April 2025</p>
+          <p className="text-gray-500 text-sm dark:text-gray-400">Terakhir diperbarui: 26 Juli 2026</p>
         </div>
 
         {/* Intro */}
@@ -116,6 +126,10 @@ export default function PrivacyPolicyPage() {
               <span className="text-gray-400 mt-0.5 dark:text-gray-500">•</span>
               <p><strong>Data Transaksi:</strong> Riwayat penjualan, item, harga, metode pembayaran, dan laporan keuangan bisnis.</p>
             </div>
+            <div className="flex gap-3">
+              <span className="text-gray-400 mt-0.5 dark:text-gray-500">•</span>
+              <p><strong>Notifikasi Pembayaran (opsional):</strong> Bila fitur Konfirmasi Otomatis QRIS Statis diaktifkan, teks notifikasi dana masuk dari aplikasi bank/e-wallet milik pemilik toko dikirim ke server untuk dicocokkan dengan transaksi. Data ini hanya dipakai untuk memverifikasi pembayaran, tidak dibagikan ke pihak ketiga, dan bisa dihapus dengan mematikan fitur tersebut lalu menghubungi kami.</p>
+            </div>
           </div>
         </section>
 
@@ -137,6 +151,8 @@ export default function PrivacyPolicyPage() {
           <p className="text-sm text-gray-700 mb-3 dark:text-gray-300">
             Anda dapat mencabut izin aplikasi kapan saja melalui <strong>Pengaturan &rsaquo; Aplikasi &rsaquo; Loka Kasir &rsaquo; Izin</strong> di perangkat Android Anda.
             Mencabut izin tertentu tidak akan menonaktifkan akun Anda, namun fitur terkait izin tersebut tidak akan tersedia.
+            Khusus Akses Notifikasi, izin dicabut lewat <strong>Pengaturan &rsaquo; Notifikasi &rsaquo; Akses notifikasi khusus</strong> —
+            atau cukup matikan “Konfirmasi Otomatis” pada pengaturan outlet di Web Admin.
           </p>
           <p className="text-sm text-gray-700 dark:text-gray-300">
             Untuk permintaan akses, koreksi, atau penghapusan data, hubungi kami di{' '}
