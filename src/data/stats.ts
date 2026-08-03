@@ -4,25 +4,35 @@ export interface IStat {
   description: string;
 }
 
+// Angka di bawah diambil dari data internal Loka Admin (portal super admin).
+// Perbarui juga `statsNote` setiap kali angkanya di-refresh agar tetap jujur.
 export const stats: IStat[] = [
   {
-    value: "10+",
-    label: "Tipe Bisnis",
-    description: "Warung makan, kafe, minimarket, salon, laundry, restoran, dan lainnya",
+    value: "28",
+    label: "Bisnis Aktif",
+    description:
+      "Warung makan, kafe, minimarket, konter, dan toko lain sudah jalan pakai Loka Kasir",
   },
   {
-    value: "50+",
-    label: "Fitur Siap Pakai",
-    description: "POS, KDS, absensi, inventori, laporan, multi-outlet — semua dalam satu app",
+    value: "89%",
+    label: "Dipakai Tiap Minggu",
+    description:
+      "25 dari 28 pengguna membuka Loka Kasir dalam 7 hari terakhir — bukan sekadar daftar lalu ditinggal",
   },
   {
-    value: "< 2 dtk",
-    label: "Proses Transaksi",
-    description: "Dari pilih produk hingga struk tercetak, tanpa hambatan jaringan",
+    value: "120+ jam",
+    label: "Jam Pakai / Minggu",
+    description:
+      "Rata-rata ±4 jam 49 menit per pengguna aktif — menemani sepanjang jam operasional toko",
   },
   {
-    value: "Android",
-    label: "Platform Kasir",
-    description: "Berjalan di tablet atau HP Android biasa — tanpa perangkat kasir khusus",
+    value: "28.280",
+    label: "Sinkronisasi / Minggu",
+    description:
+      "Transaksi, stok, dan laporan tersinkron otomatis antara aplikasi kasir dan web admin",
   },
 ];
+
+// Catatan kecil di bawah deretan angka, supaya jelas sumber dan tanggalnya.
+export const statsNote =
+  "Data internal Loka Kasir per 3 Agustus 2026 — diperbarui berkala.";
