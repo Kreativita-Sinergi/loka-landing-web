@@ -5,6 +5,7 @@ export const menuItems: IMenuItem[] = [
   { text: "Fitur", url: "#features" },
   { text: "Ekosistem", url: "#ecosystem" },
   { text: "Cara Mulai", url: "#cara-mulai" },
+  { text: "Kerjasama", url: "#kerjasama" },
   { text: "Harga", url: "#pricing" },
   { text: "FAQ", url: "#faq" },
 ];

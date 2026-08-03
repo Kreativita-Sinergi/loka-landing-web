@@ -525,6 +525,29 @@ Kami tidak menjual atau berbagi data bisnis Anda kepada pihak ketiga.`,
   },
   {
     category: "Teknis & Langganan",
+    question: "Bisakah saya meminta fitur baru yang belum ada di Loka Kasir?",
+    answer:
+      `Bisa, dan siapa pun boleh — tidak harus pelanggan berbayar. Kalau ada alur kerja di bisnis Anda yang belum terakomodasi (laporan tertentu, format struk, integrasi perangkat, dan lainnya), kirimkan usulannya lewat WhatsApp admin, Instagram @lokakasir.id, atau email help@lokakasir.id.
+
+Sertakan nama bisnis, jenis bisnis, fitur yang dibutuhkan, dan alasan kenapa dibutuhkan — makin jelas konteksnya, makin mudah kami nilai.
+
+Setiap usulan kami tinjau. Fitur yang paling banyak dibutuhkan dikerjakan lebih dulu dan dirilis sebagai update gratis untuk semua pengguna. Kalau kebutuhannya sangat spesifik untuk bisnis Anda, bisa kami diskusikan sebagai penyesuaian terpisah.`,
+  },
+  {
+    category: "Teknis & Langganan",
+    question: "Apakah Loka Kasir bisa diajak kerjasama?",
+    answer:
+      `Ya, kami terbuka untuk kerjasama dengan berbagai skala dan jenis bisnis — minimarket, supermarket, kafe, restoran, retail, grosir, hingga bisnis jasa.
+
+Bentuk kerjasama yang bisa dibicarakan:
+• Penyesuaian sistem mengikuti alur operasional bisnis Anda
+• Penerapan multi-outlet untuk jaringan toko atau franchise
+• Kemitraan reseller dan mitra pemasangan di daerah
+
+Hubungi admin via WhatsApp dengan menyertakan nama bisnis, jenis bisnis, jumlah outlet, kota, dan bentuk kerjasama yang diinginkan.`,
+  },
+  {
+    category: "Teknis & Langganan",
     question: "Bagaimana cara mendapatkan bantuan atau melaporkan masalah?",
     answer:
       `Ada beberapa cara menghubungi tim support kami:

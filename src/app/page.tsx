@@ -13,6 +13,8 @@ import AppScreenshots from "@/components/AppScreenshots";
 import Stats from "@/components/Stats";
 import Testimonials from "@/components/Testimonials";
 import ParentCompany from "@/components/ParentCompany";
+import Partnership from "@/components/Partnership";
+import { partnershipDetails } from "@/data/partnership";
 import Tutorials from "@/components/Tutorials";
 import { howToStartDetails } from "@/data/howToStart";
 import { tutorialDetails } from "@/data/tutorials";
@@ -77,6 +79,15 @@ const HomePage: React.FC = () => {
           description="Loka Kasir dirancang fleksibel — dari warung kecil hingga bisnis multi-outlet, semua bisa langsung pakai tanpa setup rumit."
         >
           <Testimonials />
+        </Section>
+
+        {/* Request Fitur & Kerjasama */}
+        <Section
+          id="kerjasama"
+          title={partnershipDetails.title}
+          description={partnershipDetails.description}
+        >
+          <Partnership />
         </Section>
 
         {/* Harga */}

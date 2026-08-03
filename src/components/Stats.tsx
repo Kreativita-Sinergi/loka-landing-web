@@ -1,5 +1,5 @@
 import React from "react";
-import { stats } from "@/data/stats";
+import { stats, statsNote } from "@/data/stats";
 
 const Stats: React.FC = () => {
   return (
@@ -18,6 +18,8 @@ const Stats: React.FC = () => {
             </div>
           ))}
         </div>
+
+        <p className="mt-8 text-center text-xs text-blue-200/80">{statsNote}</p>
       </div>
     </section>
   );
