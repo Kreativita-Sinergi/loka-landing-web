@@ -15,6 +15,7 @@ export const footerDetails: {
         { text: "Fitur", url: "#features" },
         { text: "Ekosistem", url: "#ecosystem" },
         { text: "Cara Mulai", url: "#cara-mulai" },
+        { text: "Setup Onsite", url: "#layanan-onsite" },
         { text: "Harga", url: "#pricing" },
         { text: "Testimoni", url: "#testimonials" },
         { text: "FAQ", url: "#faq" },

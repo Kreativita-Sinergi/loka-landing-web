@@ -16,6 +16,8 @@ import ParentCompany from "@/components/ParentCompany";
 import Partnership from "@/components/Partnership";
 import { partnershipDetails } from "@/data/partnership";
 import Tutorials from "@/components/Tutorials";
+import OnsiteService from "@/components/OnsiteService";
+import { onsiteServiceDetails } from "@/data/onsiteService";
 import { howToStartDetails } from "@/data/howToStart";
 import { tutorialDetails } from "@/data/tutorials";
 
@@ -61,6 +63,15 @@ const HomePage: React.FC = () => {
           description={howToStartDetails.description}
         >
           <HowToStart />
+        </Section>
+
+        {/* Layanan Setup Onsite — Padang, Pekanbaru, Payakumbuh */}
+        <Section
+          id="layanan-onsite"
+          title={onsiteServiceDetails.title}
+          description={onsiteServiceDetails.description}
+        >
+          <OnsiteService />
         </Section>
 
         {/* Tampilan Aplikasi */}

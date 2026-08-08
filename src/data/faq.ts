@@ -68,6 +68,31 @@ Web Admin (browser) adalah pusat kendali untuk Owner, Manager, dan Admin — pan
 Jenis bisnis menentukan alur order: Retail menggunakan INSTANT_SALE (bayar → selesai), FNB menggunakan PREPARED_ORDER (ada status dapur: PENDING → PREPARING → READY → SERVED).`,
   },
 
+  {
+    category: "Memulai",
+    question: "Apakah tim Loka Kasir bisa datang langsung untuk menyiapkan aplikasi dan kedai saya?",
+    answer:
+      `Bisa. Kantor kami berdomisili di Padang (Sumatera Barat), Pekanbaru (Riau), dan Payakumbuh (Sumatera Barat). Untuk bisnis di tiga kota ini, tim kami bisa datang langsung ke lokasi dan menyiapkan semuanya sampai siap dipakai jualan.
+
+Yang dikerjakan tim di lokasi:
+• Pendaftaran akun Owner dan pembuatan outlet pertama
+• Input produk, kategori, harga jual, dan stok awal
+• Pendaftaran karyawan beserta role dan PIN
+• Pemasangan terminal kasir di HP/tablet dan pairing printer thermal
+• Pengaturan metode pembayaran, format struk, serta meja & KDS untuk FNB
+• Pelatihan singkat untuk kasir dan pemilik di tempat
+
+Syaratnya: berlangganan paket tahunan — Lite Rp 399.000/tahun atau Pro Rp 890.000/tahun. Tidak ada biaya setup maupun biaya transportasi tambahan di dalam kota layanan. Hubungi admin lewat WhatsApp untuk dijadwalkan.`,
+  },
+  {
+    category: "Memulai",
+    question: "Saya di luar Padang, Pekanbaru, dan Payakumbuh — apakah tetap bisa dibantu setup?",
+    answer:
+      `Tetap bisa. Kunjungan langsung ke lokasi hanya tersedia di tiga kota tempat tim kami berdomisili, tapi untuk kota lain kami membantu setup sepenuhnya secara online — lewat WhatsApp atau video call, didampingi sampai transaksi pertama berhasil.
+
+Kalau bisnis Anda punya banyak outlet dan ingin kunjungan langsung ke luar kota layanan, hubungi admin untuk dibicarakan terpisah.`,
+  },
+
   // ─── Operasi Harian ─────────────────────────────────────────────────────────
 
   {
