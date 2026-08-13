@@ -34,7 +34,7 @@ export const windowsDownloadDetails = {
   url: "https://apps.microsoft.com/detail/9mxbj5l6rdp8",
   label: "Download di Microsoft Store",
   shortLabel: "Pakai PC/laptop Windows? Download di Microsoft Store",
-  note: "Windows 10/11 · Dipasang otomatis lewat Microsoft Store",
+  note: "Windows 10/11 · Unduhan ±30 MB · Dipasang otomatis lewat Microsoft Store",
   // Perintah winget — alternatif tanpa membuka Store, berguna untuk pemasangan
   // massal di banyak PC toko. Store ID sama dengan yang ada di `url`.
   // `--source msstore` + `--id` dipakai eksplisit: tanpa itu winget

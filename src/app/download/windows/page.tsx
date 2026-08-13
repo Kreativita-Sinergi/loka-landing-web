@@ -13,16 +13,19 @@ import WingetCommand from "@/components/WingetCommand";
 export const metadata: Metadata = {
   title: `Download untuk Windows — ${siteDetails.siteName}`,
   description:
-    "Cara memasang aplikasi kasir Loka Kasir di PC atau laptop Windows 10/11 — lewat Microsoft Store atau perintah winget. Gratis 3 bulan pertama.",
+    "Cara memasang aplikasi kasir Loka Kasir di PC atau laptop Windows 10/11 — lewat Microsoft Store atau perintah winget. Ringan, unduhan hanya ±30 MB. Gratis 3 bulan pertama.",
   alternates: {
     canonical: `${siteDetails.siteUrl}/download/windows`,
   },
 };
 
+// Angka di bawah diambil dari pemakaian nyata build rilis Windows: unduhan
+// ~30 MB dan sekitar 200 MB RAM saat aplikasi dipakai. Sengaja tidak
+// dibesar-besarkan supaya pemilik toko dengan PC lama tidak mengurungkan niat.
 const requirements = [
   "Windows 10 versi 1809 (Oktober 2018) ke atas, atau Windows 11",
-  "Prosesor 64-bit (x64) dengan RAM minimal 4 GB",
-  "Ruang kosong sekitar 500 MB",
+  "Prosesor 64-bit (x64) — RAM 2 GB sudah cukup",
+  "Ruang kosong sekitar 150 MB (file unduhannya hanya ±30 MB)",
   "Koneksi internet untuk sinkronisasi (transaksi tetap jalan saat offline)",
 ];
 
@@ -60,6 +63,31 @@ export default function WindowsDownloadPage() {
             Aplikasi kasir yang sama seperti versi Android, dijalankan di layar besar
             PC atau laptop Windows. Data dan akunnya sama — kasir bisa pindah
             perangkat tanpa setup ulang.
+          </p>
+
+          {/* Angka ringan ditonjolkan — banyak PC kasir masih spek lama */}
+          <div className="mt-6 grid grid-cols-3 gap-3">
+            {[
+              { value: "±30 MB", label: "Ukuran unduhan" },
+              { value: "±200 MB", label: "Pemakaian RAM" },
+              { value: "RAM 2 GB", label: "Sudah cukup" },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-xl border border-gray-100 px-3 py-3 text-center dark:border-surface-border"
+              >
+                <p className="text-lg font-bold text-gray-900 dark:text-white">
+                  {stat.value}
+                </p>
+                <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            Ringan, jadi tetap lancar di PC atau laptop lama yang biasa dipakai di
+            toko.
           </p>
         </div>
 

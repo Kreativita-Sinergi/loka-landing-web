@@ -535,7 +535,9 @@ Satu-satunya biaya tambahan yang mungkin berlaku adalah outlet tambahan pada pak
 
 Web Admin dapat diakses dari browser apa pun (Chrome, Safari, Firefox, Edge) di PC, laptop, atau tablet.
 
-Untuk performa terbaik di App Kasir, disarankan menggunakan perangkat Android 8+ dengan RAM minimal 3 GB, atau PC/laptop Windows 10 versi 1809 ke atas.`,
+Untuk performa terbaik di App Kasir, disarankan menggunakan perangkat Android 8+ dengan RAM minimal 3 GB, atau PC/laptop Windows 10 versi 1809 ke atas.
+
+Versi Windows-nya ringan: file unduhannya hanya sekitar 30 MB dan pemakaian RAM-nya sekitar 200 MB saat dipakai, jadi PC atau laptop lama dengan RAM 2 GB pun masih nyaman.`,
   },
   {
     category: "Teknis & Langganan",
