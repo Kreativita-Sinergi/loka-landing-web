@@ -24,7 +24,17 @@ export const appDownloadDetails = {
   url: "https://play.google.com/store/apps/details?id=id.lokakasir.app",
   label: "Download di Google Play",
   // Catatan singkat yang ditampilkan di dekat tombol unduh.
-  note: "Android · Gratis 3 bulan pertama · Daftar akun langsung di aplikasi",
+  note: "Android & Windows · Gratis 3 bulan pertama · Daftar akun langsung di aplikasi",
+};
+
+// Versi desktop Loka Kasir untuk PC/laptop Windows, dirilis lewat Microsoft
+// Store sehingga pemasangan dan pembaruannya ditangani Store (tanpa installer
+// manual). Dipakai berdampingan dengan appDownloadDetails (Android).
+export const windowsDownloadDetails = {
+  url: "https://apps.microsoft.com/detail/9mxbj5l6rdp8",
+  label: "Download di Microsoft Store",
+  shortLabel: "Pakai PC/laptop Windows? Download di Microsoft Store",
+  note: "Windows 10/11 · Dipasang otomatis lewat Microsoft Store",
 };
 
 // Detail untuk menghubungi tim Loka Kasir (bantuan pemasangan, pertanyaan, dll).

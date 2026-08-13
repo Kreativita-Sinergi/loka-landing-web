@@ -7,6 +7,7 @@ import { siteDetails } from "@/data/siteDetails";
 import { footerDetails } from "@/data/footer";
 import { appDownloadDetails } from "@/data/cta";
 import { getPlatformIconByName } from "@/utils";
+import WindowsDownloadLink from "./WindowsDownloadLink";
 
 const Footer: React.FC = () => {
   return (
@@ -62,8 +63,15 @@ const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 font-semibold text-secondary hover:underline"
               >
-                <Download size={15} aria-hidden="true" /> Download Aplikasi
+                <Download size={15} aria-hidden="true" /> Download Android
               </a>
+            </li>
+            <li>
+              <WindowsDownloadLink
+                source="footer"
+                label="Download Windows"
+                className="font-semibold text-secondary no-underline hover:underline"
+              />
             </li>
           </ul>
         </div>

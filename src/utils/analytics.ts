@@ -16,8 +16,13 @@ export function trackContactClick(channel: "whatsapp" | "instagram", source: str
   trackEvent("contact_click", { channel, source });
 }
 
-// Event khusus: pengunjung mengklik tombol "Download di Google Play".
-// `source` menandai dari komponen mana klik berasal (hero, header, cta, dll).
-export function trackDownloadClick(source: string) {
-  trackEvent("app_download_click", { source });
+// Event khusus: pengunjung mengklik tombol download aplikasi.
+// `source` menandai dari komponen mana klik berasal (hero, header, cta, dll),
+// `platform` menandai toko tujuannya (Play Store untuk Android, Microsoft Store
+// untuk Windows). Default "android" agar pemanggilan lama tetap konsisten.
+export function trackDownloadClick(
+  source: string,
+  platform: "android" | "windows" = "android"
+) {
+  trackEvent("app_download_click", { source, platform });
 }

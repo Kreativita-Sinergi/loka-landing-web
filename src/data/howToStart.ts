@@ -24,12 +24,12 @@ export const howToStartDetails: {
     {
       icon: "download",
       title: "1. Download Aplikasi",
-      desc: "Klik tombol download di halaman ini untuk membuka Loka Kasir di Google Play Store. Gratis dan bisa langsung dilakukan sendiri.",
+      desc: "Klik tombol download di halaman ini untuk membuka Loka Kasir di Google Play Store (Android) atau Microsoft Store (Windows). Gratis dan bisa langsung dilakukan sendiri.",
     },
     {
       icon: "install",
       title: "2. Pasang Aplikasi",
-      desc: "Tekan Install di Play Store, lalu tunggu aplikasinya terpasang di HP atau tablet Android Anda.",
+      desc: "Tekan Install di toko aplikasinya, lalu tunggu Loka Kasir terpasang di HP/tablet Android atau PC/laptop Windows Anda.",
     },
     {
       icon: "register",

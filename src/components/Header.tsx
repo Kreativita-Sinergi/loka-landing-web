@@ -12,6 +12,7 @@ import ThemeToggle from "./ThemeToggle";
 import { menuItems } from "@/data/menuItems";
 import { siteDetails } from "@/data/siteDetails";
 import { appDownloadDetails } from "@/data/cta";
+import WindowsDownloadLink from "./WindowsDownloadLink";
 import { trackDownloadClick } from "@/utils/analytics";
 
 const Header: React.FC = () => {
@@ -82,6 +83,13 @@ const Header: React.FC = () => {
               >
                 <Download size={16} aria-hidden="true" className="relative -top-px" /> Download Aplikasi
               </Link>
+            </li>
+            <li className="ml-1">
+              <WindowsDownloadLink
+                source="header"
+                label="Windows"
+                className="text-sm text-gray-600 hover:text-gray-900 no-underline px-3 py-2 rounded-lg hover:bg-gray-50 transition-all dark:text-gray-300 dark:hover:text-white dark:hover:bg-white/5"
+              />
             </li>
             <li className="ml-1">
               <ThemeToggle />
@@ -169,6 +177,13 @@ const Header: React.FC = () => {
               >
                 <Download size={16} aria-hidden="true" className="relative -top-px" /> Download Aplikasi
               </Link>
+            </li>
+            <li>
+              <WindowsDownloadLink
+                source="header-mobile"
+                label="Download versi Windows"
+                className="text-gray-600 hover:text-[#007BFF] dark:text-gray-300 dark:hover:text-[#4d8dff]"
+              />
             </li>
           </ul>
         </div>

@@ -1,9 +1,11 @@
 import React from 'react';
 import { Monitor, Smartphone, Download } from 'lucide-react';
 import { appDownloadDetails } from '@/data/cta';
+import WindowsDownloadLink from './WindowsDownloadLink';
 
-// Aplikasi sudah rilis di Google Play Store — pengguna memasangnya dari sana,
-// lalu pendaftaran akun dilakukan di dalam aplikasi.
+// Aplikasi sudah rilis di Google Play Store (Android) dan Microsoft Store
+// (Windows) — pengguna memasangnya dari sana, lalu pendaftaran akun dilakukan
+// di dalam aplikasi.
 
 const Ecosystem: React.FC = () => {
     return (
@@ -36,24 +38,32 @@ const Ecosystem: React.FC = () => {
                     ))}
                 </ul>
 
-                {/* Download dari Play Store — pendaftaran dilakukan di dalam aplikasi */}
+                {/* Download dari Play Store / Microsoft Store — pendaftaran dilakukan di dalam aplikasi */}
                 <div className="mt-8 pt-6 border-t border-gray-100 dark:border-surface-border">
                     <p className="text-xs text-gray-500 mb-3 dark:text-gray-400">
-                        Aplikasinya untuk Android. Pasang langsung dari Google Play,
-                        lalu daftar akun dari dalam aplikasi.
+                        Tersedia untuk HP/tablet Android dan PC/laptop Windows. Pasang dari
+                        toko aplikasinya, lalu daftar akun dari dalam aplikasi.
                     </p>
-                    <a
-                        href={appDownloadDetails.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-3 bg-blue-600 text-white px-5 py-3 rounded-xl hover:bg-blue-700 transition-colors"
-                    >
-                        <Download size={22} className="flex-shrink-0" />
-                        <div className="text-left">
-                            <div className="text-[10px] text-white/70 leading-none">Download di</div>
-                            <div className="text-base font-semibold leading-tight">Google Play Store</div>
-                        </div>
-                    </a>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                        <a
+                            href={appDownloadDetails.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-3 bg-blue-600 text-white px-5 py-3 rounded-xl hover:bg-blue-700 transition-colors"
+                        >
+                            <Download size={22} className="flex-shrink-0" />
+                            <div className="text-left">
+                                <div className="text-[10px] text-white/70 leading-none">Download di</div>
+                                <div className="text-base font-semibold leading-tight">Google Play Store</div>
+                            </div>
+                        </a>
+                        <WindowsDownloadLink
+                            source="ecosystem"
+                            variant="button"
+                            label="Microsoft Store"
+                            className="h-auto py-3 px-5 text-base bg-gray-900 text-white hover:bg-gray-800 dark:bg-white/10 dark:hover:bg-white/20"
+                        />
+                    </div>
                 </div>
             </div>
 

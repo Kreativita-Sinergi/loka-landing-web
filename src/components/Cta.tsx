@@ -4,17 +4,18 @@ import { Download, Mail, MessageCircle } from "lucide-react";
 import { FiInstagram } from "react-icons/fi";
 import { appDownloadDetails, ctaDetails, supportDetails } from "@/data/cta";
 import { trackContactClick, trackDownloadClick } from "@/utils/analytics";
+import WindowsDownloadLink from "./WindowsDownloadLink";
 
 const steps = [
   {
     number: "1",
     title: "Download Aplikasi",
-    desc: "Klik tombol download di bawah untuk memasang aplikasinya dari Google Play Store.",
+    desc: "Pasang dari Google Play untuk HP/tablet Android, atau Microsoft Store untuk PC/laptop Windows.",
   },
   {
     number: "2",
     title: "Daftar di Aplikasi",
-    desc: "Buka aplikasi, buat akun gratis langsung di HP/tablet Anda, dan langsung dapat 3 bulan gratis.",
+    desc: "Buka aplikasi, buat akun gratis langsung di perangkat Anda, dan langsung dapat 3 bulan gratis.",
   },
   {
     number: "3",
@@ -83,6 +84,15 @@ export default function CTA() {
               >
                 Login
               </a>
+            </div>
+
+            {/* Versi Windows — tombol terpisah agar pengguna PC/laptop jelas jalurnya */}
+            <div className="mt-3 w-full max-w-2xl mx-auto flex justify-center">
+              <WindowsDownloadLink
+                source="cta"
+                variant="button"
+                className="w-full sm:w-auto bg-white/10 text-white border border-white/30 hover:bg-white/20"
+              />
             </div>
 
             <p className="mt-3 text-xs text-gray-400">{appDownloadDetails.note}</p>

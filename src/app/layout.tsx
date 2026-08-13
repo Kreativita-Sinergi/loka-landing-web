@@ -54,7 +54,7 @@ const jsonLd = {
       '@type': 'SoftwareApplication',
       name: 'Loka Kasir',
       applicationCategory: 'BusinessApplication',
-      operatingSystem: 'Android, Web',
+      operatingSystem: 'Android, Windows, Web',
       description: siteDetails.metadata.description,
       url: siteDetails.siteUrl,
       offers: {

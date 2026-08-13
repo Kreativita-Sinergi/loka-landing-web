@@ -9,7 +9,7 @@ export const faqs: IFAQ[] = [
     category: "Memulai",
     question: "Bagaimana cara mendaftar dan memulai menggunakan Loka Kasir?",
     answer:
-      `Download aplikasinya di Google Play Store — lewat tombol "Download Aplikasi" di situs ini — pasang di HP/tablet Android Anda, lalu daftarkan akun Owner langsung di dalam aplikasi: pilih jenis bisnis Anda (FNB, Retail, atau Jasa) dan buat outlet pertama. Setelah itu Anda mendapat 3 bulan pertama gratis dengan akses penuh — tanpa komitmen.
+      `Download aplikasinya lewat tombol "Download Aplikasi" di situs ini — dari Google Play Store untuk HP/tablet Android, atau dari Microsoft Store untuk PC/laptop Windows. Setelah terpasang, daftarkan akun Owner langsung di dalam aplikasi: pilih jenis bisnis Anda (FNB, Retail, atau Jasa) dan buat outlet pertama. Setelah itu Anda mendapat 3 bulan pertama gratis dengan akses penuh — tanpa komitmen.
 
 Urutan setup yang direkomendasikan:
 1. Buat outlet dan isi informasi toko
@@ -529,11 +529,13 @@ Satu-satunya biaya tambahan yang mungkin berlaku adalah outlet tambahan pada pak
     category: "Teknis & Langganan",
     question: "Di perangkat apa saja App Kasir bisa dijalankan?",
     answer:
-      `App Kasir tersedia untuk Android (smartphone & tablet) — aplikasinya sudah bisa diunduh gratis di Google Play Store, lewat tombol "Download Aplikasi" di situs ini.
+      `App Kasir tersedia gratis untuk dua platform, lewat tombol "Download Aplikasi" di situs ini:
+- Android (smartphone & tablet) — dari Google Play Store
+- Windows 10/11 (PC & laptop) — dari Microsoft Store
 
 Web Admin dapat diakses dari browser apa pun (Chrome, Safari, Firefox, Edge) di PC, laptop, atau tablet.
 
-Untuk performa terbaik di App Kasir, disarankan menggunakan perangkat Android 8+ dengan RAM minimal 3 GB.`,
+Untuk performa terbaik di App Kasir, disarankan menggunakan perangkat Android 8+ dengan RAM minimal 3 GB, atau PC/laptop Windows 10 versi 1809 ke atas.`,
   },
   {
     category: "Teknis & Langganan",

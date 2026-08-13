@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { Zap, BarChart3, Printer, RefreshCw, Download } from "lucide-react";
 import DemoVideo from "./DemoVideo";
+import WindowsDownloadLink from "./WindowsDownloadLink";
 import { heroDetails } from "@/data/hero";
 import { appDownloadDetails, ctaDetails } from "@/data/cta";
 import { trackDownloadClick } from "@/utils/analytics";
@@ -72,6 +73,14 @@ const Hero: React.FC = () => {
         <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
           {appDownloadDetails.note}
         </p>
+
+        {/* Jalur unduh untuk pengguna PC/laptop Windows */}
+        <div className="mt-2 flex justify-center">
+          <WindowsDownloadLink
+            source="hero"
+            className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+          />
+        </div>
 
         {/* Lihat demo aplikasi */}
         <div className="mt-4 flex justify-center">
