@@ -7,6 +7,8 @@ import Container from "@/components/Container";
 import Section from "@/components/Section";
 import CTA from "@/components/Cta";
 import Ecosystem from "@/components/Ecosystem";
+import WebAdmin from "@/components/WebAdmin";
+import { webAdminDetails } from "@/data/webAdmin";
 import HowToStart from "@/components/HowToStart";
 import Pricing from "@/components/Pricing/Pricing";
 import AppScreenshots from "@/components/AppScreenshots";
@@ -54,6 +56,16 @@ const HomePage: React.FC = () => {
           description="Aplikasi Kasir dipakai tim di toko, Web Admin dipegang pemilik. Keduanya langsung terhubung, jadi datanya selalu sinkron."
         >
           <Ecosystem />
+        </Section>
+
+        {/* Web Admin — bagian tersendiri karena pembeli produk ini adalah
+            pemilik, dan Web Admin-lah bagian yang dipakai pemilik setiap hari */}
+        <Section
+          id="web-admin"
+          title={webAdminDetails.title}
+          description={webAdminDetails.description}
+        >
+          <WebAdmin />
         </Section>
 
         {/* Cara Daftar & Mulai Pakai */}

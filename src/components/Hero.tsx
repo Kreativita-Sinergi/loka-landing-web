@@ -66,7 +66,7 @@ const Hero: React.FC = () => {
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 px-6 h-14 rounded-full w-full sm:flex-1 font-bold text-base leading-none transition-colors border border-gray-300 text-gray-900 hover:bg-gray-100 dark:border-surface-border dark:text-white dark:hover:bg-white/5"
           >
-            Login
+            Buka Web Admin
           </a>
         </div>
 

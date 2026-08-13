@@ -1,6 +1,8 @@
 import React from 'react';
-import { Monitor, Smartphone, Download } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight, ExternalLink, Monitor, Smartphone, Download } from 'lucide-react';
 import { appDownloadDetails } from '@/data/cta';
+import { webAdminDetails } from '@/data/webAdmin';
 import WindowsDownloadLink from './WindowsDownloadLink';
 
 // Aplikasi sudah rilis di Google Play Store (Android) dan Microsoft Store
@@ -94,6 +96,33 @@ const Ecosystem: React.FC = () => {
                         </li>
                     ))}
                 </ul>
+
+                {/* Web Admin tidak diunduh, jadi kartunya perlu jalan masuk
+                    sendiri — tanpa ini bagian pemilik terasa cuma pelengkap */}
+                <div className="mt-8 pt-6 border-t border-gray-100 dark:border-surface-border">
+                    <p className="text-xs text-gray-500 mb-3 dark:text-gray-400">
+                        Dibuka lewat browser, tanpa instalasi. Sudah termasuk di semua
+                        paket dengan akun yang sama.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                        <a
+                            href={webAdminDetails.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-5 py-3 rounded-xl text-sm font-semibold hover:bg-blue-700 transition-colors"
+                        >
+                            Buka Web Admin
+                            <ExternalLink size={15} aria-hidden="true" />
+                        </a>
+                        <Link
+                            href="/web-admin"
+                            className="inline-flex items-center justify-center gap-2 border border-gray-300 text-gray-900 px-5 py-3 rounded-xl text-sm font-semibold hover:bg-gray-50 transition-colors dark:border-surface-border dark:text-white dark:hover:bg-white/5"
+                        >
+                            Lihat fiturnya
+                            <ArrowRight size={15} aria-hidden="true" />
+                        </Link>
+                    </div>
+                </div>
             </div>
         </div>
     );
