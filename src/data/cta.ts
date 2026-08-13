@@ -35,7 +35,27 @@ export const windowsDownloadDetails = {
   label: "Download di Microsoft Store",
   shortLabel: "Pakai PC/laptop Windows? Download di Microsoft Store",
   note: "Windows 10/11 · Dipasang otomatis lewat Microsoft Store",
+  // Perintah winget — alternatif tanpa membuka Store, berguna untuk pemasangan
+  // massal di banyak PC toko. Store ID sama dengan yang ada di `url`.
+  // `--source msstore` + `--id` dipakai eksplisit: tanpa itu winget
+  // memperlakukan argumen sebagai kata kunci pencarian dan bisa tidak menemukan
+  // paketnya. Perlu dicoba sekali di mesin Windows sebelum dipromosikan luas.
+  wingetCommand: "winget install --id 9MXBJ5L6RDP8 --source msstore",
 };
+
+// Unduhan file langsung (di luar Microsoft Store) untuk PC yang Store-nya
+// diblokir/dimatikan admin. Biarkan `null` selama filenya belum di-host —
+// halaman /download/windows otomatis menyembunyikan bagian ini saat null.
+//
+// Saat sudah siap, isi seperti:
+//   { url: "https://dl.lokakasir.id/windows/LokaKasir-Setup-1.5.0.exe",
+//     fileLabel: "Installer (.exe)", size: "58 MB", version: "1.5.0" }
+export const windowsDirectDownload: {
+  url: string;
+  fileLabel: string;
+  size: string;
+  version: string;
+} | null = null;
 
 // Detail untuk menghubungi tim Loka Kasir (bantuan pemasangan, pertanyaan, dll).
 // Bukan lagi jalur utama untuk mendapatkan aplikasi — pakai appDownloadDetails.

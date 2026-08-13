@@ -7,7 +7,7 @@ import { siteDetails } from "@/data/siteDetails";
 import { footerDetails } from "@/data/footer";
 import { appDownloadDetails } from "@/data/cta";
 import { getPlatformIconByName } from "@/utils";
-import WindowsDownloadLink from "./WindowsDownloadLink";
+import { FaWindows } from "react-icons/fa";
 
 const Footer: React.FC = () => {
   return (
@@ -67,11 +67,12 @@ const Footer: React.FC = () => {
               </a>
             </li>
             <li>
-              <WindowsDownloadLink
-                source="footer"
-                label="Download Windows"
-                className="font-semibold text-secondary no-underline hover:underline"
-              />
+              <Link
+                href="/download/windows"
+                className="inline-flex items-center gap-1.5 font-semibold text-secondary hover:underline"
+              >
+                <FaWindows size={14} aria-hidden="true" /> Download Windows
+              </Link>
             </li>
           </ul>
         </div>
