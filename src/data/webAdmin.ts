@@ -31,8 +31,20 @@ export const webAdminDetails = {
   url: "https://app.lokakasir.id",
   // Ditegaskan karena banyak calon pengguna mengira Web Admin dijual terpisah.
   includedNote:
-    "Web Admin sudah termasuk di semua paket, termasuk masa gratis 3 bulan. Akunnya sama dengan yang dipakai di aplikasi.",
+    "Web Admin sudah termasuk di semua paket, termasuk masa gratis 2 minggu. Akunnya sama dengan yang dipakai di aplikasi.",
 };
+
+// Tangkapan layar Web Admin. Selama array ini kosong, galerinya tidak dirender
+// sama sekali — jadi halaman tidak pernah menampilkan bingkai gambar kosong.
+//
+// Cara menambah: simpan file ke `public/images/web-admin/`, lalu daftarkan di
+// sini. Pakai lebar 1600px, dan pastikan datanya data contoh — bukan data
+// pelanggan asli.
+export const webAdminScreenshots: {
+  src: string;
+  alt: string;
+  caption: string;
+}[] = [];
 
 export const webAdminGroups: WebAdminGroup[] = [
   {

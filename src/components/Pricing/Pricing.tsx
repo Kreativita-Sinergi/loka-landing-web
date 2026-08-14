@@ -1,13 +1,13 @@
 import { CheckCircle2, XCircle, Lightbulb, Gift } from "lucide-react";
 import PricingColumn from "./PricingColumn";
 import { tiers } from "@/data/pricing";
-import { appDownloadDetails } from "@/data/cta";
+import { appDownloadDetails, signUpDetails } from "@/data/cta";
 import { promoDetails } from "@/data/promo";
 
 const Pricing: React.FC = () => {
   return (
     <div className="py-6">
-      {/* Banner promo: gratis 3 bulan pertama untuk setiap akun baru */}
+      {/* Banner promo: gratis 2 minggu pertama untuk setiap akun baru */}
       <div className="mb-8 flex flex-col items-center gap-2 rounded-2xl border border-blue-200 bg-blue-50 px-6 py-5 text-center dark:border-blue-500/30 dark:bg-blue-500/10">
         <p className="inline-flex items-center gap-2 text-base font-bold text-blue-800 dark:text-blue-300">
           <Gift size={18} aria-hidden="true" /> {promoDetails.heading}
@@ -88,14 +88,14 @@ const Pricing: React.FC = () => {
         <p className="text-sm font-medium text-gray-600 dark:text-gray-300">
           Mulai sekarang:{" "}
           <a
-            href={appDownloadDetails.url}
+            href={signUpDetails.url}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 underline hover:text-blue-800 font-semibold"
           >
-            download aplikasinya di Google Play
+            daftar gratis di app.lokakasir.id
           </a>
-          {" "}lalu daftar langsung di aplikasi — {promoDetails.duration} pertama gratis. Pemilihan paket &amp; pembayaran baru dilakukan setelah masa gratis berakhir.
+          {" "}atau langsung dari aplikasinya — {promoDetails.duration} pertama gratis. Pemilihan paket &amp; pembayaran baru dilakukan setelah masa gratis berakhir.
         </p>
         <p className="text-sm text-gray-400 dark:text-gray-500">
           Harga sudah termasuk PPN. Pembayaran melalui transfer bank atau dompet digital.{" "}

@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 
 import { siteDetails } from "@/data/siteDetails";
-import { appDownloadDetails } from "@/data/cta";
+import { appDownloadDetails, signUpDetails } from "@/data/cta";
 import {
   planLabels,
   webAdminDetails,
@@ -21,6 +21,7 @@ import {
   type Plan,
   type WebAdminGroup,
 } from "@/data/webAdmin";
+import WebAdminGallery from "@/components/WebAdminGallery";
 
 export const metadata: Metadata = {
   title: `Web Admin — Kelola Kasir, Stok & Laporan dari Browser | ${siteDetails.siteName}`,
@@ -110,18 +111,18 @@ export default function WebAdminPage() {
               <ExternalLink size={15} aria-hidden="true" />
             </a>
             <a
-              href={appDownloadDetails.url}
+              href={signUpDetails.url}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:border-surface-border dark:text-white dark:hover:bg-white/5"
             >
-              Belum punya akun? Download aplikasinya
+              Belum punya akun? {signUpDetails.label}
             </a>
           </div>
 
           <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-            Pendaftaran akun dilakukan di aplikasi. Setelah akun jadi, login ke Web
-            Admin memakai email dan password yang sama.
+            Pendaftaran bisa dilakukan langsung di sini lewat browser, atau dari
+            aplikasi kasirnya — akunnya sama, tinggal login di mana pun.
           </p>
         </div>
 
@@ -176,6 +177,9 @@ export default function WebAdminPage() {
           </div>
         </div>
 
+        {/* Tangkapan layar — otomatis tersembunyi selama belum ada filenya */}
+        <WebAdminGallery className="mt-10" />
+
         {/* Daftar fitur lengkap per grup */}
         <h2 className="mt-14 mb-2 text-2xl font-bold text-gray-900 dark:text-white">
           Semua yang bisa Anda kerjakan di Web Admin
@@ -184,7 +188,7 @@ export default function WebAdminPage() {
           Fitur tanpa label tersedia di semua paket. Label{" "}
           <span className="font-semibold">Lite</span> dan{" "}
           <span className="font-semibold">Pro</span> menandai fitur yang mengikuti
-          paket berlangganan — semuanya bisa dicoba gratis selama 3 bulan pertama.
+          paket berlangganan — semuanya bisa dicoba gratis selama 2 minggu pertama.
         </p>
 
         <div className="space-y-10">
@@ -223,6 +227,26 @@ export default function WebAdminPage() {
               </section>
             );
           })}
+        </div>
+
+        {/* Silang ke aplikasi kasir — Web Admin bukan pengganti aplikasinya */}
+        <div className="mt-12 rounded-2xl border border-gray-100 p-6 dark:border-surface-border">
+          <p className="font-semibold text-gray-900 dark:text-white">
+            Untuk melayani pembeli, pakai aplikasi kasirnya
+          </p>
+          <p className="mt-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            Web Admin mengurus sisi pengelolaan. Transaksi di depan pembeli
+            dikerjakan lewat aplikasi kasir di HP/tablet Android atau PC/laptop
+            Windows — akunnya sama dengan yang ini.
+          </p>
+          <a
+            href={appDownloadDetails.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-block text-sm font-semibold text-blue-600 hover:underline dark:text-blue-400"
+          >
+            {appDownloadDetails.label} →
+          </a>
         </div>
 
         {/* Penutup */}

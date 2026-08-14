@@ -18,6 +18,7 @@ import {
   type Plan,
   type WebAdminGroup,
 } from "@/data/webAdmin";
+import WebAdminGallery from "./WebAdminGallery";
 
 const ICONS: Record<WebAdminGroup["icon"], React.ElementType> = {
   chart: BarChart3,
@@ -53,6 +54,8 @@ const PlanBadge: React.FC<{ plan: Plan }> = ({ plan }) => {
 const WebAdmin: React.FC = () => {
   return (
     <div>
+      <WebAdminGallery className="mb-10" />
+
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {webAdminGroups.map((group) => {
           const Icon = ICONS[group.icon];

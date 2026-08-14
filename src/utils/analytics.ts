@@ -20,6 +20,13 @@ export function trackContactClick(channel: "whatsapp" | "instagram", source: str
 // `source` menandai dari komponen mana klik berasal (hero, header, cta, dll),
 // `platform` menandai toko tujuannya (Play Store untuk Android, Microsoft Store
 // untuk Windows). Default "android" agar pemanggilan lama tetap konsisten.
+// Event khusus: pengunjung mengklik ajakan mendaftar (app.lokakasir.id/register).
+// Dipisahkan dari app_download_click supaya bisa dibandingkan: sejak pendaftaran
+// dibuka di web, mana yang sebenarnya dipakai orang — daftar dulu atau unduh dulu.
+export function trackSignUpClick(source: string) {
+  trackEvent("sign_up_click", { source });
+}
+
 export function trackDownloadClick(
   source: string,
   platform: "android" | "windows" = "android"

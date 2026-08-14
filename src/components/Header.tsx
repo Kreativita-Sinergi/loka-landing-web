@@ -12,8 +12,8 @@ import Container from "./Container";
 import ThemeToggle from "./ThemeToggle";
 import { menuItems } from "@/data/menuItems";
 import { siteDetails } from "@/data/siteDetails";
-import { appDownloadDetails } from "@/data/cta";
-import { trackDownloadClick } from "@/utils/analytics";
+import { appDownloadDetails, signUpDetails } from "@/data/cta";
+import { trackDownloadClick, trackSignUpClick } from "@/utils/analytics";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,11 +53,11 @@ const Header: React.FC = () => {
             ))}
             <li className="ml-2">
               <Link
-                href={appDownloadDetails.url}
+                href={signUpDetails.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackDownloadClick("header-register")}
-                title="Download aplikasinya dulu — akun dibuat di dalam aplikasi"
+                onClick={() => trackSignUpClick("header-register")}
+                title="Buat akun gratis langsung dari browser"
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all dark:text-gray-300 dark:hover:text-white dark:hover:bg-white/5"
               >
                 <UserPlus size={15} aria-hidden="true" className="relative -top-px" /> Daftar
@@ -162,11 +162,11 @@ const Header: React.FC = () => {
             ))}
             <li className="pt-2 border-t border-gray-100 dark:border-surface-border">
               <Link
-                href={appDownloadDetails.url}
+                href={signUpDetails.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => {
-                  trackDownloadClick("header-mobile-register");
+                  trackSignUpClick("header-mobile-register");
                   toggleMenu();
                 }}
                 className="inline-flex items-center gap-2 text-sm font-medium text-green-700 dark:text-green-400"
@@ -174,7 +174,7 @@ const Header: React.FC = () => {
                 <UserPlus size={16} aria-hidden="true" className="relative -top-px" /> Daftar Gratis
               </Link>
               <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
-                Download aplikasinya dulu, lalu daftar akun di dalam aplikasi.
+                Buat akun langsung di browser — aplikasinya dipasang belakangan.
               </p>
             </li>
             <li>

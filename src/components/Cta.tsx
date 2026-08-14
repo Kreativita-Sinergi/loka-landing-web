@@ -1,26 +1,26 @@
 "use client";
 
-import { Download, Mail, MessageCircle } from "lucide-react";
+import { Download, Mail, MessageCircle, UserPlus } from "lucide-react";
 import { FiInstagram } from "react-icons/fi";
-import { appDownloadDetails, ctaDetails, supportDetails } from "@/data/cta";
-import { trackContactClick, trackDownloadClick } from "@/utils/analytics";
+import { appDownloadDetails, ctaDetails, signUpDetails, supportDetails } from "@/data/cta";
+import { trackContactClick, trackDownloadClick, trackSignUpClick } from "@/utils/analytics";
 import WindowsDownloadLink from "./WindowsDownloadLink";
 
 const steps = [
   {
     number: "1",
-    title: "Download Aplikasi",
-    desc: "Pasang dari Google Play untuk HP/tablet Android, atau Microsoft Store untuk PC/laptop Windows.",
+    title: "Daftar Gratis",
+    desc: "Buat akun langsung dari browser ini, atau dari dalam aplikasi. Keduanya sama-sama dapat 2 minggu gratis.",
   },
   {
     number: "2",
-    title: "Daftar di Aplikasi",
-    desc: "Buka aplikasi, buat akun gratis langsung di perangkat Anda, dan langsung dapat 3 bulan gratis.",
+    title: "Siapkan Toko",
+    desc: "Isi produk, karyawan, dan metode pembayaran lewat Web Admin — bisa dari laptop.",
   },
   {
     number: "3",
     title: "Mulai Jualan",
-    desc: "Login dan langsung terima transaksi hari itu juga — tanpa komitmen.",
+    desc: "Pasang aplikasi kasirnya di Android atau Windows, login, dan langsung terima transaksi.",
   },
 ];
 
@@ -68,21 +68,22 @@ export default function CTA() {
             {/* Action buttons */}
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-2xl mx-auto">
               <a
+                href={signUpDetails.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackSignUpClick("cta")}
+                className="flex items-center justify-center gap-2 w-full sm:flex-1 px-8 h-14 rounded-full font-bold text-base leading-none bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
+              >
+                <UserPlus size={18} className="flex-shrink-0 relative -top-px" /> {signUpDetails.label}
+              </a>
+              <a
                 href={appDownloadDetails.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackDownloadClick("cta")}
-                className="flex items-center justify-center gap-2 w-full sm:flex-1 px-8 h-14 rounded-full font-bold text-base leading-none bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
+                className="flex items-center justify-center gap-2 w-full sm:flex-1 px-8 h-14 rounded-full font-bold text-base leading-none bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-colors"
               >
-                <Download size={18} className="flex-shrink-0 relative -top-px" /> {appDownloadDetails.label}
-              </a>
-              <a
-                href={ctaDetails.dashboardUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center w-full sm:flex-1 px-8 h-14 rounded-full font-bold text-base leading-none bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-colors"
-              >
-                Login
+                <Download size={18} className="flex-shrink-0 relative -top-px" /> Download Aplikasi
               </a>
             </div>
 
@@ -95,7 +96,19 @@ export default function CTA() {
               />
             </div>
 
-            <p className="mt-3 text-xs text-gray-400">{appDownloadDetails.note}</p>
+            <p className="mt-3 text-xs text-gray-400">{signUpDetails.note}</p>
+
+            <p className="mt-2 text-xs text-gray-400">
+              Sudah punya akun?{" "}
+              <a
+                href={ctaDetails.dashboardUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-white hover:underline"
+              >
+                Masuk ke Web Admin
+              </a>
+            </p>
 
             {/* Support / bantuan admin */}
             <div className="mt-12 w-full max-w-2xl rounded-2xl border border-white/15 bg-white/5 px-6 py-6 text-center">

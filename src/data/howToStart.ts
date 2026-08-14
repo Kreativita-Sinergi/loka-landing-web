@@ -19,32 +19,35 @@ export const howToStartDetails: {
 } = {
   title: "Cara Daftar & Mulai Pakai",
   description:
-    "Lima langkah sederhana — dari belum punya aplikasi sampai siap menerima transaksi pertama. Gratis 3 bulan pertama, tanpa komitmen.",
+    "Lima langkah sederhana — dari belum punya akun sampai siap menerima transaksi pertama. Gratis 2 minggu pertama, tanpa komitmen.",
+  // Urutannya sengaja dimulai dari mendaftar, bukan mengunduh: sejak Web Admin
+  // punya halaman pendaftaran sendiri, pemilik bisa membuat akun dan menyiapkan
+  // toko dari laptop tanpa memegang HP dulu.
   steps: [
     {
-      icon: "download",
-      title: "1. Download Aplikasi",
-      desc: "Klik tombol download di halaman ini untuk membuka Loka Kasir di Google Play Store (Android) atau Microsoft Store (Windows). Gratis dan bisa langsung dilakukan sendiri.",
-    },
-    {
-      icon: "install",
-      title: "2. Pasang Aplikasi",
-      desc: "Tekan Install di toko aplikasinya, lalu tunggu Loka Kasir terpasang di HP/tablet Android atau PC/laptop Windows Anda.",
-    },
-    {
       icon: "register",
-      title: "3. Daftar Akun Owner",
-      desc: "Buka aplikasi lalu daftar gratis: isi data bisnis, pilih jenis usaha (FNB, Retail, atau Jasa), dan buat outlet pertama.",
+      title: "1. Daftar Akun Gratis",
+      desc: "Daftar langsung dari browser di app.lokakasir.id, atau dari dalam aplikasi — sama saja. Isi data bisnis, pilih jenis usaha (FNB, Retail, atau Jasa), dan buat outlet pertama.",
     },
     {
       icon: "setup",
-      title: "4. Siapkan Toko",
-      desc: "Tambahkan produk & kategori, atur karyawan beserta PIN-nya, lalu konfigurasikan terminal kasir dan metode pembayaran.",
+      title: "2. Siapkan Toko",
+      desc: "Tambahkan produk & kategori, atur karyawan beserta PIN-nya, lalu tentukan metode pembayaran. Paling nyaman dikerjakan di Web Admin lewat laptop.",
+    },
+    {
+      icon: "download",
+      title: "3. Download Aplikasi Kasir",
+      desc: "Ambil aplikasinya di Google Play Store (Android) atau Microsoft Store (Windows) untuk perangkat yang dipakai melayani pembeli.",
+    },
+    {
+      icon: "install",
+      title: "4. Pasang & Login",
+      desc: "Tekan Install, buka aplikasinya, lalu login memakai akun yang sama. Produk dan pengaturan yang tadi Anda buat langsung muncul.",
     },
     {
       icon: "sell",
       title: "5. Mulai Transaksi",
-      desc: "Buka shift, layani penjualan, dan cetak struk. Pantau laporan & kelola bisnis lebih lanjut lewat Web Admin dengan akun yang sama.",
+      desc: "Buka shift, layani penjualan, dan cetak struk. Pantau laporan & kelola bisnis lebih lanjut lewat Web Admin.",
     },
   ],
 };

@@ -1,8 +1,20 @@
 export const ctaDetails = {
-  heading: "Gratis 3 Bulan Pertama — Tanpa Risiko",
+  heading: "Gratis 2 Minggu Pertama — Tanpa Risiko",
   subheading:
-    "Download aplikasinya di Google Play, daftar di aplikasi, dan pakai semua fitur Pro gratis selama 3 bulan pertama — tanpa kartu kredit, tanpa komitmen. Setelah itu, lanjutkan dengan paket mulai Rp 39.000/bulan.",
+    "Daftar gratis langsung dari browser ini, atau dari aplikasinya — akunnya sama. Pakai semua fitur Pro selama 2 minggu pertama tanpa kartu kredit dan tanpa komitmen. Setelah itu, lanjutkan dengan paket mulai Rp 39.000/bulan.",
   dashboardUrl: "https://app.lokakasir.id",
+};
+
+// Pendaftaran akun Owner. Sejak Web Admin punya halaman /register sendiri,
+// mendaftar TIDAK lagi harus lewat aplikasi — pemilik yang menemukan situs ini
+// dari laptop bisa langsung membuat akun tanpa menyentuh HP.
+//
+// Semua ajakan "Daftar" di situs ini harus memakai URL ini, bukan link toko
+// aplikasi seperti sebelumnya.
+export const signUpDetails = {
+  url: "https://app.lokakasir.id/register",
+  label: "Daftar Gratis",
+  note: "Gratis 2 minggu pertama · Tanpa kartu kredit · Bisa daftar dari browser atau aplikasi",
 };
 
 export const supportDetails = {
@@ -24,7 +36,7 @@ export const appDownloadDetails = {
   url: "https://play.google.com/store/apps/details?id=id.lokakasir.app",
   label: "Download di Google Play",
   // Catatan singkat yang ditampilkan di dekat tombol unduh.
-  note: "Android & Windows · Gratis 3 bulan pertama · Daftar akun langsung di aplikasi",
+  note: "Android & Windows · Gratis 2 minggu pertama · Login dengan akun yang sama",
 };
 
 // Versi desktop Loka Kasir untuk PC/laptop Windows, dirilis lewat Microsoft
@@ -66,11 +78,10 @@ export const appRequestDetails = {
   instagram: "lokakasir.id",
 };
 
-// Detail untuk mendaftar/daftar gratis. Pendaftaran akun dilakukan DI DALAM
-// aplikasi, jadi pengguna cukup memasangnya dari Play Store lalu daftar sendiri.
-// WhatsApp hanya dipakai bila pengguna butuh bantuan saat pemasangan.
+// WhatsApp bantuan bila pengguna tersendat saat mendaftar atau memasang
+// aplikasi. Bukan jalur pendaftaran — daftar sendiri lewat signUpDetails.
 export const registerDetails = {
   whatsapp: "6283878960539",
   whatsappMessage:
-    "Halo tim Loka Kasir, saya sudah download aplikasinya tapi butuh bantuan untuk pemasangan/pendaftaran.",
+    "Halo tim Loka Kasir, saya butuh bantuan untuk pendaftaran akun / pemasangan aplikasi.",
 };

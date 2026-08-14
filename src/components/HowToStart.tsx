@@ -10,8 +10,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { howToStartDetails, type HowToIcon } from "@/data/howToStart";
-import { appDownloadDetails } from "@/data/cta";
-import { trackDownloadClick } from "@/utils/analytics";
+import { appDownloadDetails, signUpDetails } from "@/data/cta";
+import { trackDownloadClick, trackSignUpClick } from "@/utils/analytics";
 
 const ICONS: Record<HowToIcon, LucideIcon> = {
   whatsapp: MessageCircle,
@@ -49,17 +49,31 @@ export default function HowToStart() {
         })}
       </ol>
 
+      {/* Ajakan utama kini mendaftar, bukan mengunduh — langkah 1 memang daftar */}
       <div className="mt-10 flex flex-col items-center gap-3">
-        <a
-          href={appDownloadDetails.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackDownloadClick("how-to-start")}
-          className="flex items-center justify-center gap-2 px-8 h-14 rounded-full font-bold text-base leading-none text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
-        >
-          <Download size={18} aria-hidden="true" className="relative -top-px" /> Mulai — {appDownloadDetails.label}
-        </a>
-        <p className="text-xs text-gray-500 dark:text-gray-400">{appDownloadDetails.note}</p>
+        <div className="flex w-full max-w-xl flex-col items-center justify-center gap-3 sm:flex-row">
+          <a
+            href={signUpDetails.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackSignUpClick("how-to-start")}
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-blue-600 px-8 h-14 text-base font-bold leading-none text-white shadow-lg shadow-blue-600/30 transition-colors hover:bg-blue-700 sm:w-auto"
+          >
+            <UserPlus size={18} aria-hidden="true" className="relative -top-px" />
+            Mulai — {signUpDetails.label}
+          </a>
+          <a
+            href={appDownloadDetails.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackDownloadClick("how-to-start")}
+            className="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 px-8 h-14 text-base font-bold leading-none text-gray-900 transition-colors hover:bg-gray-100 dark:border-surface-border dark:text-white dark:hover:bg-white/5 sm:w-auto"
+          >
+            <Download size={18} aria-hidden="true" className="relative -top-px" />
+            Download Aplikasi
+          </a>
+        </div>
+        <p className="text-xs text-gray-500 dark:text-gray-400">{signUpDetails.note}</p>
       </div>
     </div>
   );

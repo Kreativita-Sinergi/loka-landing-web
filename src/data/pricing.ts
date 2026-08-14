@@ -33,9 +33,9 @@ const proFeatures = [
 
 export const tiers: IPricing[] = [
   {
-    name: "Gratis 3 Bulan Pertama",
+    name: "Gratis 2 Minggu Pertama",
     price: "Gratis",
-    period: "3 bulan pertama",
+    period: "2 minggu pertama",
     badge: "Mulai di Sini",
     description:
       "Akses penuh semua fitur Pro tanpa syarat. Tidak ada komitmen.",
@@ -45,7 +45,7 @@ export const tiers: IPricing[] = [
       "Multi-outlet — sampai 5 cabang",
       "Aktif langsung setelah daftar",
       "Tanpa kartu kredit, tanpa komitmen",
-      "Setelah 3 bulan pilih paket yang sesuai",
+      "Setelah 2 minggu pilih paket yang sesuai",
     ],
     ctaLabel: "Coba Sekarang",
     ctaUrl: "https://app.lokakasir.id",

@@ -6,8 +6,8 @@ import { webAdminDetails } from '@/data/webAdmin';
 import WindowsDownloadLink from './WindowsDownloadLink';
 
 // Aplikasi sudah rilis di Google Play Store (Android) dan Microsoft Store
-// (Windows) — pengguna memasangnya dari sana, lalu pendaftaran akun dilakukan
-// di dalam aplikasi.
+// (Windows). Pendaftaran akun bisa dilakukan di web maupun di aplikasi, jadi
+// kartu ini hanya bicara soal pemasangan dan login.
 
 const Ecosystem: React.FC = () => {
     return (
@@ -40,11 +40,11 @@ const Ecosystem: React.FC = () => {
                     ))}
                 </ul>
 
-                {/* Download dari Play Store / Microsoft Store — pendaftaran dilakukan di dalam aplikasi */}
+                {/* Download dari Play Store / Microsoft Store */}
                 <div className="mt-8 pt-6 border-t border-gray-100 dark:border-surface-border">
                     <p className="text-xs text-gray-500 mb-3 dark:text-gray-400">
                         Tersedia untuk HP/tablet Android dan PC/laptop Windows. Pasang dari
-                        toko aplikasinya, lalu daftar akun dari dalam aplikasi.
+                        toko aplikasinya, lalu login dengan akun yang sama.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-3">
                         <a

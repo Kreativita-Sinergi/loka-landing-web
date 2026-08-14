@@ -2,12 +2,12 @@
 
 import React from "react";
 import Image from "next/image";
-import { Zap, BarChart3, Printer, RefreshCw, Download } from "lucide-react";
+import { Zap, BarChart3, Printer, RefreshCw, Download, UserPlus } from "lucide-react";
 import DemoVideo from "./DemoVideo";
 import WindowsDownloadLink from "./WindowsDownloadLink";
 import { heroDetails } from "@/data/hero";
-import { appDownloadDetails, ctaDetails } from "@/data/cta";
-import { trackDownloadClick } from "@/utils/analytics";
+import { appDownloadDetails, ctaDetails, signUpDetails } from "@/data/cta";
+import { trackDownloadClick, trackSignUpClick } from "@/utils/analytics";
 
 const BADGES = [
   { Icon: Zap, text: "Transaksi Kilat" },
@@ -50,28 +50,43 @@ const Hero: React.FC = () => {
           {heroDetails.subheading}
         </p>
 
+        {/* Aksi utama = mendaftar. Sejak akun bisa dibuat langsung dari browser,
+            menyuruh pengunjung mengunduh dulu justru menambah satu rintangan. */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-2xl mx-auto">
+          <a
+            href={signUpDetails.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackSignUpClick("hero")}
+            className="flex items-center justify-center gap-2 px-6 h-14 rounded-full w-full sm:flex-1 font-bold text-base leading-none text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
+          >
+            <UserPlus size={18} aria-hidden="true" className="relative -top-px" /> {signUpDetails.label}
+          </a>
           <a
             href={appDownloadDetails.url}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackDownloadClick("hero")}
-            className="flex items-center justify-center gap-2 px-6 h-14 rounded-full w-full sm:flex-1 font-bold text-base leading-none text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
-          >
-            <Download size={18} aria-hidden="true" className="relative -top-px" /> {appDownloadDetails.label}
-          </a>
-          <a
-            href={ctaDetails.dashboardUrl}
-            target="_blank"
-            rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 px-6 h-14 rounded-full w-full sm:flex-1 font-bold text-base leading-none transition-colors border border-gray-300 text-gray-900 hover:bg-gray-100 dark:border-surface-border dark:text-white dark:hover:bg-white/5"
           >
-            Buka Web Admin
+            <Download size={18} aria-hidden="true" className="relative -top-px" /> Download Aplikasi
           </a>
         </div>
 
         <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-          {appDownloadDetails.note}
+          {signUpDetails.note}
+        </p>
+
+        <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+          Sudah punya akun?{" "}
+          <a
+            href={ctaDetails.dashboardUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-blue-600 hover:underline dark:text-blue-400"
+          >
+            Masuk ke Web Admin
+          </a>
         </p>
 
         {/* Jalur unduh untuk pengguna PC/laptop Windows */}
