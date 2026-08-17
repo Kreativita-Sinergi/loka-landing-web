@@ -1,76 +1,67 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { notFound } from "next/navigation";
+
 import { siteDetails } from "@/data/siteDetails";
-import {
-  appDownloadDetails,
-  windowsDirectDownload,
-  windowsDownloadDetails,
-} from "@/data/cta";
+import { getAppDownload, getWindowsDownload, windowsDirectDownload } from "@/data/cta";
+import { getWindowsPage, windowsFacts } from "@/data/windowsPage";
+import { LOCALES, localePath, type Locale } from "@/data/localized";
+import { alternatesFor } from "@/lib/hreflang";
 import WindowsDownloadLink from "@/components/WindowsDownloadLink";
 import WingetCommand from "@/components/WingetCommand";
 
-export const metadata: Metadata = {
-  title: `Download untuk Windows — ${siteDetails.siteName}`,
-  description:
-    "Cara memasang aplikasi kasir Loka Kasir di PC atau laptop Windows 10/11 — lewat Microsoft Store atau perintah winget. Ringan, unduhan hanya ±30 MB. Gratis 30 hari pertama.",
-  alternates: {
-    canonical: `${siteDetails.siteUrl}/download/windows`,
-  },
-};
+export function generateStaticParams() {
+  return LOCALES.map((locale) => ({ locale }));
+}
 
-// Angka di bawah diambil dari pemakaian nyata build rilis Windows: unduhan
-// ~30 MB dan sekitar 200 MB RAM saat aplikasi dipakai. Sengaja tidak
-// dibesar-besarkan supaya pemilik toko dengan PC lama tidak mengurungkan niat.
-const requirements = [
-  "Windows 10 versi 1809 (Oktober 2018) ke atas, atau Windows 11",
-  "Prosesor 64-bit (x64) — RAM 2 GB sudah cukup",
-  "Ruang kosong sekitar 150 MB (file unduhannya hanya ±30 MB)",
-  "Koneksi internet untuk sinkronisasi (transaksi tetap jalan saat offline)",
-];
+export async function generateMetadata(
+  { params }: { params: Promise<{ locale: string }> },
+): Promise<Metadata> {
+  const { locale } = await params;
+  if (!(LOCALES as readonly string[]).includes(locale)) notFound();
+  const copy = getWindowsPage(locale as Locale);
 
-const steps = [
-  {
-    title: "Buka halaman Loka Kasir di Microsoft Store",
-    detail:
-      "Klik tombol di atas. Browser akan menawarkan untuk membuka aplikasi Microsoft Store — pilih Buka.",
-  },
-  {
-    title: "Tekan Get / Install",
-    detail:
-      "Microsoft Store mengunduh dan memasang aplikasinya sendiri. Anda tidak perlu hak akses administrator.",
-  },
-  {
-    title: "Login, atau daftar bila belum punya akun",
-    detail:
-      "Buka Loka Kasir dari Start Menu lalu login. Belum punya akun? Anda bisa mendaftar gratis di dalam aplikasi maupun lewat browser di app.lokakasir.id — 30 hari pertama gratis dengan akses penuh.",
-  },
-];
+  return {
+    title: `${copy.metaTitle} — ${siteDetails.siteName}`,
+    description: copy.metaDescription,
+    alternates: alternatesFor(locale as Locale, "/download/windows"),
+  };
+}
 
-export default function WindowsDownloadPage() {
+export default async function WindowsDownloadPage(
+  { params }: { params: Promise<{ locale: string }> },
+) {
+  const { locale: raw } = await params;
+  if (!(LOCALES as readonly string[]).includes(raw)) notFound();
+  const locale = raw as Locale;
+
+  const copy = getWindowsPage(locale);
+  const { requirements, steps } = copy;
+  const windowsDownloadDetails = getWindowsDownload(locale);
+  const appDownloadDetails = getAppDownload(locale);
+
   return (
     <div className="min-h-screen bg-white dark:bg-background">
       <div className="max-w-3xl mx-auto px-6 py-16">
         {/* Header */}
         <div className="mb-10">
           <p className="text-sm font-medium text-blue-600 mb-2 dark:text-blue-400">
-            Loka Kasir untuk Windows
+            {copy.eyebrow}
           </p>
           <h1 className="text-3xl font-bold text-gray-900 mb-3 dark:text-white">
-            Download aplikasi kasir untuk PC &amp; laptop
+            {copy.title}
           </h1>
           <p className="text-gray-600 leading-relaxed dark:text-gray-400">
-            Aplikasi kasir yang sama seperti versi Android, dijalankan di layar besar
-            PC atau laptop Windows. Data dan akunnya sama — kasir bisa pindah
-            perangkat tanpa setup ulang.
+            {copy.intro}
           </p>
 
           {/* Angka ringan ditonjolkan — banyak PC kasir masih spek lama */}
           <div className="mt-6 grid grid-cols-3 gap-3">
             {[
-              { value: "±30 MB", label: "Ukuran unduhan" },
-              { value: "±200 MB", label: "Pemakaian RAM" },
-              { value: "RAM 2 GB", label: "Sudah cukup" },
+              { value: windowsFacts.size, label: copy.statSize },
+              { value: windowsFacts.ram, label: copy.statRam },
+              { value: copy.statMinRam, label: copy.statMinRamLabel },
             ].map((stat) => (
               <div
                 key={stat.label}
@@ -86,8 +77,7 @@ export default function WindowsDownloadPage() {
             ))}
           </div>
           <p className="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-            Ringan, jadi tetap lancar di PC atau laptop lama yang biasa dipakai di
-            toko.
+            {copy.lightNote}
           </p>
         </div>
 
@@ -99,13 +89,13 @@ export default function WindowsDownloadPage() {
             className="w-full sm:w-auto bg-blue-600 text-white hover:bg-blue-700"
           />
           <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-            {windowsDownloadDetails.note} · Gratis 30 hari pertama
+            {windowsDownloadDetails.note} · {copy.freeNote}
           </p>
         </div>
 
         {/* Cara pasang */}
         <h2 className="mt-12 mb-5 text-xl font-bold text-gray-900 dark:text-white">
-          Cara memasang
+          {copy.howToHeading}
         </h2>
         <ol className="space-y-4">
           {steps.map((step, i) => (
@@ -127,12 +117,10 @@ export default function WindowsDownloadPage() {
 
         {/* winget — jalur tanpa membuka Store, praktis untuk banyak PC */}
         <h2 className="mt-12 mb-3 text-xl font-bold text-gray-900 dark:text-white">
-          Pasang lewat winget
+          {copy.wingetHeading}
         </h2>
         <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-          Kalau Anda memasang di banyak PC sekaligus, jalankan perintah ini di
-          PowerShell atau Command Prompt. Aplikasinya terpasang dari sumber yang
-          sama dengan Microsoft Store, jadi pembaruannya tetap otomatis.
+          {copy.wingetBody}
         </p>
         <WingetCommand command={windowsDownloadDetails.wingetCommand} />
 
@@ -140,12 +128,10 @@ export default function WindowsDownloadPage() {
         {windowsDirectDownload && (
           <>
             <h2 className="mt-12 mb-3 text-xl font-bold text-gray-900 dark:text-white">
-              Download file langsung
+              {copy.directHeading}
             </h2>
             <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-              Untuk PC yang Microsoft Store-nya dimatikan oleh admin. Versi ini tidak
-              mendapat pembaruan otomatis — Anda perlu mengunduh ulang saat ada versi
-              baru.
+              {copy.directBody}
             </p>
             <a
               href={windowsDirectDownload.url}
@@ -159,7 +145,7 @@ export default function WindowsDownloadPage() {
 
         {/* Kebutuhan sistem */}
         <h2 className="mt-12 mb-3 text-xl font-bold text-gray-900 dark:text-white">
-          Kebutuhan sistem
+          {copy.requirementsHeading}
         </h2>
         <ul className="space-y-2">
           {requirements.map((item) => (
@@ -176,10 +162,10 @@ export default function WindowsDownloadPage() {
         {/* Platform lain */}
         <div className="mt-12 rounded-2xl border border-gray-100 p-6 dark:border-surface-border">
           <p className="font-semibold text-gray-900 dark:text-white">
-            Pakai HP atau tablet?
+            {copy.otherPlatformTitle}
           </p>
           <p className="mt-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-            Versi Android tersedia gratis di Google Play, dengan akun yang sama.
+            {copy.otherPlatformBody}
           </p>
           <a
             href={appDownloadDetails.url}
@@ -193,10 +179,10 @@ export default function WindowsDownloadPage() {
 
         <div className="mt-10">
           <Link
-            href="/"
+            href={localePath(locale)}
             className="text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
           >
-            ← Kembali ke beranda
+            {copy.backHome}
           </Link>
         </div>
       </div>

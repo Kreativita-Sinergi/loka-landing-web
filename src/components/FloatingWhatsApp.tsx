@@ -3,12 +3,17 @@
 import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { HiOutlineXMark } from "react-icons/hi2";
-import { appRequestDetails } from "@/data/cta";
+import { getAppRequest } from "@/data/cta";
+import { getUi } from "@/data/ui";
 import { trackContactClick } from "@/utils/analytics";
+import type { Locale } from "@/data/localized";
 
-const waLink = `https://wa.me/${appRequestDetails.whatsapp}?text=${encodeURIComponent(
-  appRequestDetails.whatsappMessage
-)}`;
+const waLinkFor = (locale: Locale) => {
+  const details = getAppRequest(locale);
+  return `https://wa.me/${details.whatsapp}?text=${encodeURIComponent(
+    details.whatsappMessage,
+  )}`;
+};
 
 const DISMISS_KEY = "floating_wa_bubble_dismissed";
 
@@ -17,7 +22,8 @@ const DISMISS_KEY = "floating_wa_bubble_dismissed";
  * pengunjung bisa menghubungi tim Loka Kasir satu-tap dari posisi scroll mana pun.
  * Muncul setelah pengunjung sedikit menggulir, dengan bubble ajakan yang bisa ditutup.
  */
-export default function FloatingWhatsApp() {
+export default function FloatingWhatsApp({ locale }: { locale: Locale }) {
+  const waLink = waLinkFor(locale);
   const [visible, setVisible] = useState(false);
   const [showBubble, setShowBubble] = useState(false);
 
@@ -53,7 +59,7 @@ export default function FloatingWhatsApp() {
           >
             <HiOutlineXMark className="h-3.5 w-3.5" />
           </button>
-          <p className="font-semibold text-gray-900 dark:text-white">Butuh bantuan?</p>
+          <p className="font-semibold text-gray-900 dark:text-white">{getUi(locale).helpBubble}</p>
           <p className="mt-0.5 leading-relaxed">
             Aplikasinya bisa langsung di-download di Google Play. Ada kendala? Chat tim kami — dibalas cepat.
           </p>

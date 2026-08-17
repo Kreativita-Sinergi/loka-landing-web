@@ -3,15 +3,16 @@
 import React from "react";
 import { Check, Lightbulb, Mail, MessageCircle, Handshake } from "lucide-react";
 import { FiInstagram } from "react-icons/fi";
-import { partnershipDetails, partnerTypes } from "@/data/partnership";
+import { getPartnership, getPartnerTypes } from "@/data/partnership";
 import { trackContactClick } from "@/utils/analytics";
+import type { Locale } from "@/data/localized";
 
-const { featureRequest, partnership, contact } = partnershipDetails;
-
-const waLink = (message: string) =>
-  `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(message)}`;
-
-const Partnership: React.FC = () => {
+const Partnership: React.FC<{ locale: Locale }> = ({ locale }) => {
+  const partnershipDetails = getPartnership(locale);
+  const partnerTypes = getPartnerTypes(locale);
+  const { featureRequest, partnership, contact } = partnershipDetails;
+  const waLink = (message: string) =>
+    `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(message)}`;
   return (
     <div className="flex flex-col gap-6">
       <div className="grid gap-6 lg:grid-cols-2">

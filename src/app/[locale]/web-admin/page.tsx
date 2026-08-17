@@ -12,25 +12,39 @@ import {
   Users,
 } from "lucide-react";
 
+import { notFound } from "next/navigation";
+
 import { siteDetails } from "@/data/siteDetails";
-import { appDownloadDetails, signUpDetails } from "@/data/cta";
+import { getAppDownload, getSignUp } from "@/data/cta";
 import {
-  planLabels,
-  webAdminDetails,
-  webAdminGroups,
+  getPlanLabels,
+  getWebAdmin,
+  getWebAdminGroups,
+  getWebAdminPage,
   type Plan,
   type WebAdminGroup,
 } from "@/data/webAdmin";
+import { LOCALES, localePath, type Locale } from "@/data/localized";
+import { alternatesFor } from "@/lib/hreflang";
 import WebAdminGallery from "@/components/WebAdminGallery";
 
-export const metadata: Metadata = {
-  title: `Web Admin — Kelola Kasir, Stok & Laporan dari Browser | ${siteDetails.siteName}`,
-  description:
-    "Web Admin Loka Kasir: laporan keuangan, untung per produk, stok & pembelian, karyawan dan hak akses, pelanggan, sampai multi-outlet — dibuka dari browser tanpa instalasi. Sudah termasuk di semua paket.",
-  alternates: {
-    canonical: `${siteDetails.siteUrl}/web-admin`,
-  },
-};
+export function generateStaticParams() {
+  return LOCALES.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ locale: string }> },
+): Promise<Metadata> {
+  const { locale } = await params;
+  if (!(LOCALES as readonly string[]).includes(locale)) notFound();
+  const copy = getWebAdminPage(locale as Locale);
+
+  return {
+    title: `${copy.metaTitle} | ${siteDetails.siteName}`,
+    description: copy.metaDescription,
+    alternates: alternatesFor(locale as Locale, "/web-admin"),
+  };
+}
 
 const ICONS: Record<WebAdminGroup["icon"], React.ElementType> = {
   chart: BarChart3,
@@ -41,7 +55,7 @@ const ICONS: Record<WebAdminGroup["icon"], React.ElementType> = {
   store: Store,
 };
 
-const PlanBadge: React.FC<{ plan: Plan }> = ({ plan }) => {
+const PlanBadge: React.FC<{ plan: Plan; locale: Locale }> = ({ plan, locale }) => {
   if (plan === "semua") return null;
 
   const tone =
@@ -53,38 +67,29 @@ const PlanBadge: React.FC<{ plan: Plan }> = ({ plan }) => {
     <span
       className={`ml-2 inline-block rounded-full px-2 py-0.5 align-middle text-[10px] font-bold uppercase tracking-wide ${tone}`}
     >
-      {planLabels[plan]}
+      {getPlanLabels(locale)[plan]}
     </span>
   );
 };
 
 // Pembagian peran ditaruh di atas daftar fitur: kebingungan paling sering
 // muncul bukan soal "fitur apa saja", tapi "ini bedanya apa dengan aplikasi".
-const roles = [
-  {
-    title: "Aplikasi Kasir",
-    who: "Dipakai kasir & pelayan di toko",
-    points: [
-      "Login cepat pakai PIN 4 angka",
-      "Proses order, bayar, dan cetak struk",
-      "Buka/tutup shift dan hitung kas laci",
-      "Tetap jalan saat internet mati",
-    ],
-  },
-  {
-    title: "Web Admin",
-    who: "Dipegang pemilik & supervisor",
-    points: [
-      "Lihat laporan dan untung-rugi kapan saja",
-      "Atur produk, harga, stok, dan promo",
-      "Kelola karyawan beserta hak aksesnya",
-      "Pantau semua outlet dari satu layar",
-    ],
-    highlight: true,
-  },
-];
+// Isinya sekarang di `getWebAdminPage`, bukan di berkas ini.
 
-export default function WebAdminPage() {
+export default async function WebAdminPage(
+  { params }: { params: Promise<{ locale: string }> },
+) {
+  const { locale: raw } = await params;
+  if (!(LOCALES as readonly string[]).includes(raw)) notFound();
+  const locale = raw as Locale;
+
+  const copy = getWebAdminPage(locale);
+  const webAdminDetails = getWebAdmin(locale);
+  const webAdminGroups = getWebAdminGroups(locale);
+  const signUpDetails = getSignUp(locale);
+  const appDownloadDetails = getAppDownload(locale);
+  const roles = copy.roles;
+
   return (
     <div className="min-h-screen bg-white dark:bg-background">
       <div className="mx-auto max-w-4xl px-6 py-16">
@@ -107,7 +112,7 @@ export default function WebAdminPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
             >
-              Buka Web Admin
+              {copy.openButton}
               <ExternalLink size={15} aria-hidden="true" />
             </a>
             <a
@@ -116,23 +121,22 @@ export default function WebAdminPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:border-surface-border dark:text-white dark:hover:bg-white/5"
             >
-              Belum punya akun? {signUpDetails.label}
+              {copy.noAccountPrefix} {signUpDetails.label}
             </a>
           </div>
 
           <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-            Pendaftaran bisa dilakukan langsung di sini lewat browser, atau dari
-            aplikasi kasirnya — akunnya sama, tinggal login di mana pun.
+            {copy.signUpNote}
           </p>
         </div>
 
         {/* Pembagian peran aplikasi vs web */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {roles.map((role) => (
+          {roles.map((role, index) => (
             <div
               key={role.title}
               className={`rounded-2xl border p-6 ${
-                role.highlight
+                index === 1
                   ? "border-blue-200 bg-blue-50 dark:border-blue-400/20 dark:bg-blue-500/10"
                   : "border-gray-100 dark:border-surface-border"
               }`}
@@ -167,12 +171,10 @@ export default function WebAdminPage() {
           />
           <div>
             <p className="font-semibold text-gray-900 dark:text-white">
-              Tidak perlu dipasang
+              {copy.noInstallTitle}
             </p>
             <p className="mt-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-              Web Admin dibuka lewat browser apa pun — Chrome, Edge, Safari, atau
-              Firefox — di laptop, PC, maupun tablet. Tidak ada aplikasi tambahan,
-              tidak ada pembaruan yang perlu Anda urus.
+              {copy.noInstallBody}
             </p>
           </div>
         </div>
@@ -182,13 +184,12 @@ export default function WebAdminPage() {
 
         {/* Daftar fitur lengkap per grup */}
         <h2 className="mt-14 mb-2 text-2xl font-bold text-gray-900 dark:text-white">
-          Semua yang bisa Anda kerjakan di Web Admin
+          {copy.featuresHeading}
         </h2>
         <p className="mb-8 text-sm text-gray-600 dark:text-gray-400">
-          Fitur tanpa label tersedia di semua paket. Label{" "}
-          <span className="font-semibold">Lite</span> dan{" "}
-          <span className="font-semibold">Pro</span> menandai fitur yang mengikuti
-          paket berlangganan — semuanya bisa dicoba gratis selama 30 hari pertama.
+          {copy.featuresNoteLead}
+          <span className="font-semibold">Lite</span> / <span className="font-semibold">Pro</span>
+          {copy.featuresNoteTail}
         </p>
 
         <div className="space-y-10">
@@ -216,7 +217,7 @@ export default function WebAdminPage() {
                     <li key={feature.name} className="px-5 py-4">
                       <p className="text-sm font-semibold text-gray-900 dark:text-white">
                         {feature.name}
-                        <PlanBadge plan={feature.plan} />
+                        <PlanBadge plan={feature.plan} locale={locale} />
                       </p>
                       <p className="mt-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
                         {feature.desc}
@@ -232,12 +233,10 @@ export default function WebAdminPage() {
         {/* Silang ke aplikasi kasir — Web Admin bukan pengganti aplikasinya */}
         <div className="mt-12 rounded-2xl border border-gray-100 p-6 dark:border-surface-border">
           <p className="font-semibold text-gray-900 dark:text-white">
-            Untuk melayani pembeli, pakai aplikasi kasirnya
+            {copy.crossSellTitle}
           </p>
           <p className="mt-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-            Web Admin mengurus sisi pengelolaan. Transaksi di depan pembeli
-            dikerjakan lewat aplikasi kasir di HP/tablet Android atau PC/laptop
-            Windows — akunnya sama dengan yang ini.
+            {copy.crossSellBody}
           </p>
           <a
             href={appDownloadDetails.url}
@@ -252,26 +251,26 @@ export default function WebAdminPage() {
         {/* Penutup */}
         <div className="mt-14 rounded-2xl border border-blue-100 bg-blue-50 p-6 dark:border-blue-400/20 dark:bg-blue-500/10">
           <p className="font-semibold text-gray-900 dark:text-white">
-            Sudah termasuk, tidak dijual terpisah
+            {copy.includedTitle}
           </p>
           <p className="mt-1 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
             {webAdminDetails.includedNote}
           </p>
           <Link
-            href="/#pricing"
+            href={`${localePath(locale)}#pricing`}
             className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:underline dark:text-blue-400"
           >
-            Lihat paket &amp; harga
+            {copy.seePricing}
             <ArrowRight size={15} aria-hidden="true" />
           </Link>
         </div>
 
         <div className="mt-10">
           <Link
-            href="/"
+            href={localePath(locale)}
             className="text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
           >
-            ← Kembali ke beranda
+            {copy.backHome}
           </Link>
         </div>
       </div>

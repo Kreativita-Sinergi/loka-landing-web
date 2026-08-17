@@ -2,9 +2,10 @@
 
 import { Download, Mail, MessageCircle, UserPlus } from "lucide-react";
 import { FiInstagram } from "react-icons/fi";
-import { appDownloadDetails, ctaDetails, signUpDetails, supportDetails } from "@/data/cta";
+import { getAppDownload, getCta, getSignUp, getSupport } from "@/data/cta";
 import { trackContactClick, trackDownloadClick, trackSignUpClick } from "@/utils/analytics";
 import WindowsDownloadLink from "./WindowsDownloadLink";
+import type { Locale } from "@/data/localized";
 
 const steps = [
   {
@@ -24,7 +25,11 @@ const steps = [
   },
 ];
 
-export default function CTA() {
+export default function CTA({ locale }: { locale: Locale }) {
+  const ctaDetails = getCta(locale);
+  const signUpDetails = getSignUp(locale);
+  const appDownloadDetails = getAppDownload(locale);
+  const supportDetails = getSupport(locale);
   return (
     <section id="cta" className="mt-10 mb-5 lg:my-20">
       <div className="relative h-full w-full z-10 mx-auto py-12 sm:py-20">

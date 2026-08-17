@@ -1,7 +1,7 @@
 import { IFAQ } from "@/types";
-import { siteDetails } from "./siteDetails";
+import { siteDetails } from "../siteDetails";
 
-export const faqs: IFAQ[] = [
+export const faqsId: IFAQ[] = [
 
   // ─── Memulai ────────────────────────────────────────────────────────────────
 

@@ -4,18 +4,23 @@ import Image from "next/image";
 import { Download, Mail, Phone } from "lucide-react";
 
 import { siteDetails } from "@/data/siteDetails";
-import { footerDetails } from "@/data/footer";
-import { appDownloadDetails } from "@/data/cta";
+import { getFooter } from "@/data/footer";
+import { getAppDownload } from "@/data/cta";
+import { localePath, type Locale } from "@/data/localized";
+import { getUi } from "@/data/ui";
 import { getPlatformIconByName } from "@/utils";
 import { FaWindows } from "react-icons/fa";
 
-const Footer: React.FC = () => {
+const Footer: React.FC<{ locale: Locale }> = ({ locale }) => {
+  const footerDetails = getFooter(locale);
+  const appDownloadDetails = getAppDownload(locale);
+  const ui = getUi(locale);
   return (
     <footer className="bg-hero-background text-foreground py-12">
       <div className="max-w-7xl w-full mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Brand */}
         <div className="md:col-span-1">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href={localePath(locale)} className="flex items-center gap-2">
             <Image src="/images/logo.png" width={140} height={70} alt="Loka Kasir" />
           </Link>
           <p className="mt-3 text-sm font-semibold text-foreground">
@@ -47,7 +52,7 @@ const Footer: React.FC = () => {
 
         {/* Quick Links */}
         <div>
-          <h4 className="text-base font-semibold mb-4">Tautan Cepat</h4>
+          <h4 className="text-base font-semibold mb-4">{ui.footerQuickLinks}</h4>
           <ul className="space-y-2 text-sm text-foreground-accent">
             {footerDetails.quickLinks.map((link) => (
               <li key={link.text}>
@@ -68,7 +73,7 @@ const Footer: React.FC = () => {
             </li>
             <li>
               <Link
-                href="/download/windows"
+                href={localePath(locale, "/download/windows")}
                 className="inline-flex items-center gap-1.5 font-semibold text-secondary hover:underline"
               >
                 <FaWindows size={14} aria-hidden="true" /> Download Windows
@@ -79,7 +84,7 @@ const Footer: React.FC = () => {
 
         {/* Contact */}
         <div>
-          <h4 className="text-base font-semibold mb-4">Hubungi Kami</h4>
+          <h4 className="text-base font-semibold mb-4">{ui.footerContact}</h4>
           <ul className="space-y-2 text-sm text-foreground-accent">
             {footerDetails.email && (
               <li>
@@ -106,7 +111,7 @@ const Footer: React.FC = () => {
 
         {/* Address */}
         <div>
-          <h4 className="text-base font-semibold mb-4">Alamat Kami</h4>
+          <h4 className="text-base font-semibold mb-4">{ui.footerAddress}</h4>
           {footerDetails.address && (
             <address className="not-italic text-sm text-foreground-accent leading-relaxed">
               {footerDetails.address}

@@ -1,9 +1,11 @@
 import React from 'react';
-import { testimonials } from '@/data/testimonials';
+import { getTestimonials } from '@/data/testimonials';
+import type { Locale } from "@/data/localized";
 
 const ICONS = ['🍽️', '☕', '🏪'];
 
-const Testimonials: React.FC = () => {
+const Testimonials: React.FC<{ locale: Locale }> = ({ locale }) => {
+  const testimonials = getTestimonials(locale);
     return (
         <div className="grid gap-6 max-w-lg w-full mx-auto lg:gap-6 lg:grid-cols-3 lg:max-w-full">
             {testimonials.map((item, index) => (

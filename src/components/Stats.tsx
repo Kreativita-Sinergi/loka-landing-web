@@ -1,5 +1,5 @@
 import React from "react";
-import { stats as fallbackStats, statsNote } from "@/data/stats";
+import { getStats } from "@/data/stats";
 import {
   activeShare,
   fetchPublicStats,
@@ -7,6 +7,7 @@ import {
   formatNumber,
   PUBLIC_STATS_REVALIDATE,
 } from "@/lib/publicStats";
+import type { Locale } from "@/data/localized";
 
 // Server Component: angkanya diambil saat render, bukan di browser pengunjung.
 // Dengan begitu tidak ada permintaan tambahan dari sisi pembaca, dan halaman
@@ -19,7 +20,8 @@ interface StatItem {
   description: string;
 }
 
-const Stats = async () => {
+const Stats = async ({ locale }: { locale: Locale }) => {
+  const { stats: fallbackStats, note: statsNote } = getStats(locale);
   const live = await fetchPublicStats();
 
   // Angka cadangan dipakai hanya bila backend tidak terjangkau. Ia ditulis

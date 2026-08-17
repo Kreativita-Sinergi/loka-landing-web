@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 import { CheckCircle2, XCircle, Lightbulb, Gift } from "lucide-react";
 import PricingColumn from "./PricingColumn";
-import { tiers } from "@/data/pricing";
-import { appDownloadDetails, signUpDetails } from "@/data/cta";
-import { promoDetails } from "@/data/promo";
+import { getTiers } from "@/data/pricing";
+import { getAppDownload, getSignUp } from "@/data/cta";
+import { getPromo } from "@/data/promo";
+import { getUi } from "@/data/ui";
 import {
   PRICING_COUNTRIES,
   fetchPrices,
@@ -13,6 +14,7 @@ import {
   type PricingCountry,
   type SubscriptionPrice,
 } from "@/lib/pricing";
+import type { Locale } from "@/data/localized";
 
 /** Nama plan di API untuk tiap kolom harga; kolom uji coba tidak punya harga. */
 const PLAN_KEYS: Record<string, { monthly: string; yearly: string }> = {
@@ -20,7 +22,12 @@ const PLAN_KEYS: Record<string, { monthly: string; yearly: string }> = {
   Pro: { monthly: "pro", yearly: "pro-yearly" },
 };
 
-const Pricing: React.FC = () => {
+const Pricing: React.FC<{ locale: Locale }> = ({ locale }) => {
+  const tiers = getTiers(locale);
+  const signUpDetails = getSignUp(locale);
+  const appDownloadDetails = getAppDownload(locale);
+  const promoDetails = getPromo(locale);
+  const ui = getUi(locale);
   // Negara ditebak dari bahasa peramban, lalu bisa diubah pengunjung. Tebakan
   // yang meleset cukup satu klik untuk dibetulkan — jauh lebih baik daripada
   // semua orang melihat rupiah lebih dulu.
@@ -105,47 +112,44 @@ const Pricing: React.FC = () => {
         <div className="flex items-center gap-2 mb-3">
           <span className="text-lg">🆓</span>
           <h3 className="text-base font-bold text-gray-800 dark:text-white">
-            Paket Gratis — Selamanya (Rp 0)
+            {ui.freePlanHeading}
           </h3>
         </div>
         <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
-          Cocok untuk usaha yang baru mulai. Tanpa biaya, tanpa masa berlaku — gunakan selama yang Anda mau. Sebelum turun ke paket ini, setiap akun baru lebih dulu menikmati {promoDetails.duration} pertama gratis dengan semua fitur Pro terbuka.
+          {ui.freePlanIntro.replace("{duration}", promoDetails.duration)}
         </p>
 
         <div className="grid gap-4 sm:grid-cols-2">
           {/* Yang termasuk */}
           <div>
             <p className="inline-flex items-center gap-1 text-xs font-bold text-green-600 uppercase tracking-wider mb-2 dark:text-green-400">
-              <CheckCircle2 size={14} aria-hidden="true" /> Yang termasuk
+              <CheckCircle2 size={14} aria-hidden="true" /> {ui.freePlanIncludedLabel}
             </p>
             <ul className="space-y-1.5 text-sm text-gray-600 dark:text-gray-300">
-              <li>• Kasir / transaksi penjualan (POS)</li>
-              <li>• <span className="font-semibold text-gray-800 dark:text-white">500 transaksi</span> per bulan</li>
-              <li>• 1 outlet</li>
-              <li>• Kelola produk &amp; kategori</li>
-              <li>• Cetak struk &amp; laporan transaksi dasar</li>
-              <li>• Mode offline (kasir tetap jalan tanpa internet)</li>
+              <li>{ui.freePlanIncluded[0]}</li>
+              <li>• <span className="font-semibold text-gray-800 dark:text-white">{ui.freePlanTransactions}</span>{ui.freePlanPerMonth}</li>
+              {ui.freePlanIncluded.slice(1).map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
           </div>
 
           {/* Yang belum termasuk */}
           <div>
             <p className="inline-flex items-center gap-1 text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 dark:text-gray-500">
-              <XCircle size={14} aria-hidden="true" /> Belum termasuk (upgrade ke Lite / Pro)
+              <XCircle size={14} aria-hidden="true" /> {ui.freePlanExcludedLabel}
             </p>
             <ul className="space-y-1.5 text-sm text-gray-500 dark:text-gray-400">
-              <li>• Database pelanggan, meja &amp; KDS (Lite)</li>
-              <li>• Karyawan multi-role &amp; diskon/bundle (Lite)</li>
-              <li>• Multi-outlet &amp; inventori lanjutan (Pro)</li>
-              <li>• HPP, Smart Pricing &amp; Loyalty (Pro)</li>
-              <li>• Pesan via QR / Scan-to-Order (Pro)</li>
+              {ui.freePlanExcluded.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
           </div>
         </div>
 
         <div className="mt-4 pt-4 border-t border-gray-200 dark:border-surface-border flex flex-wrap items-center justify-between gap-2">
           <p className="inline-flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
-            <Lightbulb size={14} className="shrink-0 text-amber-500" aria-hidden="true" /> Lewat batas 500 transaksi? Tinggal upgrade kapan saja — data Anda tetap aman.
+            <Lightbulb size={14} className="shrink-0 text-amber-500" aria-hidden="true" /> {ui.freePlanUpgradeHint}
           </p>
           <a
             href={appDownloadDetails.url}

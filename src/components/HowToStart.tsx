@@ -9,9 +9,10 @@ import {
   ShoppingCart,
   type LucideIcon,
 } from "lucide-react";
-import { howToStartDetails, type HowToIcon } from "@/data/howToStart";
-import { appDownloadDetails, signUpDetails } from "@/data/cta";
+import { getHowToStart, type HowToIcon } from "@/data/howToStart";
+import { getAppDownload, getSignUp } from "@/data/cta";
 import { trackDownloadClick, trackSignUpClick } from "@/utils/analytics";
+import type { Locale } from "@/data/localized";
 
 const ICONS: Record<HowToIcon, LucideIcon> = {
   whatsapp: MessageCircle,
@@ -22,7 +23,10 @@ const ICONS: Record<HowToIcon, LucideIcon> = {
   sell: ShoppingCart,
 };
 
-export default function HowToStart() {
+export default function HowToStart({ locale }: { locale: Locale }) {
+  const howToStartDetails = getHowToStart(locale);
+  const signUpDetails = getSignUp(locale);
+  const appDownloadDetails = getAppDownload(locale);
   const { steps } = howToStartDetails;
 
   return (

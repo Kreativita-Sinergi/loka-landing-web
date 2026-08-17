@@ -56,3 +56,37 @@ export const HTML_LANG: Record<Locale, string> = {
   ms: 'ms-MY',
   ja: 'ja-JP',
 }
+
+/** Tag locale bergaya OpenGraph (`id_ID`), berbeda pemisahnya dari [HTML_LANG]. */
+export const OG_LOCALE: Record<Locale, string> = {
+  id: 'id_ID',
+  en: 'en_US',
+  ms: 'ms_MY',
+  ja: 'ja_JP',
+}
+
+/** Nama bahasa ditulis DALAM bahasa itu sendiri — begitulah pemilih bahasa dibaca. */
+export const LOCALE_LABELS: Record<Locale, string> = {
+  id: 'Bahasa Indonesia',
+  en: 'English',
+  ms: 'Bahasa Melayu',
+  ja: '日本語',
+}
+
+/**
+ * Alamat sebuah halaman dalam satu bahasa.
+ *
+ * Bahasa Indonesia TIDAK memakai awalan: `/` dan `/web-admin` sudah terindeks
+ * sejak lama, dan memindahkannya ke `/id/...` berarti membuang seluruh riwayat
+ * itu demi keseragaman yang tidak dilihat siapa pun. Bahasa lain memakai
+ * awalan, dan middleware yang menulis ulang `/` menjadi `/id` di balik layar
+ * membuat keduanya tetap satu pohon rute.
+ */
+export function localePath(locale: Locale, path = '/'): string {
+  const clean = path === '/' ? '' : path.startsWith('/') ? path : `/${path}`
+  if (locale === DEFAULT_LOCALE) return clean || '/'
+  return `/${locale}${clean}`
+}
+
+/** Semua bahasa selain [DEFAULT_LOCALE] — dipakai `generateStaticParams`. */
+export const PREFIXED_LOCALES = LOCALES.filter((l) => l !== DEFAULT_LOCALE)

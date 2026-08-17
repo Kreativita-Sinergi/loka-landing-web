@@ -12,13 +12,14 @@ import {
 } from "lucide-react";
 
 import {
-  planLabels,
-  webAdminDetails,
-  webAdminGroups,
+  getPlanLabels,
+  getWebAdmin,
+  getWebAdminGroups,
   type Plan,
   type WebAdminGroup,
 } from "@/data/webAdmin";
 import WebAdminGallery from "./WebAdminGallery";
+import type { Locale } from "@/data/localized";
 
 const ICONS: Record<WebAdminGroup["icon"], React.ElementType> = {
   chart: BarChart3,
@@ -31,7 +32,7 @@ const ICONS: Record<WebAdminGroup["icon"], React.ElementType> = {
 
 // Badge paket hanya ditampilkan untuk fitur berbayar; menandai "Semua paket" di
 // mayoritas baris justru bikin ramai dan mengaburkan yang berbayar.
-const PlanBadge: React.FC<{ plan: Plan }> = ({ plan }) => {
+const PlanBadge: React.FC<{ plan: Plan; locale: Locale }> = ({ plan, locale }) => {
   if (plan === "semua") return null;
 
   const tone =
@@ -43,7 +44,7 @@ const PlanBadge: React.FC<{ plan: Plan }> = ({ plan }) => {
     <span
       className={`ml-2 inline-block rounded-full px-2 py-0.5 align-middle text-[10px] font-bold uppercase tracking-wide ${tone}`}
     >
-      {planLabels[plan]}
+      {getPlanLabels(locale)[plan]}
     </span>
   );
 };
@@ -51,7 +52,9 @@ const PlanBadge: React.FC<{ plan: Plan }> = ({ plan }) => {
 // Ringkasan Web Admin di beranda. Sengaja hanya menampilkan tiga fitur teratas
 // per grup — selebihnya ada di halaman /web-admin supaya beranda tidak menjadi
 // daftar fitur sepanjang layar.
-const WebAdmin: React.FC = () => {
+const WebAdmin: React.FC<{ locale: Locale }> = ({ locale }) => {
+  const webAdminDetails = getWebAdmin(locale);
+  const webAdminGroups = getWebAdminGroups(locale);
   return (
     <div>
       <WebAdminGallery className="mb-10" />
@@ -83,7 +86,7 @@ const WebAdmin: React.FC = () => {
                     <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-600" />
                     <span className="font-medium">
                       {feature.name}
-                      <PlanBadge plan={feature.plan} />
+                      <PlanBadge plan={feature.plan} locale={locale} />
                     </span>
                   </li>
                 ))}

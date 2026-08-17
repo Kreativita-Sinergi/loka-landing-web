@@ -1,13 +1,18 @@
 import React from "react";
 import Image from "next/image";
 import { ArrowUpRight, Check, Globe, Mail } from "lucide-react";
-import { parentCompany as kc } from "@/data/parentCompany";
+import { getParentCompany } from "@/data/parentCompany";
+import { getUi } from "@/data/ui";
+import type { Locale } from "@/data/localized";
 
-const waLink = `https://wa.me/${kc.whatsapp}?text=${encodeURIComponent(kc.whatsappMessage)}`;
+const ParentCompany: React.FC<{ locale: Locale }> = ({ locale }) => {
+  const kc = getParentCompany(locale);
+  const ui = getUi(locale);
+  const waLink = `https://wa.me/${kc.whatsapp}?text=${encodeURIComponent(kc.whatsappMessage)}`;
 
 // Structured data: associate Loka Kasir with its publisher Kreativita Sinergi.
 // Helps search engines connect both entities and pass relevance/authority.
-const jsonLd = {
+  const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -32,9 +37,8 @@ const jsonLd = {
       author: { "@id": `${kc.website}/#organization` },
     },
   ],
-};
+  };
 
-const ParentCompany: React.FC = () => {
   return (
     <section id="kreativita" className="py-10 lg:py-20">
       <script
@@ -121,7 +125,7 @@ const ParentCompany: React.FC = () => {
 
           {/* Right: services offered */}
           <div className="rounded-2xl bg-hero-background border border-gray-100 p-7 sm:p-8 dark:bg-background/40 dark:border-surface-border">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">Butuh solusi digital lain?</h3>
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{ui.parentCompanyPrompt}</h3>
             <p className="text-sm text-foreground-accent mb-6">
               Selain Loka Kasir, Kreativita Sinergi juga mengerjakan:
             </p>

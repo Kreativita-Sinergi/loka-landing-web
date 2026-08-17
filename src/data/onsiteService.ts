@@ -2,6 +2,13 @@
 // Loka Kasir punya tim di Padang, Pekanbaru, dan Payakumbuh. Untuk pelanggan
 // di kota-kota ini, tim bisa datang langsung ke lokasi untuk menyiapkan
 // aplikasi dan kedainya — dengan syarat berlangganan paket tahunan.
+//
+// SENGAJA TIDAK DILOKALKAN, dan section-nya hanya dirender pada bahasa
+// Indonesia (lihat `src/app/[locale]/page.tsx`). Tim yang bisa datang ke lokasi
+// hanya ada di tiga kota di Sumatera; menawarkan "kunjungan ke toko Anda"
+// kepada pembaca di Osaka atau Kuala Lumpur berarti menjanjikan layanan yang
+// tidak bisa ditepati. Tautannya di navigasi dan footer juga dihapus untuk
+// bahasa lain.
 
 export interface IOnsiteCity {
   name: string;

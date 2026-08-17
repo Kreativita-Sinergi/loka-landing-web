@@ -1,15 +1,20 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, ExternalLink, Monitor, Smartphone, Download } from 'lucide-react';
-import { appDownloadDetails } from '@/data/cta';
-import { webAdminDetails } from '@/data/webAdmin';
+import { getAppDownload } from '@/data/cta';
+import { getWebAdmin } from '@/data/webAdmin';
+import { getUi } from '@/data/ui';
 import WindowsDownloadLink from './WindowsDownloadLink';
+import type { Locale } from "@/data/localized";
 
 // Aplikasi sudah rilis di Google Play Store (Android) dan Microsoft Store
 // (Windows). Pendaftaran akun bisa dilakukan di web maupun di aplikasi, jadi
 // kartu ini hanya bicara soal pemasangan dan login.
 
-const Ecosystem: React.FC = () => {
+const Ecosystem: React.FC<{ locale: Locale }> = ({ locale }) => {
+  const appDownloadDetails = getAppDownload(locale);
+  const webAdminDetails = getWebAdmin(locale);
+  const ui = getUi(locale);
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
             {/* App Card */}
@@ -17,7 +22,7 @@ const Ecosystem: React.FC = () => {
                 <div className="w-12 h-12 bg-gray-900 rounded-2xl flex items-center justify-center mb-6 text-white dark:bg-white/10">
                     <Smartphone size={24} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 dark:text-white">Aplikasi Kasir</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 dark:text-white">{ui.ecosystemRegisterApp}</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed dark:text-gray-400">
                     Teman kerja kasir setiap hari. Transaksinya cepat, struk langsung tercetak, dan tutup shift jadi gampang.
                 </p>
@@ -55,7 +60,7 @@ const Ecosystem: React.FC = () => {
                         >
                             <Download size={22} className="flex-shrink-0" />
                             <div className="text-left">
-                                <div className="text-[10px] text-white/70 leading-none">Download di</div>
+                                <div className="text-[10px] text-white/70 leading-none">{ui.ecosystemDownloadOn}</div>
                                 <div className="text-base font-semibold leading-tight">Google Play Store</div>
                             </div>
                         </a>

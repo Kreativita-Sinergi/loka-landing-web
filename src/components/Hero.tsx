@@ -5,9 +5,10 @@ import Image from "next/image";
 import { Zap, BarChart3, Printer, RefreshCw, Download, UserPlus } from "lucide-react";
 import DemoVideo from "./DemoVideo";
 import WindowsDownloadLink from "./WindowsDownloadLink";
-import { heroDetails } from "@/data/hero";
-import { appDownloadDetails, ctaDetails, signUpDetails } from "@/data/cta";
+import { getHero } from "@/data/hero";
+import { getAppDownload, getCta, getSignUp } from "@/data/cta";
 import { trackDownloadClick, trackSignUpClick } from "@/utils/analytics";
+import type { Locale } from "@/data/localized";
 
 const BADGES = [
   { Icon: Zap, text: "Transaksi Kilat" },
@@ -16,7 +17,11 @@ const BADGES = [
   { Icon: RefreshCw, text: "Sync Cloud" },
 ];
 
-const Hero: React.FC = () => {
+const Hero: React.FC<{ locale: Locale }> = ({ locale }) => {
+  const heroDetails = getHero(locale);
+  const ctaDetails = getCta(locale);
+  const signUpDetails = getSignUp(locale);
+  const appDownloadDetails = getAppDownload(locale);
   return (
     <section
       id="hero"

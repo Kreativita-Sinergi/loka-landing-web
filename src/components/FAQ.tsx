@@ -4,9 +4,13 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react
 import { BiMinus, BiPlus } from "react-icons/bi";
 
 import SectionTitle from "./SectionTitle";
-import { faqs } from "@/data/faq";
+import { getFaqs } from "@/data/faq";
+import { getUi } from "@/data/ui";
+import type { Locale } from "@/data/localized";
 
-const FAQ: React.FC = () => {
+const FAQ: React.FC<{ locale: Locale }> = ({ locale }) => {
+  const faqs = getFaqs(locale);
+  const ui = getUi(locale);
     const categories = ["Semua", ...Array.from(new Set(faqs.map(f => f.category).filter(Boolean)))] as string[];
     const [active, setActive] = useState("Semua");
 
@@ -19,7 +23,7 @@ const FAQ: React.FC = () => {
             <div className="flex flex-col gap-6">
                 {/* Header */}
                 <div className="text-center">
-                    <p className="text-foreground-accent text-sm mb-2">Pertanyaan Umum</p>
+                    <p className="text-foreground-accent text-sm mb-2">{ui.faqHeading}</p>
                     <SectionTitle>
                         <h2 className="my-3 !leading-snug">
                             Pertanyaan yang Sering Diajukan

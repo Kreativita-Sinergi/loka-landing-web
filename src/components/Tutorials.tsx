@@ -10,8 +10,9 @@ import {
   Variants,
   MotionValue,
 } from "framer-motion";
-import { tutorialDetails, TutorialVideo } from "@/data/tutorials";
+import { getTutorials, TutorialVideo } from "@/data/tutorials";
 import { trackEvent } from "@/utils/analytics";
+import type { Locale } from "@/data/localized";
 
 const containerVariants: Variants = {
   offscreen: {},
@@ -100,7 +101,8 @@ const TutorialCard: React.FC<CardProps> = ({
  * stagger + parallax saat scroll. Video dimuat malas (preload none +
  * poster) dan hanya satu yang diputar pada satu waktu.
  */
-const Tutorials: React.FC = () => {
+const Tutorials: React.FC<{ locale: Locale }> = ({ locale }) => {
+  const tutorialDetails = getTutorials(locale);
   const [playing, setPlaying] = useState<string | null>(null);
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
   const sectionRef = useRef<HTMLDivElement>(null);
