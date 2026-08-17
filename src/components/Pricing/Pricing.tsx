@@ -1,12 +1,85 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { CheckCircle2, XCircle, Lightbulb, Gift } from "lucide-react";
 import PricingColumn from "./PricingColumn";
 import { tiers } from "@/data/pricing";
 import { appDownloadDetails, signUpDetails } from "@/data/cta";
 import { promoDetails } from "@/data/promo";
+import {
+  PRICING_COUNTRIES,
+  fetchPrices,
+  guessCountry,
+  type PricingCountry,
+  type SubscriptionPrice,
+} from "@/lib/pricing";
+
+/** Nama plan di API untuk tiap kolom harga; kolom uji coba tidak punya harga. */
+const PLAN_KEYS: Record<string, { monthly: string; yearly: string }> = {
+  Lite: { monthly: "lite", yearly: "lite-yearly" },
+  Pro: { monthly: "pro", yearly: "pro-yearly" },
+};
 
 const Pricing: React.FC = () => {
+  // Negara ditebak dari bahasa peramban, lalu bisa diubah pengunjung. Tebakan
+  // yang meleset cukup satu klik untuk dibetulkan — jauh lebih baik daripada
+  // semua orang melihat rupiah lebih dulu.
+  const [country, setCountry] = useState<PricingCountry>("ID");
+  const [prices, setPrices] = useState<SubscriptionPrice[] | null>(null);
+
+  useEffect(() => setCountry(guessCountry()), []);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchPrices(country).then((result) => {
+      if (!cancelled) setPrices(result);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [country]);
+
+  const priceOf = (plan: string) => prices?.find((p) => p.plan === plan);
+
+  /**
+   * Harga lokal untuk sebuah kolom. Dikembalikan undefined bila API belum
+   * menjawab ATAU bila negara itu memakai baris cadangan rupiah — dalam kedua
+   * keadaan itu, angka rupiah dari `data/pricing.ts` sudah benar.
+   */
+  const localizedFor = (tierName: string) => {
+    const keys = PLAN_KEYS[tierName];
+    if (!keys) return undefined;
+    const monthly = priceOf(keys.monthly);
+    if (!monthly || !monthly.is_local_price) return undefined;
+    return {
+      currency: monthly.display_currency,
+      country,
+      monthly: monthly.display_amount,
+      yearly: priceOf(keys.yearly)?.display_amount,
+    };
+  };
+
   return (
     <div className="py-6">
+      {/* Pemilih negara — menentukan mata uang yang ditampilkan seluruh kolom. */}
+      <div className="mb-6 flex flex-wrap items-center justify-center gap-2">
+        <label htmlFor="pricing-country" className="text-sm text-gray-600 dark:text-gray-300">
+          Harga untuk
+        </label>
+        <select
+          id="pricing-country"
+          value={country}
+          onChange={(e) => setCountry(e.target.value as PricingCountry)}
+          className="rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm dark:border-surface-border dark:bg-surface"
+        >
+          {PRICING_COUNTRIES.map((c) => (
+            <option key={c.code} value={c.code}>
+              {c.label} ({c.currency})
+            </option>
+          ))}
+        </select>
+      </div>
+
       {/* Banner promo: gratis 2 minggu pertama untuk setiap akun baru */}
       <div className="mb-8 flex flex-col items-center gap-2 rounded-2xl border border-blue-200 bg-blue-50 px-6 py-5 text-center dark:border-blue-500/30 dark:bg-blue-500/10">
         <p className="inline-flex items-center gap-2 text-base font-bold text-blue-800 dark:text-blue-300">
@@ -22,6 +95,7 @@ const Pricing: React.FC = () => {
             key={tier.name}
             tier={tier}
             highlight={index === 2}
+            localized={localizedFor(tier.name)}
           />
         ))}
       </div>

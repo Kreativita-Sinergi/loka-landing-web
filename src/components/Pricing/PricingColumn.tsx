@@ -4,19 +4,45 @@ import clsx from "clsx";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 
 import { IPricing } from "@/types";
+import { formatPrice } from "@/lib/pricing";
 
 interface Props {
   tier: IPricing;
   highlight?: boolean;
+  /**
+   * Harga yang benar-benar berlaku untuk negara yang dipilih pengunjung, dalam
+   * satuan terkecil mata uangnya. Kosong = pakai angka rupiah dari `tier`, yang
+   * merupakan perilaku sebelum harga per negara ada.
+   */
+  localized?: {
+    currency: string;
+    country: string;
+    monthly?: number;
+    yearly?: number;
+  };
 }
 
-const PricingColumn: React.FC<Props> = ({ tier, highlight }: Props) => {
+const PricingColumn: React.FC<Props> = ({ tier, highlight, localized }: Props) => {
   const { name, price, period, priceAnnual, periodAnnual, annualNote, badge, description, features, ctaLabel, ctaUrl } = tier;
   const isFreeTrial = typeof price === "string";
 
+  // Harga lokal diutamakan; rupiah dari `tier` jadi cadangan bila API belum
+  // menjawab atau negaranya belum punya harga sendiri.
+  const monthlyMinor = localized?.monthly;
+  const yearlyMinor = localized?.yearly;
+
   const displayPrice = isFreeTrial
     ? price
-    : `Rp ${(price as number).toLocaleString("id-ID")}`;
+    : monthlyMinor !== undefined && localized
+      ? formatPrice(monthlyMinor, localized.currency, localized.country)
+      : `Rp ${(price as number).toLocaleString("id-ID")}`;
+
+  const displayAnnual =
+    yearlyMinor !== undefined && localized
+      ? formatPrice(yearlyMinor, localized.currency, localized.country)
+      : priceAnnual !== undefined
+        ? `Rp ${priceAnnual.toLocaleString("id-ID")}`
+        : undefined;
 
   return (
     <div
@@ -59,7 +85,7 @@ const PricingColumn: React.FC<Props> = ({ tier, highlight }: Props) => {
           {priceAnnual && (
             <div className="mt-3 inline-flex flex-col items-center gap-0.5 rounded-xl bg-gray-50 px-3 py-2 dark:bg-white/5">
               <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">
-                atau Rp {priceAnnual.toLocaleString("id-ID")}
+                atau {displayAnnual}
                 <span className="font-normal text-gray-500 dark:text-gray-400">
                   {" "}/ {periodAnnual?.replace(/^per\s*/, "") ?? "tahun"}
                 </span>
