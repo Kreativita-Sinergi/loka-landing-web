@@ -19,7 +19,7 @@ export const howToStartDetails: {
 } = {
   title: "Cara Daftar & Mulai Pakai",
   description:
-    "Lima langkah sederhana — dari belum punya akun sampai siap menerima transaksi pertama. Gratis 2 minggu pertama, tanpa komitmen.",
+    "Lima langkah sederhana — dari belum punya akun sampai siap menerima transaksi pertama. Gratis 30 hari pertama, tanpa komitmen.",
   // Urutannya sengaja dimulai dari mendaftar, bukan mengunduh: sejak Web Admin
   // punya halaman pendaftaran sendiri, pemilik bisa membuat akun dan menyiapkan
   // toko dari laptop tanpa memegang HP dulu.

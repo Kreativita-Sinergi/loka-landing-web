@@ -188,7 +188,7 @@ export default function WebAdminPage() {
           Fitur tanpa label tersedia di semua paket. Label{" "}
           <span className="font-semibold">Lite</span> dan{" "}
           <span className="font-semibold">Pro</span> menandai fitur yang mengikuti
-          paket berlangganan — semuanya bisa dicoba gratis selama 2 minggu pertama.
+          paket berlangganan — semuanya bisa dicoba gratis selama 30 hari pertama.
         </p>
 
         <div className="space-y-10">

@@ -13,7 +13,7 @@ import WingetCommand from "@/components/WingetCommand";
 export const metadata: Metadata = {
   title: `Download untuk Windows — ${siteDetails.siteName}`,
   description:
-    "Cara memasang aplikasi kasir Loka Kasir di PC atau laptop Windows 10/11 — lewat Microsoft Store atau perintah winget. Ringan, unduhan hanya ±30 MB. Gratis 2 minggu pertama.",
+    "Cara memasang aplikasi kasir Loka Kasir di PC atau laptop Windows 10/11 — lewat Microsoft Store atau perintah winget. Ringan, unduhan hanya ±30 MB. Gratis 30 hari pertama.",
   alternates: {
     canonical: `${siteDetails.siteUrl}/download/windows`,
   },
@@ -43,7 +43,7 @@ const steps = [
   {
     title: "Login, atau daftar bila belum punya akun",
     detail:
-      "Buka Loka Kasir dari Start Menu lalu login. Belum punya akun? Anda bisa mendaftar gratis di dalam aplikasi maupun lewat browser di app.lokakasir.id — dua minggu pertama gratis dengan akses penuh.",
+      "Buka Loka Kasir dari Start Menu lalu login. Belum punya akun? Anda bisa mendaftar gratis di dalam aplikasi maupun lewat browser di app.lokakasir.id — 30 hari pertama gratis dengan akses penuh.",
   },
 ];
 
@@ -99,7 +99,7 @@ export default function WindowsDownloadPage() {
             className="w-full sm:w-auto bg-blue-600 text-white hover:bg-blue-700"
           />
           <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-            {windowsDownloadDetails.note} · Gratis 2 minggu pertama
+            {windowsDownloadDetails.note} · Gratis 30 hari pertama
           </p>
         </div>
 

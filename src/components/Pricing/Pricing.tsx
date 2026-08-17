@@ -80,7 +80,7 @@ const Pricing: React.FC = () => {
         </select>
       </div>
 
-      {/* Banner promo: gratis 2 minggu pertama untuk setiap akun baru */}
+      {/* Banner promo: gratis 30 hari pertama untuk setiap akun baru */}
       <div className="mb-8 flex flex-col items-center gap-2 rounded-2xl border border-blue-200 bg-blue-50 px-6 py-5 text-center dark:border-blue-500/30 dark:bg-blue-500/10">
         <p className="inline-flex items-center gap-2 text-base font-bold text-blue-800 dark:text-blue-300">
           <Gift size={18} aria-hidden="true" /> {promoDetails.heading}

@@ -10,7 +10,7 @@ const steps = [
   {
     number: "1",
     title: "Daftar Gratis",
-    desc: "Buat akun langsung dari browser ini, atau dari dalam aplikasi. Keduanya sama-sama dapat 2 minggu gratis.",
+    desc: "Buat akun langsung dari browser ini, atau dari dalam aplikasi. Keduanya sama-sama dapat 30 hari gratis.",
   },
   {
     number: "2",

@@ -53,7 +53,7 @@ export const onsiteServiceDetails = {
 
   requirementHeading: "Syaratnya: Berlangganan Tahunan",
   requirementMessage:
-    "Layanan datang ke lokasi ini gratis untuk pelanggan yang mengambil paket tahunan — Lite Rp 399.000/tahun atau Pro Rp 890.000/tahun. Anda tetap bisa mencoba gratis 2 minggu lebih dulu, lalu minta dijadwalkan kunjungan setelah memutuskan berlangganan tahunan.",
+    "Layanan datang ke lokasi ini gratis untuk pelanggan yang mengambil paket tahunan — Lite Rp 399.000/tahun atau Pro Rp 890.000/tahun. Anda tetap bisa mencoba gratis 30 hari lebih dulu, lalu minta dijadwalkan kunjungan setelah memutuskan berlangganan tahunan.",
   requirementPoints: [
     "Berlaku untuk paket tahunan Lite maupun Pro",
     "Kunjungan dijadwalkan setelah pembayaran langganan tahunan dikonfirmasi",

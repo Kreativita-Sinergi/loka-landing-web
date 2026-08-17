@@ -1,7 +1,7 @@
 export const ctaDetails = {
-  heading: "Gratis 2 Minggu Pertama — Tanpa Risiko",
+  heading: "Gratis 30 Hari Pertama — Tanpa Risiko",
   subheading:
-    "Daftar gratis langsung dari browser ini, atau dari aplikasinya — akunnya sama. Pakai semua fitur Pro selama 2 minggu pertama tanpa kartu kredit dan tanpa komitmen. Setelah itu, lanjutkan dengan paket mulai Rp 39.000/bulan.",
+    "Daftar gratis langsung dari browser ini, atau dari aplikasinya — akunnya sama. Pakai semua fitur Pro selama 30 hari pertama tanpa kartu kredit dan tanpa komitmen. Setelah itu, lanjutkan dengan paket mulai Rp 39.000/bulan.",
   dashboardUrl: "https://app.lokakasir.id",
 };
 
@@ -14,7 +14,7 @@ export const ctaDetails = {
 export const signUpDetails = {
   url: "https://app.lokakasir.id/register",
   label: "Daftar Gratis",
-  note: "Gratis 2 minggu pertama · Tanpa kartu kredit · Bisa daftar dari browser atau aplikasi",
+  note: "Gratis 30 hari pertama · Tanpa kartu kredit · Bisa daftar dari browser atau aplikasi",
 };
 
 export const supportDetails = {
@@ -36,7 +36,7 @@ export const appDownloadDetails = {
   url: "https://play.google.com/store/apps/details?id=id.lokakasir.app",
   label: "Download di Google Play",
   // Catatan singkat yang ditampilkan di dekat tombol unduh.
-  note: "Android & Windows · Gratis 2 minggu pertama · Login dengan akun yang sama",
+  note: "Android & Windows · Gratis 30 hari pertama · Login dengan akun yang sama",
 };
 
 // Versi desktop Loka Kasir untuk PC/laptop Windows, dirilis lewat Microsoft
