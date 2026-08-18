@@ -123,7 +123,7 @@ const Footer: React.FC<{ locale: Locale }> = ({ locale }) => {
             rel="noopener noreferrer"
             className="inline-block mt-3 text-xs text-secondary hover:underline"
           >
-            Lihat di Google Maps →
+            {ui.footerMapsLink}
           </a>
         </div>
       </div>
@@ -141,7 +141,7 @@ const Footer: React.FC<{ locale: Locale }> = ({ locale }) => {
             href="https://www.kreativitasinergi.com"
             target="_blank"
             rel="noopener"
-            title="Jasa pembuatan website & aplikasi — Kreativita Sinergi"
+            title={ui.parentServiceAlt}
             className="font-medium text-foreground-accent hover:text-secondary transition-colors"
           >
             Kreativita Sinergi

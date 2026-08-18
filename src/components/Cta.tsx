@@ -6,30 +6,15 @@ import { getAppDownload, getCta, getSignUp, getSupport } from "@/data/cta";
 import { trackContactClick, trackDownloadClick, trackSignUpClick } from "@/utils/analytics";
 import WindowsDownloadLink from "./WindowsDownloadLink";
 import type { Locale } from "@/data/localized";
-
-const steps = [
-  {
-    number: "1",
-    title: "Daftar Gratis",
-    desc: "Buat akun langsung dari browser ini, atau dari dalam aplikasi. Keduanya sama-sama dapat 30 hari gratis.",
-  },
-  {
-    number: "2",
-    title: "Siapkan Toko",
-    desc: "Isi produk, karyawan, dan metode pembayaran lewat Web Admin — bisa dari laptop.",
-  },
-  {
-    number: "3",
-    title: "Mulai Jualan",
-    desc: "Pasang aplikasi kasirnya di Android atau Windows, login, dan langsung terima transaksi.",
-  },
-];
+import { getUi } from "@/data/ui";
 
 export default function CTA({ locale }: { locale: Locale }) {
   const ctaDetails = getCta(locale);
   const signUpDetails = getSignUp(locale);
   const appDownloadDetails = getAppDownload(locale);
   const supportDetails = getSupport(locale);
+  const ui = getUi(locale);
+  const steps = ui.ctaSteps.map((s, i) => ({ ...s, number: String(i + 1) }));
   return (
     <section id="cta" className="mt-10 mb-5 lg:my-20">
       <div className="relative h-full w-full z-10 mx-auto py-12 sm:py-20">
@@ -88,13 +73,14 @@ export default function CTA({ locale }: { locale: Locale }) {
                 onClick={() => trackDownloadClick("cta")}
                 className="flex items-center justify-center gap-2 w-full sm:flex-1 px-8 h-14 rounded-full font-bold text-base leading-none bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-colors"
               >
-                <Download size={18} className="flex-shrink-0 relative -top-px" /> Download Aplikasi
+                <Download size={18} className="flex-shrink-0 relative -top-px" /> {ui.navDownloadApp}
               </a>
             </div>
 
             {/* Versi Windows — tombol terpisah agar pengguna PC/laptop jelas jalurnya */}
             <div className="mt-3 w-full max-w-2xl mx-auto flex justify-center">
               <WindowsDownloadLink
+                locale={locale}
                 source="cta"
                 variant="button"
                 className="w-full sm:w-auto bg-white/10 text-white border border-white/30 hover:bg-white/20"
@@ -104,14 +90,14 @@ export default function CTA({ locale }: { locale: Locale }) {
             <p className="mt-3 text-xs text-gray-400">{signUpDetails.note}</p>
 
             <p className="mt-2 text-xs text-gray-400">
-              Sudah punya akun?{" "}
+              {ui.heroAlreadyHaveAccount}{" "}
               <a
                 href={ctaDetails.dashboardUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-semibold text-white hover:underline"
               >
-                Masuk ke Web Admin
+                {ui.heroLoginLink}
               </a>
             </p>
 

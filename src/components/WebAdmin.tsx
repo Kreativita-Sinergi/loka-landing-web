@@ -20,6 +20,9 @@ import {
 } from "@/data/webAdmin";
 import WebAdminGallery from "./WebAdminGallery";
 import type { Locale } from "@/data/localized";
+import { getUi } from "@/data/ui";
+import { getEcosystem } from "@/data/ecosystem";
+import { localePath } from "@/data/localized";
 
 const ICONS: Record<WebAdminGroup["icon"], React.ElementType> = {
   chart: BarChart3,
@@ -92,7 +95,7 @@ const WebAdmin: React.FC<{ locale: Locale }> = ({ locale }) => {
                 ))}
                 {group.features.length > 3 && (
                   <li className="pl-5 text-xs text-gray-400 dark:text-gray-500">
-                    +{group.features.length - 3} fitur lainnya
+                    {getUi(locale).webAdminMoreFeatures.replace("{count}", String(group.features.length - 3))}
                   </li>
                 )}
               </ul>
@@ -108,10 +111,10 @@ const WebAdmin: React.FC<{ locale: Locale }> = ({ locale }) => {
         </p>
         <div className="mt-4 flex flex-col gap-3 sm:flex-row">
           <Link
-            href="/web-admin"
+            href={localePath(locale, "/web-admin")}
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
           >
-            Lihat semua fitur Web Admin
+            {getUi(locale).webAdminSeeAll}
             <ArrowRight size={16} aria-hidden="true" />
           </Link>
           <a
@@ -120,7 +123,7 @@ const WebAdmin: React.FC<{ locale: Locale }> = ({ locale }) => {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-300 bg-white px-5 py-3 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:border-surface-border dark:bg-transparent dark:text-white dark:hover:bg-white/5"
           >
-            Buka Web Admin
+            {getEcosystem(locale).openWebAdmin}
             <ExternalLink size={15} aria-hidden="true" />
           </a>
         </div>

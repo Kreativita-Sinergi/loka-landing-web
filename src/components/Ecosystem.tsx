@@ -6,6 +6,8 @@ import { getWebAdmin } from '@/data/webAdmin';
 import { getUi } from '@/data/ui';
 import WindowsDownloadLink from './WindowsDownloadLink';
 import type { Locale } from "@/data/localized";
+import { getEcosystem } from '@/data/ecosystem';
+import { localePath } from '@/data/localized';
 
 // Aplikasi sudah rilis di Google Play Store (Android) dan Microsoft Store
 // (Windows). Pendaftaran akun bisa dilakukan di web maupun di aplikasi, jadi
@@ -15,6 +17,7 @@ const Ecosystem: React.FC<{ locale: Locale }> = ({ locale }) => {
   const appDownloadDetails = getAppDownload(locale);
   const webAdminDetails = getWebAdmin(locale);
   const ui = getUi(locale);
+  const eco = getEcosystem(locale);
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
             {/* App Card */}
@@ -22,22 +25,10 @@ const Ecosystem: React.FC<{ locale: Locale }> = ({ locale }) => {
                 <div className="w-12 h-12 bg-gray-900 rounded-2xl flex items-center justify-center mb-6 text-white dark:bg-white/10">
                     <Smartphone size={24} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 dark:text-white">{ui.ecosystemRegisterApp}</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed dark:text-gray-400">
-                    Teman kerja kasir setiap hari. Transaksinya cepat, struk langsung tercetak, dan tutup shift jadi gampang.
-                </p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 dark:text-white">{eco.app.title}</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed dark:text-gray-400">{eco.app.description}</p>
                 <ul className="space-y-3 flex-1">
-                    {[
-                        "Kasir cukup login pakai PIN 4 angka",
-                        "Tampilan kasir simpel, bisa mode grid atau daftar",
-                        "Melayani dine-in, take away, sampai delivery",
-                        "Pilihan pembayaran menyesuaikan toko Anda",
-                        "Cetak struk lewat printer Bluetooth atau USB",
-                        "Buka-tutup shift dan rekap kas otomatis",
-                        "Layar dapur (KDS) untuk memantau pesanan masuk",
-                        "Absen karyawan cukup clock-in dan clock-out",
-                        "Tetap jalan walau offline, sinkron sendiri saat online",
-                    ].map((item) => (
+                    {eco.app.bullets.map((item) => (
                         <li key={item} className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                             <div className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />
                             <span className="text-sm font-medium">{item}</span>
@@ -47,10 +38,7 @@ const Ecosystem: React.FC<{ locale: Locale }> = ({ locale }) => {
 
                 {/* Download dari Play Store / Microsoft Store */}
                 <div className="mt-8 pt-6 border-t border-gray-100 dark:border-surface-border">
-                    <p className="text-xs text-gray-500 mb-3 dark:text-gray-400">
-                        Tersedia untuk HP/tablet Android dan PC/laptop Windows. Pasang dari
-                        toko aplikasinya, lalu login dengan akun yang sama.
-                    </p>
+                    <p className="text-xs text-gray-500 mb-3 dark:text-gray-400">{eco.app.note}</p>
                     <div className="flex flex-col sm:flex-row gap-3">
                         <a
                             href={appDownloadDetails.url}
@@ -65,6 +53,7 @@ const Ecosystem: React.FC<{ locale: Locale }> = ({ locale }) => {
                             </div>
                         </a>
                         <WindowsDownloadLink
+                          locale={locale}
                             source="ecosystem"
                             variant="button"
                             label="Microsoft Store"
@@ -79,22 +68,10 @@ const Ecosystem: React.FC<{ locale: Locale }> = ({ locale }) => {
                 <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center mb-6 text-white">
                     <Monitor size={24} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 dark:text-white">Web Admin</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed dark:text-gray-400">
-                    Tempat Anda memantau dan mengatur bisnis dari mana saja. Lihat laporan terbaru, urus stok, dan kelola karyawan.
-                </p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 dark:text-white">{eco.web.title}</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed dark:text-gray-400">{eco.web.description}</p>
                 <ul className="space-y-3">
-                    {[
-                        "Laporan keuangan yang selalu terbarui",
-                        "Lihat tren penjualan lengkap dengan grafiknya",
-                        "Atur produk, kategori, dan variannya",
-                        "Kelola stok, bisa sekaligus banyak item",
-                        "Pegang banyak outlet dari satu akun",
-                        "Atur karyawan beserta hak aksesnya",
-                        "Tata meja dan denah ruangan resto",
-                        "Lihat riwayat transaksi dan proses refund",
-                        "Atur outlet dan langganan Anda",
-                    ].map((item) => (
+                    {eco.web.bullets.map((item) => (
                         <li key={item} className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                             <div className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />
                             <span className="text-sm font-medium">{item}</span>
@@ -105,10 +82,7 @@ const Ecosystem: React.FC<{ locale: Locale }> = ({ locale }) => {
                 {/* Web Admin tidak diunduh, jadi kartunya perlu jalan masuk
                     sendiri — tanpa ini bagian pemilik terasa cuma pelengkap */}
                 <div className="mt-8 pt-6 border-t border-gray-100 dark:border-surface-border">
-                    <p className="text-xs text-gray-500 mb-3 dark:text-gray-400">
-                        Dibuka lewat browser, tanpa instalasi. Sudah termasuk di semua
-                        paket dengan akun yang sama.
-                    </p>
+                    <p className="text-xs text-gray-500 mb-3 dark:text-gray-400">{eco.web.note}</p>
                     <div className="flex flex-col sm:flex-row gap-3">
                         <a
                             href={webAdminDetails.url}
@@ -116,14 +90,14 @@ const Ecosystem: React.FC<{ locale: Locale }> = ({ locale }) => {
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-5 py-3 rounded-xl text-sm font-semibold hover:bg-blue-700 transition-colors"
                         >
-                            Buka Web Admin
+                            {eco.openWebAdmin}
                             <ExternalLink size={15} aria-hidden="true" />
                         </a>
                         <Link
-                            href="/web-admin"
+                            href={localePath(locale, "/web-admin")}
                             className="inline-flex items-center justify-center gap-2 border border-gray-300 text-gray-900 px-5 py-3 rounded-xl text-sm font-semibold hover:bg-gray-50 transition-colors dark:border-surface-border dark:text-white dark:hover:bg-white/5"
                         >
-                            Lihat fiturnya
+                            {eco.seeFeatures}
                             <ArrowRight size={15} aria-hidden="true" />
                         </Link>
                     </div>

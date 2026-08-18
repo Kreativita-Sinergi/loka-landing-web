@@ -71,7 +71,7 @@ const Pricing: React.FC<{ locale: Locale }> = ({ locale }) => {
       {/* Pemilih negara — menentukan mata uang yang ditampilkan seluruh kolom. */}
       <div className="mb-6 flex flex-wrap items-center justify-center gap-2">
         <label htmlFor="pricing-country" className="text-sm text-gray-600 dark:text-gray-300">
-          Harga untuk
+          {ui.pricingCountryLabel}
         </label>
         <select
           id="pricing-country"
@@ -99,6 +99,7 @@ const Pricing: React.FC<{ locale: Locale }> = ({ locale }) => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
         {tiers.map((tier, index) => (
           <PricingColumn
+            locale={locale}
             key={tier.name}
             tier={tier}
             highlight={index === 2}
@@ -157,30 +158,30 @@ const Pricing: React.FC<{ locale: Locale }> = ({ locale }) => {
             rel="noopener noreferrer"
             className="text-blue-600 underline hover:text-blue-800 font-semibold text-sm"
           >
-            Download di Google Play →
+            {ui.pricingPlayLink}
           </a>
         </div>
       </div>
 
       <div className="mt-4 space-y-2 text-center">
         <p className="text-sm font-medium text-gray-600 dark:text-gray-300">
-          Mulai sekarang:{" "}
+          {ui.pricingStartLead}
           <a
             href={signUpDetails.url}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 underline hover:text-blue-800 font-semibold"
           >
-            daftar gratis di app.lokakasir.id
+            {ui.pricingSignUpLink}
           </a>
-          {" "}atau langsung dari aplikasinya — {promoDetails.duration} pertama gratis. Pemilihan paket &amp; pembayaran baru dilakukan setelah masa gratis berakhir.
+          {ui.pricingStartTail.replace("{duration}", promoDetails.duration)}
         </p>
         <p className="text-sm text-gray-400 dark:text-gray-500">
-          Harga sudah termasuk PPN. Pembayaran melalui transfer bank atau dompet digital.{" "}
+          {ui.pricingTaxNote}{" "}
           <a href="mailto:help@lokakasir.id" className="underline hover:text-gray-600">
-            Hubungi kami
-          </a>{" "}
-          untuk pertanyaan seputar harga.
+            {ui.pricingContactLink}
+          </a>
+          {ui.pricingContactTail}
         </p>
       </div>
     </div>

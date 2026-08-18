@@ -28,40 +28,30 @@ const Stats = async ({ locale }: { locale: Locale }) => {
   // tangan dan bisa basi — itulah alasan seluruh bagian ini dipindah ke data
   // langsung; menampilkan angka lama diam-diam lebih buruk daripada
   // menampilkan angka yang benar.
+  // Label dan keterangannya diambil dari katalog bahasa yang sama dengan versi
+  // cadangan; hanya ANGKANYA yang datang dari data langsung. Sebelumnya cabang
+  // ini menulis ulang keempat labelnya dalam bahasa Indonesia, sehingga di
+  // halaman berbahasa lain seluruh blok ini tetap berbahasa Indonesia selama
+  // backend-nya terjangkau — yaitu hampir selalu.
   const items: StatItem[] = live
     ? [
-        {
-          value: formatNumber(live.active_24h),
-          label: "Aktif 24 Jam",
-          description:
-            "Pemilik dan kasir yang membuka Loka Kasir dalam sehari terakhir",
-        },
-        {
-          value: formatNumber(live.active_7d),
-          label: "Aktif 7 Hari",
-          description: `${activeShare(
-            live.active_7d,
-            live.total_users,
-          )} dari total pengguna — dipakai rutin, bukan sekadar didaftarkan`,
-        },
-        {
-          value: formatHours(live.hours_7d),
-          label: "Jam Pakai / Minggu",
-          description:
-            "Total jam aplikasi & web kasir menemani jam operasional toko",
-        },
-        {
-          value: formatNumber(live.total_transactions),
-          label: "Transaksi Diproses",
-          description:
-            "Penjualan yang tercatat, tersinkron otomatis antara kasir dan web admin",
-        },
-      ]
+        formatNumber(live.active_24h),
+        formatNumber(live.active_7d),
+        formatHours(live.hours_7d),
+        formatNumber(live.total_transactions),
+      ].map((value, i) => ({ ...fallbackStats[i], value }))
     : fallbackStats;
 
-  const note = live
-    ? "Angka langsung dari sistem Loka Kasir — disegarkan otomatis tiap 10 menit."
-    : statsNote;
+  // Bagian pengguna aktif hanya bisa dihitung dari data langsung, jadi
+  // keterangannya disisipkan di depan kalimat yang sudah diterjemahkan.
+  if (live) {
+    items[1] = {
+      ...items[1],
+      description: `${activeShare(live.active_7d, live.total_users)} — ${items[1].description}`,
+    };
+  }
+
+  const note = statsNote;
 
   return (
     <section className="bg-secondary py-14">

@@ -111,7 +111,7 @@ const HomePage = async ({ params }: { params: Promise<{ locale: string }> }) => 
           title={ui.sectionScreenshots}
           description={ui.sectionScreenshotsDesc}
         >
-          <AppScreenshots />
+          <AppScreenshots locale={locale} />
         </Section>
 
         {/* Testimoni */}

@@ -5,8 +5,11 @@ import { BsFillCheckCircleFill } from "react-icons/bs";
 
 import { IPricing } from "@/types";
 import { formatPrice } from "@/lib/pricing";
+import type { Locale } from "@/data/localized";
+import { getUi } from "@/data/ui";
 
 interface Props {
+  locale: Locale;
   tier: IPricing;
   highlight?: boolean;
   /**
@@ -22,7 +25,7 @@ interface Props {
   };
 }
 
-const PricingColumn: React.FC<Props> = ({ tier, highlight, localized }: Props) => {
+const PricingColumn: React.FC<Props> = ({ tier, highlight, localized, locale }: Props) => {
   const { name, price, period, priceAnnual, periodAnnual, annualNote, badge, description, features, ctaLabel, ctaUrl } = tier;
   const isFreeTrial = typeof price === "string";
 
@@ -85,7 +88,7 @@ const PricingColumn: React.FC<Props> = ({ tier, highlight, localized }: Props) =
           {priceAnnual && (
             <div className="mt-3 inline-flex flex-col items-center gap-0.5 rounded-xl bg-gray-50 px-3 py-2 dark:bg-white/5">
               <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">
-                atau {displayAnnual}
+                {getUi(locale).pricingOrAnnual} {displayAnnual}
                 <span className="font-normal text-gray-500 dark:text-gray-400">
                   {" "}/ {periodAnnual?.replace(/^per\s*/, "") ?? "tahun"}
                 </span>
@@ -113,7 +116,7 @@ const PricingColumn: React.FC<Props> = ({ tier, highlight, localized }: Props) =
             }
           )}
         >
-          {ctaLabel ?? "Mulai Sekarang"}
+          {ctaLabel ?? getUi(locale).pricingDefaultCta}
         </a>
       </div>
 

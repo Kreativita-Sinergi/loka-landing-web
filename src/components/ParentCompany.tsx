@@ -94,10 +94,10 @@ const ParentCompany: React.FC<{ locale: Locale }> = ({ locale }) => {
                 href={kc.website}
                 target="_blank"
                 rel="noopener"
-                title="Jasa pembuatan website & aplikasi — Kreativita Sinergi"
+                title={ui.parentServiceAlt}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-gray-900 text-white font-semibold w-full sm:flex-1 px-6 h-12 leading-none whitespace-nowrap hover:bg-gray-800 transition-colors dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
               >
-                <Globe size={18} className="flex-shrink-0" /> Jasa Website &amp; Aplikasi
+                <Globe size={18} className="flex-shrink-0" /> {ui.parentServicesCta}
                 <ArrowUpRight size={16} className="flex-shrink-0" />
               </a>
               <a
@@ -106,12 +106,12 @@ const ParentCompany: React.FC<{ locale: Locale }> = ({ locale }) => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-gray-200 text-gray-800 font-semibold w-full sm:flex-1 px-6 h-12 leading-none whitespace-nowrap hover:border-secondary hover:text-secondary transition-colors dark:border-surface-border dark:text-gray-200"
               >
-                Konsultasi Proyek
+                {ui.parentConsultCta}
               </a>
             </div>
 
             <p className="mt-3 text-xs text-foreground-accent">
-              Kunjungi{" "}
+              {ui.parentVisit}{" "}
               <a
                 href={kc.website}
                 target="_blank"
@@ -127,7 +127,7 @@ const ParentCompany: React.FC<{ locale: Locale }> = ({ locale }) => {
           <div className="rounded-2xl bg-hero-background border border-gray-100 p-7 sm:p-8 dark:bg-background/40 dark:border-surface-border">
             <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{ui.parentCompanyPrompt}</h3>
             <p className="text-sm text-foreground-accent mb-6">
-              Selain Loka Kasir, Kreativita Sinergi juga mengerjakan:
+              {ui.parentAlsoBuilds}
             </p>
             <ul className="space-y-3">
               {kc.services.map((s) => (

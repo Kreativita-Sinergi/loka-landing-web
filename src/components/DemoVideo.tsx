@@ -3,19 +3,23 @@
 import { useState, useEffect } from "react";
 import { Play, X } from "lucide-react";
 import { trackEvent } from "@/utils/analytics";
+import type { Locale } from "@/data/localized";
+import { getUi } from "@/data/ui";
 
 interface Props {
   /** Teks tombol pemicu. */
   label?: string;
   /** Override kelas tombol pemicu (mis. gaya ghost di Hero vs solid di section). */
   className?: string;
+  locale: Locale;
 }
 
 /**
  * Tombol "Lihat Demo" + modal pemutar video rekaman aplikasi.
  * Video portrait (rekaman HP) dimuat hanya saat modal dibuka.
  */
-export default function DemoVideo({ label = "Lihat Demo", className }: Props) {
+export default function DemoVideo({ label, className, locale }: Props) {
+  const ui = getUi(locale);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -48,14 +52,14 @@ export default function DemoVideo({ label = "Lihat Demo", className }: Props) {
         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 text-white">
           <Play size={12} className="ml-0.5 fill-current" aria-hidden="true" />
         </span>
-        {label}
+        {label ?? ui.demoOpenLabel}
       </button>
 
       {open && (
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="Demo aplikasi Loka Kasir"
+          aria-label={ui.demoDialogLabel}
           onClick={() => setOpen(false)}
           className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
         >
@@ -63,7 +67,7 @@ export default function DemoVideo({ label = "Lihat Demo", className }: Props) {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              aria-label="Tutup demo"
+              aria-label={ui.demoCloseLabel}
               className="absolute -right-2 -top-2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white text-gray-800 shadow-lg hover:bg-gray-100"
             >
               <X size={18} aria-hidden="true" />

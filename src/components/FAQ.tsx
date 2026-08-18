@@ -11,10 +11,10 @@ import type { Locale } from "@/data/localized";
 const FAQ: React.FC<{ locale: Locale }> = ({ locale }) => {
   const faqs = getFaqs(locale);
   const ui = getUi(locale);
-    const categories = ["Semua", ...Array.from(new Set(faqs.map(f => f.category).filter(Boolean)))] as string[];
-    const [active, setActive] = useState("Semua");
+    const categories = [ui.faqFilterAll, ...Array.from(new Set(faqs.map(f => f.category).filter(Boolean)))] as string[];
+    const [active, setActive] = useState(ui.faqFilterAll);
 
-    const filtered = active === "Semua"
+    const filtered = active === ui.faqFilterAll
         ? faqs
         : faqs.filter(f => f.category === active);
 
@@ -26,12 +26,11 @@ const FAQ: React.FC<{ locale: Locale }> = ({ locale }) => {
                     <p className="text-foreground-accent text-sm mb-2">{ui.faqHeading}</p>
                     <SectionTitle>
                         <h2 className="my-3 !leading-snug">
-                            Pertanyaan yang Sering Diajukan
+                            {ui.faqTitle}
                         </h2>
                     </SectionTitle>
                     <p className="text-foreground-accent max-w-xl mx-auto">
-                        Panduan lengkap cara kerja Loka Kasir — dari setup awal hingga laporan harian.
-                        Masih ada pertanyaan?{" "}
+                        {ui.faqLeadBefore}
                         <a href="mailto:help@lokakasir.id" className="text-secondary font-semibold hover:underline">
                             help@lokakasir.id
                         </a>
@@ -53,7 +52,7 @@ const FAQ: React.FC<{ locale: Locale }> = ({ locale }) => {
                                 }`}
                             >
                                 {cat}
-                                {cat !== "Semua" && (
+                                {cat !== ui.faqFilterAll && (
                                     <span className="ml-1.5 opacity-60 text-xs">
                                         ({faqs.filter(f => f.category === cat).length})
                                     </span>
@@ -105,7 +104,7 @@ const FAQ: React.FC<{ locale: Locale }> = ({ locale }) => {
                 <p className="text-center text-foreground-accent text-sm">
                     Tidak menemukan jawaban yang Anda cari?{" "}
                     <a href="mailto:help@lokakasir.id" className="text-secondary font-semibold hover:underline">
-                        Hubungi tim support kami
+                        {ui.pricingContactLink}
                     </a>
                 </p>
             </div>

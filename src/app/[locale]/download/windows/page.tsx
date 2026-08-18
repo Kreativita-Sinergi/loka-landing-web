@@ -84,6 +84,7 @@ export default async function WindowsDownloadPage(
         {/* Tombol utama: Microsoft Store */}
         <div className="rounded-2xl border border-gray-100 bg-gray-50 p-6 dark:border-surface-border dark:bg-surface">
           <WindowsDownloadLink
+            locale={locale}
             source="download-page"
             variant="button"
             className="w-full sm:w-auto bg-blue-600 text-white hover:bg-blue-700"

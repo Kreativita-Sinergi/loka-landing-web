@@ -4,52 +4,22 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Smartphone, Tablet } from "lucide-react";
 import DemoVideo from "./DemoVideo";
+import { getScreenshots } from "@/data/screenshots";
+import type { Locale } from "@/data/localized";
 
-const MOBILE_SCREENS = [
-  { src: "/images/mobile/Screenshot_1776572485.png", label: "Login" },
-  { src: "/images/mobile/Screenshot_1776572542.png", label: "Dashboard" },
-  { src: "/images/mobile/Screenshot_1776572549.png", label: "Kasir" },
-  { src: "/images/mobile/Screenshot_1776572556.png", label: "Order" },
-  { src: "/images/mobile/Screenshot_1776573487.png", label: "Pembayaran" },
-];
-
-const TABLET_SCREENS = [
-  {
-    src: "/images/tablet/Screenshot_1776574642.png",
-    label: "Layar Transaksi (Grid)",
-    description: "Antarmuka kasir yang bersih dengan dukungan grid view untuk identifikasi produk cepat.",
-  },
-  {
-    src: "/images/tablet/Screenshot_1776574650.png",
-    label: "Layar Transaksi (List)",
-    description: "Tampilan list untuk melihat SKU dan detail stok produk secara langsung saat transaksi.",
-  },
-  {
-    src: "/images/tablet/Screenshot_1776574679.png",
-    label: "Riwayat Transaksi",
-    description: "Pantau semua transaksi harian, status pembayaran, dan kelola refund langsung dari perangkat.",
-  },
-  {
-    src: "/images/tablet/Screenshot_1776574482.png",
-    label: "Manajemen Shift",
-    description: "Laporan ringkasan kas yang akurat di setiap akhir sesi untuk transparansi keuangan.",
-  },
-  {
-    src: "/images/tablet/Screenshot_1776574686.png",
-    label: "Pengaturan Perangkat",
-    description: "Pusat konfigurasi printer thermal, laci uang, dan sinkronisasi data dari server.",
-  },
-];
-
-const AppScreenshots: React.FC = () => {
+const AppScreenshots: React.FC<{ locale: Locale }> = ({ locale }) => {
   const [tab, setTab] = useState<"mobile" | "tablet">("mobile");
+  const shots = getScreenshots(locale);
+  const MOBILE_SCREENS = shots.mobile;
+  const TABLET_SCREENS = shots.tablet;
 
   return (
     <div className="mt-12">
       {/* Lihat demo video aplikasi */}
       <div className="flex justify-center mb-8">
         <DemoVideo
-          label="Lihat Demo Aplikasi"
+          label={shots.demoLabel}
+          locale={locale}
           className="inline-flex items-center gap-2 px-6 h-12 rounded-full font-semibold text-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
         />
       </div>
@@ -66,7 +36,7 @@ const AppScreenshots: React.FC = () => {
                 : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
             }`}
           >
-            <Smartphone size={16} aria-hidden="true" /> App Mobile
+            <Smartphone size={16} aria-hidden="true" /> {shots.tabMobile}
           </button>
           <button
             onClick={() => setTab("tablet")}
@@ -77,7 +47,7 @@ const AppScreenshots: React.FC = () => {
                 : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
             }`}
           >
-            <Tablet size={16} aria-hidden="true" /> Tablet
+            <Tablet size={16} aria-hidden="true" /> {shots.tabTablet}
           </button>
         </div>
       </div>

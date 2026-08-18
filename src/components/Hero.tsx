@@ -9,19 +9,17 @@ import { getHero } from "@/data/hero";
 import { getAppDownload, getCta, getSignUp } from "@/data/cta";
 import { trackDownloadClick, trackSignUpClick } from "@/utils/analytics";
 import type { Locale } from "@/data/localized";
+import { getUi } from "@/data/ui";
 
-const BADGES = [
-  { Icon: Zap, text: "Transaksi Kilat" },
-  { Icon: BarChart3, text: "Laporan Real-time" },
-  { Icon: Printer, text: "Cetak Struk Otomatis" },
-  { Icon: RefreshCw, text: "Sync Cloud" },
-];
+// Ikonnya sama di semua bahasa; hanya labelnya yang berganti (lihat ui.heroChips).
+const BADGE_ICONS = [Zap, BarChart3, Printer, RefreshCw];
 
 const Hero: React.FC<{ locale: Locale }> = ({ locale }) => {
   const heroDetails = getHero(locale);
   const ctaDetails = getCta(locale);
   const signUpDetails = getSignUp(locale);
   const appDownloadDetails = getAppDownload(locale);
+  const ui = getUi(locale);
   return (
     <section
       id="hero"
@@ -42,7 +40,7 @@ const Hero: React.FC<{ locale: Locale }> = ({ locale }) => {
         {/* Pill badge */}
         <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 dark:bg-blue-500/10 dark:border-blue-400/20 dark:text-blue-300">
           <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-          Kasir Digital untuk UMKM Indonesia
+          {ui.heroBadge}
         </div>
 
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight font-sans text-gray-900 max-w-2xl mx-auto leading-tight dark:text-white">
@@ -74,7 +72,7 @@ const Hero: React.FC<{ locale: Locale }> = ({ locale }) => {
             onClick={() => trackDownloadClick("hero")}
             className="flex items-center justify-center gap-2 px-6 h-14 rounded-full w-full sm:flex-1 font-bold text-base leading-none transition-colors border border-gray-300 text-gray-900 hover:bg-gray-100 dark:border-surface-border dark:text-white dark:hover:bg-white/5"
           >
-            <Download size={18} aria-hidden="true" className="relative -top-px" /> Download Aplikasi
+            <Download size={18} aria-hidden="true" className="relative -top-px" /> {ui.navDownloadApp}
           </a>
         </div>
 
@@ -83,14 +81,14 @@ const Hero: React.FC<{ locale: Locale }> = ({ locale }) => {
         </p>
 
         <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-          Sudah punya akun?{" "}
+          {ui.heroAlreadyHaveAccount}{" "}
           <a
             href={ctaDetails.dashboardUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="font-semibold text-blue-600 hover:underline dark:text-blue-400"
           >
-            Masuk ke Web Admin
+            {ui.heroLoginLink}
           </a>
         </p>
 
@@ -98,26 +96,29 @@ const Hero: React.FC<{ locale: Locale }> = ({ locale }) => {
         <div className="mt-2 flex justify-center">
           <WindowsDownloadLink
             source="hero"
+            locale={locale}
             className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
           />
         </div>
 
         {/* Lihat demo aplikasi */}
         <div className="mt-4 flex justify-center">
-          <DemoVideo label="Lihat Demo Aplikasi" />
+          <DemoVideo label={ui.demoOpenLabel} locale={locale} />
         </div>
 
         {/* Feature badges */}
         <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-          {BADGES.map((b) => (
+          {ui.heroChips.map((text, i) => {
+            const Icon = BADGE_ICONS[i];
+            return (
             <span
-              key={b.text}
+              key={text}
               className="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-600 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm dark:bg-surface dark:border-surface-border dark:text-gray-300"
             >
-              <b.Icon size={14} className="text-blue-600 dark:text-blue-400" aria-hidden="true" />
-              {b.text}
+              <Icon size={14} className="text-blue-600 dark:text-blue-400" aria-hidden="true" />
+              {text}
             </span>
-          ))}
+          );})}
         </div>
 
         {/* Tablet mockup */}
@@ -135,7 +136,7 @@ const Hero: React.FC<{ locale: Locale }> = ({ locale }) => {
                 src={heroDetails.centerImageSrc}
                 fill
                 priority
-                alt="Tampilan aplikasi kasir Loka Kasir di tablet"
+                alt={ui.heroTabletAlt}
                 className="object-cover object-top"
                 sizes="(max-width: 768px) 100vw, 768px"
               />

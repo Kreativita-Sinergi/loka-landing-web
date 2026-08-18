@@ -13,6 +13,7 @@ import { getHowToStart, type HowToIcon } from "@/data/howToStart";
 import { getAppDownload, getSignUp } from "@/data/cta";
 import { trackDownloadClick, trackSignUpClick } from "@/utils/analytics";
 import type { Locale } from "@/data/localized";
+import { getUi } from "@/data/ui";
 
 const ICONS: Record<HowToIcon, LucideIcon> = {
   whatsapp: MessageCircle,
@@ -64,7 +65,7 @@ export default function HowToStart({ locale }: { locale: Locale }) {
             className="flex w-full items-center justify-center gap-2 rounded-full bg-blue-600 px-8 h-14 text-base font-bold leading-none text-white shadow-lg shadow-blue-600/30 transition-colors hover:bg-blue-700 sm:w-auto"
           >
             <UserPlus size={18} aria-hidden="true" className="relative -top-px" />
-            Mulai — {signUpDetails.label}
+            {getUi(locale).howToStartCta}{signUpDetails.label}
           </a>
           <a
             href={appDownloadDetails.url}
@@ -74,7 +75,7 @@ export default function HowToStart({ locale }: { locale: Locale }) {
             className="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 px-8 h-14 text-base font-bold leading-none text-gray-900 transition-colors hover:bg-gray-100 dark:border-surface-border dark:text-white dark:hover:bg-white/5 sm:w-auto"
           >
             <Download size={18} aria-hidden="true" className="relative -top-px" />
-            Download Aplikasi
+            {getUi(locale).navDownloadApp}
           </a>
         </div>
         <p className="text-xs text-gray-500 dark:text-gray-400">{signUpDetails.note}</p>

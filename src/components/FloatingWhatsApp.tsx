@@ -54,14 +54,14 @@ export default function FloatingWhatsApp({ locale }: { locale: Locale }) {
         <div className="relative max-w-[230px] rounded-2xl bg-white px-4 py-3 text-sm text-gray-700 shadow-xl ring-1 ring-black/5 dark:bg-surface dark:text-gray-200 dark:ring-white/10">
           <button
             onClick={dismissBubble}
-            aria-label="Tutup"
+            aria-label={getUi(locale).closeLabel}
             className="absolute -right-2 -top-2 rounded-full bg-gray-200 p-1 text-gray-600 hover:bg-gray-300 dark:bg-surface-border dark:text-gray-300"
           >
             <HiOutlineXMark className="h-3.5 w-3.5" />
           </button>
           <p className="font-semibold text-gray-900 dark:text-white">{getUi(locale).helpBubble}</p>
           <p className="mt-0.5 leading-relaxed">
-            Aplikasinya bisa langsung di-download di Google Play. Ada kendala? Chat tim kami — dibalas cepat.
+            {getUi(locale).helpBubbleBody}
           </p>
         </div>
       )}
@@ -71,7 +71,7 @@ export default function FloatingWhatsApp({ locale }: { locale: Locale }) {
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => trackContactClick("whatsapp", "floating")}
-        aria-label="Hubungi tim Loka Kasir via WhatsApp"
+        aria-label={getUi(locale).helpAriaLabel}
         className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-[#25D366]/40 transition-transform hover:scale-105 hover:bg-[#1ebe57]"
       >
         <span className="absolute inline-flex h-14 w-14 animate-ping rounded-full bg-[#25D366] opacity-20" />

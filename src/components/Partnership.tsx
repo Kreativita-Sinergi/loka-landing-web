@@ -6,6 +6,7 @@ import { FiInstagram } from "react-icons/fi";
 import { getPartnership, getPartnerTypes } from "@/data/partnership";
 import { trackContactClick } from "@/utils/analytics";
 import type { Locale } from "@/data/localized";
+import { getUi } from "@/data/ui";
 
 const Partnership: React.FC<{ locale: Locale }> = ({ locale }) => {
   const partnershipDetails = getPartnership(locale);
@@ -107,7 +108,7 @@ const Partnership: React.FC<{ locale: Locale }> = ({ locale }) => {
       {/* Kanal alternatif */}
       <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-gray-100 bg-white px-6 py-5 text-center shadow-sm sm:flex-row dark:border-surface-border dark:bg-surface dark:shadow-black/30">
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          Lebih nyaman lewat kanal lain? Boleh juga:
+          {getUi(locale).partnershipOtherChannels}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <a
