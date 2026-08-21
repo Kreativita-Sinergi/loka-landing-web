@@ -49,8 +49,7 @@ Satu perkara yang baik diketahui: 30 hari itu dikira dari jualan pertama anda, b
 
 Apabila tamat, anda memilih:
 • Percuma — kaunter asas, 1 cawangan, sehingga 500 jualan sebulan, percuma selamanya
-• Lite — 1 cawangan, berserta pekerja, pelanggan, diskaun, stok, dan laporan syif
-• Pro — berbilang cawangan, serta analitik, kehadiran, pembekal, pesanan belian, kos makanan, cadangan harga, keuntungan produk, dan kesetiaan pelanggan`,
+• Pro — semua ciri POS, berbilang cawangan, analitik, kehadiran, pembekal, pesanan belian, kos makanan, cadangan harga, keuntungan produk, dan kesetiaan pelanggan. Cawangan pertama disertakan.`,
   },
   {
     category: "Bermula",
@@ -351,7 +350,7 @@ Tiada aplikasi keahlian berasingan terlibat; semuanya berlaku di kaunter.`,
     category: "Pelanggan & Kesetiaan",
     question: "Adakah rekod pelanggan ada pada semua pelan?",
     answer:
-      `Rekod pelanggan — nama, telefon, e-mel, alamat — ada pada Lite dan Pro. Pelan percuma tidak termasuk pengurusan pelanggan.
+      `Rekod pelanggan — nama, telefon, e-mel, alamat — ada pada Pro. Pelan percuma tidak termasuk pengurusan pelanggan.
 
 Pada Pro, setiap pelanggan turut membawa baki mata kesetiaan yang boleh anda lihat dan laraskan dari Web Admin.`,
   },
@@ -367,7 +366,7 @@ Pada Pro, setiap pelanggan turut membawa baki mata kesetiaan yang boleh anda lih
 Semua pelan, termasuk percuma:
 • Sejarah transaksi 30 hari — boleh dicari dan ditapis, dengan butiran penuh
 
-Lite dan Pro:
+Pro:
 • Laporan kewangan syif — wang permulaan, jualan, bayaran balik, perbezaan, dan pecahan mengikut kaedah bayaran
 • Eksport CSV bagi transaksi dan kewangan syif
 
@@ -401,7 +400,7 @@ Pilih "Semua cawangan" untuk keseluruhan perniagaan digabungkan.`,
     category: "Laporan",
     question: "Boleh eksport ke Excel atau PDF?",
     answer:
-      `Laporan dieksport ke CSV terus daripada halaman laporan, pada Lite dan Pro. CSV boleh dibuka dalam Excel, Google Sheets, atau mana-mana aplikasi hamparan.
+      `Laporan dieksport ke CSV terus daripada halaman laporan pada Pro. CSV boleh dibuka dalam Excel, Google Sheets, atau mana-mana aplikasi hamparan.
 
 Pro turut mengeksport jurnal perakaunan catatan bergu (debit dan kredit) untuk diserahkan kepada perisian perakaunan anda, yang menjadikan penyesuaian bulanan jauh lebih mudah.
 
@@ -468,7 +467,6 @@ Ia mengelakkan juruwang memerlukan kebenaran yang tidak sepatutnya, tanpa melamb
 
 • Percuma — 1 cawangan, sehingga 500 jualan sebulan
 • 30 hari percuma — akses Pro penuh, sehingga 5 cawangan
-• Lite — 1 cawangan; cawangan kedua bermakna berpindah ke Pro
 • Pro — cawangan tanpa had; yang pertama sudah termasuk dan setiap tambahan dikenakan bayaran bulanan
 
 Pekerja tanpa had pada semua pelan, termasuk percuma. Anda boleh naik atau turun pelan bila-bila masa tanpa kehilangan data.`,

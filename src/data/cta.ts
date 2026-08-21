@@ -4,7 +4,7 @@ const ctaByLocale: Record<Locale, { heading: string; subheading: string }> = {
   id: {
     heading: "Gratis 30 Hari Pertama — Tanpa Risiko",
     subheading:
-      "Daftar gratis langsung dari browser ini, atau dari aplikasinya — akunnya sama. Pakai semua fitur Pro selama 30 hari pertama tanpa kartu kredit dan tanpa komitmen. Setelah itu, lanjutkan dengan paket mulai Rp 39.000/bulan.",
+      "Daftar gratis langsung dari browser ini, atau dari aplikasinya — akunnya sama. Pakai semua fitur Pro selama 30 hari pertama tanpa kartu kredit dan tanpa komitmen. Setelah itu, lanjutkan Pro Rp 59.000/bulan.",
   },
   en: {
     heading: "Your First 30 Days Are Free",

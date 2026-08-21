@@ -46,8 +46,7 @@ Untuk bisnis FNB: tambahkan juga data meja dan aktifkan Kitchen Display System (
 
 Setelah 30 hari, pilih paket yang sesuai:
 • Gratis — fitur POS inti, 1 outlet, maks. 500 transaksi/bulan, selamanya gratis
-• Lite — Rp 39.000/bulan, 1 outlet — kasir lengkap, karyawan, pelanggan, diskon, stok, laporan shift
-• Pro — Rp 89.000/outlet/bulan, multi-outlet — semua fitur Lite + Analitik, Absensi, Supplier, PO, HPP, Smart Pricing, Profitabilitas, Loyalty`,
+• Pro — Rp 59.000/bulan, Rp 590.000/tahun, atau Rp 1.490.000/3 tahun — semua fitur kasir, Analitik, Absensi, Supplier, PO, HPP, Smart Pricing, Profitabilitas, dan Loyalty. Outlet pertama termasuk. Biaya ini sudah mencakup server cloud, penyimpanan dan backup data, sinkronisasi, keamanan, pemeliharaan, serta pembaruan fitur.`,
   },
   {
     category: "Memulai",
@@ -86,7 +85,7 @@ Yang dikerjakan tim di lokasi:
 • Pengaturan metode pembayaran, format struk, serta meja & KDS untuk FNB
 • Pelatihan singkat untuk kasir dan pemilik di tempat
 
-Syaratnya: berlangganan paket tahunan — Lite Rp 399.000/tahun atau Pro Rp 890.000/tahun. Tidak ada biaya setup maupun biaya transportasi tambahan di dalam kota layanan. Hubungi admin lewat WhatsApp untuk dijadwalkan.`,
+Syaratnya: berlangganan paket Pro Rp 590.000/tahun. Tidak ada biaya setup maupun biaya transportasi tambahan di dalam kota layanan. Hubungi admin lewat WhatsApp untuk dijadwalkan.`,
   },
   {
     category: "Memulai",
@@ -390,7 +389,7 @@ Contoh: 1 poin per Rp 1.000 belanja, 1 poin = Rp 100. Pelanggan belanja Rp 50.00
     category: "Loyalty & Pelanggan",
     question: "Apakah database pelanggan tersedia di semua paket?",
     answer:
-      `Database pelanggan (nama, telepon, email, alamat) tersedia di paket Lite dan Pro. Paket Gratis tidak menyertakan fitur manajemen pelanggan.
+      `Database pelanggan (nama, telepon, email, alamat) tersedia di paket Pro. Paket Gratis tidak menyertakan fitur manajemen pelanggan.
 
 Di paket Pro, setiap pelanggan juga memiliki saldo poin loyalty yang bisa dipantau dan dikelola langsung dari Web Admin.`,
   },
@@ -406,7 +405,7 @@ Di paket Pro, setiap pelanggan juga memiliki saldo poin loyalty yang bisa dipant
 Tersedia di semua paket (Gratis ke atas):
 • Riwayat transaksi 30 hari — cari, filter, dan lihat detail setiap transaksi
 
-Tersedia di paket Lite & Pro:
+Tersedia di paket Pro:
 • Laporan Keuangan Shift — rekap kas per shift: kas awal, penjualan, refund, selisih kas, breakdown per metode bayar
 • Export CSV — laporan transaksi dan keuangan shift bisa diunduh sebagai spreadsheet
 
@@ -445,7 +444,7 @@ Untuk tampilan keseluruhan bisnis (semua outlet digabung), pilih "Semua Outlet".
     category: "Laporan & Analitik",
     question: "Bisakah laporan diekspor ke Excel atau PDF?",
     answer:
-      `Ya, laporan dapat diekspor dalam format CSV langsung dari halaman laporan (tersedia di paket Lite & Pro). CSV dapat dibuka di Microsoft Excel, Google Sheets, atau aplikasi spreadsheet lainnya.
+      `Ya, laporan dapat diekspor dalam format CSV langsung dari halaman laporan (tersedia di paket Pro). CSV dapat dibuka di Microsoft Excel, Google Sheets, atau aplikasi spreadsheet lainnya.
 
 Untuk paket Pro, tersedia tambahan Export Jurnal Akuntansi dalam format double-entry (debit/kredit) yang kompatibel dengan software akuntansi seperti Accurate atau Buku Warung — memudahkan rekonsiliasi keuangan bulanan.
 
@@ -516,7 +515,6 @@ Fitur ini mencegah kasir memiliki akses berlebihan sekaligus tidak mengganggu an
 
 • Gratis — 1 outlet, maks. 500 transaksi/bulan
 • Gratis 30 hari pertama — akses Pro penuh, sampai 5 outlet
-• Lite — 1 outlet; untuk outlet kedua dan seterusnya perlu upgrade ke Pro
 • Pro — multi-outlet tanpa batas; outlet pertama sudah termasuk harga paket, outlet tambahan dikenakan Rp 49.000/outlet/bulan
 
 Untuk jumlah karyawan (user), semua paket tidak membatasi jumlah karyawan yang bisa didaftarkan. Upgrade atau downgrade paket bisa dilakukan kapan saja tanpa kehilangan data.`,

@@ -145,7 +145,7 @@ const ui: Record<Locale, UiStrings> = {
     freePlanPerMonth: " per bulan",
     freePlanIntro: "Cocok untuk usaha yang baru mulai. Tanpa biaya, tanpa masa berlaku — gunakan selama yang Anda mau. Sebelum turun ke paket ini, setiap akun baru lebih dulu menikmati {duration} pertama gratis dengan semua fitur Pro terbuka.",
     freePlanIncludedLabel: "Yang termasuk",
-    freePlanExcludedLabel: "Belum termasuk (upgrade ke Lite / Pro)",
+    freePlanExcludedLabel: "Belum termasuk (upgrade ke Pro)",
     freePlanIncluded: [
       "• Kasir / transaksi penjualan (POS)",
       "• 1 outlet",
@@ -154,8 +154,8 @@ const ui: Record<Locale, UiStrings> = {
       "• Mode offline (kasir tetap jalan tanpa internet)",
     ],
     freePlanExcluded: [
-      "• Database pelanggan, meja & KDS (Lite)",
-      "• Karyawan multi-role & diskon/bundle (Lite)",
+      "• Database pelanggan, meja & KDS (Pro)",
+      "• Karyawan multi-role & diskon/bundle (Pro)",
       "• Multi-outlet & inventori lanjutan (Pro)",
       "• HPP, Smart Pricing & Loyalty (Pro)",
       "• Pesan via QR / Scan-to-Order (Pro)",
@@ -238,7 +238,7 @@ const ui: Record<Locale, UiStrings> = {
     freePlanPerMonth: " per month",
     freePlanIntro: "Enough to get a new shop trading. No cost, no expiry, for as long as you want it. Before anyone lands here, every new account first gets {duration} with all the Pro features open.",
     freePlanIncludedLabel: "What's included",
-    freePlanExcludedLabel: "Not included (move to Lite or Pro)",
+    freePlanExcludedLabel: "Not included (move to Pro)",
     freePlanIncluded: [
       "• Selling at the register (POS)",
       "• 1 outlet",
@@ -247,8 +247,8 @@ const ui: Record<Locale, UiStrings> = {
       "• Offline mode (the register keeps working without internet)",
     ],
     freePlanExcluded: [
-      "• Customer records, tables & kitchen display (Lite)",
-      "• Staff roles & discounts/bundles (Lite)",
+      "• Customer records, tables & kitchen display (Pro)",
+      "• Staff roles & discounts/bundles (Pro)",
       "• Multiple outlets & deeper inventory (Pro)",
       "• Food cost, price suggestions & loyalty (Pro)",
       "• QR ordering / scan to order (Pro)",
@@ -331,7 +331,7 @@ const ui: Record<Locale, UiStrings> = {
     freePlanPerMonth: " sebulan",
     freePlanIntro: "Cukup untuk kedai yang baru bermula. Tanpa kos, tanpa tarikh luput, selagi anda mahu. Sebelum sampai ke sini, setiap akaun baharu mendapat {duration} dengan semua ciri Pro terbuka.",
     freePlanIncludedLabel: "Yang termasuk",
-    freePlanExcludedLabel: "Belum termasuk (naik ke Lite atau Pro)",
+    freePlanExcludedLabel: "Belum termasuk (naik ke Pro)",
     freePlanIncluded: [
       "• Jualan di kaunter (POS)",
       "• 1 cawangan",
@@ -340,8 +340,8 @@ const ui: Record<Locale, UiStrings> = {
       "• Mod luar talian (kaunter terus berjalan tanpa internet)",
     ],
     freePlanExcluded: [
-      "• Rekod pelanggan, meja & paparan dapur (Lite)",
-      "• Peranan pekerja & diskaun/pakej (Lite)",
+      "• Rekod pelanggan, meja & paparan dapur (Pro)",
+      "• Peranan pekerja & diskaun/pakej (Pro)",
       "• Berbilang cawangan & inventori lanjutan (Pro)",
       "• Kos makanan, cadangan harga & kesetiaan (Pro)",
       "• Pesanan QR / imbas untuk pesan (Pro)",
@@ -424,7 +424,7 @@ const ui: Record<Locale, UiStrings> = {
     freePlanPerMonth: " / 月",
     freePlanIntro: "はじめたばかりのお店が営業するには十分な内容です。費用も期限もなく、必要な間ずっとお使いいただけます。なお、このプランに移る前に、どのアカウントもまず{duration}すべてのPro機能をお試しいただけます。",
     freePlanIncludedLabel: "含まれるもの",
-    freePlanExcludedLabel: "含まれないもの（Lite / Pro で解放）",
+    freePlanExcludedLabel: "含まれないもの（Pro で解放）",
     freePlanIncluded: [
       "• レジでの会計（POS）",
       "• 1店舗",
@@ -433,8 +433,8 @@ const ui: Record<Locale, UiStrings> = {
       "• オフラインモード（通信がなくてもレジは動きます）",
     ],
     freePlanExcluded: [
-      "• 顧客情報・テーブル・キッチンディスプレイ（Lite）",
-      "• スタッフの権限・割引・セット販売（Lite）",
+      "• 顧客情報・テーブル・キッチンディスプレイ（Pro）",
+      "• スタッフの権限・割引・セット販売（Pro）",
       "• 多店舗と在庫管理の強化（Pro）",
       "• 原価計算・価格提案・リピート施策（Pro）",
       "• QRオーダー（Pro）",

@@ -17,9 +17,8 @@ import {
 import type { Locale } from "@/data/localized";
 
 /** Nama plan di API untuk tiap kolom harga; kolom uji coba tidak punya harga. */
-const PLAN_KEYS: Record<string, { monthly: string; yearly: string }> = {
-  Lite: { monthly: "lite", yearly: "lite-yearly" },
-  Pro: { monthly: "pro", yearly: "pro-yearly" },
+const PLAN_KEYS: Record<string, { monthly: string; yearly: string; threeYear: string }> = {
+  Pro: { monthly: "pro", yearly: "pro-yearly", threeYear: "pro-3year" },
 };
 
 const Pricing: React.FC<{ locale: Locale }> = ({ locale }) => {
@@ -34,7 +33,12 @@ const Pricing: React.FC<{ locale: Locale }> = ({ locale }) => {
   const [country, setCountry] = useState<PricingCountry>("ID");
   const [prices, setPrices] = useState<SubscriptionPrice[] | null>(null);
 
-  useEffect(() => setCountry(guessCountry()), []);
+  useEffect(() => {
+    // Tunggu setelah hydration supaya HTML server dan render pertama klien
+    // sama-sama memakai ID; tebakan negara baru diterapkan sesudahnya.
+    const timer = window.setTimeout(() => setCountry(guessCountry()), 0);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -63,6 +67,7 @@ const Pricing: React.FC<{ locale: Locale }> = ({ locale }) => {
       country,
       monthly: monthly.display_amount,
       yearly: priceOf(keys.yearly)?.display_amount,
+      threeYear: priceOf(keys.threeYear)?.display_amount,
     };
   };
 
@@ -96,13 +101,13 @@ const Pricing: React.FC<{ locale: Locale }> = ({ locale }) => {
           {promoDetails.description}
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+      <div className="mx-auto grid max-w-4xl grid-cols-1 md:grid-cols-2 gap-8 items-start">
         {tiers.map((tier, index) => (
           <PricingColumn
             locale={locale}
             key={tier.name}
             tier={tier}
-            highlight={index === 2}
+            highlight={index === 1}
             localized={localizedFor(tier.name)}
           />
         ))}

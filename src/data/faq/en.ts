@@ -59,8 +59,7 @@ One detail worth knowing: the 30 days are counted from your first sale, not from
 
 When it ends, you choose:
 • Free — the core register, 1 outlet, up to 500 sales a month, free indefinitely
-• Lite — 1 outlet, with staff, customers, discounts, stock, and shift reports
-• Pro — multiple outlets, plus analytics, attendance, suppliers, purchase orders, food cost, price suggestions, profitability, and loyalty`,
+• Pro — every POS feature, multiple outlets, analytics, attendance, suppliers, purchase orders, food cost, price suggestions, profitability, and loyalty. The first outlet is included.`,
   },
   {
     category: "Getting Started",
@@ -364,7 +363,7 @@ No separate membership app is involved; it all happens at the counter.`,
     category: "Customers & Loyalty",
     question: "Are customer records on every plan?",
     answer:
-      `Customer records — name, phone, email, address — are on Lite and Pro. The free plan doesn't include customer management.
+      `Customer records — name, phone, email, address — are on Pro. The free plan doesn't include customer management.
 
 On Pro, each customer also carries a loyalty balance you can see and adjust from Web Admin.`,
   },
@@ -380,7 +379,7 @@ On Pro, each customer also carries a loyalty balance you can see and adjust from
 Every plan, free included:
 • 30 days of transaction history — searchable and filterable, with full detail
 
-Lite and Pro:
+Pro:
 • Shift financial report — opening float, sales, refunds, discrepancy, and a breakdown per payment method
 • CSV export of transactions and shift finances
 
@@ -414,7 +413,7 @@ Choose "All outlets" for the whole business combined.`,
     category: "Reports",
     question: "Can I export to Excel or PDF?",
     answer:
-      `Reports export to CSV directly from the report page, on Lite and Pro. CSV opens in Excel, Google Sheets, or any spreadsheet app.
+      `Reports export to CSV directly from the report page on Pro. CSV opens in Excel, Google Sheets, or any spreadsheet app.
 
 Pro also exports a double-entry accounting journal (debits and credits) for handing to your accounting software, which makes the monthly reconciliation considerably less painful.
 
@@ -481,7 +480,6 @@ It keeps cashiers from needing permissions they shouldn't have, without holding 
 
 • Free — 1 outlet, up to 500 sales a month
 • The 30 free days — full Pro access, up to 5 outlets
-• Lite — 1 outlet; a second one means moving to Pro
 • Pro — unlimited outlets; the first is included and each additional one is charged monthly
 
 Staff are unlimited on every plan, including free. You can move up or down between plans at any time without losing data.`,

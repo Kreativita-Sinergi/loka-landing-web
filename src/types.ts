@@ -24,10 +24,14 @@ export interface IPricing {
     period?: string;
     /** Harga tahunan (opsional). Bila diisi, ditampilkan sebagai alternatif hemat. */
     priceAnnual?: number;
+    /** Harga paket tiga tahun (opsional). */
+    priceThreeYear?: number;
     /** Satuan harga tahunan, mis. "per tahun" atau "per outlet / tahun". */
     periodAnnual?: string;
     /** Catatan hemat untuk paket tahunan, mis. "Hemat 2 bulan". */
     annualNote?: string;
+    periodThreeYear?: string;
+    threeYearNote?: string;
     badge?: string;
     description?: string;
     features: string[];

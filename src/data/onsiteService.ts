@@ -60,9 +60,9 @@ export const onsiteServiceDetails = {
 
   requirementHeading: "Syaratnya: Berlangganan Tahunan",
   requirementMessage:
-    "Layanan datang ke lokasi ini gratis untuk pelanggan yang mengambil paket tahunan — Lite Rp 399.000/tahun atau Pro Rp 890.000/tahun. Anda tetap bisa mencoba gratis 30 hari lebih dulu, lalu minta dijadwalkan kunjungan setelah memutuskan berlangganan tahunan.",
+    "Layanan datang ke lokasi ini gratis untuk pelanggan yang mengambil paket Pro Rp 590.000/tahun. Anda tetap bisa mencoba gratis 30 hari lebih dulu, lalu minta dijadwalkan kunjungan setelah memutuskan berlangganan tahunan.",
   requirementPoints: [
-    "Berlaku untuk paket tahunan Lite maupun Pro",
+    "Berlaku untuk paket Pro tahunan",
     "Kunjungan dijadwalkan setelah pembayaran langganan tahunan dikonfirmasi",
     "Tanpa biaya setup dan tanpa biaya transportasi di dalam kota layanan",
     "Di luar tiga kota tersebut? Setup tetap kami bantu penuh secara online lewat WhatsApp atau video call",
@@ -75,7 +75,7 @@ export const onsiteServiceDetails = {
     },
     {
       title: "2. Pilih Paket Tahunan",
-      desc: "Admin bantu pilihkan paket yang sesuai — Lite atau Pro — lalu proses langganan tahunannya.",
+      desc: "Admin membantu proses langganan Pro tahunan.",
     },
     {
       title: "3. Atur Jadwal Kunjungan",
@@ -89,7 +89,7 @@ export const onsiteServiceDetails = {
 
   ctaLabel: "Hubungi Admin untuk Dijadwalkan",
   whatsappMessage:
-    "Halo tim Loka Kasir, saya ingin dibantu setup langsung di lokasi (langganan tahunan).\n\nNama bisnis: \nJenis bisnis: \nKota (Padang/Pekanbaru/Payakumbuh): \nAlamat kedai: \nPaket yang diminati (Lite/Pro): \nWaktu kunjungan yang diinginkan: ",
+    "Halo tim Loka Kasir, saya ingin dibantu setup langsung di lokasi (langganan Pro tahunan).\n\nNama bisnis: \nJenis bisnis: \nKota (Padang/Pekanbaru/Payakumbuh): \nAlamat kedai: \nWaktu kunjungan yang diinginkan: ",
 
   contact: {
     whatsapp: "6283878960539",

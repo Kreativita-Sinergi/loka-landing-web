@@ -22,17 +22,19 @@ interface Props {
     country: string;
     monthly?: number;
     yearly?: number;
+    threeYear?: number;
   };
 }
 
 const PricingColumn: React.FC<Props> = ({ tier, highlight, localized, locale }: Props) => {
-  const { name, price, period, priceAnnual, periodAnnual, annualNote, badge, description, features, ctaLabel, ctaUrl } = tier;
+  const { name, price, period, priceAnnual, priceThreeYear, periodAnnual, periodThreeYear, annualNote, threeYearNote, badge, description, features, ctaLabel, ctaUrl } = tier;
   const isFreeTrial = typeof price === "string";
 
   // Harga lokal diutamakan; rupiah dari `tier` jadi cadangan bila API belum
   // menjawab atau negaranya belum punya harga sendiri.
   const monthlyMinor = localized?.monthly;
   const yearlyMinor = localized?.yearly;
+  const threeYearMinor = localized?.threeYear;
 
   const displayPrice = isFreeTrial
     ? price
@@ -45,6 +47,12 @@ const PricingColumn: React.FC<Props> = ({ tier, highlight, localized, locale }: 
       ? formatPrice(yearlyMinor, localized.currency, localized.country)
       : priceAnnual !== undefined
         ? `Rp ${priceAnnual.toLocaleString("id-ID")}`
+        : undefined;
+  const displayThreeYear =
+    threeYearMinor !== undefined && localized
+      ? formatPrice(threeYearMinor, localized.currency, localized.country)
+      : priceThreeYear !== undefined
+        ? `Rp ${priceThreeYear.toLocaleString("id-ID")}`
         : undefined;
 
   return (
@@ -96,6 +104,21 @@ const PricingColumn: React.FC<Props> = ({ tier, highlight, localized, locale }: 
               {annualNote && (
                 <span className="text-xs font-medium text-green-600 dark:text-green-400">
                   💸 {annualNote}
+                </span>
+              )}
+            </div>
+          )}
+          {priceThreeYear && (
+            <div className="mt-2 inline-flex flex-col items-center gap-0.5 rounded-xl bg-green-50 px-3 py-2 dark:bg-green-500/10">
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">
+                {displayThreeYear}
+                <span className="font-normal text-gray-500 dark:text-gray-400">
+                  {" "}/ {periodThreeYear ?? "3 tahun"}
+                </span>
+              </span>
+              {threeYearNote && (
+                <span className="text-xs font-bold text-green-600 dark:text-green-400">
+                  ⭐ {threeYearNote}
                 </span>
               )}
             </div>

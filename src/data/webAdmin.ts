@@ -8,7 +8,7 @@
 
 import { pick, type Locale } from "./localized";
 
-export type Plan = "semua" | "lite" | "pro";
+export type Plan = "semua" | "pro";
 
 export type WebAdminFeature = {
   name: string;
@@ -88,12 +88,12 @@ export const webAdminScreenshots: {
  * satunya berbohong tentang apa yang dibeli pelanggan.
  */
 const groupShape: { icon: WebAdminGroup["icon"]; plans: Plan[] }[] = [
-  { icon: "chart", plans: ["semua", "lite", "pro", "pro", "pro"] },
+  { icon: "chart", plans: ["semua", "pro", "pro", "pro", "pro"] },
   { icon: "box", plans: ["semua", "pro", "pro", "pro", "pro"] },
   { icon: "tag", plans: ["semua", "semua", "semua", "semua", "pro"] },
   { icon: "users", plans: ["semua", "semua", "semua", "semua", "pro"] },
-  { icon: "heart", plans: ["lite", "semua", "pro"] },
-  { icon: "store", plans: ["semua", "semua", "lite", "semua", "semua"] },
+  { icon: "heart", plans: ["pro", "semua", "pro"] },
+  { icon: "store", plans: ["semua", "semua", "pro", "semua", "semua"] },
 ];
 
 type GroupCopy = { title: string; summary: string; features: [string, string][] };
@@ -384,10 +384,10 @@ export const webAdminGroups: WebAdminGroup[] = getWebAdminGroups('id');
 // Label paket yang ditampilkan sebagai badge. "semua" sengaja tidak diberi
 // badge di UI supaya yang menonjol hanya fitur berbayar.
 const planLabelsByLocale: Record<Locale, Record<Plan, string>> = {
-  id: { semua: "Semua paket", lite: "Lite", pro: "Pro" },
-  en: { semua: "All plans", lite: "Lite", pro: "Pro" },
-  ms: { semua: "Semua pelan", lite: "Lite", pro: "Pro" },
-  ja: { semua: "全プラン", lite: "Lite", pro: "Pro" },
+  id: { semua: "Semua paket", pro: "Pro" },
+  en: { semua: "All plans", pro: "Pro" },
+  ms: { semua: "Semua pelan", pro: "Pro" },
+  ja: { semua: "全プラン", pro: "Pro" },
 };
 
 export const getPlanLabels = (locale: Locale) => pick(planLabelsByLocale, locale);

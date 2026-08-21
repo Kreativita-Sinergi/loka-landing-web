@@ -188,7 +188,7 @@ export default async function WebAdminPage(
         </h2>
         <p className="mb-8 text-sm text-gray-600 dark:text-gray-400">
           {copy.featuresNoteLead}
-          <span className="font-semibold">Lite</span> / <span className="font-semibold">Pro</span>
+          <span className="font-semibold">Pro</span>
           {copy.featuresNoteTail}
         </p>
 

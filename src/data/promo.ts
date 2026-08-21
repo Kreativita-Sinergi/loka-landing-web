@@ -21,7 +21,7 @@ const promoByLocale: Record<Locale, Promo> = {
     short: "Gratis 30 hari pertama",
     duration: "30 hari",
     description:
-      "Setiap akun baru mendapat 30 hari pertama gratis dengan akses penuh ke semua fitur Pro — termasuk multi-outlet sampai 5 cabang, tanpa kartu kredit, tanpa komitmen. Setelah masa itu, lanjutkan dengan paket mulai Rp 39.000/bulan.",
+      "Setiap akun baru mendapat 30 hari pertama gratis dengan akses penuh ke semua fitur Pro — termasuk multi-outlet sampai 5 cabang, tanpa kartu kredit, tanpa komitmen. Setelah masa itu, lanjutkan Pro Rp 59.000/bulan.",
   },
   en: {
     heading: "First 30 Days Free",

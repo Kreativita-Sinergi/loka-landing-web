@@ -10,60 +10,12 @@ import { pick, type Locale } from "./localized";
  * punya nama baku sendiri di tiap pasar (移動平均法による原価), dan istilah yang
  * salah membuat pemilik toko menyimpulkan fiturnya tidak ada.
  */
-const liteFeaturesByLocale: Record<Locale, string[]> = {
-  id: [
-    "1 outlet",
-    "Transaksi tidak terbatas",
-    "Manajemen karyawan multi-role (Kasir, Manager, Gudang, dll.)",
-    "Manajemen & database pelanggan",
-    "Manajemen meja & pesanan dine-in (FNB)",
-    "Kitchen Display System / KDS (FNB)",
-    "Stok & varian produk per outlet",
-    "Pengaturan hak akses (RBAC) per role",
-    "Metode pembayaran sesuai konfigurasi bisnis",
-    "Laporan keuangan shift & export CSV",
-  ],
-  en: [
-    "1 outlet",
-    "Unlimited transactions",
-    "Staff accounts with roles (cashier, manager, stockroom, and more)",
-    "Customer records",
-    "Table management and dine-in orders (food & drink)",
-    "Kitchen display system (food & drink)",
-    "Stock and product variants per outlet",
-    "Per-role permissions",
-    "Payment methods you configure yourself",
-    "Shift financial reports and CSV export",
-  ],
-  ms: [
-    "1 cawangan",
-    "Transaksi tanpa had",
-    "Akaun pekerja mengikut peranan (juruwang, pengurus, stor, dan lain-lain)",
-    "Rekod pelanggan",
-    "Pengurusan meja dan pesanan makan di sini (makanan & minuman)",
-    "Paparan dapur (makanan & minuman)",
-    "Stok dan varian produk setiap cawangan",
-    "Kebenaran akses mengikut peranan",
-    "Kaedah pembayaran yang anda tetapkan sendiri",
-    "Laporan kewangan syif dan eksport CSV",
-  ],
-  ja: [
-    "1店舗",
-    "会計件数は無制限",
-    "権限別のスタッフアカウント（レジ担当・店長・在庫担当など）",
-    "顧客情報の管理",
-    "テーブル管理と店内注文（飲食店向け）",
-    "キッチンディスプレイ（飲食店向け）",
-    "店舗ごとの在庫・商品バリエーション",
-    "役割ごとのアクセス権限設定",
-    "支払い方法は店舗側で自由に設定",
-    "シフト単位の売上レポートとCSV書き出し",
-  ],
-};
-
 const proFeaturesByLocale: Record<Locale, string[]> = {
   id: [
-    "Semua fitur Lite, plus:",
+    "Server cloud, penyimpanan & backup data, sinkronisasi, keamanan, pemeliharaan, dan pembaruan fitur",
+    "Transaksi tidak terbatas dan laporan keuangan",
+    "Karyawan multi-role, pelanggan, meja, dan KDS",
+    "Stok serta varian produk per outlet",
     "Pesan via QR (Scan-to-Order) — pelanggan scan QR meja, lihat menu & pesan sendiri",
     "Multi-outlet tanpa batas (+Rp 49.000/outlet per bulan, atau Rp 490.000/tahun)",
     "Transfer stok antar outlet & riwayat pergerakan stok",
@@ -80,7 +32,10 @@ const proFeaturesByLocale: Record<Locale, string[]> = {
     "Bantuan teknis prioritas via email",
   ],
   en: [
-    "Everything in Lite, plus:",
+    "Cloud servers, data storage and backups, sync, security, maintenance, and feature updates",
+    "Unlimited transactions and financial reports",
+    "Staff roles, customer records, tables, and kitchen display",
+    "Stock and product variants per outlet",
     "QR ordering — guests scan the code on the table, browse the menu, and order themselves",
     "Unlimited outlets (additional outlets billed per outlet)",
     "Stock transfers between outlets, with full movement history",
@@ -97,7 +52,10 @@ const proFeaturesByLocale: Record<Locale, string[]> = {
     "Priority support by email",
   ],
   ms: [
-    "Semua dalam Lite, dan:",
+    "Pelayan awan, storan dan sandaran data, penyegerakan, keselamatan, penyelenggaraan serta kemas kini ciri",
+    "Transaksi tanpa had dan laporan kewangan",
+    "Peranan pekerja, rekod pelanggan, meja, dan paparan dapur",
+    "Stok dan varian produk setiap cawangan",
     "Pesanan melalui QR — pelanggan imbas kod di meja, lihat menu, dan pesan sendiri",
     "Cawangan tanpa had (cawangan tambahan dikenakan bayaran setiap cawangan)",
     "Pemindahan stok antara cawangan, dengan sejarah pergerakan penuh",
@@ -114,7 +72,10 @@ const proFeaturesByLocale: Record<Locale, string[]> = {
     "Sokongan keutamaan melalui e-mel",
   ],
   ja: [
-    "Lite のすべての機能に加えて：",
+    "クラウドサーバー、データ保存・バックアップ、同期、セキュリティ、保守、機能更新",
+    "無制限の会計と財務レポート",
+    "スタッフ権限・顧客情報・テーブル・キッチンディスプレイ",
+    "店舗ごとの在庫と商品バリエーション",
     "QRオーダー — お客様がテーブルのQRを読み取り、メニューを見てご自身で注文",
     "店舗数は無制限（追加店舗は1店舗ごとの課金）",
     "店舗間の在庫移動と、移動履歴の記録",
@@ -136,8 +97,7 @@ const tierCopyByLocale: Record<
   Locale,
   {
     trial: { name: string; price: string; period: string; badge: string; description: string; features: string[]; ctaLabel: string };
-    lite: { period: string; periodAnnual: string; annualNote: string; description: string; ctaLabel: string };
-    pro: { period: string; periodAnnual: string; annualNote: string; badge: string; description: string; ctaLabel: string };
+    pro: { period: string; periodAnnual: string; periodThreeYear: string; annualNote: string; threeYearNote: string; badge: string; description: string; ctaLabel: string };
   }
 > = {
   id: {
@@ -157,8 +117,7 @@ const tierCopyByLocale: Record<
       ],
       ctaLabel: "Coba Sekarang",
     },
-    lite: { period: "per bulan", periodAnnual: "per tahun", annualNote: "Hemat Rp 69.000 / tahun", description: "Untuk 1 outlet. Operasional kasir lengkap dengan manajemen produk & pelanggan.", ctaLabel: "Pilih Lite" },
-    pro: { period: "per outlet / bulan", periodAnnual: "per outlet / tahun", annualNote: "Hemat Rp 178.000 / tahun (2 bulan gratis)", badge: "Paling Populer", description: "Multi-outlet + inventori lanjutan, HPP & loyalty, plus Pesan via QR. Outlet pertama sudah termasuk.", ctaLabel: "Pilih Pro" },
+    pro: { period: "per bulan", periodAnnual: "per tahun", periodThreeYear: "3 tahun", annualNote: "Hemat Rp 118.000 / tahun (2 bulan gratis)", threeYearNote: "Paling hemat — setara sekitar Rp41.400/bulan", badge: "Satu Paket, Semua Fitur", description: "Semua fitur kasir dan pengelolaan bisnis. Outlet pertama sudah termasuk; cabang tambahan dibayar terpisah.", ctaLabel: "Pilih Pro" },
   },
   en: {
     trial: {
@@ -177,8 +136,7 @@ const tierCopyByLocale: Record<
       ],
       ctaLabel: "Try It Now",
     },
-    lite: { period: "per month", periodAnnual: "per year", annualNote: "Two months off when paid yearly", description: "For a single outlet. The full counter, plus product and customer management.", ctaLabel: "Choose Lite" },
-    pro: { period: "per outlet / month", periodAnnual: "per outlet / year", annualNote: "Two months off when paid yearly", badge: "Most Popular", description: "Multiple outlets, deeper inventory, food cost and loyalty, plus QR ordering. The first outlet is included.", ctaLabel: "Choose Pro" },
+    pro: { period: "per month", periodAnnual: "per year", periodThreeYear: "3 years", annualNote: "Two months off when paid yearly", threeYearNote: "Best value for long-term use", badge: "One Plan, Every Feature", description: "Every POS and business-management feature. The first outlet is included; additional outlets are billed separately.", ctaLabel: "Choose Pro" },
   },
   ms: {
     trial: {
@@ -197,8 +155,7 @@ const tierCopyByLocale: Record<
       ],
       ctaLabel: "Cuba Sekarang",
     },
-    lite: { period: "sebulan", periodAnnual: "setahun", annualNote: "Dua bulan percuma jika bayar tahunan", description: "Untuk satu cawangan. Kaunter lengkap, berserta pengurusan produk dan pelanggan.", ctaLabel: "Pilih Lite" },
-    pro: { period: "setiap cawangan / bulan", periodAnnual: "setiap cawangan / tahun", annualNote: "Dua bulan percuma jika bayar tahunan", badge: "Paling Popular", description: "Berbilang cawangan, inventori lebih mendalam, kos makanan dan kesetiaan pelanggan, serta pesanan QR. Cawangan pertama sudah termasuk.", ctaLabel: "Pilih Pro" },
+    pro: { period: "sebulan", periodAnnual: "setahun", periodThreeYear: "3 tahun", annualNote: "Dua bulan percuma jika bayar tahunan", threeYearNote: "Paling jimat untuk penggunaan jangka panjang", badge: "Satu Pelan, Semua Ciri", description: "Semua ciri POS dan pengurusan perniagaan. Cawangan pertama disertakan; cawangan tambahan dicaj berasingan.", ctaLabel: "Pilih Pro" },
   },
   ja: {
     trial: {
@@ -217,8 +174,7 @@ const tierCopyByLocale: Record<
       ],
       ctaLabel: "無料で試す",
     },
-    lite: { period: "月額", periodAnnual: "年額", annualNote: "年払いなら2か月分お得", description: "1店舗向け。レジ業務ひと通りに、商品管理と顧客管理まで。", ctaLabel: "Lite を選ぶ" },
-    pro: { period: "1店舗あたり / 月", periodAnnual: "1店舗あたり / 年", annualNote: "年払いなら2か月分お得", badge: "いちばん選ばれています", description: "多店舗対応、在庫管理の強化、原価計算とリピート施策、そしてQRオーダー。1店舗目は料金に含まれます。", ctaLabel: "Pro を選ぶ" },
+    pro: { period: "月額", periodAnnual: "年額", periodThreeYear: "3年間", annualNote: "年払いなら2か月分お得", threeYearNote: "長期利用でもっともお得", badge: "1つのプランで全機能", description: "POSと店舗管理の全機能。1店舗目は料金に含まれ、追加店舗は別料金です。", ctaLabel: "Pro を選ぶ" },
   },
 };
 
@@ -236,17 +192,10 @@ export function getTiers(locale: Locale): IPricing[] {
       ctaUrl: "https://app.lokakasir.id",
     },
     {
-      name: "Lite",
-      price: 39000,
-      priceAnnual: 399000,
-      ...copy.lite,
-      features: pick(liteFeaturesByLocale, locale),
-      ctaUrl: "https://app.lokakasir.id",
-    },
-    {
       name: "Pro",
-      price: 89000,
-      priceAnnual: 890000,
+      price: 59000,
+      priceAnnual: 590000,
+      priceThreeYear: 1490000,
       ...copy.pro,
       features: pick(proFeaturesByLocale, locale),
       ctaUrl: "https://app.lokakasir.id",
