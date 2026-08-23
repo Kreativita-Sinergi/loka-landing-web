@@ -58,7 +58,7 @@ If you run a food business, also add your tables and turn on the kitchen display
 One detail worth knowing: the 30 days are counted from your first sale, not from the day you sign up. So you can create the account, take your time entering products, and install the app when you're actually ready — none of that eats into the trial.
 
 When it ends, you choose:
-• Free — the core register, 1 outlet, up to 500 sales a month, free indefinitely
+• Free — the core register, 1 outlet, up to 100 sales a month, free indefinitely
 • Pro — every POS feature, multiple outlets, analytics, attendance, suppliers, purchase orders, food cost, price suggestions, profitability, and loyalty. The first outlet is included.`,
   },
   {
@@ -478,7 +478,7 @@ It keeps cashiers from needing permissions they shouldn't have, without holding 
     answer:
       `Outlets depend on the plan:
 
-• Free — 1 outlet, up to 500 sales a month
+• Free — 1 outlet, up to 100 sales a month
 • The 30 free days — full Pro access, up to 5 outlets
 • Pro — unlimited outlets; the first is included and each additional one is charged monthly
 

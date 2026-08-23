@@ -45,7 +45,7 @@ Untuk bisnis FNB: tambahkan juga data meja dan aktifkan Kitchen Display System (
       `Ya! Setiap akun baru mendapat 30 hari pertama gratis dengan akses penuh ke semua fitur Pro — tanpa batas transaksi, multi-outlet sampai 5 cabang, tanpa kartu kredit, tanpa komitmen.
 
 Setelah 30 hari, pilih paket yang sesuai:
-• Gratis — fitur POS inti, 1 outlet, maks. 500 transaksi/bulan, selamanya gratis
+• Gratis — fitur POS inti, 1 outlet, maks. 100 transaksi/bulan, selamanya gratis
 • Pro — Rp 59.000/bulan, Rp 590.000/tahun, atau Rp 1.490.000/3 tahun — semua fitur kasir, Analitik, Absensi, Supplier, PO, HPP, Smart Pricing, Profitabilitas, dan Loyalty. Outlet pertama termasuk. Biaya ini sudah mencakup server cloud, penyimpanan dan backup data, sinkronisasi, keamanan, pemeliharaan, serta pembaruan fitur.`,
   },
   {
@@ -513,7 +513,7 @@ Fitur ini mencegah kasir memiliki akses berlebihan sekaligus tidak mengganggu an
     answer:
       `Tergantung paket yang dipilih:
 
-• Gratis — 1 outlet, maks. 500 transaksi/bulan
+• Gratis — 1 outlet, maks. 100 transaksi/bulan
 • Gratis 30 hari pertama — akses Pro penuh, sampai 5 outlet
 • Pro — multi-outlet tanpa batas; outlet pertama sudah termasuk harga paket, outlet tambahan dikenakan Rp 49.000/outlet/bulan
 

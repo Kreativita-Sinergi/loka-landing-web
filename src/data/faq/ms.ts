@@ -48,7 +48,7 @@ Jika perniagaan anda menjual makanan, tambah juga meja dan hidupkan paparan dapu
 Satu perkara yang baik diketahui: 30 hari itu dikira dari jualan pertama anda, bukan dari hari anda mendaftar. Jadi anda boleh membuka akaun, mengambil masa memasukkan produk, dan memasang aplikasi apabila benar-benar bersedia — semuanya tidak memakan tempoh percubaan.
 
 Apabila tamat, anda memilih:
-• Percuma — kaunter asas, 1 cawangan, sehingga 500 jualan sebulan, percuma selamanya
+• Percuma — kaunter asas, 1 cawangan, sehingga 100 jualan sebulan, percuma selamanya
 • Pro — semua ciri POS, berbilang cawangan, analitik, kehadiran, pembekal, pesanan belian, kos makanan, cadangan harga, keuntungan produk, dan kesetiaan pelanggan. Cawangan pertama disertakan.`,
   },
   {
@@ -465,7 +465,7 @@ Ia mengelakkan juruwang memerlukan kebenaran yang tidak sepatutnya, tanpa melamb
     answer:
       `Cawangan bergantung pada pelan:
 
-• Percuma — 1 cawangan, sehingga 500 jualan sebulan
+• Percuma — 1 cawangan, sehingga 100 jualan sebulan
 • 30 hari percuma — akses Pro penuh, sehingga 5 cawangan
 • Pro — cawangan tanpa had; yang pertama sudah termasuk dan setiap tambahan dikenakan bayaran bulanan
 
