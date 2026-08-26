@@ -25,7 +25,7 @@ type Hero = {
  */
 const heroByLocale: Record<Locale, Hero> = {
   id: {
-    headingLead: "Naik Kelas",
+    headingLead: "Aplikasi Kasir untuk UMKM,",
     headingHighlight: "Tanpa Ribet",
     subheading:
       "Jualan lebih cepat, untung lebih jelas. Aplikasi kasir all-in-one untuk warung, kafe, resto, dan toko — kelola transaksi, stok, shift, laporan, dan tim Anda dalam satu tempat. Gratis 30 hari pertama — semua fitur Pro terbuka, tanpa komitmen.",

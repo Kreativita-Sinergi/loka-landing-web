@@ -23,6 +23,7 @@ import OnsiteService from "@/components/OnsiteService";
 import { onsiteServiceDetails } from "@/data/onsiteService";
 import { getHowToStart } from "@/data/howToStart";
 import { getTutorials } from "@/data/tutorials";
+import { getFaqs } from "@/data/faq";
 import { DEFAULT_LOCALE, LOCALES, type Locale } from "@/data/localized";
 import { getUi } from "@/data/ui";
 
@@ -36,9 +37,27 @@ const HomePage = async ({ params }: { params: Promise<{ locale: string }> }) => 
   const webAdminDetails = getWebAdmin(locale);
   const howToStartDetails = getHowToStart(locale);
   const partnershipDetails = getPartnership(locale);
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: getFaqs(locale).map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <Hero locale={locale} />
 
       <Stats locale={locale} />

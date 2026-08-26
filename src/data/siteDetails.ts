@@ -1,11 +1,14 @@
 import { pick, type Locale } from './localized';
 
 export const siteDetails = {
-  siteName: 'Loka',
-  siteUrl: 'https://lokakasir.id',
+  siteName: 'Loka Kasir',
+  // Vercel mengarahkan domain apex ke www. Seluruh canonical, hreflang,
+  // sitemap, OpenGraph, dan structured data harus menunjuk langsung ke host
+  // final agar sinyal ranking tidak melewati redirect.
+  siteUrl: 'https://www.lokakasir.id',
   dashboardUrl: 'https://app.lokakasir.id',
   metadata: {
-    title: 'Loka Kasir — Naik Kelas Tanpa Ribet | Kasir Digital untuk UMKM',
+    title: 'Aplikasi Kasir UMKM, Toko & Restoran | Loka Kasir',
     description:
       'Loka Kasir adalah aplikasi kasir (POS) modern untuk warung, toko, dan UMKM. Kelola stok, transaksi, shift, dan laporan bisnis Anda dengan mudah dan profesional.',
   },
@@ -14,8 +17,8 @@ export const siteDetails = {
   siteLogo: '/images/logo.png', // ✅ Perbaikan: tanda kutip ditutup
   // ID GA4 (G-XXXX). Diisi lewat env var NEXT_PUBLIC_GA_ID — biarkan kosong jika belum ada.
   googleAnalyticsId: process.env.NEXT_PUBLIC_GA_ID || '',
-  sitemapUrl: 'https://lokakasir.id/sitemap.xml',
-  robotsUrl: 'https://lokakasir.id/robots.txt',
+  sitemapUrl: 'https://www.lokakasir.id/sitemap.xml',
+  robotsUrl: 'https://www.lokakasir.id/robots.txt',
   social: {
     instagramPage: 'https://instagram.com/lokakasir.id',
   },
@@ -32,7 +35,7 @@ export const siteDetails = {
  */
 const metadataByLocale: Record<Locale, { title: string; description: string }> = {
   id: {
-    title: 'Loka Kasir — Naik Kelas Tanpa Ribet | Kasir Digital untuk UMKM',
+    title: 'Aplikasi Kasir UMKM, Toko & Restoran | Loka Kasir',
     description:
       'Loka Kasir adalah aplikasi kasir (POS) modern untuk warung, toko, dan UMKM. Kelola stok, transaksi, shift, dan laporan bisnis Anda dengan mudah dan profesional.',
   },

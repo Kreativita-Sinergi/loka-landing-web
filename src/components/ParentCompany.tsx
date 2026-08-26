@@ -10,42 +10,8 @@ const ParentCompany: React.FC<{ locale: Locale }> = ({ locale }) => {
   const ui = getUi(locale);
   const waLink = `https://wa.me/${kc.whatsapp}?text=${encodeURIComponent(kc.whatsappMessage)}`;
 
-// Structured data: associate Loka Kasir with its publisher Kreativita Sinergi.
-// Helps search engines connect both entities and pass relevance/authority.
-  const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": `${kc.website}/#organization`,
-      name: kc.name,
-      url: kc.website,
-      slogan: kc.tagline,
-      description: kc.description,
-      email: kc.email,
-      areaServed: "ID",
-      sameAs: ["https://lokakasir.id"],
-    },
-    {
-      "@type": "SoftwareApplication",
-      name: "Loka Kasir",
-      applicationCategory: "BusinessApplication",
-      operatingSystem: "Android",
-      url: "https://lokakasir.id",
-      offers: { "@type": "Offer", price: "0", priceCurrency: "IDR" },
-      publisher: { "@id": `${kc.website}/#organization` },
-      author: { "@id": `${kc.website}/#organization` },
-    },
-  ],
-  };
-
   return (
     <section id="kreativita" className="py-10 lg:py-20">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
       <div className="relative overflow-hidden rounded-3xl border border-gray-100 bg-white p-8 sm:p-12 lg:p-16 shadow-sm dark:bg-surface dark:border-surface-border dark:shadow-black/30">
         {/* soft brand glow */}
         <div
