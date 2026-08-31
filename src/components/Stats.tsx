@@ -53,11 +53,11 @@ const Stats = async ({ locale }: { locale: Locale }) => {
   const note = live ? liveNote : statsNote;
 
   return (
-    <section className="bg-secondary py-14">
+    <section className="loka-stats relative overflow-hidden bg-secondary py-16">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+        <div className="relative z-10 grid grid-cols-2 gap-5 text-center text-white md:grid-cols-4">
           {items.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center">
+            <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-6 backdrop-blur-sm transition-transform hover:-translate-y-1">
               <span className="text-4xl md:text-5xl font-extrabold text-primary leading-tight">
                 {stat.value}
               </span>

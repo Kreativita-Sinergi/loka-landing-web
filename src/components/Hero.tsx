@@ -23,7 +23,7 @@ const Hero: React.FC<{ locale: Locale }> = ({ locale }) => {
   return (
     <section
       id="hero"
-      className="relative flex items-center justify-center pb-0 pt-28 md:pt-36 px-5 overflow-hidden"
+      className="loka-hero relative flex items-center justify-center overflow-hidden px-5 pb-0 pt-32 md:pt-40"
     >
       {/* Grid background */}
       <div className="absolute left-0 top-0 bottom-0 -z-10 w-full">
@@ -36,32 +36,32 @@ const Hero: React.FC<{ locale: Locale }> = ({ locale }) => {
       {/* Bottom fade */}
       <div className="absolute left-0 right-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-[rgba(202,208,230,0.4)] dark:to-[rgba(10,15,26,0.8)] -z-10" />
 
-      <div className="text-center w-full max-w-4xl mx-auto">
+      <div className="loka-hero-copy mx-auto w-full max-w-5xl text-center">
         {/* Pill badge */}
-        <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 dark:bg-blue-500/10 dark:border-blue-400/20 dark:text-blue-300">
+        <div className="loka-hero-badge mb-6 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/85 px-4 py-2 text-xs font-semibold text-blue-700 shadow-sm backdrop-blur dark:border-blue-400/20 dark:bg-blue-500/10 dark:text-blue-300">
           <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
           {ui.heroBadge}
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight font-sans text-gray-900 max-w-2xl mx-auto leading-tight dark:text-white">
+        <h1 className="mx-auto max-w-4xl font-sans text-5xl font-extrabold leading-[1.02] tracking-[-0.045em] text-gray-900 sm:text-6xl md:text-7xl dark:text-white">
           {heroDetails.headingLead}{" "}
           <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
             {heroDetails.headingHighlight}
           </span>
         </h1>
-        <p className="mt-5 text-gray-500 text-lg md:text-xl leading-relaxed max-w-xl mx-auto dark:text-gray-400">
+        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-500 md:text-xl dark:text-gray-400">
           {heroDetails.subheading}
         </p>
 
         {/* Aksi utama = mendaftar. Sejak akun bisa dibuat langsung dari browser,
             menyuruh pengunjung mengunduh dulu justru menambah satu rintangan. */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-2xl mx-auto">
+        <div className="mx-auto mt-9 flex w-full max-w-xl flex-col items-center justify-center gap-3 sm:flex-row">
           <a
             href={signUpDetails.url}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackSignUpClick("hero")}
-            className="flex items-center justify-center gap-2 px-6 h-14 rounded-full w-full sm:flex-1 font-bold text-base leading-none text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30"
+            className="flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-blue-600 px-6 text-base font-bold leading-none text-white shadow-lg shadow-blue-600/30 transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl sm:flex-1"
           >
             <UserPlus size={18} aria-hidden="true" className="relative -top-px" /> {signUpDetails.label}
           </a>
@@ -70,7 +70,7 @@ const Hero: React.FC<{ locale: Locale }> = ({ locale }) => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackDownloadClick("hero")}
-            className="flex items-center justify-center gap-2 px-6 h-14 rounded-full w-full sm:flex-1 font-bold text-base leading-none transition-colors border border-gray-300 text-gray-900 hover:bg-gray-100 dark:border-surface-border dark:text-white dark:hover:bg-white/5"
+            className="flex h-14 w-full items-center justify-center gap-2 rounded-2xl border border-gray-300 bg-white/70 px-6 text-base font-bold leading-none text-gray-900 shadow-sm backdrop-blur transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-md sm:flex-1 dark:border-surface-border dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
           >
             <Download size={18} aria-hidden="true" className="relative -top-px" /> {ui.navDownloadApp}
           </a>
@@ -107,13 +107,13 @@ const Hero: React.FC<{ locale: Locale }> = ({ locale }) => {
         </div>
 
         {/* Feature badges */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+        <div className="loka-chip-row mt-9 flex flex-wrap items-center justify-center gap-2">
           {ui.heroChips.map((text, i) => {
             const Icon = BADGE_ICONS[i];
             return (
             <span
               key={text}
-              className="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-600 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm dark:bg-surface dark:border-surface-border dark:text-gray-300"
+              className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white/90 px-3.5 py-2 text-xs font-semibold text-gray-600 shadow-sm backdrop-blur dark:border-surface-border dark:bg-surface dark:text-gray-300"
             >
               <Icon size={14} className="text-blue-600 dark:text-blue-400" aria-hidden="true" />
               {text}
@@ -122,16 +122,16 @@ const Hero: React.FC<{ locale: Locale }> = ({ locale }) => {
         </div>
 
         {/* Tablet mockup */}
-        <div className="relative mt-14 mx-auto z-10 w-full max-w-3xl px-4">
+        <div className="loka-device-stage relative z-10 mx-auto mt-16 w-full max-w-4xl px-4">
           {/* Glow behind tablet */}
           <div className="absolute inset-x-8 top-4 bottom-0 bg-blue-500/10 blur-2xl rounded-3xl -z-10" />
 
-          <div className="bg-gray-900 rounded-[20px] p-[6px] shadow-[0_32px_80px_-12px_rgba(0,0,0,0.35)] ring-1 ring-white/10">
+          <div className="loka-device rounded-[26px] bg-gray-950 p-[7px] shadow-[0_42px_100px_-18px_rgba(11,39,78,0.48)] ring-1 ring-white/15">
             {/* Tablet top notch bar */}
             <div className="flex items-center justify-center py-1.5 px-4">
               <div className="w-16 h-1 bg-gray-700 rounded-full" />
             </div>
-            <div className="relative w-full aspect-[16/10] rounded-[14px] overflow-hidden bg-black">
+            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[19px] bg-black">
               <Image
                 src={heroDetails.centerImageSrc}
                 fill

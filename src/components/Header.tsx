@@ -38,12 +38,14 @@ const Header: React.FC<{ locale: Locale }> = ({ locale }) => {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 dark:bg-background ${
-        scrolled ? "bg-white shadow-md dark:shadow-black/40" : "bg-white"
-      }`}
+      className="pointer-events-none fixed inset-x-0 top-0 z-50 w-full px-3"
     >
-      <Container className="!px-0">
-        <nav className="mx-auto flex justify-between items-center py-3 px-5 md:py-4">
+      <Container className={`!px-0 transition-all duration-300 ${
+        scrolled
+          ? "mt-3 rounded-2xl border border-gray-200/80 bg-white/90 shadow-[0_14px_45px_rgba(15,42,76,0.12)] backdrop-blur-xl dark:border-white/10 dark:bg-[#0d1422]/90 dark:shadow-black/40"
+          : "mt-0 border border-transparent bg-transparent"
+      }`}>
+        <nav className={`pointer-events-auto mx-auto flex items-center justify-between px-4 transition-all duration-300 md:px-5 ${scrolled ? "py-2.5" : "py-4"}`}>
           <Link href={localePath(locale)} className="flex items-center gap-2">
             <Image src="/images/logo.png" width={130} height={70} alt="Loka Kasir" priority />
           </Link>
@@ -158,7 +160,7 @@ const Header: React.FC<{ locale: Locale }> = ({ locale }) => {
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <div id="mobile-menu" className="md:hidden bg-white shadow-lg dark:bg-background dark:border-t dark:border-surface-border">
+        <div id="mobile-menu" className="pointer-events-auto mx-1 mb-2 rounded-xl border border-gray-100 bg-white/95 shadow-lg backdrop-blur-xl md:hidden dark:border-surface-border dark:bg-background/95">
           <ul className="flex flex-col space-y-4 pt-1 pb-6 px-6">
             {menuItems.map((item) => (
               <li key={item.text}>
