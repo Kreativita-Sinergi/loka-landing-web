@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 
 import Hero from "@/components/Hero";
 import FAQ from "@/components/FAQ";
-import Benefits from "@/components/Benefits/Benefits";
 import Container from "@/components/Container";
 import Section from "@/components/Section";
 import CTA from "@/components/Cta";
@@ -80,7 +79,6 @@ const HomePage = async ({ params }: { params: Promise<{ locale: string }> }) => 
           description={ui.sectionFeaturesDesc}
         >
           <FeatureOverview locale={locale} />
-          <Benefits locale={locale} />
         </Section>
 
         {/* Ekosistem */}

@@ -1,28 +1,51 @@
 import { pick, type Locale } from "./localized";
 
 export type FeatureIcon = "pos" | "food" | "stock" | "staff" | "customer" | "owner";
+export type FeaturePlan = "all" | "pro";
+
+export type FeatureOverviewItem = {
+  name: string;
+  plan: FeaturePlan;
+};
 
 export type FeatureOverviewCategory = {
   icon: FeatureIcon;
   title: string;
   summary: string;
-  features: string[];
+  features: FeatureOverviewItem[];
 };
 
 type FeatureOverviewCopy = {
   eyebrow: string;
   intro: string;
   note: string;
-  categories: Omit<FeatureOverviewCategory, "icon">[];
+  allPlansLabel: string;
+  proLabel: string;
+  moreLabel: string;
+  categories: { title: string; summary: string; features: string[] }[];
 };
 
 const icons: FeatureIcon[] = ["pos", "food", "stock", "staff", "customer", "owner"];
+
+// Hanya fitur yang secara eksplisit berada di paket berbayar yang diberi badge
+// Pro. Baris tanpa badge tersedia di semua paket, termasuk Gratis.
+const plans: FeaturePlan[][] = [
+  ["all", "all", "all", "pro", "all"],
+  ["pro", "pro", "pro", "pro", "all"],
+  ["all", "pro", "pro", "pro", "pro"],
+  ["all", "all", "pro", "all", "pro"],
+  ["pro", "all", "pro", "pro", "pro"],
+  ["all", "pro", "pro", "pro", "all"],
+];
 
 const copyByLocale: Record<Locale, FeatureOverviewCopy> = {
   id: {
     eyebrow: "Lebih dari sekadar aplikasi kasir",
     intro: "Dari pelanggan memesan sampai pemilik membaca laba, seluruh operasional toko tersambung dalam satu akun.",
     note: "Tersedia di Android dan Windows untuk kasir, serta Web Admin untuk pemilik. Ketersediaan fitur mengikuti paket yang dipilih.",
+    allPlansLabel: "Tanpa badge = Semua paket",
+    proLabel: "Pro",
+    moreLabel: "Lihat {count} fitur lainnya",
     categories: [
       {
         title: "Penjualan & POS",
@@ -60,6 +83,9 @@ const copyByLocale: Record<Locale, FeatureOverviewCopy> = {
     eyebrow: "More than a point-of-sale app",
     intro: "From the moment a customer orders to the moment you read the profit report, the whole operation stays connected under one account.",
     note: "Android and Windows for the register, plus Web Admin for owners. Feature availability follows your chosen plan.",
+    allPlansLabel: "No badge = All plans",
+    proLabel: "Pro",
+    moreLabel: "See {count} more features",
     categories: [
       { title: "Sales & POS", summary: "Move the queue quickly without making staff learn a complicated workflow.", features: ["Product grid or list", "Dine-in, takeaway & delivery", "Cash, QR, card & transfer", "Discounts, refunds & voids", "Bluetooth / USB thermal receipts"] },
       { title: "Food Service & QR Ordering", summary: "Tables, kitchen, and register all receive the same order without anyone copying it out.", features: ["A QR menu per table", "Guests order from their phone", "Floor plan & table status", "Kitchen Display System", "Variants, add-ons, tax & service"] },
@@ -73,6 +99,9 @@ const copyByLocale: Record<Locale, FeatureOverviewCopy> = {
     eyebrow: "Lebih daripada aplikasi kaunter",
     intro: "Daripada pelanggan membuat pesanan hingga pemilik membaca laporan untung, seluruh operasi kekal bersambung dalam satu akaun.",
     note: "Android dan Windows untuk kaunter, serta Web Admin untuk pemilik. Ketersediaan ciri mengikut pelan pilihan anda.",
+    allPlansLabel: "Tanpa lencana = Semua pelan",
+    proLabel: "Pro",
+    moreLabel: "Lihat {count} ciri lagi",
     categories: [
       { title: "Jualan & POS", summary: "Layan urus niaga dengan pantas tanpa aliran kerja yang rumit.", features: ["Grid atau senarai produk", "Makan di sini, bungkus & penghantaran", "Tunai, QR, kad & pindahan", "Diskaun, bayaran balik & batal", "Resit thermal Bluetooth / USB"] },
       { title: "F&B & Pesanan QR", summary: "Meja, dapur, dan kaunter menerima pesanan yang sama tanpa menyalinnya semula.", features: ["Menu QR setiap meja", "Pelanggan pesan dari telefon", "Pelan lantai & status meja", "Kitchen Display System", "Varian, tambahan, cukai & servis"] },
@@ -86,6 +115,9 @@ const copyByLocale: Record<Locale, FeatureOverviewCopy> = {
     eyebrow: "レジだけではありません",
     intro: "お客様の注文からオーナーが利益を確認するまで、お店の運営すべてがひとつのアカウントでつながります。",
     note: "レジは Android・Windows、オーナーはブラウザの管理画面を利用できます。機能はご利用プランにより異なります。",
+    allPlansLabel: "バッジなし = 全プラン",
+    proLabel: "Pro",
+    moreLabel: "ほか{count}機能を見る",
     categories: [
       { title: "販売・レジ", summary: "複雑な操作を覚えなくても、混雑時の会計をすばやく進められます。", features: ["商品グリッド・一覧表示", "店内・持ち帰り・デリバリー", "現金・QR・カード・振込", "割引・返金・取消", "Bluetooth / USB レシート印刷"] },
       { title: "飲食店・QR注文", summary: "テーブル、厨房、レジに同じ注文が届き、転記の手間をなくします。", features: ["テーブルごとのQRメニュー", "お客様のスマホから注文", "フロア図・テーブル状況", "キッチンディスプレイ", "バリエーション・追加・税・サービス料"] },
@@ -101,6 +133,13 @@ export const getFeatureOverview = (locale: Locale) => {
   const copy = pick(copyByLocale, locale);
   return {
     ...copy,
-    categories: copy.categories.map((category, index) => ({ ...category, icon: icons[index] })),
+    categories: copy.categories.map((category, categoryIndex) => ({
+      ...category,
+      icon: icons[categoryIndex],
+      features: category.features.map((name, featureIndex) => ({
+        name,
+        plan: plans[categoryIndex][featureIndex],
+      })),
+    })),
   };
 };
