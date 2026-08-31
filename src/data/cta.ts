@@ -206,7 +206,7 @@ export const windowsDirectDownload: {
 } | null = {
   url: "https://github.com/Kreativita-Sinergi/loka-landing-web/releases/download/windows-v1.18.2/LokaKasir-Setup-1.18.2-x64.exe",
   fileLabel: "Installer Windows (.exe)",
-  size: "17.4 MB",
+  size: "17.1 MB",
   version: "1.18.2",
 };
 
