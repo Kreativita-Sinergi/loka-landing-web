@@ -3,7 +3,6 @@ import { getStats } from "@/data/stats";
 import {
   activeShare,
   fetchPublicStats,
-  formatHours,
   formatNumber,
   PUBLIC_STATS_REVALIDATE,
 } from "@/lib/publicStats";
@@ -21,7 +20,7 @@ interface StatItem {
 }
 
 const Stats = async ({ locale }: { locale: Locale }) => {
-  const { stats: fallbackStats, note: statsNote } = getStats(locale);
+  const { stats: fallbackStats, note: statsNote, liveNote } = getStats(locale);
   const live = await fetchPublicStats();
 
   // Angka cadangan dipakai hanya bila backend tidak terjangkau. Ia ditulis
@@ -35,23 +34,23 @@ const Stats = async ({ locale }: { locale: Locale }) => {
   // backend-nya terjangkau — yaitu hampir selalu.
   const items: StatItem[] = live
     ? [
-        formatNumber(live.active_24h),
-        formatNumber(live.active_7d),
-        formatHours(live.hours_7d),
-        formatNumber(live.total_transactions),
+        formatNumber(live.total_users, locale),
+        formatNumber(live.total_outlets, locale),
+        formatNumber(live.active_7d, locale),
+        formatNumber(live.total_transactions, locale),
       ].map((value, i) => ({ ...fallbackStats[i], value }))
     : fallbackStats;
 
   // Bagian pengguna aktif hanya bisa dihitung dari data langsung, jadi
   // keterangannya disisipkan di depan kalimat yang sudah diterjemahkan.
   if (live) {
-    items[1] = {
-      ...items[1],
-      description: `${activeShare(live.active_7d, live.total_users)} — ${items[1].description}`,
+    items[2] = {
+      ...items[2],
+      description: `${activeShare(live.active_7d, live.total_users)} — ${items[2].description}`,
     };
   }
 
-  const note = statsNote;
+  const note = live ? liveNote : statsNote;
 
   return (
     <section className="bg-secondary py-14">

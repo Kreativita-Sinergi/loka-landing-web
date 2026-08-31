@@ -50,8 +50,16 @@ export function formatHours(hours: number): string {
   return h > 0 ? `${h}j ${m}m` : `${m}m`;
 }
 
-export function formatNumber(value: number): string {
-  return new Intl.NumberFormat("id-ID").format(Math.max(0, Math.round(value)));
+export function formatNumber(value: number, locale = "id"): string {
+  const locales: Record<string, string> = {
+    id: "id-ID",
+    en: "en-US",
+    ms: "ms-MY",
+    ja: "ja-JP",
+  };
+  return new Intl.NumberFormat(locales[locale] ?? locales.id).format(
+    Math.max(0, Math.round(value)),
+  );
 }
 
 /** Persentase user aktif 7 hari terhadap total, dibulatkan. */

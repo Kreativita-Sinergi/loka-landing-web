@@ -16,6 +16,7 @@ import AppScreenshots from "@/components/AppScreenshots";
 import Stats from "@/components/Stats";
 import Testimonials from "@/components/Testimonials";
 import ParentCompany from "@/components/ParentCompany";
+import FeatureOverview from "@/components/FeatureOverview";
 import Partnership from "@/components/Partnership";
 import { getPartnership } from "@/data/partnership";
 import Tutorials from "@/components/Tutorials";
@@ -78,6 +79,7 @@ const HomePage = async ({ params }: { params: Promise<{ locale: string }> }) => 
           title={ui.sectionFeatures}
           description={ui.sectionFeaturesDesc}
         >
+          <FeatureOverview locale={locale} />
           <Benefits locale={locale} />
         </Section>
 
