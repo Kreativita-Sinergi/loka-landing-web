@@ -203,7 +203,12 @@ export const windowsDirectDownload: {
   fileLabel: string;
   size: string;
   version: string;
-} | null = null;
+} | null = {
+  url: "https://github.com/Kreativita-Sinergi/loka-landing-web/releases/download/windows-v1.18.2/LokaKasir-Setup-1.18.2-x64.exe",
+  fileLabel: "Installer Windows (.exe)",
+  size: "17.4 MB",
+  version: "1.18.2",
+};
 
 // Detail untuk menghubungi tim Loka Kasir (bantuan pemasangan, pertanyaan, dll).
 // Bukan lagi jalur utama untuk mendapatkan aplikasi — pakai appDownloadDetails.
