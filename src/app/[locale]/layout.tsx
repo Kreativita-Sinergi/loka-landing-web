@@ -113,6 +113,16 @@ function buildJsonLd(locale: Locale) {
         ],
         brand: { '@type': 'Brand', name: 'Loka Kasir' },
         publisher: { '@id': publisherId },
+        // Produk saudara, bukan produk yang sama — karena itu `isRelatedTo`, dan
+        // BUKAN `sameAs`. `sameAs` berarti "ini entitas yang sama di alamat lain";
+        // memakainya di sini akan memberi tahu mesin pencari bahwa Loka Kasir dan
+        // Loka Accounting adalah satu produk, lalu menggabungkan sinyal keduanya.
+        isRelatedTo: {
+          '@type': 'SoftwareApplication',
+          name: 'Loka Accounting',
+          applicationCategory: 'BusinessApplication',
+          url: 'https://lokatech.id',
+        },
         sameAs: [
           siteDetails.social.instagramPage,
           'https://play.google.com/store/apps/details?id=id.lokakasir.app',

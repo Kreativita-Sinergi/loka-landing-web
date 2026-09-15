@@ -19,7 +19,14 @@ type Footer = {
  * Tautan cepat yang mengarah ke HALAMAN (bukan anchor) harus memakai
  * [localePath] supaya pengunjung berbahasa Jepang tidak terlempar kembali ke
  * versi Indonesia hanya karena menekan "Kebijakan Privasi".
+ *
+ * Kekecualiannya URL absolut ke domain lain — "Loka Accounting" menunjuk ke
+ * https://lokatech.id, situs terpisah dengan lokalisasinya sendiri. [isExternal]
+ * menyaringnya sebelum [localePath] sempat menyentuhnya; tanpa itu hasilnya
+ * menjadi href="/https://lokatech.id", yang tetap terlihat wajar di daftar
+ * tautan dan baru ketahuan rusak saat diklik.
  */
+const isExternal = (url: string) => /^[a-z][a-z0-9+.-]*:/i.test(url);
 const contact = {
   email: 'help@lokakasir.id',
   telephone: '+62 853-9373-7313',
@@ -37,6 +44,7 @@ const copyByLocale: Record<Locale, { tagline: string; subheading: string; links:
       ["Fitur", "#features"],
       ["Ekosistem", "#ecosystem"],
       ["Web Admin", "/web-admin"],
+      ["Loka Accounting", "https://lokatech.id"],
       ["Cara Mulai", "#cara-mulai"],
       ["Setup Onsite", "#layanan-onsite"],
       ["Harga", "#pricing"],
@@ -54,6 +62,7 @@ const copyByLocale: Record<Locale, { tagline: string; subheading: string; links:
       ["Features", "#features"],
       ["Ecosystem", "#ecosystem"],
       ["Web Admin", "/web-admin"],
+      ["Loka Accounting", "https://lokatech.id"],
       ["Getting Started", "#cara-mulai"],
       ["Pricing", "#pricing"],
       ["Who It's For", "#testimonials"],
@@ -70,6 +79,7 @@ const copyByLocale: Record<Locale, { tagline: string; subheading: string; links:
       ["Ciri", "#features"],
       ["Ekosistem", "#ecosystem"],
       ["Web Admin", "/web-admin"],
+      ["Loka Accounting", "https://lokatech.id"],
       ["Cara Mula", "#cara-mulai"],
       ["Harga", "#pricing"],
       ["Untuk Siapa", "#testimonials"],
@@ -86,6 +96,7 @@ const copyByLocale: Record<Locale, { tagline: string; subheading: string; links:
       ["機能", "#features"],
       ["連携のしくみ", "#ecosystem"],
       ["管理画面", "/web-admin"],
+      ["Loka Accounting", "https://lokatech.id"],
       ["はじめ方", "#cara-mulai"],
       ["料金", "#pricing"],
       ["こんなお店に", "#testimonials"],
@@ -104,7 +115,7 @@ export function getFooter(locale: Locale): Footer {
     subheading: copy.subheading,
     quickLinks: copy.links.map(([text, url]) => ({
       text,
-      url: url.startsWith('#') ? url : localePath(locale, url),
+      url: isExternal(url) || url.startsWith('#') ? url : localePath(locale, url),
     })),
     ...contact,
   };
