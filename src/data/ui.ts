@@ -63,6 +63,7 @@ export type UiStrings = {
   heroBadge: string;
   heroChips: string[];
   heroAlreadyHaveAccount: string;
+  heroApkLink: string;
   heroLoginLink: string;
   heroTabletAlt: string;
 
@@ -167,6 +168,7 @@ const ui: Record<Locale, UiStrings> = {
     heroBadge: "Kasir Digital untuk UMKM Indonesia",
     heroChips: ["Transaksi Kilat", "Laporan Real-time", "Cetak Struk Otomatis", "Sync Cloud"],
     heroAlreadyHaveAccount: "Sudah punya akun?",
+    heroApkLink: "Pakai tablet/HP Huawei? Download APK di sini",
     heroLoginLink: "Masuk ke Web Admin",
     heroTabletAlt: "Tampilan aplikasi kasir Loka Kasir di tablet",
     demoOpenLabel: "Lihat Demo Aplikasi",
@@ -261,6 +263,7 @@ const ui: Record<Locale, UiStrings> = {
     heroBadge: "Point of Sale for Small Shops",
     heroChips: ["Fast Checkout", "Live Reports", "Auto-printed Receipts", "Cloud Sync"],
     heroAlreadyHaveAccount: "Already have an account?",
+    heroApkLink: "On a Huawei tablet or phone? Download the APK",
     heroLoginLink: "Log in to Web Admin",
     heroTabletAlt: "The Loka Kasir register app running on a tablet",
     demoOpenLabel: "Watch the Demo",
@@ -355,6 +358,7 @@ const ui: Record<Locale, UiStrings> = {
     heroBadge: "Sistem POS untuk Perniagaan Kecil",
     heroChips: ["Bayaran Pantas", "Laporan Langsung", "Resit Auto-cetak", "Segerak Awan"],
     heroAlreadyHaveAccount: "Sudah ada akaun?",
+    heroApkLink: "Guna tablet/telefon Huawei? Muat turun APK di sini",
     heroLoginLink: "Log masuk Web Admin",
     heroTabletAlt: "Aplikasi kaunter Loka Kasir pada tablet",
     demoOpenLabel: "Tonton Demo",
@@ -449,6 +453,7 @@ const ui: Record<Locale, UiStrings> = {
     heroBadge: "個人店のためのPOSレジ",
     heroChips: ["すばやい会計", "リアルタイムの売上", "レシート自動印刷", "クラウド同期"],
     heroAlreadyHaveAccount: "すでにアカウントをお持ちですか？",
+    heroApkLink: "Huawei のタブレット・スマホをお使いですか？APK はこちら",
     heroLoginLink: "管理画面にログイン",
     heroTabletAlt: "タブレットで動く Loka Kasir のレジアプリ",
     demoOpenLabel: "デモを見る",

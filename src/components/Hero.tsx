@@ -2,13 +2,14 @@
 
 import React from "react";
 import Image from "next/image";
-import { Zap, BarChart3, Printer, RefreshCw, Download, UserPlus } from "lucide-react";
+import Link from "next/link";
+import { Zap, BarChart3, Printer, RefreshCw, Download, UserPlus, Smartphone } from "lucide-react";
 import DemoVideo from "./DemoVideo";
 import WindowsDownloadLink from "./WindowsDownloadLink";
 import { getHero } from "@/data/hero";
-import { getAppDownload, getCta, getSignUp } from "@/data/cta";
+import { androidDirectDownload, getAppDownload, getCta, getSignUp } from "@/data/cta";
 import { trackDownloadClick, trackSignUpClick } from "@/utils/analytics";
-import type { Locale } from "@/data/localized";
+import { localePath, type Locale } from "@/data/localized";
 import { getUi } from "@/data/ui";
 
 // Ikonnya sama di semua bahasa; hanya labelnya yang berganti (lihat ui.heroChips).
@@ -92,13 +93,23 @@ const Hero: React.FC<{ locale: Locale }> = ({ locale }) => {
           </a>
         </p>
 
-        {/* Jalur unduh untuk pengguna PC/laptop Windows */}
-        <div className="mt-2 flex justify-center">
+        {/* Jalur unduh untuk pengguna PC/laptop Windows dan perangkat tanpa
+            Google Play (Huawei) */}
+        <div className="mt-2 flex flex-col items-center gap-2">
           <WindowsDownloadLink
             source="hero"
             locale={locale}
             className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
           />
+          {androidDirectDownload && (
+            <Link
+              href={localePath(locale, "/download/android")}
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-gray-500 underline underline-offset-4 transition-colors hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+            >
+              <Smartphone size={13} aria-hidden="true" className="flex-shrink-0" />
+              {ui.heroApkLink}
+            </Link>
+          )}
         </div>
 
         {/* Lihat demo aplikasi */}
