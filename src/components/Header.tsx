@@ -6,14 +6,14 @@ import React, { useState, useEffect } from "react";
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
 import { HiOutlineXMark, HiBars3 } from "react-icons/hi2";
 import { FaGooglePlay, FaWindows } from "react-icons/fa";
-import { ChevronDown, Download, UserPlus } from "lucide-react";
+import { ChevronDown, Download, Smartphone, UserPlus } from "lucide-react";
 
 import Container from "./Container";
 import ThemeToggle from "./ThemeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { getMenuItems } from "@/data/menuItems";
 import { siteDetails } from "@/data/siteDetails";
-import { getAppDownload, getSignUp } from "@/data/cta";
+import { androidDirectDownload, getAppDownload, getSignUp } from "@/data/cta";
 import { localePath, type Locale } from "@/data/localized";
 import { getUi } from "@/data/ui";
 import { trackDownloadClick, trackSignUpClick } from "@/utils/analytics";
@@ -121,6 +121,20 @@ const Header: React.FC<{ locale: Locale }> = ({ locale }) => {
                       </span>
                     </Link>
                   </MenuItem>
+                  {androidDirectDownload && (
+                    <MenuItem>
+                      <Link
+                        href={localePath(locale, "/download/android")}
+                        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-left data-[focus]:bg-gray-50 dark:data-[focus]:bg-white/5"
+                      >
+                        <Smartphone size={16} className="flex-shrink-0 text-blue-600 dark:text-blue-400" aria-hidden="true" />
+                        <span>
+                          <span className="block text-sm font-semibold text-gray-900 dark:text-white">Huawei (APK)</span>
+                          <span className="block text-xs text-gray-500 dark:text-gray-400">{ui.navApkNote}</span>
+                        </span>
+                      </Link>
+                    </MenuItem>
+                  )}
                 </MenuItems>
               </Menu>
             </li>
@@ -224,6 +238,17 @@ const Header: React.FC<{ locale: Locale }> = ({ locale }) => {
                 <FaWindows size={14} aria-hidden="true" /> {ui.navWindowsLink}
               </Link>
             </li>
+            {androidDirectDownload && (
+              <li>
+                <Link
+                  href={localePath(locale, "/download/android")}
+                  onClick={toggleMenu}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-[#007BFF] dark:text-gray-300 dark:hover:text-[#4d8dff]"
+                >
+                  <Smartphone size={14} aria-hidden="true" /> {ui.navApkLink}
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </Transition>

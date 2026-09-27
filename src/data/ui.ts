@@ -19,6 +19,8 @@ export type UiStrings = {
   navAndroidNote: string;
   navWindowsNote: string;
   navWindowsLink: string;
+  navApkNote: string;
+  navApkLink: string;
   navSignUpFree: string;
   navSignUpHint: string;
   navToggle: string;
@@ -120,6 +122,8 @@ const ui: Record<Locale, UiStrings> = {
     navAndroidNote: "HP & tablet · Google Play",
     navWindowsNote: "PC & laptop · Store atau file",
     navWindowsLink: "Download versi Windows",
+    navApkNote: "Tanpa Google Play · File APK",
+    navApkLink: "Download APK untuk Huawei",
     navSignUpFree: "Daftar Gratis",
     navSignUpHint: "Buat akun langsung di browser — aplikasinya dipasang belakangan.",
     navToggle: "Buka menu navigasi",
@@ -215,6 +219,8 @@ const ui: Record<Locale, UiStrings> = {
     navAndroidNote: "Phone & tablet · Google Play",
     navWindowsNote: "PC & laptop · Store or file",
     navWindowsLink: "Download the Windows version",
+    navApkNote: "No Google Play · APK file",
+    navApkLink: "Download the APK for Huawei",
     navSignUpFree: "Start Free",
     navSignUpHint: "Create the account in your browser — install the app whenever you're ready.",
     navToggle: "Open navigation menu",
@@ -310,6 +316,8 @@ const ui: Record<Locale, UiStrings> = {
     navAndroidNote: "Telefon & tablet · Google Play",
     navWindowsNote: "PC & komputer riba · Store atau fail",
     navWindowsLink: "Muat turun versi Windows",
+    navApkNote: "Tanpa Google Play · Fail APK",
+    navApkLink: "Muat turun APK untuk Huawei",
     navSignUpFree: "Mula Percuma",
     navSignUpHint: "Buka akaun dalam pelayar — pasang aplikasinya bila anda sudah bersedia.",
     navToggle: "Buka menu navigasi",
@@ -405,6 +413,8 @@ const ui: Record<Locale, UiStrings> = {
     navAndroidNote: "スマホ・タブレット · Google Play",
     navWindowsNote: "PC・ノートPC · Store またはファイル",
     navWindowsLink: "Windows版をダウンロード",
+    navApkNote: "Google Play なし · APK ファイル",
+    navApkLink: "Huawei 向け APK をダウンロード",
     navSignUpFree: "無料ではじめる",
     navSignUpHint: "アカウントはブラウザで作成できます。アプリの導入は、ご都合のよいときで大丈夫です。",
     navToggle: "メニューを開く",
