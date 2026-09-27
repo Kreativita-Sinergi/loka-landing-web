@@ -27,6 +27,7 @@ export type UiStrings = {
   // Footer
   footerQuickLinks: string;
   footerContact: string;
+  footerApkLink: string;
   footerAddress: string;
 
   // Section headings di beranda
@@ -124,6 +125,7 @@ const ui: Record<Locale, UiStrings> = {
     navLanguage: "Bahasa",
     footerQuickLinks: "Tautan Cepat",
     footerContact: "Hubungi Kami",
+    footerApkLink: "APK Android (Huawei)",
     footerAddress: "Alamat Kami",
     sectionFeatures: "Fitur Unggulan",
     sectionFeaturesDesc: "Semua yang Anda butuhkan untuk mengelola kasir, shift, dan laporan bisnis — dalam satu aplikasi yang ringan dan mudah dipakai.",
@@ -217,6 +219,7 @@ const ui: Record<Locale, UiStrings> = {
     navLanguage: "Language",
     footerQuickLinks: "Quick Links",
     footerContact: "Contact Us",
+    footerApkLink: "Android APK (Huawei)",
     footerAddress: "Our Address",
     sectionFeatures: "What You Get",
     sectionFeaturesDesc: "Everything the counter needs — sales, shifts, stock, and the reports that explain them — in one app light enough to run on the tablet you already have.",
@@ -310,6 +313,7 @@ const ui: Record<Locale, UiStrings> = {
     navLanguage: "Bahasa",
     footerQuickLinks: "Pautan Pantas",
     footerContact: "Hubungi Kami",
+    footerApkLink: "APK Android (Huawei)",
     footerAddress: "Alamat Kami",
     sectionFeatures: "Apa Yang Anda Dapat",
     sectionFeaturesDesc: "Semua yang diperlukan kaunter — jualan, syif, stok, dan laporan yang menerangkannya — dalam satu aplikasi yang cukup ringan untuk tablet sedia ada anda.",
@@ -403,6 +407,7 @@ const ui: Record<Locale, UiStrings> = {
     navLanguage: "言語",
     footerQuickLinks: "リンク",
     footerContact: "お問い合わせ",
+    footerApkLink: "Android APK（Huawei）",
     footerAddress: "所在地",
     sectionFeatures: "できること",
     sectionFeaturesDesc: "会計・シフト・在庫、そしてそれらを読み解くレポートまで。いまお使いのタブレットでも動く軽さで、ひとつにまとまっています。",

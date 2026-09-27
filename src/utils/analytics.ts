@@ -29,7 +29,7 @@ export function trackSignUpClick(source: string) {
 
 export function trackDownloadClick(
   source: string,
-  platform: "android" | "windows" = "android"
+  platform: "android" | "android-apk" | "windows" = "android"
 ) {
   trackEvent("app_download_click", { source, platform });
 }

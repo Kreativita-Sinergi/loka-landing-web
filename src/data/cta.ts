@@ -210,6 +210,28 @@ export const windowsDirectDownload: {
   version: "1.18.2",
 };
 
+// APK langsung (di luar Google Play) untuk perangkat Android tanpa layanan
+// Google — terutama tablet/HP Huawei (HarmonyOS/EMUI + AppGallery) yang tidak
+// bisa memasang dari Play Store. Di-host sebagai GitHub Release karena ukurannya
+// (±100 MB) terlalu besar untuk `public/`. Paketnya sama dengan versi Play Store
+// (id.lokakasir.app), jadi APK baru bisa dipasang di atas yang lama tanpa
+// kehilangan data. Biarkan `null` untuk menyembunyikan halaman /download/android.
+export const androidDirectDownload: {
+  url: string;
+  fileLabel: string;
+  size: string;
+  version: string;
+  minAndroid: string;
+  sha256: string;
+} | null = {
+  url: "https://github.com/Kreativita-Sinergi/loka-landing-web/releases/download/android-v1.30.0/LokaKasir-1.30.0.apk",
+  fileLabel: "APK Android",
+  size: "102 MB",
+  version: "1.30.0",
+  minAndroid: "7.0",
+  sha256: "f5c5a67b626e86c0ce65628584a937f1f67d7b0a0296587c6057a64e1bf506c6",
+};
+
 // Detail untuk menghubungi tim Loka Kasir (bantuan pemasangan, pertanyaan, dll).
 // Bukan lagi jalur utama untuk mendapatkan aplikasi — pakai appDownloadDetails.
 const helpMessageByLocale: Record<Locale, { app: string; register: string }> = {

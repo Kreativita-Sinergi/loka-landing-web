@@ -16,6 +16,7 @@ const paths = [
   { path: "/", changeFrequency: "weekly" as const, priority: 1 },
   { path: "/web-admin", changeFrequency: "monthly" as const, priority: 0.9 },
   { path: "/download/windows", changeFrequency: "monthly" as const, priority: 0.8 },
+  { path: "/download/android", changeFrequency: "monthly" as const, priority: 0.7 },
   { path: "/privacy-policy", changeFrequency: "yearly" as const, priority: 0.3 },
   { path: "/hapus-akun", changeFrequency: "yearly" as const, priority: 0.3 },
 ];

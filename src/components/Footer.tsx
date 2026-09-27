@@ -5,7 +5,7 @@ import { Download, Mail, Phone } from "lucide-react";
 
 import { siteDetails } from "@/data/siteDetails";
 import { getFooter } from "@/data/footer";
-import { getAppDownload } from "@/data/cta";
+import { androidDirectDownload, getAppDownload } from "@/data/cta";
 import { localePath, type Locale } from "@/data/localized";
 import { getUi } from "@/data/ui";
 import { getPlatformIconByName } from "@/utils";
@@ -79,6 +79,16 @@ const Footer: React.FC<{ locale: Locale }> = ({ locale }) => {
                 <FaWindows size={14} aria-hidden="true" /> Download Windows
               </Link>
             </li>
+            {androidDirectDownload && (
+              <li>
+                <Link
+                  href={localePath(locale, "/download/android")}
+                  className="inline-flex items-center gap-1.5 font-semibold text-secondary hover:underline"
+                >
+                  <Download size={15} aria-hidden="true" /> {ui.footerApkLink}
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
 
