@@ -1,0 +1,20 @@
+"use client";
+import { useState } from 'react';
+import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
+import ShopTutorials from './ShopTutorials';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowUpRight, Smartphone, Monitor, Globe, Maximize2, X } from 'lucide-react';
+import { getStorefront } from '@/data/storefront';
+import { getAppDownload } from '@/data/cta';
+import { localePath, type Locale } from '@/data/localized';
+import { trackDownloadClick } from '@/utils/analytics';
+const screens = ['/images/tablet/Screenshot_1776574642.png','/images/tablet/Screenshot_1776574650.png','/images/tablet/Screenshot_1776574482.png'];
+export default function ShopScreens({ locale }: { locale: Locale }) {
+  const copy = getStorefront(locale);
+  const [active, setActive] = useState(0);
+  const [zoomed, setZoomed] = useState(false);
+  const zoom = { id: 'Perbesar tampilan', en: 'Enlarge screen', ms: 'Besarkan paparan', ja: '画面を拡大' }[locale];
+  const close = { id: 'Tutup tampilan', en: 'Close screen', ms: 'Tutup paparan', ja: '閉じる' }[locale];
+  return <section id="screenshots" className="shop-section shop-screens"><div className="shop-screens-top"><div><p className="shop-eyebrow">02 / ANDROID + WINDOWS</p><h2>{copy.screenTitle}</h2></div><div className="screen-tabs" role="tablist" aria-label={copy.screenTitle}>{copy.screenTabs.map((label, i) => <button key={label} type="button" id={`screen-tab-${i}`} role="tab" aria-selected={active === i} aria-controls="shop-screen-panel" tabIndex={active === i ? 0 : -1} onClick={() => setActive(i)} onKeyDown={(e) => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); const next = (i + (e.key === 'ArrowRight' ? 1 : 2)) % 3; setActive(next); document.getElementById(`screen-tab-${next}`)?.focus(); } }} className={active === i ? 'active' : ''}><span>0{i+1}</span>{label}</button>)}</div></div><div className="shop-screen-stage" id="shop-screen-panel" role="tabpanel" aria-labelledby={`screen-tab-${active}`}><button type="button" className="shop-tablet" onClick={() => setZoomed(true)} aria-label={zoom}><span className="tablet-camera" /><Image src={screens[active]} width={1996} height={1248} alt={`${copy.screenNote} ${copy.screenTabs[active]}`} sizes="(max-width: 760px) 90vw, 950px" /><span className="screen-zoom"><Maximize2 size={15} />{zoom}</span></button><div className="shop-phone"><Image src="/images/mobile/Screenshot_1776572549.png" width={450} height={1000} alt={copy.android} sizes="(max-width: 760px) 100px, 190px" /></div><div className="screen-ticket"><span>LOKA / POS</span><p>{copy.screenHints[active]}</p><span>↳ {copy.screenNote}</span></div></div><div id="ecosystem" className="shop-platforms"><a href={getAppDownload(locale).url} target="_blank" rel="noopener noreferrer" onClick={() => trackDownloadClick('screenshots')}><Smartphone size={17} />{copy.android}<ArrowUpRight size={15} /></a><Link href={localePath(locale, '/download/windows')}><Monitor size={17} />{copy.windows}<ArrowUpRight size={15} /></Link><Link href={localePath(locale, '/web-admin')}><Globe size={17} />{copy.web}<ArrowUpRight size={15} /></Link></div><div id="web-admin" className="shop-owner"><div><h3>{copy.owner}</h3><p>{copy.ownerDesc}</p></div><Link href={localePath(locale, '/web-admin')}>{copy.ownerLink}<ArrowUpRight size={17} /></Link></div><ShopTutorials locale={locale}/><Dialog open={zoomed} onClose={setZoomed} className="relative z-[70]"><div className="fixed inset-0 bg-black/75" aria-hidden="true"/><div className="fixed inset-0 flex items-center justify-center p-3 sm:p-8"><DialogPanel className="screen-dialog"><div className="screen-dialog-head"><DialogTitle>{copy.screenTabs[active]} · Loka Kasir</DialogTitle><button type="button" onClick={() => setZoomed(false)} aria-label={close}><X size={22}/></button></div><div className="screen-dialog-image"><Image src={screens[active]} width={1996} height={1248} alt={`${copy.screenNote} ${copy.screenTabs[active]}`} sizes="1200px" /></div></DialogPanel></div></Dialog></section>;
+}

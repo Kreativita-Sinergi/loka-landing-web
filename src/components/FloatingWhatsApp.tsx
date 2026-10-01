@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
-import { HiOutlineXMark } from "react-icons/hi2";
 import { getAppRequest } from "@/data/cta";
 import { getUi } from "@/data/ui";
 import { trackContactClick } from "@/utils/analytics";
@@ -15,17 +14,14 @@ const waLinkFor = (locale: Locale) => {
   )}`;
 };
 
-const DISMISS_KEY = "floating_wa_bubble_dismissed";
-
 /**
  * Tombol WhatsApp mengambang — selalu menempel di pojok kanan-bawah agar
  * pengunjung bisa menghubungi tim Loka Kasir satu-tap dari posisi scroll mana pun.
- * Muncul setelah pengunjung sedikit menggulir, dengan bubble ajakan yang bisa ditutup.
+ * Muncul setelah menggulir; tidak membuka ajakan yang menutupi konten.
  */
 export default function FloatingWhatsApp({ locale }: { locale: Locale }) {
   const waLink = waLinkFor(locale);
   const [visible, setVisible] = useState(false);
-  const [showBubble, setShowBubble] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 300);
@@ -34,37 +30,10 @@ export default function FloatingWhatsApp({ locale }: { locale: Locale }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    if (!visible) return;
-    if (localStorage.getItem(DISMISS_KEY) === "1") return;
-    const t = setTimeout(() => setShowBubble(true), 1200);
-    return () => clearTimeout(t);
-  }, [visible]);
-
-  const dismissBubble = () => {
-    localStorage.setItem(DISMISS_KEY, "1");
-    setShowBubble(false);
-  };
-
   if (!visible) return null;
 
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
-      {showBubble && (
-        <div className="relative max-w-[230px] rounded-2xl bg-white px-4 py-3 text-sm text-gray-700 shadow-xl ring-1 ring-black/5 dark:bg-surface dark:text-gray-200 dark:ring-white/10">
-          <button
-            onClick={dismissBubble}
-            aria-label={getUi(locale).closeLabel}
-            className="absolute -right-2 -top-2 rounded-full bg-gray-200 p-1 text-gray-600 hover:bg-gray-300 dark:bg-surface-border dark:text-gray-300"
-          >
-            <HiOutlineXMark className="h-3.5 w-3.5" />
-          </button>
-          <p className="font-semibold text-gray-900 dark:text-white">{getUi(locale).helpBubble}</p>
-          <p className="mt-0.5 leading-relaxed">
-            {getUi(locale).helpBubbleBody}
-          </p>
-        </div>
-      )}
 
       <a
         href={waLink}
@@ -72,10 +41,10 @@ export default function FloatingWhatsApp({ locale }: { locale: Locale }) {
         rel="noopener noreferrer"
         onClick={() => trackContactClick("whatsapp", "floating")}
         aria-label={getUi(locale).helpAriaLabel}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-[#25D366]/40 transition-transform hover:scale-105 hover:bg-[#1ebe57]"
+        title={getUi(locale).helpBubble}
+        className="flex h-12 w-12 items-center justify-center rounded-full bg-[#228453] text-white shadow-md transition-transform hover:scale-105 hover:bg-[#196a41]"
       >
-        <span className="absolute inline-flex h-14 w-14 animate-ping rounded-full bg-[#25D366] opacity-20" />
-        <FaWhatsapp className="h-7 w-7" />
+        <FaWhatsapp className="h-6 w-6" />
       </a>
     </div>
   );

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
 import { HiOutlineXMark, HiBars3 } from "react-icons/hi2";
 import { FaGooglePlay, FaWindows } from "react-icons/fa";
@@ -20,36 +20,50 @@ import { trackDownloadClick, trackSignUpClick } from "@/utils/analytics";
 
 const Header: React.FC<{ locale: Locale }> = ({ locale }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const menuItems = getMenuItems(locale);
+  const menuItems = getMenuItems(locale).filter((item) => ["#features", "#cara-mulai", "#pricing", "#faq"].includes(item.url)).map((item) => ({ ...item, url: `${localePath(locale)}${item.url}` }));
   const signUpDetails = getSignUp(locale);
   const appDownloadDetails = getAppDownload(locale);
   const ui = getUi(locale);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const headerRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const toggleMenu = () => setIsOpen(previous => !previous);
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 10);
+    if (!isOpen) return;
+    function dismiss(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    }
+    function outside(event: PointerEvent) {
+      if (!headerRef.current?.contains(event.target as Node)) setIsOpen(false);
+    }
+    const desktop = window.matchMedia("(min-width: 1280px)");
+    const resize = () => { if (desktop.matches) setIsOpen(false); };
+    document.addEventListener("keydown", dismiss);
+    document.addEventListener("pointerdown", outside);
+    desktop.addEventListener("change", resize);
+    return () => {
+      document.removeEventListener("keydown", dismiss);
+      document.removeEventListener("pointerdown", outside);
+      desktop.removeEventListener("change", resize);
     };
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isOpen]);
+
 
   return (
     <header
-      className="pointer-events-none fixed inset-x-0 top-0 z-50 w-full px-3"
+      ref={headerRef}
+      className="shop-header pointer-events-none fixed inset-x-0 top-0 z-50 w-full px-3"
     >
-      <Container className={`!px-0 transition-all duration-300 ${
-        scrolled
-          ? "mt-3 rounded-2xl border border-gray-200/80 bg-white/90 shadow-[0_14px_45px_rgba(15,42,76,0.12)] backdrop-blur-xl dark:border-white/10 dark:bg-[#0d1422]/90 dark:shadow-black/40"
-          : "mt-0 border border-transparent bg-transparent"
-      }`}>
-        <nav className={`pointer-events-auto mx-auto flex items-center justify-between px-4 transition-all duration-300 md:px-5 ${scrolled ? "py-2.5" : "py-4"}`}>
+      <Container className="!px-0">
+        <nav className="pointer-events-auto mx-auto flex items-center justify-between px-4 py-3 md:px-5">
           <Link href={localePath(locale)} className="flex items-center gap-2">
-            <Image src="/images/logo.png" width={130} height={70} alt="Loka Kasir" priority />
+            <Image src="/images/logo.png" width={110} height={59} style={{ height: "auto" }} alt="Loka Kasir" priority />
           </Link>
-          <ul className="hidden md:flex items-center gap-1">
+          <ul className="hidden xl:flex items-center gap-2">
             {menuItems.map((item) => (
               <li key={item.text}>
                 <Link
@@ -67,7 +81,7 @@ const Header: React.FC<{ locale: Locale }> = ({ locale }) => {
                 rel="noopener noreferrer"
                 onClick={() => trackSignUpClick("header-register")}
                 title={ui.navSignUpTitle}
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all dark:text-gray-300 dark:hover:text-white dark:hover:bg-white/5"
+                className="shop-header-start"
               >
                 <UserPlus size={15} aria-hidden="true" className="relative -top-px" /> {ui.navSignUp}
               </Link>
@@ -85,9 +99,9 @@ const Header: React.FC<{ locale: Locale }> = ({ locale }) => {
             {/* Satu tombol untuk semua platform — dropdown supaya nav tidak sesak */}
             <li className="ml-1">
               <Menu as="div" className="relative">
-                <MenuButton className="inline-flex items-center gap-1.5 whitespace-nowrap text-sm text-white bg-blue-600 hover:bg-blue-700 px-5 py-2.5 rounded-xl transition-colors font-semibold shadow-sm">
+                <MenuButton className="shop-header-download inline-flex items-center gap-1.5 whitespace-nowrap text-sm px-3 py-2.5 transition-colors font-medium">
                   <Download size={16} aria-hidden="true" className="relative -top-px" />
-                  {ui.navDownloadApp}
+                  {locale === "id" ? "Unduh" : ui.navDownloadApp}
                   <ChevronDown size={14} aria-hidden="true" className="relative -top-px" />
                 </MenuButton>
                 <MenuItems
@@ -145,10 +159,11 @@ const Header: React.FC<{ locale: Locale }> = ({ locale }) => {
               <ThemeToggle />
             </li>
           </ul>
-          <div className="md:hidden flex items-center gap-2">
+          <div className="xl:hidden flex items-center gap-2">
             <LanguageSwitcher locale={locale} />
             <ThemeToggle />
             <button
+              ref={menuButtonRef}
               onClick={toggleMenu}
               type="button"
               className="bg-[#007BFF] text-white focus:outline-none rounded-full w-10 h-10 flex items-center justify-center"
@@ -174,8 +189,8 @@ const Header: React.FC<{ locale: Locale }> = ({ locale }) => {
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <div id="mobile-menu" className="pointer-events-auto mx-1 mb-2 rounded-xl border border-gray-100 bg-white/95 shadow-lg backdrop-blur-xl md:hidden dark:border-surface-border dark:bg-background/95">
-          <ul className="flex flex-col space-y-4 pt-1 pb-6 px-6">
+        <div id="mobile-menu" className="pointer-events-auto mx-1 mb-2 rounded-xl border border-gray-100 bg-white/95 shadow-lg backdrop-blur-xl xl:hidden dark:border-surface-border dark:bg-background/95">
+          <ul className="shop-mobile-links flex flex-col pt-2 pb-4 px-5">
             {menuItems.map((item) => (
               <li key={item.text}>
                 <Link
@@ -196,11 +211,11 @@ const Header: React.FC<{ locale: Locale }> = ({ locale }) => {
                   trackSignUpClick("header-mobile-register");
                   toggleMenu();
                 }}
-                className="inline-flex items-center gap-2 text-sm font-medium text-green-700 dark:text-green-400"
+                className="shop-button w-full"
               >
                 <UserPlus size={16} aria-hidden="true" className="relative -top-px" /> {ui.navSignUpFree}
               </Link>
-              <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+              <p className="hidden">
                 {ui.navSignUpHint}
               </p>
             </li>

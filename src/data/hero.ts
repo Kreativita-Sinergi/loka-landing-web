@@ -1,34 +1,20 @@
 import { pick, type Locale } from "./localized";
 
 type Hero = {
-  /** Headline dipecah agar bagian penekanan ("highlight") bisa diberi warna gradien. */
+  /** Headline dipecah agar bagian penekanan ("highlight") bisa diberi warna aksen. */
   headingLead: string;
   headingHighlight: string;
   subheading: string;
   centerImageSrc: string;
 };
 
-/**
- * Headline, ditulis ulang per pasar — bukan diterjemahkan.
- *
- * "Naik Kelas Tanpa Ribet" bekerja di Indonesia karena ia menjawab keberatan
- * yang paling sering diucapkan pemilik warung: bukan "apakah ini bagus", tetapi
- * "apakah saya sanggup memakainya". Kalimat itu diterjemahkan harfiah ke bahasa
- * Jepang menghasilkan sesuatu yang benar secara tata bahasa dan tidak
- * menggerakkan siapa pun.
- *
- * Jadi tiap pasar menjawab keberatannya sendiri:
- *   - ID: takut ribet   → "Naik Kelas Tanpa Ribet"
- *   - EN: takut mahal & terkunci kontrak → "Sell more. Guess less."
- *   - MS: takut susah   → "Niaga Laju, Untung Jelas"
- *   - JA: takut merepotkan pelanggan & staf → 「かんたんなのに、ちゃんと売れる」
- */
+// Copy follows the daily work at the counter in each market.
 const heroByLocale: Record<Locale, Hero> = {
   id: {
-    headingLead: "Aplikasi Kasir untuk UMKM,",
-    headingHighlight: "Tanpa Ribet",
+    headingLead: "Toko ramai.",
+    headingHighlight: "Kasir tetap rapi.",
     subheading:
-      "Jualan lebih cepat, untung lebih jelas. Aplikasi kasir all-in-one untuk warung, kafe, resto, dan toko — kelola transaksi, stok, shift, laporan, dan tim Anda dalam satu tempat. Gratis 30 hari pertama — semua fitur Pro terbuka, tanpa komitmen.",
+      "Catat pesanan, terima pembayaran, dan cetak struk dari HP atau tablet. Stok ikut tercatat, laporan siap dilihat. Buat warung, kafe, resto, dan toko Anda.",
     centerImageSrc: "/images/tablet/Screenshot_1776574650.png",
   },
   en: {

@@ -51,15 +51,15 @@ export default function FeatureOverview({ locale }: { locale: Locale }) {
   const copy = getFeatureOverview(locale);
 
   return (
-    <div className="mb-20">
-      <div className="mx-auto mb-8 max-w-3xl rounded-2xl border border-blue-100 bg-blue-50/70 px-6 py-5 text-center dark:border-blue-400/15 dark:bg-blue-500/5">
+    <div className="feature-overview">
+      <div className="feature-intro mb-8 border-b border-surface-border pb-6">
         <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400">
           {copy.eyebrow}
         </p>
         <p className="mt-2 text-base leading-relaxed text-gray-700 dark:text-gray-300">
           {copy.intro}
         </p>
-        <div className="mt-4 flex flex-wrap justify-center gap-2 text-[11px] font-semibold">
+        <div className="mt-4 flex flex-wrap gap-2 text-[11px] font-semibold">
           <span className="rounded-full border border-emerald-200 bg-white px-3 py-1 text-emerald-700 dark:border-emerald-400/20 dark:bg-transparent dark:text-emerald-300">
             {copy.allPlansLabel}
           </span>
@@ -75,7 +75,7 @@ export default function FeatureOverview({ locale }: { locale: Locale }) {
           return (
             <article
               key={category.title}
-              className="group rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg dark:border-surface-border dark:bg-surface dark:hover:border-blue-400/30"
+              className="feature-card border border-surface-border bg-surface p-6"
             >
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400">
                 <Icon size={22} aria-hidden="true" />

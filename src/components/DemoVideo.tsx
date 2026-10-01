@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { Play, X } from "lucide-react";
 import { trackEvent } from "@/utils/analytics";
 import type { Locale } from "@/data/localized";
@@ -22,19 +23,6 @@ export default function DemoVideo({ label, className, locale }: Props) {
   const ui = getUi(locale);
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-    document.addEventListener("keydown", onKey);
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [open]);
 
   return (
     <>
@@ -55,34 +43,16 @@ export default function DemoVideo({ label, className, locale }: Props) {
         {label ?? ui.demoOpenLabel}
       </button>
 
-      {open && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={ui.demoDialogLabel}
-          onClick={() => setOpen(false)}
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
-        >
-          <div className="relative" onClick={(e) => e.stopPropagation()}>
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              aria-label={ui.demoCloseLabel}
-              className="absolute -right-2 -top-2 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white text-gray-800 shadow-lg hover:bg-gray-100"
-            >
-              <X size={18} aria-hidden="true" />
-            </button>
-            <video
-              src="/videos/demo.mp4"
-              poster="/videos/demo-poster.jpg"
-              controls
-              autoPlay
-              playsInline
-              className="max-h-[85vh] w-auto rounded-2xl bg-black shadow-2xl"
-            />
-          </div>
+      <Dialog open={open} onClose={setOpen} className="relative z-[70]">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm" aria-hidden="true" />
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <DialogPanel className="relative">
+            <DialogTitle className="sr-only">{ui.demoDialogLabel}</DialogTitle>
+            <button type="button" onClick={() => setOpen(false)} aria-label={ui.demoCloseLabel} className="absolute -right-2 -top-2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-gray-800 shadow-lg hover:bg-gray-100"><X size={20} aria-hidden="true" /></button>
+            {open && <video src="/videos/demo.mp4" poster="/videos/demo-poster.jpg" controls autoPlay playsInline className="max-h-[85dvh] w-auto rounded-xl bg-black shadow-2xl" />}
+          </DialogPanel>
         </div>
-      )}
+      </Dialog>
     </>
   );
 }
