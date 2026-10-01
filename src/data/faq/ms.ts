@@ -43,7 +43,7 @@ Jika perniagaan anda menjual makanan, tambah juga meja dan hidupkan paparan dapu
     category: "Bermula",
     question: "Adakah tempoh percubaan percuma?",
     answer:
-      `Ya — 30 hari dengan semua ciri Pro terbuka, sehingga 5 cawangan, transaksi tanpa had, tanpa kad kredit, dan tiada apa-apa yang perlu dibatalkan.
+      `Ya — 30 hari dengan semua ciri Pro terbuka, sehingga 5 cawangan, transaksi tanpa had, tiada apa-apa yang perlu dibatalkan.
 
 Satu perkara yang baik diketahui: 30 hari itu dikira dari jualan pertama anda, bukan dari hari anda mendaftar. Jadi anda boleh membuka akaun, mengambil masa memasukkan produk, dan memasang aplikasi apabila benar-benar bersedia — semuanya tidak memakan tempoh percubaan.
 

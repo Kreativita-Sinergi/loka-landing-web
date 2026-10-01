@@ -13,7 +13,7 @@ export const faqsId: IFAQ[] = [
 • Lewat browser — buka ${siteDetails.dashboardUrl}/register dari laptop atau HP, tanpa memasang apa pun
 • Lewat aplikasi — pasang dulu dari Google Play (Android) atau Microsoft Store (Windows), lalu daftar di dalamnya
 
-Isinya sama: data akun Owner, jenis bisnis Anda (FNB, Retail, atau Jasa), dan outlet pertama. Kode verifikasi dikirim ke email. Setelah itu Anda mendapat 30 hari pertama gratis dengan akses penuh — tanpa kartu kredit, tanpa komitmen.
+Isinya sama: data akun Owner, jenis bisnis Anda (FNB, Retail, atau Jasa), dan outlet pertama. Kode verifikasi dikirim ke email. Setelah itu Anda mendapat 30 hari pertama gratis dengan akses penuh — tanpa komitmen.
 
 Urutan setup yang direkomendasikan:
 1. Daftar akun dan buat outlet pertama
@@ -42,7 +42,7 @@ Untuk bisnis FNB: tambahkan juga data meja dan aktifkan Kitchen Display System (
     category: "Memulai",
     question: "Apakah ada masa percobaan gratis?",
     answer:
-      `Ya! Setiap akun baru mendapat 30 hari pertama gratis dengan akses penuh ke semua fitur Pro — tanpa batas transaksi, multi-outlet sampai 5 cabang, tanpa kartu kredit, tanpa komitmen.
+      `Ya! Setiap akun baru mendapat 30 hari pertama gratis dengan akses penuh ke semua fitur Pro — tanpa batas transaksi, multi-outlet sampai 5 cabang, tanpa komitmen.
 
 Setelah 30 hari, pilih paket yang sesuai:
 • Gratis — fitur POS inti, 1 outlet, maks. 100 transaksi/bulan, selamanya gratis

@@ -4,22 +4,22 @@ const ctaByLocale: Record<Locale, { heading: string; subheading: string }> = {
   id: {
     heading: "Gratis 30 Hari Pertama — Tanpa Risiko",
     subheading:
-      "Daftar gratis langsung dari browser ini, atau dari aplikasinya — akunnya sama. Pakai semua fitur Pro selama 30 hari pertama tanpa kartu kredit dan tanpa komitmen. Setelah itu, lanjutkan Pro Rp 59.000/bulan.",
+      "Daftar gratis langsung dari browser ini, atau dari aplikasinya — akunnya sama. Pakai semua fitur Pro selama 30 hari pertama tanpa komitmen. Setelah itu, lanjutkan Pro Rp 59.000/bulan.",
   },
   en: {
     heading: "Your First 30 Days Are Free",
     subheading:
-      "Create your account right here in the browser, or from inside the app — it's the same account either way. Every Pro feature is open for the first 30 days. No card, no contract, and nothing to cancel if you walk away.",
+      "Create your account right here in the browser, or from inside the app — it's the same account either way. Every Pro feature is open for the first 30 days. No contract, and nothing to cancel if you walk away.",
   },
   ms: {
     heading: "30 Hari Pertama Percuma",
     subheading:
-      "Daftar terus dari pelayar ini, atau dari dalam aplikasi — akaunnya sama. Semua ciri Pro terbuka untuk 30 hari pertama. Tanpa kad kredit, tanpa kontrak, dan tiada apa-apa yang perlu dibatalkan jika anda berhenti.",
+      "Daftar terus dari pelayar ini, atau dari dalam aplikasi — akaunnya sama. Semua ciri Pro terbuka untuk 30 hari pertama. Tanpa kontrak, dan tiada apa-apa yang perlu dibatalkan jika anda berhenti.",
   },
   ja: {
     heading: "最初の30日間は無料です",
     subheading:
-      "このブラウザからでも、アプリからでも登録できます（アカウントは同じです）。30日間はすべてのPro機能をお使いいただけます。クレジットカードの登録も、契約期間の縛りもありません。",
+      "このブラウザからでも、アプリからでも登録できます（アカウントは同じです）。30日間はすべてのPro機能をお使いいただけます。契約期間の縛りはありません。",
   },
 };
 
@@ -40,19 +40,19 @@ export const ctaDetails = { ...ctaByLocale.id, dashboardUrl: "https://app.lokaka
 const signUpByLocale: Record<Locale, { label: string; note: string }> = {
   id: {
     label: "Daftar Gratis",
-    note: "Gratis 30 hari pertama · Tanpa kartu kredit · Bisa daftar dari browser atau aplikasi",
+    note: "Gratis 30 hari pertama · Bisa daftar dari browser atau aplikasi",
   },
   en: {
     label: "Start Free",
-    note: "30 days free · No credit card · Sign up from your browser or the app",
+    note: "30 days free · Sign up from your browser or the app",
   },
   ms: {
     label: "Mula Percuma",
-    note: "30 hari percuma · Tanpa kad kredit · Daftar dari pelayar atau aplikasi",
+    note: "30 hari percuma · Daftar dari pelayar atau aplikasi",
   },
   ja: {
     label: "無料ではじめる",
-    note: "30日間無料 · カード登録不要 · ブラウザからでもアプリからでも登録できます",
+    note: "30日間無料 · ブラウザからでもアプリからでも登録できます",
   },
 };
 

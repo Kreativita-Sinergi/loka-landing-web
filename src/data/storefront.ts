@@ -2,7 +2,7 @@ import { pick, type Locale } from './localized';
 
 const copy = {
   id: {
-    eyebrow: 'APLIKASI KASIR UNTUK TOKO ANDA', lead: 'Kasir cepat.', highlight: 'Jualan lancar.', intro: 'Pesanan, pembayaran, stok. Semua tercatat.', start: 'Mulai gratis', demo: 'Lihat aplikasinya', trial: 'Gratis 30 hari · Tanpa kartu kredit',
+    eyebrow: 'APLIKASI KASIR UNTUK TOKO ANDA', lead: 'Kasir cepat.', highlight: 'Jualan lancar.', intro: 'Pesanan, pembayaran, stok. Semua tercatat.', start: 'Mulai gratis', demo: 'Lihat aplikasinya', trial: 'Gratis 30 hari',
     demoLabel: 'COBA KASIRNYA', shop: 'Kedai Loka', open: 'Kasir buka', food: 'Makanan', drink: 'Minuman', all: 'Semua', order: 'Pesanan', empty: 'Pilih menu untuk mulai.', total: 'Total', pay: 'Bayar', paid: 'Pembayaran selesai', receipt: 'Struk belanja', again: 'Transaksi baru', example: 'Demo interaktif · Data contoh', tap: 'Klik menu. Coba transaksi.', remove: 'Kurangi', add: 'Tambah', quantity: 'Jumlah', thanks: 'Terima kasih, mampir lagi!',
     products: ['Kopi susu', 'Es teh', 'Mie ayam', 'Nasi goreng', 'Roti bakar', 'Air mineral'],
     businesses: ['Warung & toko', 'Kafe & kedai', 'Resto & rumah makan'],
@@ -15,7 +15,7 @@ const copy = {
     gettingStarted: 'Besok, sudah bisa jualan.', steps: ['Buat akun', 'Masukkan produk', 'Buka kasir'], help: 'Butuh bantuan setup?', helpLink: 'Chat tim Loka', onsite: 'Setup langsung: Padang, Pekanbaru, Payakumbuh.', faq: 'Masih mau tanya?', moreFaq: 'Pertanyaan lainnya', lessFaq: 'Tampilkan lebih sedikit', contact: 'Tanya via WhatsApp', footer: 'Teman di meja kasir.',
   },
   en: {
-    eyebrow: 'A REGISTER FOR YOUR SHOP', lead: 'Keep selling.', highlight: 'Keep it tidy.', intro: 'Orders, payments, stock. All recorded.', start: 'Open your register', demo: 'See the app', trial: '30 days free · No credit card',
+    eyebrow: 'A REGISTER FOR YOUR SHOP', lead: 'Keep selling.', highlight: 'Keep it tidy.', intro: 'Orders, payments, stock. All recorded.', start: 'Open your register', demo: 'See the app', trial: '30 days free',
     demoLabel: 'TRY THE REGISTER', shop: 'Kedai Loka', open: 'Register open', food: 'Food', drink: 'Drinks', all: 'All', order: 'Order', empty: 'Choose an item to start.', total: 'Total', pay: 'Pay', paid: 'Payment complete', receipt: 'Sales receipt', again: 'New sale', example: 'Interactive demo · Sample data', tap: 'Tap a menu item. Try a sale.', remove: 'Remove', add: 'Add', quantity: 'Quantity', thanks: 'Thank you. See you again!',
     products: ['Milk coffee', 'Iced tea', 'Chicken noodles', 'Fried rice', 'Toast', 'Mineral water'], businesses: ['Shops & groceries', 'Cafés & coffee shops', 'Restaurants & eateries'],
     featureTitle: 'What matters at the counter.', featureLead: 'All in Loka.', featureMore: 'All features', features: [{ title: 'Receipts, ready.', desc: 'Print to a thermal printer.', label: 'RECEIPT / 001' }, { title: 'Stock stays in step.', desc: 'Sales recorded. Stock updated.', label: 'PRODUCT STOCK' }, { title: 'Close and count the cash.', desc: 'A record for every shift.', label: 'SHIFT SUMMARY' }],
@@ -25,7 +25,7 @@ const copy = {
     gettingStarted: 'Ready for your next sale.', steps: ['Create an account', 'Add your products', 'Open the register'], help: 'Need help with setup?', helpLink: 'Chat with Loka', onsite: '', faq: 'Any questions?', moreFaq: 'More questions', lessFaq: 'Show fewer', contact: 'Ask on WhatsApp', footer: 'Your everyday counter companion.',
   },
   ms: {
-    eyebrow: 'APLIKASI KAUNTER UNTUK KEDAI ANDA', lead: 'Niaga jalan.', highlight: 'Kaunter kemas.', intro: 'Pesanan, bayaran, stok. Semua dicatat.', start: 'Buka kaunter anda', demo: 'Lihat aplikasinya', trial: '30 hari percuma · Tanpa kad kredit',
+    eyebrow: 'APLIKASI KAUNTER UNTUK KEDAI ANDA', lead: 'Niaga jalan.', highlight: 'Kaunter kemas.', intro: 'Pesanan, bayaran, stok. Semua dicatat.', start: 'Buka kaunter anda', demo: 'Lihat aplikasinya', trial: '30 hari percuma',
     demoLabel: 'CUBA KAUNTERNYA', shop: 'Kedai Loka', open: 'Kaunter buka', food: 'Makanan', drink: 'Minuman', all: 'Semua', order: 'Pesanan', empty: 'Pilih menu untuk mula.', total: 'Jumlah', pay: 'Bayar', paid: 'Bayaran selesai', receipt: 'Resit jualan', again: 'Jualan baharu', example: 'Demo interaktif · Data contoh', tap: 'Klik menu. Cuba jualan.', remove: 'Kurangkan', add: 'Tambah', quantity: 'Kuantiti', thanks: 'Terima kasih. Jumpa lagi!',
     products: ['Kopi susu', 'Teh ais', 'Mi ayam', 'Nasi goreng', 'Roti bakar', 'Air mineral'], businesses: ['Kedai & runcit', 'Kafe & kedai kopi', 'Restoran & gerai'],
     featureTitle: 'Yang penting di kaunter.', featureLead: 'Ada di Loka.', featureMore: 'Semua ciri', features: [{title:'Resit terus siap.',desc:'Cetak ke pencetak terma.',label:'RESIT / 001'},{title:'Stok turut berkurang.',desc:'Jualan dicatat. Stok dikemas kini.',label:'STOK PRODUK'},{title:'Tutup syif, kira tunai.',desc:'Rekod untuk setiap syif.',label:'REKAP SYIF'}],
@@ -35,7 +35,7 @@ const copy = {
     gettingStarted: 'Sedia untuk jualan seterusnya.', steps: ['Buka akaun','Tambah produk','Buka kaunter'], help: 'Perlu bantuan pemasangan?', helpLink: 'Chat pasukan Loka', onsite: '', faq: 'Ada soalan?', moreFaq: 'Soalan lain', lessFaq: 'Tunjukkan sedikit', contact: 'Tanya di WhatsApp', footer: 'Teman di meja kaunter.',
   },
   ja: {
-    eyebrow: 'あなたのお店のレジアプリ', lead: '販売はスムーズに。', highlight: '記録はきちんと。', intro: '注文・支払い・在庫をまとめて記録。', start: 'レジをはじめる', demo: 'アプリを見る', trial: '30日間無料 · カード登録不要',
+    eyebrow: 'あなたのお店のレジアプリ', lead: '販売はスムーズに。', highlight: '記録はきちんと。', intro: '注文・支払い・在庫をまとめて記録。', start: 'レジをはじめる', demo: 'アプリを見る', trial: '30日間無料',
     demoLabel: 'レジを試す', shop: 'Kedai Loka', open: 'レジ営業中', food: '食べ物', drink: '飲み物', all: 'すべて', order: '注文', empty: '商品を選んでください。', total: '合計', pay: '支払う', paid: '会計完了', receipt: 'レシート', again: '新しい会計', example: '操作デモ · サンプルデータ', tap: '商品を選んで試してください。', remove: '減らす', add: '追加', quantity: '数量', thanks: 'ありがとうございました！',
     products: ['ミルクコーヒー','アイスティー','鶏肉麺','チャーハン','トースト','ミネラル水'], businesses: ['小売店・食料品店','カフェ・喫茶店','レストラン・食堂'],
     featureTitle: 'レジで大切なこと。', featureLead: 'Lokaにあります。', featureMore: '全機能', features: [{title:'レシートをすぐ印刷。',desc:'サーマルプリンターに対応。',label:'レシート / 001'},{title:'在庫も記録。',desc:'販売に合わせて在庫を更新。',label:'商品在庫'},{title:'シフト締めで現金照合。',desc:'シフトごとの記録を残します。',label:'シフト集計'}],

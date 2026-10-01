@@ -24,7 +24,7 @@ export const faqsEn: IFAQ[] = [
 • In a browser — open ${siteDetails.dashboardUrl}/register from a laptop or phone, with nothing to install
 • In the app — install from Google Play (Android) or the Microsoft Store (Windows) and sign up inside it
 
-Either way you'll enter your owner details, your type of business (food, retail, or services), and your first outlet. A verification code goes to your email. After that you have 30 free days with everything unlocked — no card, no commitment.
+Either way you'll enter your owner details, your type of business (food, retail, or services), and your first outlet. A verification code goes to your email. After that you have 30 free days with everything unlocked — no commitment.
 
 A sensible order to set things up:
 1. Create the account and your first outlet
@@ -53,7 +53,7 @@ If you run a food business, also add your tables and turn on the kitchen display
     category: "Getting Started",
     question: "Is there a free trial?",
     answer:
-      `Yes — 30 days with every Pro feature open, up to 5 outlets, unlimited transactions, no credit card, and nothing to cancel.
+      `Yes — 30 days with every Pro feature open, up to 5 outlets, unlimited transactions, nothing to cancel.
 
 One detail worth knowing: the 30 days are counted from your first sale, not from the day you sign up. So you can create the account, take your time entering products, and install the app when you're actually ready — none of that eats into the trial.
 
