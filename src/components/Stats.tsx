@@ -29,7 +29,7 @@ const Stats = async ({ locale }: { locale: Locale }) => {
   // menampilkan angka yang benar.
   // Label dan keterangannya diambil dari katalog bahasa yang sama dengan versi
   // cadangan; hanya ANGKANYA yang datang dari data langsung. Sebelumnya cabang
-  // ini menulis ulang keempat labelnya dalam bahasa Indonesia, sehingga di
+  // ini menulis ulang labelnya dalam bahasa Indonesia, sehingga di
   // halaman berbahasa lain seluruh blok ini tetap berbahasa Indonesia selama
   // backend-nya terjangkau — yaitu hampir selalu.
   const items: StatItem[] = live
@@ -38,6 +38,9 @@ const Stats = async ({ locale }: { locale: Locale }) => {
         formatNumber(live.total_outlets, locale),
         formatNumber(live.active_7d, locale),
         formatNumber(live.total_transactions, locale),
+        typeof live.pro_subscribers === "number" && Number.isFinite(live.pro_subscribers)
+          ? formatNumber(live.pro_subscribers, locale)
+          : "—",
       ].map((value, i) => ({ ...fallbackStats[i], value }))
     : fallbackStats;
 
@@ -56,12 +59,15 @@ const Stats = async ({ locale }: { locale: Locale }) => {
     <section className="shop-stats">
       <div className="shop-stats-inner">
         <div className="shop-stats-grid">
-          {items.map((stat) => (
+          {items.map((stat, index) => (
             <div key={stat.label} title={stat.description} className="shop-stat">
               <span className="block text-3xl md:text-4xl font-bold leading-tight">
                 {stat.value}
               </span>
               <span className="block mt-2 text-sm font-semibold">{stat.label}</span>
+              {index === 4 && (
+                <span className="block mt-2 text-xs leading-relaxed">{stat.description}</span>
+              )}
 
             </div>
           ))}

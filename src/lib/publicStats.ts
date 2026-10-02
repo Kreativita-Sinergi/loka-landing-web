@@ -14,6 +14,7 @@ export interface PublicStats {
   api_calls_7d: number;
   total_transactions: number;
   total_outlets: number;
+  pro_subscribers?: number;
 }
 
 const API_BASE_URL =

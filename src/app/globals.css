@@ -185,7 +185,7 @@ html, body { width: 100%; overflow-x: clip; }
 .shop-owner p { font-size: 12px; color: var(--shop-muted); margin-top: 6px; }
 .shop-owner a { display: inline-flex; align-items: center; gap: 15px; color: var(--shop-blue); font-size: 12px; font-weight: 600; }
 .shop-stats { border-top: 1px solid var(--shop-line); border-bottom: 1px solid var(--shop-line); padding: 30px 0; }
-.shop-stats-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 20px; }
+.shop-stats-grid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 20px; }
 .shop-stat { border-right: 1px solid var(--shop-line); padding-left: 10px; }
 .shop-stat:last-child { border: 0; }
 .shop-stat > span:first-child { font: 30px ui-monospace,monospace; font-weight: 500; color: var(--shop-ink); letter-spacing: -.06em; }
@@ -317,6 +317,7 @@ summary::-webkit-details-marker { display: none; }
   .shop-stats-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 23px 10px; }
   .shop-stat { padding-left: 0; }
   .shop-stat:nth-child(2) { border: 0; }
+  .shop-stat:last-child { grid-column: 1 / -1; }
   .shop-stat > span:first-child { font-size: 26px; }
   .shop-stats-note { margin-left: 0; font-size: 7px; line-height: 1.8; }
   .shop-price-grid { grid-template-columns: minmax(0,1fr); gap: 15px; }
