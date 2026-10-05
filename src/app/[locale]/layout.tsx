@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { GoogleAnalytics } from '@next/third-parties/google';
-import { Inter } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import SiteHeader from "@/components/site/SiteHeader";
+import SiteFooter from "@/components/site/SiteFooter";
+import FloatingWa from "@/components/site/FloatingWa";
 import { siteDetails, getSiteMetadata } from '@/data/siteDetails';
 import { HTML_LANG, LOCALES, OG_LOCALE, localePath, type Locale } from '@/data/localized';
 import { alternatesFor } from '@/lib/hreflang';
@@ -13,6 +13,7 @@ import { alternatesFor } from '@/lib/hreflang';
 import "../globals.css";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-jakarta', display: 'swap' });
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
@@ -162,14 +163,8 @@ export default async function RootLayout({
   const active = locale as Locale;
 
   return (
-    <html lang={HTML_LANG[active]} suppressHydrationWarning>
+    <html lang={HTML_LANG[active]}>
       <head>
-        <script
-          // Set the theme before paint to avoid a flash of the wrong theme.
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;if(t==='dark'||(!t&&m)){document.documentElement.classList.add('dark');}}catch(e){}})();`,
-          }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -178,15 +173,15 @@ export default async function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} font-sans antialiased`}
+        className={`${inter.variable} ${jakarta.variable} font-sans antialiased`}
       >
         {siteDetails.googleAnalyticsId && <GoogleAnalytics gaId={siteDetails.googleAnalyticsId} />}
-        <Header locale={active} />
+        <SiteHeader locale={active} />
         <main>
           {children}
         </main>
-        <Footer locale={active} />
-        <FloatingWhatsApp locale={active} />
+        <SiteFooter locale={active} />
+        <FloatingWa locale={active} />
       </body>
     </html>
   );
