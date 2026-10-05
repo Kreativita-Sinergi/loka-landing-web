@@ -56,14 +56,15 @@ export function getDownloadOptions(): DownloadOption[] {
 }
 
 /**
- * Testimoni. Masih DUMMY sampai ada testimoni asli dari pelanggan.
+ * Testimoni pelanggan asli (dikumpulkan tim Loka, kalimat dirapikan tanpa
+ * mengubah isi). Kartu tanpa `logo` menampilkan inisial nama.
  *
- * Karena dummy, section-nya hanya tampil di mode development (lihat
- * `Testimonials`). Begitu diisi data asli, ubah `TESTIMONIALS_ARE_DUMMY` jadi false.
+ * `TESTIMONIALS_ARE_DUMMY = true` menyembunyikan section ini di production;
+ * pakai lagi bila sewaktu-waktu isinya diganti data contoh.
  */
-export const TESTIMONIALS_ARE_DUMMY = true;
-export const testimonials = [
-  { quote: 'Dulu tutup kasir bisa sejam karena hitung manual. Sekarang selisih kas langsung kelihatan, sepuluh menit beres.', name: 'Rina (dummy)', business: 'Kedai Kopi Senja · Padang' },
-  { quote: 'Pesanan dari meja langsung masuk ke dapur. Tidak ada lagi kertas pesanan yang hilang waktu ramai.', name: 'Andi (dummy)', business: 'Warung Makan Bu Sari · Pekanbaru' },
-  { quote: 'Sekarang ketahuan stok mana yang mau habis, jadi belanja ke grosir lebih pas.', name: 'Dedi (dummy)', business: 'Toko Berkah Jaya · Payakumbuh' },
+export const TESTIMONIALS_ARE_DUMMY = false;
+export const testimonials: { quote: string; name: string; business: string; logo?: string }[] = [
+  { quote: 'Pencatatan jual beli jadi jauh lebih mudah. Sekarang saya lebih sadar soal untung dan rugi usaha.', name: 'Lina', business: 'Kedai Lina' },
+  { quote: 'Pelanggan yang servis sekarang tercatat rapi, dan cek stok tidak lagi repot.', name: 'Linda', business: 'Bengkel Mobil Atom', logo: '/images/site/pelanggan/atom-auto-car.webp' },
+  { quote: 'Pesanan dari kasir langsung masuk ke dapur. Tidak perlu lagi bolak-balik mengantar catatan pesanan untuk dimasak.', name: 'Ara', business: 'Red Projects', logo: '/images/site/pelanggan/redprojects.webp' },
 ];

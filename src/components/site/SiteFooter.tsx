@@ -32,7 +32,7 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
       <Container className="flex flex-col gap-8 pt-12 pb-8 md:gap-12 md:pt-[72px] md:pb-10">
         <div className="flex flex-col gap-8 lg:flex-row lg:justify-between">
           <div className="flex max-w-[320px] flex-col gap-4">
-            <Image src="/images/site/logo-white.svg" alt="Loka Kasir" width={124} height={37} className="h-[30px] w-auto md:h-[37px]" />
+            <Image src="/images/site/logo-white.svg" alt="Loka Kasir" width={124} height={37} className="h-[30px] w-auto self-start md:h-[37px]" />
             <p className="text-sm leading-relaxed md:text-[15px]">
               Teman di meja kasir. Loka Kasir membantu warung, kafe, resto, dan toko mencatat penjualan, mengatur stok, dan menutup kas dengan rapi setiap hari, tetap jalan walau internet sedang putus.
             </p>

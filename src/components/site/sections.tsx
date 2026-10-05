@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
-import { ChartColumn, Download, Globe, HeartHandshake, ImageIcon, Package, Quote, ShoppingCart, TriangleAlert, Users, Utensils } from 'lucide-react';
+import { ChartColumn, Download, Globe, HeartHandshake, Package, Quote, ShoppingCart, TriangleAlert, Users, Utensils } from 'lucide-react';
 import { FaAndroid, FaGooglePlay, FaWindows } from 'react-icons/fa';
 import type { ReactNode } from 'react';
 
@@ -145,7 +145,11 @@ export function Testimonials() {
               <Quote size={28} className="text-brand" />
               <blockquote className="text-base leading-relaxed">{t.quote}</blockquote>
               <figcaption className="mt-auto flex items-center gap-3.5">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-line bg-soft text-mute"><ImageIcon size={20} /></span>
+                {t.logo ? (
+                  <Image src={t.logo} alt={`Logo ${t.business}`} width={48} height={48} className="h-12 w-12 shrink-0 rounded-full border border-line bg-white object-contain" />
+                ) : (
+                  <span aria-hidden className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-tint text-lg font-bold text-brand">{t.name.charAt(0)}</span>
+                )}
                 <span className="flex flex-col">
                   <span className="text-[15px] font-bold">{t.name}</span>
                   <span className="text-[13px] text-body">{t.business}</span>
