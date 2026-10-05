@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import clsx from 'clsx';
 import { Lightbulb, PlayCircle } from 'lucide-react';
 
 import { LOCALES, type Locale } from '@/data/localized';
@@ -67,14 +66,32 @@ export default async function GuidePage({ params }: Params) {
 
         <p className="text-base leading-[1.7] text-body md:text-[17px]">{guide.intro ?? guide.desc}</p>
 
-        {guide.image && (
+        {guide.video ? (
+          <figure className="flex flex-col gap-2.5">
+            <div className="rounded-2xl bg-[#1c1c1e] p-2 shadow-[0_20px_40px_rgba(16,24,40,0.16)] md:rounded-[26px] md:p-3">
+              <video
+                src={`/videos/tutorials/${guide.video}.mp4`}
+                poster={`/videos/tutorials/${guide.video}_poster.jpg`}
+                preload="none"
+                controls
+                playsInline
+                className="aspect-[16/10] w-full rounded-lg bg-black md:rounded-xl"
+                aria-label={`${c.watch}: ${guide.title}`}
+              />
+            </div>
+            <figcaption className="flex items-center justify-center gap-1.5 text-[13px] text-body">
+              <PlayCircle size={14} aria-hidden />
+              {c.watch}{duration ? ` (${duration})` : ''} · direkam di tablet
+            </figcaption>
+          </figure>
+        ) : guide.image && (
           <div className="rounded-xl bg-soft p-2 md:rounded-2xl md:p-3">
             <Image src={guide.image.src} alt={guide.image.alt} width={1600} height={1051} className="h-auto w-full rounded-lg md:rounded-[10px]" sizes="(min-width: 1024px) 736px, 100vw" />
           </div>
         )}
 
         {guide.steps && (
-          <div className={clsx('flex flex-col gap-6', guide.video && 'md:flex-row md:items-start md:gap-10')}>
+          <div className="flex flex-col gap-6">
             <ol className="flex flex-1 flex-col gap-5 md:gap-6">
               {guide.steps.map((s, i) => (
                 <li key={s.title} className="flex items-start gap-3.5 md:gap-4">
@@ -86,25 +103,6 @@ export default async function GuidePage({ params }: Params) {
                 </li>
               ))}
             </ol>
-            {guide.video && (
-              <figure className="mx-auto flex w-[220px] shrink-0 flex-col gap-2.5 md:mx-0">
-                <div className="rounded-[26px] bg-[#1c1c1e] p-[5px] shadow-[0_16px_32px_rgba(16,24,40,0.16)]">
-                  <video
-                    src={`/videos/tutorials/${guide.video}.mp4`}
-                    poster={`/videos/tutorials/${guide.video}_poster.jpg`}
-                    preload="none"
-                    controls
-                    playsInline
-                    className="aspect-[360/800] w-full rounded-[22px] bg-black object-cover"
-                    aria-label={`${c.watch}: ${guide.title}`}
-                  />
-                </div>
-                <figcaption className="flex items-center justify-center gap-1.5 text-[13px] text-body">
-                  <PlayCircle size={14} aria-hidden />
-                  {c.watch}{duration ? ` (${duration})` : ''}
-                </figcaption>
-              </figure>
-            )}
           </div>
         )}
 
