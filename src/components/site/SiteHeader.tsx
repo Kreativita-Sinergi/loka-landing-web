@@ -34,8 +34,14 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
 
   const isActive = (href: string) => !href.includes('#') && href !== links.home && pathname?.startsWith(href);
 
-  // Tutup menu saat berpindah halaman, dan tutup dropdown saat klik di luar.
-  useEffect(() => { setMenuOpen(false); setDlOpen(false); }, [pathname]);
+  // Tutup menu saat berpindah halaman (disesuaikan saat render, bukan di effect).
+  const [lastPath, setLastPath] = useState(pathname);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
+    setMenuOpen(false);
+    setDlOpen(false);
+  }
+  // Tutup dropdown saat klik di luar atau menekan Escape.
   useEffect(() => {
     if (!dlOpen) return;
     const onClick = (e: MouseEvent) => { if (!dlRef.current?.contains(e.target as Node)) setDlOpen(false); };
