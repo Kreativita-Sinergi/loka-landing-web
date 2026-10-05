@@ -1,207 +1,174 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import clsx from 'clsx';
+import type { ReactNode } from 'react';
 
-import { siteDetails } from '@/data/siteDetails'
-import { getPrivacy, permissionShape } from '@/data/privacyPolicy'
-import { LOCALES, localePath, type Locale } from '@/data/localized'
-import { alternatesFor } from '@/lib/hreflang'
+import { siteDetails } from '@/data/siteDetails';
+import { getPrivacy, legalContact, permissionShape } from '@/data/privacyPolicy';
+import { getLegalUi } from '@/data/site/legal';
+import { siteLinks } from '@/data/site/links';
+import { LOCALES, type Locale } from '@/data/localized';
+import { alternatesFor } from '@/lib/hreflang';
+import { CheckItem, Container, PageHero } from '@/components/site/ui';
+import LegalToc from '@/components/site/legal/LegalToc';
 
 export function generateStaticParams() {
-  return LOCALES.map((locale) => ({ locale }))
+  return LOCALES.map(locale => ({ locale }));
 }
 
-export async function generateMetadata(
-  { params }: { params: Promise<{ locale: string }> },
-): Promise<Metadata> {
-  const { locale } = await params
-  if (!(LOCALES as readonly string[]).includes(locale)) notFound()
-  const copy = getPrivacy(locale as Locale)
-
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  if (!(LOCALES as readonly string[]).includes(locale)) notFound();
+  const copy = getPrivacy(locale as Locale);
   return {
     title: `${copy.metaTitle} — ${siteDetails.siteName}`,
     description: copy.metaDescription,
     alternates: alternatesFor(locale as Locale, '/privacy-policy'),
-  }
+  };
 }
 
-export default async function PrivacyPolicyPage(
-  { params }: { params: Promise<{ locale: string }> },
-) {
-  const { locale: raw } = await params
-  if (!(LOCALES as readonly string[]).includes(raw)) notFound()
-  const locale = raw as Locale
-  const copy = getPrivacy(locale)
+const linkCls = 'font-medium text-brand hover:underline';
+
+function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
+  return (
+    <section id={id} className="flex scroll-mt-24 flex-col gap-3.5 md:scroll-mt-28 md:gap-4">
+      <h2 className="text-[22px] leading-snug font-bold md:text-2xl">{title}</h2>
+      {children}
+    </section>
+  );
+}
+
+function Bullets({ items }: { items: ReactNode[] }) {
+  return (
+    <ul className="flex flex-col gap-2.5">
+      {items.map((x, i) => (
+        <li key={i} className="flex items-start gap-3 text-[15px] leading-relaxed text-body md:text-base">
+          <span aria-hidden className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-mute" />
+          <span>{x}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default async function PrivacyPolicyPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: raw } = await params;
+  if (!(LOCALES as readonly string[]).includes(raw)) notFound();
+  const locale = raw as Locale;
+  const copy = getPrivacy(locale);
+  const ui = getLegalUi(locale);
+  const l = siteLinks(locale);
+
+  const toc = [
+    { id: 'tentang', label: ui.aboutPolicy },
+    { id: 'izin', label: copy.permissionsHeading },
+    { id: 'data', label: copy.otherDataHeading },
+    { id: 'pihak-ketiga', label: copy.processorsHeading },
+    { id: 'retensi', label: copy.retentionHeading },
+    { id: 'perlindungan', label: copy.protectionHeading },
+    { id: 'hak', label: copy.rightsHeading },
+    { id: 'kontak', label: copy.contactHeading },
+  ];
+
+  const para = 'text-[15px] leading-[1.7] text-body md:text-base';
 
   return (
-    <div className="min-h-screen bg-white dark:bg-background">
-      <div className="max-w-3xl mx-auto px-6 py-16">
+    <>
+      <PageHero crumbs={[{ label: ui.home, href: l.home }, { label: copy.title }]} title={copy.title} desc={copy.lastUpdated} />
 
-        {/* Header */}
-        <div className="mb-10">
-          <p className="text-sm font-medium text-blue-600 mb-2 dark:text-blue-400">Loka Kasir</p>
-          <h1 className="text-3xl font-bold text-gray-900 mb-3 dark:text-white">{copy.title}</h1>
-          <p className="text-gray-500 text-sm dark:text-gray-400">{copy.lastUpdated}</p>
-        </div>
+      <section className="py-8 md:py-14">
+        <Container className="flex flex-col gap-8 lg:grid lg:grid-cols-[260px_minmax(0,760px)] lg:items-start lg:gap-20">
+          <aside className="lg:self-stretch">
+            <LegalToc items={toc} title={ui.toc} />
+          </aside>
 
-        {/* Intro */}
-        <p className="text-gray-700 leading-relaxed mb-4 dark:text-gray-300">
-          {copy.intro}
-        </p>
-        <p className="text-gray-700 leading-relaxed mb-10 dark:text-gray-300">
-          {copy.scopeLead}
-          <a href={siteDetails.dashboardUrl} className="text-blue-600 hover:underline dark:text-blue-400">
-            {siteDetails.dashboardUrl.replace('https://', '')}
-          </a>
-          {copy.scopeTail}
-        </p>
+          <div className="flex min-w-0 flex-col gap-10">
+            <Section id="tentang" title={ui.aboutPolicy}>
+              <p className={para}>{copy.intro}</p>
+              <p className={para}>
+                {copy.scopeLead}
+                <a href={siteDetails.dashboardUrl} className={linkCls}>{siteDetails.dashboardUrl.replace('https://', '')}</a>
+                {copy.scopeTail}
+              </p>
+            </Section>
 
-        {/* Permissions — ikon dan penanda wajib/opsional datang dari
-            `permissionShape`, bukan dari teks: keduanya fakta produk yang harus
-            sama di semua bahasa. */}
-        <section className="mb-12">
-          <h2 className="text-xl font-semibold text-gray-900 mb-6 dark:text-white">{copy.permissionsHeading}</h2>
-          <div className="space-y-5">
-            {copy.permissions.map((p, i) => (
-              <div key={p.name} className="border border-gray-200 rounded-2xl p-6 dark:border-surface-border dark:bg-surface">
-                <div className="flex items-start gap-4">
-                  <span className="text-3xl mt-0.5">{permissionShape[i].icon}</span>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-1">
-                      <h3 className="text-base font-semibold text-gray-900 dark:text-white">{p.name}</h3>
-                      {permissionShape[i].optional ? (
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 dark:bg-white/10 dark:text-gray-300">
-                          {copy.labelOptional}
+            {/* Penanda wajib/opsional dari `permissionShape`: fakta produk, sama di semua bahasa. */}
+            <Section id="izin" title={copy.permissionsHeading}>
+              <div className="flex flex-col gap-3">
+                {copy.permissions.map((p, i) => {
+                  const optional = permissionShape[i]?.optional;
+                  return (
+                    <div key={p.name} className="flex flex-col gap-2.5 rounded-xl border border-line p-4 md:p-5">
+                      <div className="flex flex-wrap items-center gap-2.5">
+                        <h3 className="text-base font-bold">{p.name}</h3>
+                        <span className={clsx('rounded-md px-2 py-0.5 text-xs font-bold', optional ? 'bg-soft text-body' : 'bg-danger-soft text-danger')}>
+                          {optional ? copy.labelOptional : copy.labelRequired}
                         </span>
-                      ) : (
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-300">
-                          {copy.labelRequired}
-                        </span>
-                      )}
+                      </div>
+                      <p className="font-mono text-xs break-words text-mute">{p.technicalId}</p>
+                      <p className="text-sm text-body"><span className="font-semibold text-ink">{copy.labelPlatforms}</span>{p.platforms}</p>
+                      <p className="text-sm leading-relaxed text-body"><span className="font-semibold text-ink">{copy.labelWhy}</span>{p.why}</p>
+                      <p className="text-sm leading-relaxed text-body"><span className="font-semibold text-ink">{copy.labelData}</span>{p.dataCollected}</p>
                     </div>
-                    <p className="text-xs text-gray-400 font-mono mb-1 dark:text-gray-500">{p.technicalId}</p>
-                    <p className="text-xs text-gray-500 mb-3 dark:text-gray-400">
-                      <span className="font-medium">{copy.labelPlatforms}</span>{p.platforms}
-                    </p>
-                    <p className="text-sm text-gray-700 mb-2 dark:text-gray-300">
-                      <span className="font-medium text-gray-900 dark:text-white">{copy.labelWhy}</span>
-                      {p.why}
-                    </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      <span className="font-medium text-gray-900 dark:text-white">{copy.labelData}</span>
-                      {p.dataCollected}
-                    </p>
-                  </div>
-                </div>
+                  );
+                })}
               </div>
-            ))}
+            </Section>
+
+            <Section id="data" title={copy.otherDataHeading}>
+              <Bullets items={copy.otherData.map(d => <><strong className="font-semibold text-ink">{d.label}</strong> {d.body}</>)} />
+            </Section>
+
+            <Section id="pihak-ketiga" title={copy.processorsHeading}>
+              <p className={para}>{copy.processorsLead}</p>
+              <Bullets items={copy.processors.map(d => <><strong className="font-semibold text-ink">{d.label}</strong> {d.body}</>)} />
+            </Section>
+
+            <Section id="retensi" title={copy.retentionHeading}>
+              <Bullets
+                items={[
+                  copy.retentionActive,
+                  <>
+                    {copy.retentionDeleteLead}
+                    <Link href={l.hapusAkun} className={linkCls}>{copy.retentionDeleteLink}</Link>
+                    {copy.retentionDeleteTail}
+                  </>,
+                  copy.retentionToken,
+                  copy.retentionLegal,
+                ]}
+              />
+            </Section>
+
+            <Section id="perlindungan" title={copy.protectionHeading}>
+              <ul className="flex flex-col gap-2.5 text-[15px] text-body md:text-base">
+                {copy.protection.map(line => <CheckItem key={line} tone="ok">{line}</CheckItem>)}
+              </ul>
+            </Section>
+
+            <Section id="hak" title={copy.rightsHeading}>
+              <p className={para}>{copy.rightsLead}</p>
+              <Bullets items={copy.rightsPlatforms.map(d => <><strong className="font-semibold text-ink">{d.label}</strong> {d.body}</>)} />
+              <p className={para}>
+                {copy.rightsContactLead}
+                <a href={`mailto:${legalContact.email}`} className={linkCls}>{legalContact.email}</a>.
+              </p>
+            </Section>
+
+            <Section id="kontak" title={copy.contactHeading}>
+              <Bullets
+                items={[
+                  <><strong className="font-semibold text-ink">{copy.contactEmail}</strong> <a href={`mailto:${legalContact.email}`} className={linkCls}>{legalContact.email}</a></>,
+                  <><strong className="font-semibold text-ink">{copy.contactPhone}</strong> <a href={`https://wa.me/${legalContact.whatsapp}`} target="_blank" rel="noopener noreferrer" className={linkCls}>{locale === 'id' ? legalContact.phone : legalContact.phoneIntl}</a> (WhatsApp)</>,
+                  <><strong className="font-semibold text-ink">{copy.contactDeveloper}</strong> {legalContact.developer}</>,
+                  legalContact.address,
+                ]}
+              />
+              <p className="pt-4 text-xs text-mute">© {new Date().getFullYear()} Loka Kasir — {legalContact.developer}. {copy.copyright}</p>
+            </Section>
           </div>
-        </section>
-
-        {/* Data collected */}
-        <section className="mb-10">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 dark:text-white">{copy.otherDataHeading}</h2>
-          <div className="space-y-3 text-sm text-gray-700 dark:text-gray-300">
-            {copy.otherData.map((item) => (
-              <div key={item.label} className="flex gap-3">
-                <span className="text-gray-400 mt-0.5 dark:text-gray-500">•</span>
-                <p><strong>{item.label}</strong> {item.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Third-party processors */}
-        <section className="mb-10">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 dark:text-white">{copy.processorsHeading}</h2>
-          <p className="text-sm text-gray-700 mb-3 dark:text-gray-300">
-            {copy.processorsLead}
-          </p>
-          <div className="space-y-3 text-sm text-gray-700 dark:text-gray-300">
-            {copy.processors.map((item) => (
-              <div key={item.label} className="flex gap-3">
-                <span className="text-gray-400 mt-0.5 dark:text-gray-500">•</span>
-                <p><strong>{item.label}</strong> {item.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Retention */}
-        <section className="mb-10">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 dark:text-white">{copy.retentionHeading}</h2>
-          <div className="space-y-3 text-sm text-gray-700 dark:text-gray-300">
-            <div className="flex gap-3">
-              <span className="text-gray-400 mt-0.5 dark:text-gray-500">•</span>
-              <p>{copy.retentionActive}</p>
-            </div>
-            <div className="flex gap-3">
-              <span className="text-gray-400 mt-0.5 dark:text-gray-500">•</span>
-              <p>{copy.retentionDeleteLead}
-                <Link href={localePath(locale, '/hapus-akun')} className="text-blue-600 hover:underline dark:text-blue-400">{copy.retentionDeleteLink}</Link>
-                {copy.retentionDeleteTail}</p>
-            </div>
-            <div className="flex gap-3">
-              <span className="text-gray-400 mt-0.5 dark:text-gray-500">•</span>
-              <p>{copy.retentionToken}</p>
-            </div>
-            <div className="flex gap-3">
-              <span className="text-gray-400 mt-0.5 dark:text-gray-500">•</span>
-              <p>{copy.retentionLegal}</p>
-            </div>
-          </div>
-        </section>
-
-        {/* How we protect */}
-        <section className="mb-10">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 dark:text-white">{copy.protectionHeading}</h2>
-          <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-            {copy.protection.map((line) => (
-              <li key={line} className="flex gap-3"><span>✅</span> {line}</li>
-            ))}
-          </ul>
-        </section>
-
-        {/* User rights */}
-        <section className="mb-10">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 dark:text-white">{copy.rightsHeading}</h2>
-          <p className="text-sm text-gray-700 mb-3 dark:text-gray-300">
-            {copy.rightsLead}
-          </p>
-          <div className="space-y-3 text-sm text-gray-700 mb-3 dark:text-gray-300">
-            {copy.rightsPlatforms.map((item) => (
-              <div key={item.label} className="flex gap-3">
-                <span className="text-gray-400 mt-0.5 dark:text-gray-500">•</span>
-                <p><strong>{item.label}</strong> {item.body}</p>
-              </div>
-            ))}
-          </div>
-          <p className="text-sm text-gray-700 dark:text-gray-300">
-            {copy.rightsContactLead}
-            <a href="mailto:help@lokakasir.id" className="text-blue-600 hover:underline dark:text-blue-400">
-              help@lokakasir.id
-            </a>.
-          </p>
-        </section>
-
-        {/* Contact */}
-        <section className="mb-10">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 dark:text-white">{copy.contactHeading}</h2>
-          <div className="bg-gray-50 rounded-2xl p-5 text-sm text-gray-700 space-y-1 dark:bg-surface dark:text-gray-300">
-            <p>📧 <strong>{copy.contactEmail}</strong>{' '}
-              <a href="mailto:help@lokakasir.id" className="text-blue-600 hover:underline dark:text-blue-400">help@lokakasir.id</a>
-            </p>
-            <p>📞 <strong>{copy.contactPhone}</strong> +62 853-9373-7313</p>
-            <p>🏢 <strong>{copy.contactDeveloper}</strong> Kreativita Sinergi</p>
-            <p>📍 Jl. Air Camar No. 24, Padang Timur, Kota Padang, Sumatera Barat, Indonesia</p>
-          </div>
-        </section>
-
-        <hr className="border-gray-100 mb-8 dark:border-surface-border" />
-        <p className="text-xs text-gray-400 text-center dark:text-gray-500">
-          &copy; {new Date().getFullYear()} Loka Kasir &mdash; Kreativita Sinergi. {copy.copyright}
-        </p>
-      </div>
-    </div>
-  )
+        </Container>
+      </section>
+    </>
+  );
 }

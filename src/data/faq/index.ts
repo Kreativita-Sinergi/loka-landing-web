@@ -12,9 +12,8 @@ import { faqsJa } from "./ja";
  * jawaban dan terjemahannya akan terpisah ratusan baris, dan memperbaiki salah
  * satu tanpa menyadari yang lain berubah artinya menjadi mudah sekali.
  *
- * Daftarnya juga tidak wajib sama panjang. Versi Indonesia memuat dua
- * pertanyaan tentang kunjungan tim ke Padang, Pekanbaru, dan Payakumbuh yang
- * memang tidak punya arti di pasar lain.
+ * Daftarnya juga tidak wajib sama panjang: tiap pasar boleh punya pertanyaan
+ * yang hanya relevan di sana.
  */
 const faqsByLocale: Record<Locale, IFAQ[]> = {
   id: faqsId,

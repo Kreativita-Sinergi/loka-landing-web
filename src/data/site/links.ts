@@ -48,4 +48,3 @@ export const INSTAGRAM_HANDLE = '@lokakasir.id';
 export const OFFICE_ADDRESS =
   'Jl. Tiung No. 18, Kel. Labuh Baru Timur, Kec. Payung Sekaki, Kota Pekanbaru, Riau 28292';
 export const SERVICE_HOURS = 'Buka 08.00–22.00 WIB';
-export const ONSITE_CITIES = ['Padang', 'Pekanbaru', 'Payakumbuh'];

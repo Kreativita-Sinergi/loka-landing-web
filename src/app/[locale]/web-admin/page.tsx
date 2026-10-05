@@ -1,279 +1,153 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import {
-  ArrowRight,
-  BarChart3,
-  Boxes,
-  ExternalLink,
-  Heart,
-  Monitor,
-  Store,
-  Tag,
-  Users,
-} from "lucide-react";
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import clsx from 'clsx';
+import { ArrowRight, Boxes, ChartColumn, Check, CircleCheck, ExternalLink, HeartHandshake, Monitor, Store, TabletSmartphone, Tag, Users } from 'lucide-react';
 
-import { notFound } from "next/navigation";
-
-import { siteDetails } from "@/data/siteDetails";
-import { getAppDownload, getSignUp } from "@/data/cta";
-import {
-  getPlanLabels,
-  getWebAdmin,
-  getWebAdminGroups,
-  getWebAdminPage,
-  type Plan,
-  type WebAdminGroup,
-} from "@/data/webAdmin";
-import { LOCALES, localePath, type Locale } from "@/data/localized";
-import { alternatesFor } from "@/lib/hreflang";
-import WebAdminGallery from "@/components/WebAdminGallery";
+import { siteDetails } from '@/data/siteDetails';
+import { getSignUp } from '@/data/cta';
+import { getWebAdmin, getWebAdminGroups, getWebAdminPage, type WebAdminGroup } from '@/data/webAdmin';
+import { getWebAdminSiteCopy } from '@/data/site/webAdminPage';
+import { siteLinks } from '@/data/site/links';
+import { LOCALES, type Locale } from '@/data/localized';
+import { alternatesFor } from '@/lib/hreflang';
+import { ButtonLink, Container, IconTile, PageHero, ProBadge, SectionHeading } from '@/components/site/ui';
+import { CtaBand } from '@/components/site/sections';
 
 export function generateStaticParams() {
-  return LOCALES.map((locale) => ({ locale }));
+  return LOCALES.map(locale => ({ locale }));
 }
 
-export async function generateMetadata(
-  { params }: { params: Promise<{ locale: string }> },
-): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   if (!(LOCALES as readonly string[]).includes(locale)) notFound();
   const copy = getWebAdminPage(locale as Locale);
-
   return {
     title: `${copy.metaTitle} | ${siteDetails.siteName}`,
     description: copy.metaDescription,
-    alternates: alternatesFor(locale as Locale, "/web-admin"),
+    alternates: alternatesFor(locale as Locale, '/web-admin'),
   };
 }
 
-const ICONS: Record<WebAdminGroup["icon"], React.ElementType> = {
-  chart: BarChart3,
+const ICONS: Record<WebAdminGroup['icon'], React.ElementType> = {
+  chart: ChartColumn,
   box: Boxes,
   tag: Tag,
   users: Users,
-  heart: Heart,
+  heart: HeartHandshake,
   store: Store,
 };
 
-const PlanBadge: React.FC<{ plan: Plan; locale: Locale }> = ({ plan, locale }) => {
-  if (plan === "semua") return null;
-
-  const tone =
-    plan === "pro"
-      ? "bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-300"
-      : "bg-gray-100 text-gray-600 dark:bg-white/10 dark:text-gray-300";
-
-  return (
-    <span
-      className={`ml-2 inline-block rounded-full px-2 py-0.5 align-middle text-[10px] font-bold uppercase tracking-wide ${tone}`}
-    >
-      {getPlanLabels(locale)[plan]}
-    </span>
-  );
-};
-
-// Pembagian peran ditaruh di atas daftar fitur: kebingungan paling sering
-// muncul bukan soal "fitur apa saja", tapi "ini bedanya apa dengan aplikasi".
-// Isinya sekarang di `getWebAdminPage`, bukan di berkas ini.
-
-export default async function WebAdminPage(
-  { params }: { params: Promise<{ locale: string }> },
-) {
+export default async function WebAdminPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: raw } = await params;
   if (!(LOCALES as readonly string[]).includes(raw)) notFound();
   const locale = raw as Locale;
 
-  const copy = getWebAdminPage(locale);
-  const webAdminDetails = getWebAdmin(locale);
-  const webAdminGroups = getWebAdminGroups(locale);
-  const signUpDetails = getSignUp(locale);
-  const appDownloadDetails = getAppDownload(locale);
-  const roles = copy.roles;
+  const page = getWebAdminPage(locale);
+  const details = getWebAdmin(locale);
+  const groups = getWebAdminGroups(locale);
+  const signUp = getSignUp(locale);
+  const c = getWebAdminSiteCopy(locale);
+  const l = siteLinks(locale);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-background">
-      <div className="mx-auto max-w-4xl px-6 py-16">
-        {/* Header */}
-        <div className="mb-10">
-          <p className="mb-2 text-sm font-medium text-blue-600 dark:text-blue-400">
-            {webAdminDetails.eyebrow}
-          </p>
-          <h1 className="mb-3 text-3xl font-bold text-gray-900 dark:text-white">
-            {webAdminDetails.title}
-          </h1>
-          <p className="leading-relaxed text-gray-600 dark:text-gray-400">
-            {webAdminDetails.description}
-          </p>
-
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={webAdminDetails.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
-            >
-              {copy.openButton}
-              <ExternalLink size={15} aria-hidden="true" />
-            </a>
-            <a
-              href={signUpDetails.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:border-surface-border dark:text-white dark:hover:bg-white/5"
-            >
-              {copy.noAccountPrefix} {signUpDetails.label}
-            </a>
-          </div>
-
-          <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-            {copy.signUpNote}
-          </p>
+    <>
+      <PageHero crumbs={[{ label: c.home, href: l.home }, { label: 'Web Admin' }]} title={details.title} desc={details.description}>
+        <div className="flex flex-col gap-2.5 pt-2 sm:flex-row sm:gap-3">
+          <ButtonLink href={details.url} icon={<ExternalLink size={18} />}>{page.openButton}</ButtonLink>
+          <ButtonLink href={signUp.url} tone="secondary">{signUp.label}</ButtonLink>
         </div>
+        <p className="max-w-[720px] text-[13px] leading-relaxed text-body md:text-sm">{page.signUpNote}</p>
+      </PageHero>
 
-        {/* Pembagian peran aplikasi vs web */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {roles.map((role, index) => (
-            <div
-              key={role.title}
-              className={`rounded-2xl border p-6 ${
-                index === 1
-                  ? "border-blue-200 bg-blue-50 dark:border-blue-400/20 dark:bg-blue-500/10"
-                  : "border-gray-100 dark:border-surface-border"
-              }`}
-            >
-              <p className="font-bold text-gray-900 dark:text-white">
-                {role.title}
-              </p>
-              <p className="mt-0.5 text-xs font-medium text-gray-500 dark:text-gray-400">
-                {role.who}
-              </p>
-              <ul className="mt-4 space-y-2">
-                {role.points.map((point) => (
-                  <li
-                    key={point}
-                    className="flex items-start gap-2.5 text-sm text-gray-700 dark:text-gray-300"
-                  >
-                    <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-600" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        {/* Tanpa instalasi */}
-        <div className="mt-6 flex items-start gap-4 rounded-2xl border border-gray-100 p-6 dark:border-surface-border">
-          <Monitor
-            size={22}
-            aria-hidden="true"
-            className="mt-0.5 flex-shrink-0 text-blue-600 dark:text-blue-400"
-          />
-          <div>
-            <p className="font-semibold text-gray-900 dark:text-white">
-              {copy.noInstallTitle}
-            </p>
-            <p className="mt-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-              {copy.noInstallBody}
-            </p>
-          </div>
-        </div>
-
-        {/* Tangkapan layar — otomatis tersembunyi selama belum ada filenya */}
-        <WebAdminGallery className="mt-10" />
-
-        {/* Daftar fitur lengkap per grup */}
-        <h2 className="mt-14 mb-2 text-2xl font-bold text-gray-900 dark:text-white">
-          {copy.featuresHeading}
-        </h2>
-        <p className="mb-8 text-sm text-gray-600 dark:text-gray-400">
-          {copy.featuresNoteLead}
-          <span className="font-semibold">Pro</span>
-          {copy.featuresNoteTail}
-        </p>
-
-        <div className="space-y-10">
-          {webAdminGroups.map((group) => {
-            const Icon = ICONS[group.icon];
-
-            return (
-              <section key={group.title}>
-                <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white">
-                    <Icon size={19} aria-hidden="true" />
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                      {group.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {group.summary}
-                    </p>
+      {/* Dua aplikasi, satu akun */}
+      <section className="py-14 md:py-20">
+        <Container className="flex flex-col gap-6 md:gap-8">
+          <SectionHeading title={c.compareTitle} />
+          <div className="grid gap-4 md:grid-cols-2 md:gap-6">
+            {page.roles.map((role, i) => {
+              const dark = i === 1;
+              const Icon = dark ? Monitor : TabletSmartphone;
+              return (
+                <div key={role.title} className={clsx('flex flex-col gap-[18px] rounded-2xl p-6 md:rounded-[20px] md:p-9', dark ? 'bg-ink text-white' : 'border border-line bg-white')}>
+                  <div className="flex items-center gap-3.5">
+                    <IconTile tone={dark ? 'dark' : 'brand'}><Icon size={24} /></IconTile>
+                    <div className="flex flex-col gap-0.5">
+                      <h3 className="text-lg font-bold md:text-xl">{role.title}</h3>
+                      <p className={clsx('text-sm', dark ? 'text-[#b4b7bf]' : 'text-body')}>{role.who}</p>
+                    </div>
                   </div>
+                  <ul className="flex flex-col gap-3 text-[15px]">
+                    {role.points.map(p => (
+                      <li key={p} className="flex items-start gap-2.5">
+                        <Check size={18} className={clsx('mt-0.5 shrink-0', dark ? 'text-accent' : 'text-ok')} aria-hidden />
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
 
-                <ul className="mt-4 divide-y divide-gray-100 rounded-2xl border border-gray-100 dark:divide-surface-border dark:border-surface-border">
-                  {group.features.map((feature) => (
-                    <li key={feature.name} className="px-5 py-4">
-                      <p className="text-sm font-semibold text-gray-900 dark:text-white">
-                        {feature.name}
-                        <PlanBadge plan={feature.plan} locale={locale} />
-                      </p>
-                      <p className="mt-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-                        {feature.desc}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            );
-          })}
-        </div>
+      {/* Yang bisa diatur dari Web Admin — grup & penanda Pro dari data/webAdmin.ts */}
+      <section className="bg-soft py-14 md:py-20">
+        <Container className="flex flex-col gap-6 md:gap-8">
+          <SectionHeading
+            title={c.gridTitle}
+            desc={
+              <>
+                {page.featuresNoteLead}
+                <ProBadge />
+                {page.featuresNoteTail}
+              </>
+            }
+          />
+          <div className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+            {groups.map(g => {
+              const Icon = ICONS[g.icon];
+              return (
+                <div key={g.title} className="flex flex-col gap-3.5 rounded-2xl border border-line bg-white p-6 md:rounded-[18px] md:p-7">
+                  <div className="flex items-center gap-3.5 md:flex-col md:items-start">
+                    <IconTile><Icon size={22} /></IconTile>
+                    <h3 className="text-lg font-bold">{g.title}</h3>
+                  </div>
+                  <p className="text-sm leading-relaxed text-body">{g.summary}</p>
+                  <ul className="mt-1 flex flex-col gap-3 border-t border-line pt-4">
+                    {g.features.map(f => (
+                      <li key={f.name} className="flex flex-col gap-0.5">
+                        <span className="flex flex-wrap items-center gap-2 text-sm font-semibold text-ink">
+                          {f.name}
+                          {f.plan === 'pro' && <ProBadge />}
+                        </span>
+                        <span className="text-[13px] leading-relaxed text-body">{f.desc}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+          <ul className="flex flex-col gap-3 pt-2 text-[15px] md:flex-row md:flex-wrap md:gap-8">
+            {c.points.map(p => (
+              <li key={p} className="flex items-center gap-2"><CircleCheck size={18} className="shrink-0 text-ok" aria-hidden />{p}</li>
+            ))}
+          </ul>
+          <div className="flex flex-col gap-3 rounded-2xl border border-line bg-white p-6 md:flex-row md:items-center md:justify-between md:gap-8 md:p-7">
+            <div className="flex flex-col gap-1">
+              <p className="font-bold">{page.crossSellTitle}</p>
+              <p className="text-sm leading-relaxed text-body">{page.crossSellBody}</p>
+            </div>
+            <Link href={l.download} className="inline-flex shrink-0 items-center gap-2 text-[15px] font-semibold text-brand hover:underline">
+              {c.downloadLink} <ArrowRight size={16} aria-hidden />
+            </Link>
+          </div>
+        </Container>
+      </section>
 
-        {/* Silang ke aplikasi kasir — Web Admin bukan pengganti aplikasinya */}
-        <div className="mt-12 rounded-2xl border border-gray-100 p-6 dark:border-surface-border">
-          <p className="font-semibold text-gray-900 dark:text-white">
-            {copy.crossSellTitle}
-          </p>
-          <p className="mt-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-            {copy.crossSellBody}
-          </p>
-          <a
-            href={appDownloadDetails.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-3 inline-block text-sm font-semibold text-blue-600 hover:underline dark:text-blue-400"
-          >
-            {appDownloadDetails.label} →
-          </a>
-        </div>
-
-        {/* Penutup */}
-        <div className="mt-14 rounded-2xl border border-blue-100 bg-blue-50 p-6 dark:border-blue-400/20 dark:bg-blue-500/10">
-          <p className="font-semibold text-gray-900 dark:text-white">
-            {copy.includedTitle}
-          </p>
-          <p className="mt-1 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
-            {webAdminDetails.includedNote}
-          </p>
-          <Link
-            href={`${localePath(locale)}#pricing`}
-            className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:underline dark:text-blue-400"
-          >
-            {copy.seePricing}
-            <ArrowRight size={15} aria-hidden="true" />
-          </Link>
-        </div>
-
-        <div className="mt-10">
-          <Link
-            href={localePath(locale)}
-            className="text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-          >
-            {copy.backHome}
-          </Link>
-        </div>
-      </div>
-    </div>
+      <CtaBand locale={locale} />
+    </>
   );
 }

@@ -519,3 +519,18 @@ export const permissionShape = [
 ];
 
 export const getPrivacy = (locale: Locale) => pick(copyByLocale, locale);
+
+/**
+ * Kontak resmi yang dicantumkan di halaman Kebijakan Privasi dan Hapus Akun.
+ * Nomor telepon/WhatsApp diganti ke 0838-7896-0539 (keputusan pemilik,
+ * Oktober 2026) menggantikan nomor lama +62 853-9373-7313.
+ */
+export const legalContact = {
+  email: "help@lokakasir.id",
+  phone: "0838-7896-0539",
+  phoneIntl: "+62 838-7896-0539",
+  whatsapp: "6283878960539",
+  developer: "Kreativita Sinergi",
+  // Alamat kantor (Pekanbaru), sama dengan OFFICE_ADDRESS di data/site/links.ts.
+  address: "Jl. Tiung No. 18, Kel. Labuh Baru Timur, Kec. Payung Sekaki, Kota Pekanbaru, Riau 28292, Indonesia",
+};

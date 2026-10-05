@@ -57,7 +57,7 @@ const copyByLocale: Record<Locale, AccountDeletionCopy> = {
       {
         title: "Kirim permintaan penghapusan",
         lead: "Kirim email ke ",
-        tail: " dengan subjek “Permintaan Hapus Akun”, atau hubungi kami via telepon/WhatsApp di +62 853-9373-7313.",
+        tail: " dengan subjek “Permintaan Hapus Akun”, atau hubungi kami via telepon/WhatsApp di 0838-7896-0539.",
       },
       {
         title: "Sertakan data akun terdaftar",
@@ -107,7 +107,7 @@ const copyByLocale: Record<Locale, AccountDeletionCopy> = {
       {
         title: "Send the deletion request",
         lead: "Email ",
-        tail: " with the subject “Account Deletion Request”, or contact us by phone or WhatsApp on +62 853-9373-7313.",
+        tail: " with the subject “Account Deletion Request”, or contact us by phone or WhatsApp on +62 838-7896-0539.",
       },
       {
         title: "Include your registered account details",
@@ -157,7 +157,7 @@ const copyByLocale: Record<Locale, AccountDeletionCopy> = {
       {
         title: "Hantar permohonan penghapusan",
         lead: "E-mel kepada ",
-        tail: " dengan subjek “Permohonan Padam Akaun”, atau hubungi kami melalui telefon atau WhatsApp di +62 853-9373-7313.",
+        tail: " dengan subjek “Permohonan Padam Akaun”, atau hubungi kami melalui telefon atau WhatsApp di +62 838-7896-0539.",
       },
       {
         title: "Sertakan maklumat akaun berdaftar",
@@ -207,7 +207,7 @@ const copyByLocale: Record<Locale, AccountDeletionCopy> = {
       {
         title: "削除の依頼を送る",
         lead: "件名を「アカウント削除の依頼」として ",
-        tail: " 宛にメールをお送りください。お電話または WhatsApp（+62 853-9373-7313）でも承ります。",
+        tail: " 宛にメールをお送りください。お電話または WhatsApp（+62 838-7896-0539）でも承ります。",
       },
       {
         title: "登録済みのアカウント情報を添える",

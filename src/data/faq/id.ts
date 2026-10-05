@@ -73,27 +73,18 @@ Jenis bisnis menentukan alur order: Retail menggunakan INSTANT_SALE (bayar → s
 
   {
     category: "Memulai",
-    question: "Apakah tim Loka Kasir bisa datang langsung untuk menyiapkan aplikasi dan kedai saya?",
+    question: "Apakah tim Loka Kasir bisa membantu setup?",
     answer:
-      `Bisa. Kantor kami berdomisili di Padang (Sumatera Barat), Pekanbaru (Riau), dan Payakumbuh (Sumatera Barat). Untuk bisnis di tiga kota ini, tim kami bisa datang langsung ke lokasi dan menyiapkan semuanya sampai siap dipakai jualan.
+      `Bisa. Tim kami membantu setup secara online lewat WhatsApp, didampingi sampai transaksi pertama berhasil — dari kota mana pun.
 
-Yang dikerjakan tim di lokasi:
+Yang bisa kami bantu:
 • Pendaftaran akun Owner dan pembuatan outlet pertama
 • Input produk, kategori, harga jual, dan stok awal
 • Pendaftaran karyawan beserta role dan PIN
-• Pemasangan terminal kasir di HP/tablet dan pairing printer thermal
+• Pemasangan aplikasi kasir di HP/tablet/PC dan pairing printer thermal
 • Pengaturan metode pembayaran, format struk, serta meja & KDS untuk FNB
-• Pelatihan singkat untuk kasir dan pemilik di tempat
 
-Syaratnya: berlangganan paket Pro Rp 590.000/tahun. Tidak ada biaya setup maupun biaya transportasi tambahan di dalam kota layanan. Hubungi admin lewat WhatsApp untuk dijadwalkan.`,
-  },
-  {
-    category: "Memulai",
-    question: "Saya di luar Padang, Pekanbaru, dan Payakumbuh — apakah tetap bisa dibantu setup?",
-    answer:
-      `Tetap bisa. Kunjungan langsung ke lokasi hanya tersedia di tiga kota tempat tim kami berdomisili, tapi untuk kota lain kami membantu setup sepenuhnya secara online — lewat WhatsApp atau video call, didampingi sampai transaksi pertama berhasil.
-
-Kalau bisnis Anda punya banyak outlet dan ingin kunjungan langsung ke luar kota layanan, hubungi admin untuk dibicarakan terpisah.`,
+Hubungi admin lewat WhatsApp untuk mulai.`,
   },
 
   // ─── Operasi Harian ─────────────────────────────────────────────────────────

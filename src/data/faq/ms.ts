@@ -1,7 +1,7 @@
 import { IFAQ } from "@/types";
 import { siteDetails } from "../siteDetails";
 
-/** Lihat catatan di `en.ts`: dua soalan tentang kunjungan ke lokasi dan angka rupiah sengaja tidak disertakan. */
+/** Lihat catatan di `en.ts`: angka rupiah sengaja tidak disertakan. */
 export const faqsMs: IFAQ[] = [
 
   // ─── Bermula ────────────────────────────────────────────────────────────────

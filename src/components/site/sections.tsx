@@ -74,7 +74,12 @@ export function DownloadSection({ locale, copy }: { locale: Locale; copy: { eyeb
 /** FAQ ringkas berbentuk akordion. Jawaban diambil dari data FAQ asli. */
 export function FaqList({ locale, questions, openFirst = true }: { locale: Locale; questions?: string[]; openFirst?: boolean }) {
   const all = getFaqs(locale);
-  const list = questions ? questions.map(q => all.find(f => f.question === q)).filter(Boolean) as typeof all : all.slice(0, 6);
+  // Pertanyaan pilihan ditulis dalam bahasa Indonesia; bahasa yang belum punya
+  // padanannya jatuh ke jawaban Indonesia, bukan blok kosong.
+  const fallback = getFaqs('id');
+  const list = questions
+    ? (questions.map(q => all.find(f => f.question === q) ?? fallback.find(f => f.question === q)).filter(Boolean) as typeof all)
+    : all.slice(0, 6);
   return (
     <div className="border-t border-line">
       {list.map((f, i) => (

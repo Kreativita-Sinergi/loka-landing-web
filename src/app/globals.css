@@ -1,6 +1,4 @@
 @import "tailwindcss";
-/* Gaya lama untuk halaman yang belum dipindah ke desain baru. Hapus setelah semua halaman pindah. */
-@import "./legacy.css";
 
 /*
  * Desain 2026 — token dari Figma "Loka Web".
@@ -26,6 +24,11 @@
   --color-whatsapp: #25d366;
 
   --font-sans: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: clip;
 }
 
 html {

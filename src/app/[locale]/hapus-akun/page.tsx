@@ -1,143 +1,121 @@
-import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { Mail, Trash2 } from 'lucide-react';
 
-import { siteDetails } from '@/data/siteDetails'
-import { getAccountDeletion } from '@/data/accountDeletion'
-import { LOCALES, type Locale } from '@/data/localized'
-import { alternatesFor } from '@/lib/hreflang'
+import { siteDetails } from '@/data/siteDetails';
+import { getAccountDeletion } from '@/data/accountDeletion';
+import { legalContact } from '@/data/privacyPolicy';
+import { getLegalUi } from '@/data/site/legal';
+import { siteLinks } from '@/data/site/links';
+import { LOCALES, type Locale } from '@/data/localized';
+import { alternatesFor } from '@/lib/hreflang';
+import { ButtonLink, Container, PageHero, SectionHeading, WhatsAppIcon } from '@/components/site/ui';
 
 export function generateStaticParams() {
-  return LOCALES.map((locale) => ({ locale }))
+  return LOCALES.map(locale => ({ locale }));
 }
 
-export async function generateMetadata(
-  { params }: { params: Promise<{ locale: string }> },
-): Promise<Metadata> {
-  const { locale } = await params
-  if (!(LOCALES as readonly string[]).includes(locale)) notFound()
-  const copy = getAccountDeletion(locale as Locale)
-
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  if (!(LOCALES as readonly string[]).includes(locale)) notFound();
+  const copy = getAccountDeletion(locale as Locale);
   return {
     title: `${copy.metaTitle} — ${siteDetails.siteName}`,
     description: copy.metaDescription,
     alternates: alternatesFor(locale as Locale, '/hapus-akun'),
-  }
+  };
 }
 
-const DELETION_MAILTO =
-  'mailto:help@lokakasir.id?subject=Permintaan%20Hapus%20Akun%20Loka%20Kasir'
+const DELETION_MAILTO = 'mailto:help@lokakasir.id?subject=Permintaan%20Hapus%20Akun%20Loka%20Kasir';
 
-export default async function AccountDeletionPage(
-  { params }: { params: Promise<{ locale: string }> },
-) {
-  const { locale: raw } = await params
-  if (!(LOCALES as readonly string[]).includes(raw)) notFound()
-  const copy = getAccountDeletion(raw as Locale)
+export default async function AccountDeletionPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: raw } = await params;
+  if (!(LOCALES as readonly string[]).includes(raw)) notFound();
+  const locale = raw as Locale;
+  const copy = getAccountDeletion(locale);
+  const ui = getLegalUi(locale);
+  const l = siteLinks(locale);
+  const phone = locale === 'id' ? legalContact.phone : legalContact.phoneIntl;
 
   return (
-    <div className="min-h-screen bg-white dark:bg-background">
-      <div className="max-w-3xl mx-auto px-6 py-16">
+    <>
+      <PageHero crumbs={[{ label: ui.home, href: l.home }, { label: copy.title }]} title={copy.title} desc={copy.intro}>
+        <p className="text-sm text-body">{copy.lastUpdated}</p>
+      </PageHero>
 
-        {/* Header */}
-        <div className="mb-10">
-          <p className="text-sm font-medium text-blue-600 mb-2 dark:text-blue-400">Loka Kasir</p>
-          <h1 className="text-3xl font-bold text-gray-900 mb-3 dark:text-white">{copy.title}</h1>
-          <p className="text-gray-500 text-sm dark:text-gray-400">{copy.lastUpdated}</p>
-        </div>
-
-        {/* Intro */}
-        <p className="text-gray-700 leading-relaxed mb-10 dark:text-gray-300">
-          {copy.intro}
-        </p>
-
-        {/* Steps — hanya langkah pertama yang memuat tautan email; sisanya
-            `tail` dibiarkan kosong dan tautannya tidak dirender. */}
-        <section className="mb-12">
-          <h2 className="text-xl font-semibold text-gray-900 mb-6 dark:text-white">
-            {copy.stepsHeading}
-          </h2>
-          <div className="space-y-5">
+      {/* Langkah: hanya langkah pertama memuat tautan email (tail tidak kosong). */}
+      <section className="py-14 md:py-20">
+        <Container className="flex flex-col gap-6 md:gap-7">
+          <SectionHeading title={copy.stepsHeading} />
+          <ol className="grid gap-4 md:grid-cols-3 md:gap-6">
             {copy.steps.map((step, i) => (
-              <div key={step.title} className="border border-gray-200 rounded-2xl p-6 flex items-start gap-4 dark:border-surface-border dark:bg-surface">
-                <span className="flex-none w-8 h-8 rounded-full bg-blue-50 text-blue-600 font-bold text-sm flex items-center justify-center dark:bg-blue-500/15 dark:text-blue-300">
-                  {i + 1}
-                </span>
-                <div>
-                  <h3 className="text-base font-semibold text-gray-900 mb-1 dark:text-white">{step.title}</h3>
-                  <p className="text-sm text-gray-700 dark:text-gray-300">
-                    {step.lead}
-                    {step.tail && (
-                      <>
-                        <a href={DELETION_MAILTO} className="text-blue-600 hover:underline dark:text-blue-400">
-                          help@lokakasir.id
-                        </a>
-                        {step.tail}
-                      </>
-                    )}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Data deleted */}
-        <section className="mb-10">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 dark:text-white">{copy.deletedHeading}</h2>
-          <p className="text-sm text-gray-700 mb-3 dark:text-gray-300">
-            {copy.deletedLead}
-          </p>
-          <div className="space-y-3 text-sm text-gray-700 dark:text-gray-300">
-            {copy.deleted.map((item) => (
-              <div key={item.label} className="flex gap-3">
-                <span className="text-gray-400 mt-0.5 dark:text-gray-500">•</span>
-                <p><strong>{item.label}</strong> {item.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Retention */}
-        <section className="mb-10">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 dark:text-white">{copy.retentionHeading}</h2>
-          <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-            {copy.retention.map((line, i) => (
-              <li key={line} className="flex gap-3">
-                <span>{['⏱️', '🗄️', '🧾'][i]}</span>
-                <p>{line}</p>
+              <li key={step.title} className="flex flex-col gap-3 rounded-2xl border border-line p-6 md:rounded-[18px] md:p-7">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-ink text-[15px] font-bold text-white">{i + 1}</span>
+                <h3 className="text-lg font-bold">{step.title}</h3>
+                <p className="text-[15px] leading-relaxed text-body">
+                  {step.lead}
+                  {step.tail && (
+                    <>
+                      <a href={DELETION_MAILTO} className="font-medium text-brand hover:underline">{legalContact.email}</a>
+                      {step.tail}
+                    </>
+                  )}
+                </p>
               </li>
             ))}
-          </ul>
-        </section>
+          </ol>
+        </Container>
+      </section>
 
-        {/* Partial deletion */}
-        <section className="mb-10">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 dark:text-white">
-            {copy.partialHeading}
-          </h2>
-          <p className="text-sm text-gray-700 dark:text-gray-300">
-            {copy.partialBody}
-          </p>
-        </section>
-
-        {/* Contact */}
-        <section className="mb-10">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 dark:text-white">{copy.contactHeading}</h2>
-          <div className="bg-gray-50 rounded-2xl p-5 text-sm text-gray-700 space-y-1 dark:bg-surface dark:text-gray-300">
-            <p>📧 <strong>{copy.contactEmail}</strong>{' '}
-              <a href="mailto:help@lokakasir.id" className="text-blue-600 hover:underline dark:text-blue-400">help@lokakasir.id</a>
-            </p>
-            <p>📞 <strong>{copy.contactPhone}</strong> +62 853-9373-7313</p>
-            <p>🏢 <strong>{copy.contactDeveloper}</strong> Kreativita Sinergi</p>
-            <p>📍 Jl. Air Camar No. 24, Padang Timur, Kota Padang, Sumatera Barat, Indonesia</p>
+      <section className="bg-soft py-14 md:py-20">
+        <Container className="grid gap-4 md:grid-cols-2 md:items-start md:gap-6">
+          <div className="flex flex-col gap-4 rounded-2xl bg-white p-6 md:rounded-[18px] md:p-8">
+            <h2 className="text-xl font-bold">{copy.deletedHeading}</h2>
+            <p className="text-[15px] leading-relaxed text-body">{copy.deletedLead}</p>
+            <ul className="flex flex-col gap-3">
+              {copy.deleted.map(d => (
+                <li key={d.label} className="flex items-start gap-2.5 text-[15px] leading-relaxed">
+                  <Trash2 size={18} className="mt-0.5 shrink-0 text-danger" aria-hidden />
+                  <span><strong className="font-semibold">{d.label}</strong> <span className="text-body">{d.body}</span></span>
+                </li>
+              ))}
+            </ul>
           </div>
-        </section>
+          <div className="flex flex-col gap-4 rounded-2xl bg-white p-6 md:rounded-[18px] md:p-8">
+            <h2 className="text-xl font-bold">{copy.partialHeading}</h2>
+            <p className="text-[15px] leading-relaxed text-body">{copy.partialBody}</p>
+          </div>
+        </Container>
+      </section>
 
-        <hr className="border-gray-100 mb-8 dark:border-surface-border" />
-        <p className="text-xs text-gray-400 text-center dark:text-gray-500">
-          &copy; {new Date().getFullYear()} Loka Kasir &mdash; Kreativita Sinergi. {copy.rights}
-        </p>
-      </div>
-    </div>
-  )
+      <section className="py-14 md:py-20">
+        <Container className="flex flex-col gap-6 md:gap-8">
+          <SectionHeading title={copy.retentionHeading} />
+          <ol className="flex flex-col">
+            {copy.retention.map((line, i) => (
+              <li key={line} className="flex flex-col gap-1.5 border-b border-line py-5 first:pt-0 last:border-b-0 md:flex-row md:gap-5">
+                <span className="shrink-0 text-[15px] font-bold text-brand md:w-[200px] md:text-base">{ui.retentionLabels[i]}</span>
+                <span className="text-[15px] leading-relaxed md:text-base">{line}</span>
+              </li>
+            ))}
+          </ol>
+
+          <div className="mt-2 flex flex-col gap-5 rounded-2xl bg-tint p-6 md:mt-6 md:flex-row md:items-center md:justify-between md:rounded-[20px] md:px-10 md:py-8">
+            <div className="flex flex-col gap-1.5">
+              <h2 className="text-[22px] font-bold">{copy.contactHeading}</h2>
+              <p className="text-[15px] text-body md:text-base">{legalContact.email} · {phone}</p>
+              <p className="text-[13px] leading-relaxed text-body">
+                {copy.contactDeveloper} {legalContact.developer} · {legalContact.address}
+              </p>
+            </div>
+            <div className="flex flex-col gap-2.5 sm:flex-row sm:gap-3">
+              <ButtonLink href={DELETION_MAILTO} tone="secondary" icon={<Mail size={18} />}>{ui.sendEmail}</ButtonLink>
+              <ButtonLink href={l.whatsapp(ui.whatsappMessage)} tone="whatsapp" icon={<WhatsAppIcon />}>{ui.whatsapp}</ButtonLink>
+            </div>
+          </div>
+          <p className="text-xs text-mute">© {new Date().getFullYear()} Loka Kasir — {legalContact.developer}. {copy.rights}</p>
+        </Container>
+      </section>
+    </>
+  );
 }

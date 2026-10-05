@@ -2,11 +2,6 @@ import { IFAQ } from "@/types";
 import { siteDetails } from "../siteDetails";
 
 /**
- * Dua pertanyaan tentang kunjungan tim ke Padang/Pekanbaru/Payakumbuh sengaja
- * TIDAK ada di sini. Layanannya nyata, tetapi hanya di tiga kota di Sumatera;
- * menampilkannya pada halaman berbahasa Inggris berarti menjanjikan kunjungan
- * yang tidak akan pernah bisa dijadwalkan.
- *
  * Angka harga dalam rupiah juga tidak dikutip di sini. Harga per negara sudah
  * ditangani `lib/pricing.ts`, dan menuliskan "Rp 39.000" di halaman berbahasa
  * Inggris membuat pembaca menghitung kurs sendiri lalu membandingkannya dengan

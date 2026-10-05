@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { GoogleAnalytics } from '@next/third-parties/google';
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import SiteHeader from "@/components/site/SiteHeader";
@@ -12,7 +12,6 @@ import { alternatesFor } from '@/lib/hreflang';
 
 import "../globals.css";
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-jakarta', display: 'swap' });
 
 export function generateStaticParams() {
@@ -173,7 +172,7 @@ export default async function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${jakarta.variable} font-sans antialiased`}
+        className={`${jakarta.variable} font-sans antialiased`}
       >
         {siteDetails.googleAnalyticsId && <GoogleAnalytics gaId={siteDetails.googleAnalyticsId} />}
         <SiteHeader locale={active} />
