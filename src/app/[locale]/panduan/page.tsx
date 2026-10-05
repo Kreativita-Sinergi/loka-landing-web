@@ -6,7 +6,7 @@ import { ArrowRight, PlayCircle } from 'lucide-react';
 
 import { LOCALES, type Locale } from '@/data/localized';
 import { siteDetails } from '@/data/siteDetails';
-import { getGuideGroups, getPanduanCopy, getVideoDuration } from '@/data/site/panduan';
+import { getGuideGroups, getPanduanCopy } from '@/data/site/panduan';
 import { siteLinks } from '@/data/site/links';
 import { alternatesFor } from '@/lib/hreflang';
 import { ButtonLink, WhatsAppIcon } from '@/components/site/ui';
@@ -57,7 +57,7 @@ export default async function PanduanPage({ params }: { params: Promise<{ locale
                   <span className="flex min-w-0 flex-1 flex-col gap-1">
                     <span className="flex items-center gap-2 text-[12px] font-semibold text-mute">
                       <span className="hidden sm:inline">{c.stepOf(i + 1, start.guides.length)}</span>
-                      {g.video && <span className="inline-flex items-center gap-1"><span className="hidden sm:inline">·</span><PlayCircle size={13} aria-hidden />{getVideoDuration(g.video)}</span>}
+                      {g.youtubeId && <span className="inline-flex items-center gap-1"><span className="hidden sm:inline">·</span><PlayCircle size={13} aria-hidden />{c.watch}</span>}
                     </span>
                     <span className="text-base font-bold group-hover:text-brand md:text-[17px]">{g.title}</span>
                     <span className="text-[13px] leading-snug text-body md:text-sm">{g.desc}</span>

@@ -1,13 +1,12 @@
 import { pick, type Locale } from '@/data/localized';
-import { getTutorials } from '@/data/tutorials';
 
 /**
  * Panduan Pengguna (/panduan dan /panduan/[slug]).
  *
  * Tidak ada isi yang dikarang di sini:
- * - Grup "Mulai di sini" adalah lima video tutorial di `data/tutorials.ts`.
- *   Langkahnya diturunkan dari deskripsi video, layar aplikasi asli
- *   (screenshot), dan jawaban FAQ tentang shift, PIN, transaksi, dan struk.
+ * - Grup "Mulai di sini" adalah lima alur harian kasir. Langkahnya diambil dari
+ *   rekaman aplikasi versi 1.34.0 di tablet, layar aplikasi asli (screenshot),
+ *   dan jawaban FAQ tentang shift, PIN, transaksi, dan struk.
  * - Grup lain menampilkan jawaban FAQ asli (dicocokkan lewat teks
  *   pertanyaannya), jadi selalu sama dengan halaman FAQ.
  */
@@ -21,8 +20,11 @@ export type Guide = {
   desc: string;
   /** Screenshot aplikasi asli di /public/images/site. */
   image?: { src: string; alt: string };
-  /** Slug video di /public/videos/tutorials (tanpa ekstensi). */
-  video?: string;
+  /**
+   * ID video YouTube (bagian setelah `v=`). Video panduan di-host di YouTube,
+   * bukan di server situs. Selama kosong, halaman menampilkan screenshot.
+   */
+  youtubeId?: string;
   intro?: string;
   steps?: GuideStep[];
   tip?: string;
@@ -37,15 +39,14 @@ const SETUP = 'Pengaturan';
 const OWNER = 'Untuk pemilik';
 
 function buildGuides(locale: Locale): Guide[] {
-  const videos = Object.fromEntries(getTutorials('id').videos.map(v => [v.slug, v]));
   void locale;
   return [
     {
       slug: 'login',
       group: START,
       title: 'Login ke Aplikasi',
-      desc: videos.tut_login_tablet.desc,
-      video: 'tut_login_tablet',
+      desc: 'Masuk dengan email atau username dan password, pilih outlet, lalu sampai di beranda.',
+      youtubeId: undefined,
       image: { src: '/images/site/app-beranda.webp', alt: 'Beranda aplikasi Loka Kasir setelah login' },
       intro:
         'Satu akun Loka dipakai di aplikasi kasir (Android dan Windows) maupun Web Admin. Akun dibuat sekali saat mendaftar, lewat browser atau dari dalam aplikasi.',
@@ -61,8 +62,8 @@ function buildGuides(locale: Locale): Guide[] {
       slug: 'buka-kasir',
       group: START,
       title: 'Buka Kasir & Mulai Shift',
-      desc: videos.tut_buka_kasir_tablet.desc,
-      video: 'tut_buka_kasir_tablet',
+      desc: 'Pilih kasir, isi modal awal di laci, lalu masukkan PIN untuk memulai shift.',
+      youtubeId: undefined,
       image: { src: '/images/site/app-bukakasir.webp', alt: 'Jendela Persiapan Kasir: cabang, terminal, kasir, jadwal, dan modal awal' },
       intro:
         'Setiap kasir wajib membuka shift sebelum melayani pembeli. Shift mencatat semua transaksi selama jam kerja, sehingga uang di laci bisa dicocokkan saat tutup kasir.',
@@ -78,8 +79,8 @@ function buildGuides(locale: Locale): Guide[] {
       slug: 'transaksi',
       group: START,
       title: 'Melayani Transaksi',
-      desc: videos.tut_transaksi_tablet.desc,
-      video: 'tut_transaksi_tablet',
+      desc: 'Pilih produk, tentukan makan di tempat atau bawa pulang, lalu selesaikan pembayaran.',
+      youtubeId: undefined,
       image: { src: '/images/site/app-transaksi.webp', alt: 'Layar transaksi Loka Kasir' },
       intro: 'Satu transaksi biasanya selesai dalam 30 sampai 60 detik, dari memilih produk sampai struk tercetak.',
       steps: [
@@ -94,8 +95,8 @@ function buildGuides(locale: Locale): Guide[] {
       slug: 'riwayat-struk',
       group: START,
       title: 'Riwayat & Struk',
-      desc: videos.tut_riwayat_tablet.desc,
-      video: 'tut_riwayat_tablet',
+      desc: 'Buka kembali transaksi yang sudah selesai lengkap dengan struknya, siap dicetak ulang.',
+      youtubeId: undefined,
       image: { src: '/images/site/app-riwayat.webp', alt: 'Layar riwayat penjualan Loka Kasir' },
       intro: 'Semua transaksi yang sudah selesai tersimpan di Riwayat Penjualan, lengkap dengan detail struknya.',
       steps: [
@@ -109,8 +110,8 @@ function buildGuides(locale: Locale): Guide[] {
       slug: 'tutup-shift',
       group: START,
       title: 'Tutup Shift',
-      desc: videos.tut_tutup_shift_tablet.desc,
-      video: 'tut_tutup_shift_tablet',
+      desc: 'Hitung uang di laci, cocokkan dengan kas diharapkan, dan tutup shift.',
+      youtubeId: undefined,
       image: { src: '/images/site/app-tutupkasir.webp', alt: 'Layar tutup kasir dengan ringkasan penjualan' },
       intro: 'Di akhir jam kerja, kasir menutup shift supaya uang di laci bisa dicocokkan dengan catatan sistem.',
       steps: [
@@ -191,13 +192,11 @@ const copy = {
     navLabel: 'Daftar panduan',
     selectLabel: 'Pilih panduan',
     startTitle: 'Mulai dari lima langkah dasar',
-    startDesc: 'Alur harian kasir dari login sampai tutup shift. Setiap langkah dilengkapi video singkat di bawah 30 detik.',
+    startDesc: 'Alur harian kasir dari login sampai tutup shift. Ikuti urutannya dari atas.',
     moreTitle: 'Pengaturan & untuk pemilik',
     moreDesc: 'Jawaban lengkap dari tim Loka untuk hal yang paling sering ditanyakan.',
     watch: 'Tonton videonya',
-    videoNote: 'Rekaman layar aplikasi',
     stepOf: (n: number, total: number) => `Langkah ${n} dari ${total}`,
-    videoLabel: 'video',
     stepsTitle: 'Langkah-langkahnya',
     tip: 'Tips:',
     prev: 'Sebelumnya',
@@ -221,4 +220,3 @@ export const getGuideGroups = (locale: Locale) => {
   }
   return groups;
 };
-export const getVideoDuration = (slug: string) => getTutorials('id').videos.find(v => v.slug === slug)?.duration;

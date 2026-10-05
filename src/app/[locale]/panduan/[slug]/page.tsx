@@ -7,7 +7,7 @@ import { Lightbulb, PlayCircle } from 'lucide-react';
 import { LOCALES, type Locale } from '@/data/localized';
 import { siteDetails } from '@/data/siteDetails';
 import { getFaqs } from '@/data/faq';
-import { getGuides, getPanduanCopy, getVideoDuration } from '@/data/site/panduan';
+import { getGuides, getPanduanCopy } from '@/data/site/panduan';
 import { siteLinks } from '@/data/site/links';
 import { alternatesFor } from '@/lib/hreflang';
 import { Breadcrumb, ButtonLink, WhatsAppIcon } from '@/components/site/ui';
@@ -49,10 +49,9 @@ export default async function GuidePage({ params }: Params) {
   const next = guides[index + 1];
   const allFaqs = getFaqs(locale);
   const faqs = (guide.faq ?? []).map(q => allFaqs.find(f => f.question === q)).filter((f): f is (typeof allFaqs)[number] => Boolean(f));
-  const duration = guide.video ? getVideoDuration(guide.video) : undefined;
   const moreHref = guide.more ? l[guide.more.to] : undefined;
 
-  const meta = [guide.video ? c.stepOf(sameGroup.indexOf(guide) + 1, sameGroup.length) : null, duration ? `${c.videoLabel} ${duration}` : null].filter(Boolean).join(' · ');
+  const meta = guide.steps && sameGroup.length > 1 ? c.stepOf(sameGroup.indexOf(guide) + 1, sameGroup.length) : '';
 
   return (
     <PanduanShell locale={locale} active={guide.slug}>
@@ -66,22 +65,22 @@ export default async function GuidePage({ params }: Params) {
 
         <p className="text-base leading-[1.7] text-body md:text-[17px]">{guide.intro ?? guide.desc}</p>
 
-        {guide.video ? (
+        {guide.youtubeId ? (
           <figure className="flex flex-col gap-2.5">
-            <div className="rounded-2xl bg-[#1c1c1e] p-2 shadow-[0_20px_40px_rgba(16,24,40,0.16)] md:rounded-[26px] md:p-3">
-              <video
-                src={`/videos/tutorials/${guide.video}.mp4`}
-                poster={`/videos/tutorials/${guide.video}_poster.jpg`}
-                preload="none"
-                controls
-                playsInline
-                className="aspect-[16/10] w-full rounded-lg bg-black md:rounded-xl"
-                aria-label={`${c.watch}: ${guide.title}`}
+            <div className="overflow-hidden rounded-xl bg-black md:rounded-2xl">
+              {/* youtube-nocookie: tanpa cookie pelacak sampai video diputar. */}
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${guide.youtubeId}?rel=0`}
+                title={`${c.watch}: ${guide.title}`}
+                loading="lazy"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="aspect-video w-full"
               />
             </div>
             <figcaption className="flex items-center justify-center gap-1.5 text-[13px] text-body">
               <PlayCircle size={14} aria-hidden />
-              {c.watch}{duration ? ` (${duration})` : ''} · direkam di tablet
+              {c.watch}
             </figcaption>
           </figure>
         ) : guide.image && (
