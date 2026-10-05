@@ -19,6 +19,8 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dlOpen, setDlOpen] = useState(false);
   const dlRef = useRef<HTMLLIElement>(null);
+  // Jeda kecil sebelum menutup, supaya dropdown tidak hilang saat kursor melewati celah.
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const nav = [
     { label: 'Fitur', href: links.fitur },
@@ -99,7 +101,12 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
                   </Link>
                 </li>
               ))}
-              <li ref={dlRef} className="relative">
+              <li
+                ref={dlRef}
+                className="relative"
+                onMouseEnter={() => { if (closeTimer.current) clearTimeout(closeTimer.current); setDlOpen(true); }}
+                onMouseLeave={() => { closeTimer.current = setTimeout(() => setDlOpen(false), 150); }}
+              >
                 <button
                   type="button"
                   aria-expanded={dlOpen}
@@ -110,13 +117,15 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
                   Download <ChevronDown size={16} className={clsx('transition-transform', dlOpen && 'rotate-180')} />
                 </button>
                 {dlOpen && (
-                  <div className="absolute top-full right-0 mt-4 w-[360px] rounded-2xl border border-line bg-white p-3 shadow-[0_16px_40px_rgba(16,24,40,0.14)]">
+                  <div className="absolute top-full right-0 w-[360px] pt-4">
+                  <div className="rounded-2xl border border-line bg-white p-3 shadow-[0_16px_40px_rgba(16,24,40,0.14)]">
                     {downloads.map(d => downloadLink(d))}
                     <div className="my-1 h-px bg-line" />
                     <Link href={links.webAdmin} className="flex items-center justify-between px-3 pt-3 pb-1.5 text-sm">
                       <span className="text-body">Web Admin untuk pemilik</span>
                       <span className="font-semibold text-brand">Buka →</span>
                     </Link>
+                  </div>
                   </div>
                 )}
               </li>
