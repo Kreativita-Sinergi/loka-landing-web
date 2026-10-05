@@ -16,7 +16,7 @@ const id = {
   crumbHome: 'Beranda',
   title: 'Syarat & Ketentuan',
   effective: 'Berlaku sejak 1 November 2026',
-  isDraft: true,
+  isDraft: false,
   draftNote: 'Draf: sebaiknya dicek oleh orang yang paham hukum sebelum dipublikasikan.',
   tocLabel: 'Daftar isi',
   sections: [
