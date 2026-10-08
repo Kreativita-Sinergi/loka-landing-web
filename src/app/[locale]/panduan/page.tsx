@@ -61,6 +61,7 @@ export default async function PanduanPage({ params }: { params: Promise<{ locale
                     </span>
                     <span className="text-base font-bold group-hover:text-brand md:text-[17px]">{g.title}</span>
                     <span className="text-[13px] leading-snug text-body md:text-sm">{g.desc}</span>
+                    {g.youtubeId && <span className="inline-flex items-center gap-1 text-xs font-semibold text-brand"><PlayCircle size={13} aria-hidden/>Video tablet &amp; ponsel</span>}
                   </span>
                   <ArrowRight size={18} aria-hidden className="hidden shrink-0 text-mute group-hover:text-brand md:block" />
                 </Link>
@@ -82,6 +83,7 @@ export default async function PanduanPage({ params }: { params: Promise<{ locale
                   <Link key={g.slug} href={guideHref(locale, g.slug)} className="group flex flex-col gap-1.5 rounded-2xl border border-line bg-white p-4 transition hover:border-[#cdd2dc] hover:shadow-[0_12px_28px_rgba(16,24,40,0.10)] md:p-5">
                     <span className="flex items-center justify-between gap-3 font-bold group-hover:text-brand">{g.title}<ArrowRight size={16} aria-hidden className="shrink-0 text-mute group-hover:text-brand" /></span>
                     <span className="text-[13px] leading-snug text-body md:text-sm">{g.desc}</span>
+                    {g.youtubeId && <span className="inline-flex items-center gap-1 text-xs font-semibold text-brand"><PlayCircle size={13} aria-hidden/>Video tablet &amp; ponsel</span>}
                   </Link>
                 ))}
               </div>

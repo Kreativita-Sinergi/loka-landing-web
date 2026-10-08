@@ -6,6 +6,7 @@ import { ArrowDown, ArrowRight, CircleCheck, HardDrive, Info, MapPin, MonitorSma
 
 import { LOCALES, type Locale } from '@/data/localized';
 import { getFaqs } from '@/data/faq';
+import { guides as videoGuides } from '@/data/guides';
 import { getHomeCopy } from '@/data/site/home';
 import { getFeatureCategories } from '@/data/site/shared';
 import { siteLinks } from '@/data/site/links';
@@ -99,6 +100,21 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {/* Demo */}
       <section className="bg-soft py-14 md:py-24">
         <Container><DemoKasir copy={c.demo} /></Container>
+      </section>
+
+      <section id="tutorial" className="scroll-mt-28 py-14 md:py-24">
+        <Container className="flex flex-col gap-7">
+          <SectionHeading eyebrow="VIDEO PANDUAN" title="Pelajari fitur yang Anda butuhkan" />
+          <p className="text-base leading-relaxed text-body">Pilih fitur, lalu tonton langkahnya di tablet atau ponsel. Video berbahasa Indonesia.</p>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {videoGuides.map(guide => <Link key={guide.slug} href={`${l.panduan}/${guide.slug}`} className="group flex flex-col gap-2 rounded-2xl border border-line p-5 transition hover:border-brand">
+              <h3 className="font-bold group-hover:text-brand">{guide.title}</h3>
+              <p className="flex-1 text-sm leading-relaxed text-body">{guide.description}</p>
+              <span className="text-sm font-semibold text-brand">Video tablet &amp; ponsel →</span>
+            </Link>)}
+          </div>
+          <div><ButtonLink href={l.panduan} tone="secondary">Lihat semua panduan →</ButtonLink></div>
+        </Container>
       </section>
 
       {/* Jenis usaha */}

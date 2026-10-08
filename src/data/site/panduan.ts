@@ -1,3 +1,4 @@
+import { findGuide } from '@/data/guides';
 import { pick, type Locale } from '@/data/localized';
 
 /**
@@ -25,6 +26,7 @@ export type Guide = {
    * bukan di server situs. Selama kosong, halaman menampilkan screenshot.
    */
   youtubeId?: string;
+  youtubePhoneId?: string;
   intro?: string;
   steps?: GuideStep[];
   tip?: string;
@@ -37,10 +39,11 @@ export type Guide = {
 const START = 'Mulai di sini';
 const SETUP = 'Pengaturan';
 const OWNER = 'Untuk pemilik';
+const ORDERS = 'Pesanan & pembayaran';
 
 function buildGuides(locale: Locale): Guide[] {
   void locale;
-  return [
+  const guides: Guide[] = [
     {
       slug: 'login',
       group: START,
@@ -130,6 +133,30 @@ function buildGuides(locale: Locale): Guide[] {
       faq: ['Bagaimana cara menambah produk ke dalam sistem?', 'Apa itu variasi produk dan bagaimana cara menggunakannya?', 'Bagaimana cara memantau stok yang hampir habis?'],
     },
     {
+      slug: "barang-titipan",
+      group: SETUP,
+      title: "Tambah Barang Titipan",
+      desc: "Pilih penitip, isi harga jual dan harga setor, lalu simpan barang titipan.",
+    },
+    {
+      slug: "pesanan-berjalan",
+      group: ORDERS,
+      title: "Kelola Pesanan Berjalan",
+      desc: "Simpan keranjang, lanjutkan pesanan, dan tagih pelanggan.",
+    },
+    {
+      slug: "pesanan-meja",
+      group: ORDERS,
+      title: "Pesanan Meja",
+      desc: "Pilih meja, simpan pesanan, pantau pesanan meja, dan tagih pelanggan.",
+    },
+    {
+      slug: "pisah-struk",
+      group: ORDERS,
+      title: "Pisah Struk & Bayar Terpisah",
+      desc: "Pisahkan item per tamu dan bayar bagian pesanan.",
+    },
+    {
       slug: 'printer-thermal',
       group: SETUP,
       title: 'Printer Thermal',
@@ -177,6 +204,10 @@ function buildGuides(locale: Locale): Guide[] {
       more: { label: 'Lihat halaman Harga', to: 'harga' },
     },
   ];
+  return guides.map(guide => {
+    const video = findGuide(guide.slug);
+    return { ...guide, youtubeId: video?.tablet, youtubePhoneId: video?.phone };
+  });
 }
 
 const copy = {

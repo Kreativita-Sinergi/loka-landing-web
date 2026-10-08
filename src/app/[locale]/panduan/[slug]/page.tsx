@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Lightbulb, PlayCircle } from 'lucide-react';
+import GuideVideo from '@/components/GuideVideo';
+import { Lightbulb } from 'lucide-react';
 
 import { LOCALES, type Locale } from '@/data/localized';
 import { siteDetails } from '@/data/siteDetails';
@@ -66,23 +67,10 @@ export default async function GuidePage({ params }: Params) {
         <p className="text-base leading-[1.7] text-body md:text-[17px]">{guide.intro ?? guide.desc}</p>
 
         {guide.youtubeId ? (
-          <figure className="flex flex-col gap-2.5">
-            <div className="overflow-hidden rounded-xl bg-black md:rounded-2xl">
-              {/* youtube-nocookie: tanpa cookie pelacak sampai video diputar. */}
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${guide.youtubeId}?rel=0`}
-                title={`${c.watch}: ${guide.title}`}
-                loading="lazy"
-                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="aspect-video w-full"
-              />
-            </div>
-            <figcaption className="flex items-center justify-center gap-1.5 text-[13px] text-body">
-              <PlayCircle size={14} aria-hidden />
-              {c.watch}
-            </figcaption>
-          </figure>
+          <div className="flex flex-col gap-3">
+            <p className="text-sm text-mute">Video berbahasa Indonesia · Loka Kasir 1.36 · Bisnis demo</p>
+            <GuideVideo title={guide.title} tablet={guide.youtubeId} phone={guide.youtubePhoneId ?? guide.youtubeId}/>
+          </div>
         ) : guide.image && (
           <div className="rounded-xl bg-soft p-2 md:rounded-2xl md:p-3">
             <Image src={guide.image.src} alt={guide.image.alt} width={1600} height={1051} className="h-auto w-full rounded-lg md:rounded-[10px]" sizes="(min-width: 1024px) 736px, 100vw" />
