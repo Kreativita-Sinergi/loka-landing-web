@@ -1,4 +1,5 @@
 import { getAppDownload, getSignUp, getSupport, getWindowsDownload, getCta } from '@/data/cta';
+import { siteDetails } from '@/data/siteDetails';
 import { localePath, type Locale } from '@/data/localized';
 
 /**
@@ -33,6 +34,7 @@ export function siteLinks(locale: Locale) {
     windowsStore: getWindowsDownload(locale).url,
     email: `mailto:${support.email}`,
     instagram: `https://instagram.com/${support.instagram}`,
+    youtube: siteDetails.social.youtubePage,
     whatsapp: (message?: string) =>
       `https://wa.me/${support.whatsapp}${message ? `?text=${encodeURIComponent(message)}` : ''}`,
     maps: 'https://maps.google.com/?q=Jl.%20Tiung%20No.%2018%2C%20Labuh%20Baru%20Timur%2C%20Payung%20Sekaki%2C%20Pekanbaru%2C%20Riau%2028292',

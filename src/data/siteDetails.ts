@@ -21,6 +21,7 @@ export const siteDetails = {
   robotsUrl: 'https://www.lokakasir.id/robots.txt',
   social: {
     instagramPage: 'https://instagram.com/lokakasir.id',
+    youtubePage: 'https://www.youtube.com/channel/UCR_-58j_zdN6Nh4-HoxkxWA',
   },
 };
 

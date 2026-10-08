@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Mail } from 'lucide-react';
-import { FaInstagram } from 'react-icons/fa';
+import { FaInstagram, FaYoutube } from 'react-icons/fa';
 
 import { siteLinks, SUPPORT_EMAIL, WHATSAPP_DISPLAY, INSTAGRAM_HANDLE } from '@/data/site/links';
 import type { Locale } from '@/data/localized';
@@ -10,7 +10,7 @@ import { Container, WhatsAppIcon } from './ui';
 export default function SiteFooter({ locale }: { locale: Locale }) {
   const l = siteLinks(locale);
   const columns: { title: string; items: { label: string; href: string }[] }[] = [
-    { title: 'Produk', items: [{ label: 'Fitur', href: l.fitur }, { label: 'Harga', href: l.harga }, { label: 'Panduan Pengguna', href: l.panduan }, { label: 'Web Admin', href: l.webAdmin }] },
+    { title: 'Produk', items: [{ label: 'Fitur', href: l.fitur }, { label: 'Harga', href: l.harga }, { label: 'Panduan Pengguna', href: l.panduan }, { label: 'YouTube Loka Kasir', href: l.youtube }, { label: 'Web Admin', href: l.webAdmin }] },
     { title: 'Download', items: [{ label: 'Android (Google Play)', href: l.playStore }, { label: 'Windows', href: l.downloadWindows }, { label: 'Android APK', href: l.downloadAndroid }] },
     { title: 'Bantuan', items: [{ label: 'FAQ', href: l.faq }, { label: SUPPORT_EMAIL, href: l.email }, { label: `WA ${WHATSAPP_DISPLAY}`, href: l.whatsapp() }, { label: INSTAGRAM_HANDLE, href: l.instagram }] },
     { title: 'Lainnya', items: [{ label: 'Tentang Kami', href: l.tentang }, { label: 'Blog', href: l.blog }, { label: 'Syarat & Ketentuan', href: l.syarat }, { label: 'Kebijakan Privasi', href: l.privasi }, { label: 'Hapus Akun', href: l.hapusAkun }] },
@@ -23,6 +23,7 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
     );
   const social = [
     { label: 'Instagram', href: l.instagram, icon: <FaInstagram size={16} /> },
+    { label: 'YouTube Loka Kasir', href: l.youtube, icon: <FaYoutube size={16} /> },
     { label: 'Email', href: l.email, icon: <Mail size={16} /> },
     { label: 'WhatsApp', href: l.whatsapp(), icon: <WhatsAppIcon size={16} /> },
   ];

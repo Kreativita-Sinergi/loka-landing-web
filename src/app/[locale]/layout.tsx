@@ -125,6 +125,7 @@ function buildJsonLd(locale: Locale) {
         },
         sameAs: [
           siteDetails.social.instagramPage,
+          siteDetails.social.youtubePage,
           'https://play.google.com/store/apps/details?id=id.lokakasir.app',
           'https://apps.microsoft.com/detail/9mxbj5l6rdp8',
         ],
