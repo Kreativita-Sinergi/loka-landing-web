@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import clsx from 'clsx';
-import { ArrowDown, ArrowRight, CircleCheck, HardDrive, Info, MapPin, MonitorSmartphone, RefreshCw, WifiOff } from 'lucide-react';
+import { ArrowDown, ArrowRight, CircleCheck, HardDrive, Info, MapPin, MonitorSmartphone, RefreshCw, WifiOff, PlayCircle } from 'lucide-react';
 
 import { LOCALES, type Locale } from '@/data/localized';
 import { getFaqs } from '@/data/faq';
@@ -107,8 +107,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <SectionHeading eyebrow="VIDEO PANDUAN" title="Pelajari fitur yang Anda butuhkan" />
           <p className="text-base leading-relaxed text-body">Pilih fitur, lalu tonton langkahnya di tablet atau ponsel. Video berbahasa Indonesia.</p>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {videoGuides.map(guide => <Link key={guide.slug} href={`${l.panduan}/${guide.slug}`} className="group flex flex-col gap-2 rounded-2xl border border-line p-5 transition hover:border-brand">
-              <h3 className="font-bold group-hover:text-brand">{guide.title}</h3>
+            {videoGuides.map(guide => <Link key={guide.slug} href={`${l.panduan}/${guide.slug}`} className="group flex flex-col gap-3 rounded-2xl border border-line bg-white p-5 transition hover:border-[#cdd2dc] hover:shadow-[0_12px_28px_rgba(16,24,40,0.10)] md:p-6">
+              <IconTile><PlayCircle size={22} aria-hidden /></IconTile>
+              <h3 className="text-lg font-bold group-hover:text-brand">{guide.title}</h3>
               <p className="flex-1 text-sm leading-relaxed text-body">{guide.description}</p>
               <span className="text-sm font-semibold text-brand">Video tablet &amp; ponsel →</span>
             </Link>)}

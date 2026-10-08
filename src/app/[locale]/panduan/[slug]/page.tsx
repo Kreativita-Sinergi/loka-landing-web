@@ -69,7 +69,7 @@ export default async function GuidePage({ params }: Params) {
         {guide.youtubeId ? (
           <div className="flex flex-col gap-3">
             <p className="text-sm text-mute">Video berbahasa Indonesia · Loka Kasir 1.36 · Bisnis demo</p>
-            <GuideVideo title={guide.title} tablet={guide.youtubeId} phone={guide.youtubePhoneId ?? guide.youtubeId}/>
+            <GuideVideo title={guide.title} tablet={guide.youtubeId} phone={guide.youtubePhoneId ?? guide.youtubeId} poster={guide.image}/>
           </div>
         ) : guide.image && (
           <div className="rounded-xl bg-soft p-2 md:rounded-2xl md:p-3">

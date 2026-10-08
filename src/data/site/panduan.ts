@@ -206,7 +206,7 @@ function buildGuides(locale: Locale): Guide[] {
   ];
   return guides.map(guide => {
     const video = findGuide(guide.slug);
-    return { ...guide, youtubeId: video?.tablet, youtubePhoneId: video?.phone };
+    return { ...guide, youtubeId: video?.tablet, youtubePhoneId: video?.phone, image: video && ['tambah-produk', 'barang-titipan', 'pesanan-berjalan', 'pesanan-meja', 'pisah-struk'].includes(guide.slug) ? { src: `/images/site/guides/${guide.slug}.jpg`, alt: `Panduan ${guide.title} di Loka Kasir` } : guide.image };
   });
 }
 
