@@ -43,6 +43,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const l = siteLinks(locale);
   const stats = await fetchPublicStats();
   const categories = getFeatureCategories(locale);
+  const featuredGuides = ['buka-kasir', 'transaksi', 'tutup-shift']
+    .map(slug => videoGuides.find(guide => guide.slug === slug))
+    .filter(guide => guide !== undefined);
   const waAsk = l.whatsapp('Halo tim Loka, saya mau tanya tentang Loka Kasir.');
 
   const faqJsonLd = {
@@ -100,22 +103,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {/* Demo */}
       <section className="bg-soft py-14 md:py-24">
         <Container><DemoKasir copy={c.demo} /></Container>
-      </section>
-
-      <section id="tutorial" className="scroll-mt-28 py-14 md:py-24">
-        <Container className="flex flex-col gap-7">
-          <SectionHeading eyebrow="VIDEO PANDUAN" title="Pelajari fitur yang Anda butuhkan" />
-          <p className="text-base leading-relaxed text-body">Pilih fitur, lalu tonton langkahnya di tablet atau ponsel. Video berbahasa Indonesia.</p>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {videoGuides.map(guide => <Link key={guide.slug} href={`${l.panduan}/${guide.slug}`} className="group flex flex-col gap-3 rounded-2xl border border-line bg-white p-5 transition hover:border-[#cdd2dc] hover:shadow-[0_12px_28px_rgba(16,24,40,0.10)] md:p-6">
-              <IconTile><PlayCircle size={22} aria-hidden /></IconTile>
-              <h3 className="text-lg font-bold group-hover:text-brand">{guide.title}</h3>
-              <p className="flex-1 text-sm leading-relaxed text-body">{guide.description}</p>
-              <span className="text-sm font-semibold text-brand">Video tablet &amp; ponsel →</span>
-            </Link>)}
-          </div>
-          <div><ButtonLink href={l.panduan} tone="secondary">Lihat semua panduan →</ButtonLink></div>
-        </Container>
       </section>
 
       {/* Jenis usaha */}
@@ -245,6 +232,39 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <Container className="flex flex-col items-center gap-8 md:gap-10">
           <SectionHeading eyebrow={c.pricing.eyebrow} title={c.pricing.title} desc={c.pricing.desc} align="center" className="items-start self-stretch text-left md:items-center md:text-center" />
           <PricingPlans locale={locale} />
+        </Container>
+      </section>
+
+      {/* Video panduan */}
+      <section id="tutorial" aria-labelledby="tutorial-title" className="scroll-mt-28 pt-12 md:pt-16">
+        <Container>
+          <div className="rounded-3xl border border-brand/10 bg-gradient-to-br from-tint via-[#f4f7ff] to-white p-5 sm:p-7 md:p-9">
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+              <div className="max-w-[600px]">
+                <p className="mb-2 text-xs font-bold tracking-[0.1em] text-brand uppercase">Video panduan</p>
+                <h2 id="tutorial-title" className="text-[26px] leading-tight font-bold tracking-[-0.015em] md:text-[32px]">Dari buka kasir sampai tutup shift</h2>
+                <p className="mt-3 text-sm leading-relaxed text-body md:text-[15px]">Ikuti tiga langkah utama lewat video berbahasa Indonesia, di tablet atau ponsel.</p>
+              </div>
+              <ButtonLink href={l.panduan} tone="secondary" size="sm" className="self-start shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand sm:self-auto">
+                Lihat semua video panduan <ArrowRight size={16} aria-hidden />
+              </ButtonLink>
+            </div>
+            <ol className="mt-6 grid gap-3 md:mt-7 md:grid-cols-3">
+              {featuredGuides.map((guide, i) => (
+                <li key={guide.slug}>
+                  <Link href={`${l.panduan}/${guide.slug}`} className="group flex h-full flex-col gap-3 rounded-2xl border border-line bg-white p-4 transition duration-200 hover:border-brand/30 hover:shadow-[0_6px_20px_rgba(25,95,255,0.08)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand md:p-5">
+                    <div className="flex items-center gap-2.5">
+                      <span aria-hidden className="text-xs font-semibold tabular-nums text-mute">0{i + 1}</span>
+                      <h3 className="flex-1 text-base leading-snug font-bold transition-colors group-hover:text-brand">{guide.title}</h3>
+                      <PlayCircle size={20} className="shrink-0 text-brand" aria-hidden />
+                    </div>
+                    <p className="flex-1 text-sm leading-relaxed text-body">{guide.description}</p>
+                    <span className="flex items-center gap-1.5 text-sm font-semibold text-brand">Tonton panduan <ArrowRight size={15} className="transition-transform motion-safe:group-hover:translate-x-1" aria-hidden /></span>
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          </div>
         </Container>
       </section>
 
