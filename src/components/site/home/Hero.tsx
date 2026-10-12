@@ -51,9 +51,16 @@ export default function Hero({ copy, register, harga }: { copy: HomeCopy['hero']
   const imgY = useTransform(scrollYProgress, [0, 1], [0, -60]);
   const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
-  // Scene 3D hanya dinyalakan bila pengguna tidak meminta gerak minimal dan WebGL tersedia.
+  // Scene 3D hanya untuk desktop: dinyalakan bila pengguna tidak meminta gerak minimal, perangkat cukup kuat, dan WebGL tersedia.
   useEffect(() => {
     if (reduce) return;
+    // Lewati scene di perangkat lemah atau mode hemat data: gambar & animasi
+    // CSS tetap jalan, hanya objek 3D yang tidak dimuat.
+    const nav = navigator as Navigator & { deviceMemory?: number; connection?: { saveData?: boolean } };
+    // Di layar kecil objeknya hampir seluruhnya tertutup gambar perangkat,
+    // jadi tidak sebanding dengan baterai yang terpakai.
+    if (window.innerWidth < 1024) return;
+    if ((nav.hardwareConcurrency ?? 8) <= 4 || (nav.deviceMemory ?? 8) <= 4 || nav.connection?.saveData) return;
     const ok = (() => {
       try { return !!document.createElement('canvas').getContext('webgl2'); } catch { return false; }
     })();
@@ -82,8 +89,7 @@ export default function Hero({ copy, register, harga }: { copy: HomeCopy['hero']
         <div className="hero-aurora absolute -top-40 right-[-10%] h-[620px] w-[620px] rounded-full bg-[radial-gradient(circle,rgba(13,93,243,0.22),transparent_65%)] blur-2xl" />
         <div className="hero-aurora absolute top-[30%] left-[-15%] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(255,201,60,0.22),transparent_65%)] blur-2xl [animation-delay:-6s]" />
         <div className="hero-grid absolute inset-0" />
-        {/* Di layar kecil scene hanya di belakang gambar, supaya teks tetap bersih. */}
-        {scene && <div className="absolute inset-x-0 top-[52%] bottom-0 lg:top-0"><HeroScene /></div>}
+        {scene && <HeroScene />}
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-white" />
       </div>
 
