@@ -112,8 +112,8 @@ export function ScrollWords({ text, className }: { text: string; className?: str
 }
 
 /**
- * Blok yang "mengembang" saat discroll masuk: mulai kecil dan membulat,
- * lalu penuh. Cocok untuk band berwarna seperti Download dan CTA.
+ * Blok yang "mengembang" saat discroll masuk: mulai sedikit kecil lalu penuh.
+ * Hanya transform (tanpa animasi radius) supaya cukup digeser GPU. Cocok untuk band berwarna seperti Download dan CTA.
  */
 export function ScrollExpand({ children, className, from = 0.86 }: { children: ReactNode; className?: string; from?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -121,12 +121,11 @@ export function ScrollExpand({ children, className, from = 0.86 }: { children: R
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'start 0.35'] });
   const p = useSpring(scrollYProgress, { stiffness: 120, damping: 26 });
   const scale = useTransform(p, [0, 1], [from, 1]);
-  const radius = useTransform(p, [0, 1], [48, 0]);
   const y = useTransform(p, [0, 1], [60, 0]);
   if (reduce) return <div ref={ref} className={className}>{children}</div>;
   return (
     <div ref={ref} className={className}>
-      <motion.div style={{ scale, borderRadius: radius, y }} className="overflow-hidden">{children}</motion.div>
+      <motion.div style={{ scale, y }}>{children}</motion.div>
     </div>
   );
 }

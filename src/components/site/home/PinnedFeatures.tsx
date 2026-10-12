@@ -62,9 +62,9 @@ export default function PinnedFeatures({ rows }: { rows: Row[] }) {
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={active}
-                  initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.6, ease: EASE } }}
-                  exit={{ opacity: 0, y: -40, filter: 'blur(10px)', transition: { duration: 0.35, ease: EASE } }}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } }}
+                  exit={{ opacity: 0, y: -40, transition: { duration: 0.35, ease: EASE } }}
                   className="flex flex-col gap-4"
                 >
                   <p className="text-[13px] font-bold tracking-[0.1em] text-brand uppercase tabular-nums">
@@ -85,12 +85,16 @@ export default function PinnedFeatures({ rows }: { rows: Row[] }) {
           </div>
 
           <div className="relative w-[650px] shrink-0" style={{ perspective: 1600 }}>
-            <motion.div
-              aria-hidden
-              className="absolute inset-[8%] -z-10 rounded-full blur-3xl"
-              animate={{ backgroundColor: GLOWS[active % GLOWS.length] }}
-              transition={{ duration: 0.8 }}
-            />
+            {GLOWS.map((g, i) => (
+              <motion.div
+                key={g}
+                aria-hidden
+                className="absolute -inset-[4%] -z-10"
+                style={{ background: `radial-gradient(closest-side, ${g}, transparent)` }}
+                animate={{ opacity: active % GLOWS.length === i ? 1 : 0 }}
+                transition={{ duration: 0.8 }}
+              />
+            ))}
             <motion.div style={{ rotateY: drift, transformStyle: 'preserve-3d' }} className="relative">
               {rows.map((r, i) => {
                 const offset = i - active;
@@ -104,7 +108,6 @@ export default function PinnedFeatures({ rows }: { rows: Row[] }) {
                       scale: offset === 0 ? 1 : 0.9,
                       x: offset === 0 ? 0 : offset < 0 ? -80 : 80,
                       rotateY: offset === 0 ? 0 : offset < 0 ? 22 : -22,
-                      filter: offset === 0 ? 'blur(0px)' : 'blur(8px)',
                     }}
                     transition={{ duration: 0.8, ease: EASE }}
                     aria-hidden={offset !== 0}

@@ -63,8 +63,8 @@ export function DownloadSection({ locale, copy }: { locale: Locale; copy: { eyeb
   return (
     <section id="download" className="relative isolate overflow-hidden bg-brand py-14 md:py-24">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="hero-aurora absolute -top-40 -left-20 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.22),transparent_65%)] blur-2xl" />
-        <div className="hero-aurora absolute -right-24 -bottom-48 h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(255,201,60,0.28),transparent_65%)] blur-2xl [animation-delay:-5s]" />
+        <div className="hero-aurora absolute -top-40 -left-20 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.22),transparent_65%)]" />
+        <div className="hero-aurora absolute -right-24 -bottom-48 h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(255,201,60,0.28),transparent_65%)] [animation-delay:-5s]" />
       </div>
       <Container className="flex flex-col gap-8 md:items-center md:gap-12">
         <SectionHeading eyebrow={copy.eyebrow} title={copy.title} desc={copy.desc} align="center" light className="md:items-center" />
@@ -110,8 +110,8 @@ export function CtaBand({ locale, photo }: { locale: Locale; photo?: boolean }) 
       <Container>
         <div className="relative isolate flex flex-col overflow-hidden rounded-[20px] bg-ink md:flex-row md:items-stretch md:rounded-[28px]">
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-            <div className="hero-aurora absolute -top-32 left-[10%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(13,93,243,0.45),transparent_65%)] blur-2xl" />
-            <div className="hero-aurora absolute -bottom-40 left-[40%] h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,rgba(255,201,60,0.18),transparent_65%)] blur-2xl [animation-delay:-8s]" />
+            <div className="hero-aurora absolute -top-32 left-[10%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(13,93,243,0.45),transparent_65%)]" />
+            <div className="hero-aurora absolute -bottom-40 left-[40%] h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,rgba(255,201,60,0.18),transparent_65%)] [animation-delay:-8s]" />
           </div>
           <div className="flex flex-1 flex-col justify-center gap-4 p-6 md:gap-5 md:py-14 md:pl-16">
             <h2 className="text-2xl font-bold text-white md:text-[40px] md:leading-tight"><SplitReveal text={photo ? 'Mulai jualan lebih rapi hari ini' : 'Siap mencoba Loka Kasir?'} /></h2>

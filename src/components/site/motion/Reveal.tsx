@@ -9,20 +9,20 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 export type RevealVariant = 'up' | 'left' | 'right' | 'scale' | 'flip' | 'clip' | 'pop';
 
 const hidden: Record<RevealVariant, Variants['hidden']> = {
-  up: { opacity: 0, y: 28, filter: 'blur(8px)' },
-  left: { opacity: 0, x: -56, filter: 'blur(6px)' },
-  right: { opacity: 0, x: 56, filter: 'blur(6px)' },
-  scale: { opacity: 0, scale: 0.86, filter: 'blur(10px)' },
+  up: { opacity: 0, y: 28 },
+  left: { opacity: 0, x: -56 },
+  right: { opacity: 0, x: 56 },
+  scale: { opacity: 0, scale: 0.86 },
   flip: { opacity: 0, rotateX: -55, y: 40, transformPerspective: 900 },
   clip: { opacity: 0, clipPath: 'inset(18% 6% 18% 6% round 28px)', scale: 0.96 },
   pop: { opacity: 0, scale: 0.4, rotate: -12 },
 };
 
 const shown: Record<RevealVariant, Variants['show']> = {
-  up: { opacity: 1, y: 0, filter: 'blur(0px)' },
-  left: { opacity: 1, x: 0, filter: 'blur(0px)' },
-  right: { opacity: 1, x: 0, filter: 'blur(0px)' },
-  scale: { opacity: 1, scale: 1, filter: 'blur(0px)' },
+  up: { opacity: 1, y: 0 },
+  left: { opacity: 1, x: 0 },
+  right: { opacity: 1, x: 0 },
+  scale: { opacity: 1, scale: 1 },
   flip: { opacity: 1, rotateX: 0, y: 0, transformPerspective: 900 },
   clip: { opacity: 1, clipPath: 'inset(0% 0% 0% 0% round 0px)', scale: 1 },
   pop: { opacity: 1, scale: 1, rotate: 0 },

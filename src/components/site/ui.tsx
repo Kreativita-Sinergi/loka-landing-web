@@ -141,8 +141,8 @@ export function PageHero({ crumbs, title, desc, children, animated }: { crumbs?:
     <section className={clsx('relative isolate bg-soft', animated && 'overflow-hidden')}>
       {animated && (
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div className="hero-aurora absolute -top-32 right-[-8%] h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(13,93,243,0.18),transparent_65%)] blur-2xl" />
-          <div className="hero-aurora absolute -bottom-40 left-[-10%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(255,201,60,0.2),transparent_65%)] blur-2xl [animation-delay:-7s]" />
+          <div className="hero-aurora absolute -top-32 right-[-8%] h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(13,93,243,0.18),transparent_65%)]" />
+          <div className="hero-aurora absolute -bottom-40 left-[-10%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(255,201,60,0.2),transparent_65%)] [animation-delay:-7s]" />
           <div className="hero-grid absolute inset-0" />
         </div>
       )}

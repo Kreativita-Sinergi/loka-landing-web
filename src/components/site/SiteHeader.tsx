@@ -111,7 +111,7 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
       <div
         className={clsx(
           'border-b transition-[background-color,box-shadow,border-color] duration-500',
-          scrolled ? 'border-white/60 bg-white/75 shadow-[0_10px_30px_-14px_rgba(16,24,40,0.22)] backdrop-blur-xl backdrop-saturate-150' : 'border-line bg-white',
+          scrolled ? 'border-white/60 bg-white/95 shadow-[0_10px_30px_-14px_rgba(16,24,40,0.22)]' : 'border-line bg-white',
         )}
       >
         <div className="mx-auto flex h-[60px] max-w-[1240px] items-center justify-between px-5 md:h-[76px]">

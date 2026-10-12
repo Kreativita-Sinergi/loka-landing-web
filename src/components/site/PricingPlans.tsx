@@ -19,9 +19,9 @@ function SwapText({ value, className }: { value: string; className?: string }) {
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.span
           key={value}
-          initial={{ y: '100%', opacity: 0, filter: 'blur(4px)' }}
-          animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
-          exit={{ y: '-100%', opacity: 0, filter: 'blur(4px)' }}
+          initial={{ y: '100%', opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: '-100%', opacity: 0 }}
           transition={{ type: 'spring', stiffness: 300, damping: 26 }}
           className="inline-block"
         >

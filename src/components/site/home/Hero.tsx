@@ -86,8 +86,8 @@ export default function Hero({ copy, register, harga }: { copy: HomeCopy['hero']
     >
       {/* Latar: aurora lembut + grid tipis + scene 3D */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="hero-aurora absolute -top-40 right-[-10%] h-[620px] w-[620px] rounded-full bg-[radial-gradient(circle,rgba(13,93,243,0.22),transparent_65%)] blur-2xl" />
-        <div className="hero-aurora absolute top-[30%] left-[-15%] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(255,201,60,0.22),transparent_65%)] blur-2xl [animation-delay:-6s]" />
+        <div className="hero-aurora absolute -top-40 right-[-10%] h-[620px] w-[620px] rounded-full bg-[radial-gradient(circle,rgba(13,93,243,0.22),transparent_65%)]" />
+        <div className="hero-aurora absolute top-[30%] left-[-15%] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(255,201,60,0.22),transparent_65%)] [animation-delay:-6s]" />
         <div className="hero-grid absolute inset-0" />
         {scene && <HeroScene />}
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-white" />
@@ -114,7 +114,7 @@ export default function Hero({ copy, register, harga }: { copy: HomeCopy['hero']
               </ButtonLink>
             </Magnetic>
             <Magnetic strength={0.18}>
-              <ButtonLink href={harga} tone="secondary" size="lg" className="w-full bg-white/70 backdrop-blur sm:w-auto">{copy.secondary}</ButtonLink>
+              <ButtonLink href={harga} tone="secondary" size="lg" className="w-full sm:w-auto">{copy.secondary}</ButtonLink>
             </Magnetic>
           </div>
 
@@ -129,7 +129,7 @@ export default function Hero({ copy, register, harga }: { copy: HomeCopy['hero']
         <motion.div style={reduce ? undefined : { y: imgY }} className="relative lg:w-[600px]">
           <div style={{ perspective: 1200 }}>
             <motion.div style={reduce ? undefined : { rotateX: rotX, rotateY: rotY, transformStyle: 'preserve-3d' }} className="hero-device relative">
-              <div aria-hidden className="absolute inset-[12%] -z-10 rounded-full bg-brand/25 blur-3xl" />
+              <div aria-hidden className="absolute -inset-[6%] -z-10 bg-[radial-gradient(closest-side,rgba(13,93,243,0.28),transparent)]" />
               <Image src="/images/site/hero-perangkat.webp" alt={copy.imageAlt} width={1400} height={1344} priority sizes="(min-width: 1024px) 600px, 100vw" className="h-auto w-full rounded-[24px] shadow-[0_40px_80px_-24px_rgba(13,40,110,0.35)] ring-1 ring-black/5 md:rounded-[32px]" />
 
               {copy.points.map((p, i) => {
@@ -138,7 +138,7 @@ export default function Hero({ copy, register, harga }: { copy: HomeCopy['hero']
                   <motion.div
                     key={p}
                     aria-hidden
-                    className={`absolute ${chipPlaces[i]} flex items-center gap-2 rounded-2xl border border-white/70 bg-white/75 px-3 py-2 text-xs font-semibold text-ink shadow-[0_16px_40px_-12px_rgba(16,24,40,0.28)] backdrop-blur-md md:px-4 md:py-2.5 md:text-sm`}
+                    className={`absolute ${chipPlaces[i]} flex items-center gap-2 rounded-2xl border border-white bg-white/95 px-3 py-2 text-xs font-semibold text-ink shadow-[0_16px_40px_-12px_rgba(16,24,40,0.28)] md:px-4 md:py-2.5 md:text-sm`}
                     initial={{ opacity: 0, scale: 0.6, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
                     transition={{

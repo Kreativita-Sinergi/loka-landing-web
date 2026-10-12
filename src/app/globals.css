@@ -61,12 +61,12 @@ h1, h2, h3, h4, h5, h6 {
   to { transform: none; opacity: 1; }
 }
 @keyframes hero-fade-in {
-  from { transform: translateY(18px); opacity: 0; filter: blur(6px); }
-  to { transform: none; opacity: 1; filter: blur(0); }
+  from { transform: translateY(18px); opacity: 0; }
+  to { transform: none; opacity: 1; }
 }
 @keyframes hero-device-in {
-  from { transform: translateY(40px) scale(0.94); opacity: 0; filter: blur(10px); }
-  to { transform: none; opacity: 1; filter: blur(0); }
+  from { transform: translateY(40px) scale(0.94); opacity: 0; }
+  to { transform: none; opacity: 1; }
 }
 @keyframes hero-draw { to { stroke-dashoffset: 0; } }
 @keyframes hero-shimmer {
@@ -158,7 +158,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Masuk halaman saat navigasi. `backwards` supaya setelah selesai tidak ada
    transform/filter yang tertinggal (keduanya merusak elemen position: fixed). */
 @keyframes page-enter {
-  from { opacity: 0; transform: translateY(18px); filter: blur(6px); }
+  from { opacity: 0; transform: translateY(18px); }
 }
 .page-enter { animation: page-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
 

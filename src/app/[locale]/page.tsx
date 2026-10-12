@@ -80,7 +80,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {/* Angka */}
       <section className="pb-14 md:pb-[88px]">
         <Container>
-          <RevealGroup as="dl" variant="scale" stagger={0.1} className="grid grid-cols-2 gap-5 rounded-2xl border border-white bg-soft/80 p-5 shadow-[0_20px_60px_-30px_rgba(13,93,243,0.35)] backdrop-blur md:gap-0 md:rounded-[20px] md:px-10 md:py-8 lg:grid-cols-4">
+          <RevealGroup as="dl" variant="scale" stagger={0.1} className="grid grid-cols-2 gap-5 rounded-2xl border border-white bg-soft p-5 shadow-[0_20px_60px_-30px_rgba(13,93,243,0.35)] md:gap-0 md:rounded-[20px] md:px-10 md:py-8 lg:grid-cols-4">
             {statItems.map((s, i) => (
               <RevealItem key={s.small} className={clsx('flex flex-col gap-1', i > 0 && 'lg:border-l lg:border-line lg:pl-8')}>
                 <dt className="order-2 text-[13px] leading-snug text-body md:text-sm">{s.small}</dt>
