@@ -28,13 +28,29 @@ const SEGMENTS: { id: FeatureVideoId; from: number; tag: string; title: string; 
   { id: 'Referal', from: 96, tag: 'Program Referal', title: 'Ajak teman, dapat saldo', sub: 'Teman hemat, saldo bertambah s.d. Rp59rb' },
 ];
 
-export const REEL_DURATION = HOOK + SEGMENTS.length * SEG + MONTAGE + CTA;
 
 const clamp = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
 
-const CARD = { x: 70, y: 640, size: 940 };
 // Bagian video 1280×720 yang dipotong: area perangkat di sisi kanan.
 const CROP = { x: 540, size: 720 };
+
+export type ReelFormat = 'reel' | 'feed';
+export type ReelProps = { format: ReelFormat; only?: FeatureVideoId };
+
+/** Tata letak per format: Reels 1080×1920 dan feed 1080×1350 (4:5). */
+const LAYOUT = {
+  reel: { height: 1920, progressTop: 200, headTop: 270, headSize: 86, card: { x: 70, y: 640, size: 940 }, subSize: 40, hookSize: 118 },
+  feed: { height: 1350, progressTop: 56, headTop: 104, headSize: 68, card: { x: 170, y: 372, size: 740 }, subSize: 34, hookSize: 104 },
+} as const;
+
+const singleLength = (id: FeatureVideoId) => FEATURE_VIDEOS[id].duration - 60;
+
+export function reelMeta({ format, only }: ReelProps) {
+  const duration = only ? singleLength(only) + CTA : HOOK + SEGMENTS.length * SEG + MONTAGE + CTA;
+  return { width: 1080, height: LAYOUT[format].height, durationInFrames: duration };
+}
+
+export const REEL_FEATURES = SEGMENTS.map(s => s.id);
 
 function Bg() {
   const frame = useCurrentFrame();
@@ -48,36 +64,38 @@ function Bg() {
   );
 }
 
-function Hook() {
+function Hook({ size }: { size: number }) {
   const frame = useCurrentFrame();
   const out = interpolate(frame, [HOOK - 10, HOOK], [1, 0], clamp);
   const zoom = interpolate(frame, [0, HOOK], [1.08, 1], clamp);
   return (
     <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', padding: 80, opacity: out, transform: `scale(${zoom})` }}>
-      <Headline text="Usaha makin ramai?" from={2} size={118} color="#fff" style={{ justifyContent: 'center', textAlign: 'center' }} />
-      <Headline text="Kasirnya jangan bikin ribet." from={20} size={118} color={C.accent} style={{ justifyContent: 'center', textAlign: 'center', marginTop: 24 }} />
+      <Headline text="Usaha makin ramai?" from={2} size={size} color="#fff" style={{ justifyContent: 'center', textAlign: 'center' }} />
+      <Headline text="Kasirnya jangan bikin ribet." from={20} size={size} color={C.accent} style={{ justifyContent: 'center', textAlign: 'center', marginTop: 24 }} />
     </AbsoluteFill>
   );
 }
 
-function Segment({ index }: { index: number }) {
+function Segment({ index, format, len = SEG, single }: { index: number; format: ReelFormat; len?: number; single?: boolean }) {
   const s = SEGMENTS[index];
   const v = FEATURE_VIDEOS[s.id];
+  const L = LAYOUT[format];
+  const CARD = L.card;
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const enter = spring({ frame, fps, config: { damping: 16, stiffness: 140 } });
-  const exit = interpolate(frame, [SEG - 9, SEG], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
+  const exit = interpolate(frame, [len - 9, len], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
   const tag = spring({ frame: frame - 2, fps, config: { damping: 12 } });
   const scale = CARD.size / CROP.size;
   const Comp = v.component;
   return (
     <AbsoluteFill style={{ fontFamily: FONT, color: '#fff', transform: `translateX(${-exit * 1080}px)`, opacity: 1 - exit * 0.4 }}>
-      <div style={{ position: 'absolute', left: 80, right: 80, top: 270 }}>
+      <div style={{ position: 'absolute', left: 80, right: 80, top: L.headTop }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, transform: `scale(${tag})`, transformOrigin: 'left center' }}>
-          <span style={{ fontSize: 30, fontWeight: 800, color: C.ink, background: C.accent, padding: '10px 20px', borderRadius: 999 }}>{String(index + 1).padStart(2, '0')}</span>
+          <span style={{ fontSize: 30, fontWeight: 800, color: C.ink, background: C.accent, padding: '10px 20px', borderRadius: 999 }}>{single ? 'Loka Kasir' : String(index + 1).padStart(2, '0')}</span>
           <span style={{ fontSize: 34, fontWeight: 800, letterSpacing: '0.04em', color: '#cfe0ff' }}>{s.tag.toUpperCase()}</span>
         </div>
-        <Headline text={s.title} from={4} size={86} color="#fff" stagger={2} style={{ marginTop: 26 }} />
+        <Headline text={s.title} from={4} size={L.headSize} color="#fff" stagger={2} style={{ marginTop: 22 }} />
       </div>
       <div
         style={{
@@ -95,26 +113,26 @@ function Segment({ index }: { index: number }) {
       >
         <div style={{ position: 'absolute', left: 0, top: 0, width: 1280, height: 720, transformOrigin: '0 0', transform: `scale(${scale}) translateX(${-CROP.x}px)` }}>
           <StageMode.Provider value>
-            <Sequence from={-s.from} layout="none">
+            <Sequence from={single ? 0 : -s.from} layout="none">
               <div style={{ position: 'relative', width: 1280, height: 720 }}><Comp /></div>
             </Sequence>
           </StageMode.Provider>
         </div>
       </div>
-      <div style={{ position: 'absolute', left: 80, right: 80, top: CARD.y + CARD.size + 40, fontSize: 40, fontWeight: 700, color: 'rgba(255,255,255,0.88)', opacity: interpolate(frame, [10, 22], [0, 1], clamp), transform: `translateY(${interpolate(frame, [10, 22], [20, 0], clamp)}px)` }}>{s.sub}</div>
+      <div style={{ position: 'absolute', left: 80, right: 80, top: CARD.y + CARD.size + 34, fontSize: L.subSize, textAlign: format === 'feed' ? 'center' : undefined, fontWeight: 700, color: 'rgba(255,255,255,0.88)', opacity: interpolate(frame, [10, 22], [0, 1], clamp), transform: `translateY(${interpolate(frame, [10, 22], [20, 0], clamp)}px)` }}>{s.sub}</div>
     </AbsoluteFill>
   );
 }
 
 /** Garis progres di atas: berapa fitur sudah lewat. */
-function Progress() {
+function Progress({ top }: { top: number }) {
   const frame = useCurrentFrame();
   const start = HOOK;
   const end = HOOK + SEGMENTS.length * SEG;
   if (frame < start - 6 || frame > end + 6) return null;
   const op = interpolate(frame, [start - 6, start, end, end + 6], [0, 1, 1, 0], clamp);
   return (
-    <div style={{ position: 'absolute', left: 80, right: 80, top: 200, display: 'flex', gap: 8, opacity: op }}>
+    <div style={{ position: 'absolute', left: 80, right: 80, top, display: 'flex', gap: 8, opacity: op }}>
       {SEGMENTS.map((s, i) => {
         const p = interpolate(frame, [start + i * SEG, start + (i + 1) * SEG], [0, 1], clamp);
         return (
@@ -171,18 +189,29 @@ function Cta() {
   );
 }
 
-export default function InstagramReel() {
+export default function InstagramReel({ format, only }: ReelProps) {
   const { durationInFrames } = useVideoConfig();
+  const L = LAYOUT[format];
+  const single = only ? SEGMENTS.findIndex(s => s.id === only) : -1;
   return (
     <AbsoluteFill style={{ fontFamily: FONT, background: '#0b1020' }}>
       <Bg />
-      <Sequence durationInFrames={HOOK}><Hook /></Sequence>
-      {SEGMENTS.map((s, i) => (
-        <Sequence key={s.id} from={HOOK + i * SEG} durationInFrames={SEG}><Segment index={i} /></Sequence>
-      ))}
-      <Progress />
-      <Sequence from={HOOK + SEGMENTS.length * SEG} durationInFrames={MONTAGE}><Montage /></Sequence>
-      <Sequence from={HOOK + SEGMENTS.length * SEG + MONTAGE}><Cta /></Sequence>
+      {single >= 0 ? (
+        <>
+          <Sequence durationInFrames={singleLength(SEGMENTS[single].id)}><Segment index={single} format={format} len={singleLength(SEGMENTS[single].id)} single /></Sequence>
+          <Sequence from={singleLength(SEGMENTS[single].id)}><Cta /></Sequence>
+        </>
+      ) : (
+        <>
+          <Sequence durationInFrames={HOOK}><Hook size={L.hookSize} /></Sequence>
+          {SEGMENTS.map((s, i) => (
+            <Sequence key={s.id} from={HOOK + i * SEG} durationInFrames={SEG}><Segment index={i} format={format} /></Sequence>
+          ))}
+          <Progress top={L.progressTop} />
+          <Sequence from={HOOK + SEGMENTS.length * SEG} durationInFrames={MONTAGE}><Montage /></Sequence>
+          <Sequence from={HOOK + SEGMENTS.length * SEG + MONTAGE}><Cta /></Sequence>
+        </>
+      )}
       <Audio
         src={staticFile('audio/loka-beat.m4a')}
         loop
