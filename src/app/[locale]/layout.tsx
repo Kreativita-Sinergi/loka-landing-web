@@ -6,10 +6,13 @@ import { notFound } from "next/navigation";
 import SiteHeader from "@/components/site/SiteHeader";
 import SiteFooter from "@/components/site/SiteFooter";
 import FloatingWa from "@/components/site/FloatingWa";
+import CustomCursor from "@/components/site/motion/CustomCursor";
+import MotionRoot from "@/components/site/motion/MotionRoot";
 import { siteDetails, getSiteMetadata } from '@/data/siteDetails';
 import { HTML_LANG, LOCALES, OG_LOCALE, localePath, type Locale } from '@/data/localized';
 import { alternatesFor } from '@/lib/hreflang';
 
+import "lenis/dist/lenis.css";
 import "../globals.css";
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-jakarta', display: 'swap' });
@@ -176,12 +179,15 @@ export default async function RootLayout({
         className={`${jakarta.variable} font-sans antialiased`}
       >
         {siteDetails.googleAnalyticsId && <GoogleAnalytics gaId={siteDetails.googleAnalyticsId} />}
-        <SiteHeader locale={active} />
-        <main>
-          {children}
-        </main>
-        <SiteFooter locale={active} />
+        <MotionRoot>
+          <SiteHeader locale={active} />
+          <main>
+            {children}
+          </main>
+          <SiteFooter locale={active} />
+        </MotionRoot>
         <FloatingWa locale={active} />
+        <CustomCursor />
       </body>
     </html>
   );

@@ -5,12 +5,14 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
+import { useMotionValueEvent, useScroll } from 'framer-motion';
 import { ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
 import { FaAndroid, FaGooglePlay, FaWindows } from 'react-icons/fa';
 
 import { siteLinks } from '@/data/site/links';
 import type { Locale } from '@/data/localized';
 import { trackDownloadClick, trackSignUpClick } from '@/utils/analytics';
+import { setScrollLocked } from '@/lib/smoothScroll';
 import { ButtonLink } from './ui';
 
 export default function SiteHeader({ locale }: { locale: Locale }) {
@@ -19,6 +21,22 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dlOpen, setDlOpen] = useState(false);
   const dlRef = useRef<HTMLLIElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const bannerRef = useRef<HTMLDivElement>(null);
+  // Tinggi banner promo: header menempel dengan `top` negatif sebesar ini, jadi
+  // banner ikut tergulir pergi dan hanya bar navigasi yang tetap di atas.
+  const [bannerH, setBannerH] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuTop, setMenuTop] = useState(96);
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, 'change', y => setScrolled(y > bannerH + 8));
+  useEffect(() => {
+    const el = bannerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setBannerH(el.offsetHeight));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
   // Jeda kecil sebelum menutup, supaya dropdown tidak hilang saat kursor melewati celah.
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -52,9 +70,13 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
     document.addEventListener('keydown', onKey);
     return () => { document.removeEventListener('mousedown', onClick); document.removeEventListener('keydown', onKey); };
   }, [dlOpen]);
+  // Kunci scroll di <html>, bukan <body>: overflow di body menjadikannya
+  // kontainer scroll sendiri sehingga header `sticky` ikut hilang dari layar.
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    const root = document.documentElement;
+    root.style.overflow = menuOpen ? 'hidden' : '';
+    setScrollLocked(menuOpen);
+    return () => { root.style.overflow = ''; setScrollLocked(false); };
   }, [menuOpen]);
 
   const downloadLink = (d: (typeof downloads)[number], compact = false) => {
@@ -78,18 +100,23 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white">
-      <div className="bg-ink px-5 py-2.5 text-center text-xs text-white md:text-[13px]">
+    <header ref={headerRef} className="sticky z-40" style={{ top: -bannerH }}>
+      <div ref={bannerRef} className="bg-ink px-5 py-2.5 text-center text-xs text-white md:text-[13px]">
         Gratis 30 hari semua fitur Pro, dihitung sejak transaksi pertama.{' '}
         <a href={links.register} target="_blank" rel="noopener noreferrer" className="font-semibold text-accent hover:underline" onClick={() => trackSignUpClick('announcement')}>
           Daftar sekarang →
         </a>
       </div>
 
-      <div className="border-b border-line">
+      <div
+        className={clsx(
+          'border-b transition-[background-color,box-shadow,border-color] duration-500',
+          scrolled ? 'border-white/60 bg-white/75 shadow-[0_10px_30px_-14px_rgba(16,24,40,0.22)] backdrop-blur-xl backdrop-saturate-150' : 'border-line bg-white',
+        )}
+      >
         <div className="mx-auto flex h-[60px] max-w-[1240px] items-center justify-between px-5 md:h-[76px]">
           <Link href={links.home} aria-label="Loka Kasir, beranda" className="shrink-0">
-            <Image src="/images/site/logo.svg" alt="Loka Kasir" width={124} height={37} priority className="h-[30px] w-auto md:h-[37px]" />
+            <Image src="/images/site/logo.svg" alt="Loka Kasir" width={124} height={37} priority className={clsx('h-[30px] w-auto origin-left transition-transform duration-500 md:h-[37px]', scrolled && 'scale-[0.88]')} />
           </Link>
 
           <nav aria-label="Menu utama" className="hidden lg:block">
@@ -140,7 +167,11 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
               className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-line lg:hidden"
               aria-label={menuOpen ? 'Tutup menu' : 'Buka menu'}
               aria-expanded={menuOpen}
-              onClick={() => setMenuOpen(v => !v)}
+              onClick={() => {
+                // Menu dibuka tepat di bawah header, berapa pun posisi banner saat itu.
+                setMenuTop(headerRef.current?.getBoundingClientRect().bottom ?? 96);
+                setMenuOpen(v => !v);
+              }}
             >
               {menuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -149,7 +180,7 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
       </div>
 
       {menuOpen && (
-        <div className="fixed inset-x-0 top-[96px] bottom-0 z-40 flex flex-col overflow-y-auto bg-white lg:hidden">
+        <div style={{ top: menuTop }} className="fixed inset-x-0 bottom-0 z-40 flex flex-col overflow-y-auto bg-white lg:hidden">
           <nav aria-label="Menu mobile" className="px-5 py-3">
             {nav.map(item => (
               <Link key={item.label} href={item.href} className="flex items-center justify-between border-b border-line py-4 text-lg font-semibold">

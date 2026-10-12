@@ -10,6 +10,10 @@ import { getDownloadOptions, TESTIMONIALS_ARE_DUMMY, testimonials, type Download
 import { getFaqs } from '@/data/faq';
 import type { Locale } from '@/data/localized';
 import { ButtonLink, Container, IconTile, SectionHeading, WhatsAppIcon } from './ui';
+import { Magnetic } from './motion/Interactive';
+import { RevealGroup, RevealItem } from './motion/Reveal';
+import { SplitReveal } from './motion/SplitReveal';
+import { Parallax } from './motion/Velocity';
 
 export const featureIcon = (name: FeatureCategory['icon'], size = 22): ReactNode =>
   ({
@@ -29,10 +33,10 @@ export function DownloadCards({ locale, bordered }: { locale: Locale; bordered?:
   const l = siteLinks(locale);
   const hrefs = { play: l.playStore, windows: l.downloadWindows, apk: l.downloadAndroid };
   return (
-    <div className="grid gap-4 md:grid-cols-3 md:gap-6">
+    <RevealGroup variant="flip" stagger={0.12} className="grid gap-4 md:grid-cols-3 md:gap-6">
       {getDownloadOptions().map(d => (
-        <div key={d.key} className={clsx('flex flex-col gap-5 rounded-2xl bg-white p-6 md:rounded-[20px] md:p-8', bordered && 'border border-line')}>
-          <IconTile size="lg">{downloadIcon(d.key)}</IconTile>
+        <RevealItem key={d.key} className={clsx('spotlight group/dl flex flex-col gap-5 rounded-2xl bg-white p-6 transition-shadow duration-500 hover:shadow-[0_30px_60px_-20px_rgba(0,0,0,0.35)] md:rounded-[20px] md:p-8', bordered && 'border border-line')}>
+          <span className="inline-flex origin-bottom transition-transform duration-500 group-hover/dl:-translate-y-1 group-hover/dl:rotate-[-8deg]"><IconTile size="lg">{downloadIcon(d.key)}</IconTile></span>
           <div className="flex flex-col gap-2">
             <h3 className="text-[22px] font-bold">{d.title}</h3>
             <p className="text-[15px] leading-relaxed text-body">{d.desc}</p>
@@ -45,19 +49,23 @@ export function DownloadCards({ locale, bordered }: { locale: Locale; bordered?:
               </li>
             ))}
           </ul>
-          <ButtonLink href={hrefs[d.key]} tone={d.primary ? 'primary' : 'secondary'} block icon={<Download size={18} />} className="mt-auto">
+          <ButtonLink href={hrefs[d.key]} tone={d.primary ? 'primary' : 'secondary'} block icon={<Download size={18} className="transition-transform duration-300 group-hover/dl:translate-y-0.5" />} className="mt-auto">
             {d.cta}
           </ButtonLink>
-        </div>
+        </RevealItem>
       ))}
-    </div>
+    </RevealGroup>
   );
 }
 
 export function DownloadSection({ locale, copy }: { locale: Locale; copy: { eyebrow: string; title: string; desc: string; owner: string; ownerLink: string } }) {
   const l = siteLinks(locale);
   return (
-    <section id="download" className="bg-brand py-14 md:py-24">
+    <section id="download" className="relative isolate overflow-hidden bg-brand py-14 md:py-24">
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <div className="hero-aurora absolute -top-40 -left-20 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.22),transparent_65%)] blur-2xl" />
+        <div className="hero-aurora absolute -right-24 -bottom-48 h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(255,201,60,0.28),transparent_65%)] blur-2xl [animation-delay:-5s]" />
+      </div>
       <Container className="flex flex-col gap-8 md:items-center md:gap-12">
         <SectionHeading eyebrow={copy.eyebrow} title={copy.title} desc={copy.desc} align="center" light className="md:items-center" />
         <DownloadCards locale={locale} />
@@ -83,13 +91,12 @@ export function FaqList({ locale, questions, openFirst = true }: { locale: Local
   return (
     <div className="border-t border-line">
       {list.map((f, i) => (
-        <details key={f.question} open={openFirst && i === 0} className="group border-b border-line">
-          <summary className="flex cursor-pointer list-none items-start justify-between gap-4 py-5 text-base font-semibold hover:text-brand md:text-[17px] [&::-webkit-details-marker]:hidden">
-            {f.question}
-            <span aria-hidden className="mt-0.5 text-xl leading-none text-ink group-open:hidden">+</span>
-            <span aria-hidden className="mt-0.5 hidden text-xl leading-none text-ink group-open:inline">−</span>
+        <details key={f.question} open={openFirst && i === 0} className="faq group border-b border-line">
+          <summary className="flex cursor-pointer list-none items-start justify-between gap-4 py-5 text-base font-semibold transition-colors hover:text-brand md:text-[17px] [&::-webkit-details-marker]:hidden">
+            <span className="transition-transform duration-300 group-hover:translate-x-1">{f.question}</span>
+            <span aria-hidden className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-line text-lg leading-none text-ink transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-open:rotate-[135deg] group-open:border-brand group-open:bg-brand group-open:text-white">+</span>
           </summary>
-          <div className="pb-5 text-[15px] leading-[1.7] whitespace-pre-line text-body">{f.answer}</div>
+          <div className="faq-a pb-5 text-[15px] leading-[1.7] whitespace-pre-line text-body">{f.answer}</div>
         </details>
       ))}
     </div>
@@ -101,18 +108,25 @@ export function CtaBand({ locale, photo }: { locale: Locale; photo?: boolean }) 
   return (
     <section className="py-10 md:py-24">
       <Container>
-        <div className="flex flex-col overflow-hidden rounded-[20px] bg-ink md:flex-row md:items-stretch md:rounded-[28px]">
+        <div className="relative isolate flex flex-col overflow-hidden rounded-[20px] bg-ink md:flex-row md:items-stretch md:rounded-[28px]">
+          <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+            <div className="hero-aurora absolute -top-32 left-[10%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(13,93,243,0.45),transparent_65%)] blur-2xl" />
+            <div className="hero-aurora absolute -bottom-40 left-[40%] h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,rgba(255,201,60,0.18),transparent_65%)] blur-2xl [animation-delay:-8s]" />
+          </div>
           <div className="flex flex-1 flex-col justify-center gap-4 p-6 md:gap-5 md:py-14 md:pl-16">
-            <h2 className="text-2xl font-bold text-white md:text-[40px] md:leading-tight">{photo ? 'Mulai jualan lebih rapi hari ini' : 'Siap mencoba Loka Kasir?'}</h2>
+            <h2 className="text-2xl font-bold text-white md:text-[40px] md:leading-tight"><SplitReveal text={photo ? 'Mulai jualan lebih rapi hari ini' : 'Siap mencoba Loka Kasir?'} /></h2>
             <p className="text-[15px] text-[#c9cbd1] md:text-[17px]">Gratis 30 hari untuk semua fitur Pro. Tidak ada komitmen.</p>
             <div className="flex flex-col gap-3 pt-1 sm:flex-row">
-              <ButtonLink href={l.register} tone="accent" size="lg">Coba Gratis 30 Hari</ButtonLink>
-              <ButtonLink href={l.whatsapp('Halo tim Loka, saya mau tanya tentang Loka Kasir.')} tone="ghostDark" size="lg" icon={<WhatsAppIcon />}>Chat WhatsApp</ButtonLink>
+              <Magnetic><ButtonLink href={l.register} tone="accent" size="lg" className="hero-cta relative w-full overflow-hidden sm:w-auto">Coba Gratis 30 Hari</ButtonLink></Magnetic>
+              <Magnetic strength={0.18}><ButtonLink href={l.whatsapp('Halo tim Loka, saya mau tanya tentang Loka Kasir.')} tone="ghostDark" size="lg" icon={<WhatsAppIcon />} className="w-full sm:w-auto">Chat WhatsApp</ButtonLink></Magnetic>
             </div>
           </div>
           {photo && (
-            <div className="relative hidden w-[480px] shrink-0 md:block">
-              <Image src="/images/site/foto-toko.webp" alt="Pemilik toko buah tersenyum di kiosnya" fill sizes="480px" className="object-cover" />
+            <div className="relative hidden w-[480px] shrink-0 overflow-hidden md:block">
+              <Parallax speed={0.12} className="absolute inset-[-12%_0]">
+                <Image src="/images/site/foto-toko.webp" alt="Pemilik toko buah tersenyum di kiosnya" fill sizes="480px" className="object-cover" />
+              </Parallax>
+              <div aria-hidden className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-ink to-transparent" />
             </div>
           )}
         </div>

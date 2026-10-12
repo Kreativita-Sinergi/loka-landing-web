@@ -6,6 +6,8 @@ import { FaInstagram, FaYoutube } from 'react-icons/fa';
 import { siteLinks, SUPPORT_EMAIL, WHATSAPP_DISPLAY, INSTAGRAM_HANDLE } from '@/data/site/links';
 import type { Locale } from '@/data/localized';
 import { Container, WhatsAppIcon } from './ui';
+import FooterWordmark from './motion/FooterWordmark';
+import { Reveal, RevealGroup, RevealItem } from './motion/Reveal';
 
 export default function SiteFooter({ locale }: { locale: Locale }) {
   const l = siteLinks(locale);
@@ -17,9 +19,9 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
   ];
   const linkEl = (item: { label: string; href: string }) =>
     /^(https?:|mailto:)/.test(item.href) ? (
-      <a href={item.href} target="_blank" rel="noopener noreferrer" className="hover:text-white">{item.label}</a>
+      <a href={item.href} target="_blank" rel="noopener noreferrer" className="footer-link hover:text-white">{item.label}</a>
     ) : (
-      <Link href={item.href} className="hover:text-white">{item.label}</Link>
+      <Link href={item.href} className="footer-link hover:text-white">{item.label}</Link>
     );
   const social = [
     { label: 'Instagram', href: l.instagram, icon: <FaInstagram size={16} /> },
@@ -29,30 +31,30 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <footer className="bg-night text-[#b4b7bf]">
+    <footer className="overflow-hidden bg-night text-[#b4b7bf]">
       <Container className="flex flex-col gap-8 pt-12 pb-8 md:gap-12 md:pt-[72px] md:pb-10">
         <div className="flex flex-col gap-8 lg:flex-row lg:justify-between">
-          <div className="flex max-w-[320px] flex-col gap-4">
+          <Reveal variant="left" className="flex max-w-[320px] flex-col gap-4">
             <Image src="/images/site/logo-white.svg" alt="Loka Kasir" width={124} height={37} className="h-[30px] w-auto self-start md:h-[37px]" />
             <p className="text-sm leading-relaxed md:text-[15px]">
               Teman di meja kasir. Loka Kasir membantu warung, kafe, resto, dan toko mencatat penjualan, mengatur stok, dan menutup kas dengan rapi setiap hari, tetap jalan walau internet sedang putus.
             </p>
             <div className="flex gap-2.5">
               {social.map(s => (
-                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#3a3c44] text-white hover:bg-white/10">
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#3a3c44] text-white transition-all duration-300 hover:-translate-y-1 hover:border-brand hover:bg-brand">
                   {s.icon}
                 </a>
               ))}
             </div>
-          </div>
-          <div className="grid grid-cols-2 gap-x-5 gap-y-8 md:grid-cols-4 md:gap-6">
+          </Reveal>
+          <RevealGroup stagger={0.1} className="grid grid-cols-2 gap-x-5 gap-y-8 md:grid-cols-4 md:gap-6">
             {columns.map(col => (
-              <div key={col.title} className="flex flex-col gap-3 text-sm md:w-[180px]">
+              <RevealItem key={col.title} className="flex flex-col gap-3 text-sm md:w-[180px]">
                 <p className="font-bold text-white">{col.title}</p>
                 <ul className="flex flex-col gap-3">{col.items.map(item => <li key={item.label}>{linkEl(item)}</li>)}</ul>
-              </div>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
         </div>
         <div className="h-px bg-[#2a2c33]" />
         <div className="flex justify-between text-[13px] text-mute">
@@ -60,6 +62,7 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
           <span>Dibuat dengan cinta</span>
         </div>
       </Container>
+      <FooterWordmark />
     </footer>
   );
 }

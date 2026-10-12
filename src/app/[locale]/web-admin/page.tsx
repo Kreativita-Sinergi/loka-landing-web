@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import clsx from 'clsx';
-import { ArrowRight, Boxes, ChartColumn, Check, CircleCheck, ExternalLink, HeartHandshake, Monitor, Store, TabletSmartphone, Tag, Users } from 'lucide-react';
+import { ArrowRight, Boxes, ChartColumn, Check, CircleCheck, ExternalLink, HeartHandshake, Monitor, Store, TabletSmartphone, Tag, Users, type LucideIcon } from 'lucide-react';
 
 import { siteDetails } from '@/data/siteDetails';
 import { getSignUp } from '@/data/cta';
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const ICONS: Record<WebAdminGroup['icon'], React.ElementType> = {
+const ICONS: Record<WebAdminGroup['icon'], LucideIcon> = {
   chart: ChartColumn,
   box: Boxes,
   tag: Tag,

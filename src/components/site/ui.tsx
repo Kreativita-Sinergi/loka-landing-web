@@ -3,7 +3,9 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { Check } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
-import type { ComponentProps, ReactNode } from 'react';
+import type { ComponentProps, CSSProperties, ReactNode } from 'react';
+
+import { GrowLine, SplitReveal } from './motion/SplitReveal';
 
 /** Lebar konten 1200px dengan gutter 20px di mobile, sama seperti Figma. */
 export function Container({ className, children }: { className?: string; children: ReactNode }) {
@@ -66,7 +68,12 @@ export function ButtonLink({ href, tone = 'primary', size = 'md', icon, block, e
 export const WhatsAppIcon = ({ size = 18 }: { size?: number }) => <FaWhatsapp size={size} aria-hidden />;
 
 export function Eyebrow({ children, light }: { children: ReactNode; light?: boolean }) {
-  return <p className={clsx('text-[13px] font-bold tracking-[0.1em] uppercase', light ? 'text-accent' : 'text-brand')}>{children}</p>;
+  return (
+    <p className={clsx('inline-flex items-center gap-2.5 text-[13px] font-bold tracking-[0.1em] uppercase', light ? 'text-accent' : 'text-brand')}>
+      <GrowLine light={light} />
+      {children}
+    </p>
+  );
 }
 
 /** Judul section: label kecil, judul, dan deskripsi opsional. */
@@ -91,20 +98,20 @@ export function SectionHeading({
     <div className={clsx('flex flex-col gap-3.5', align === 'center' && 'items-center text-center', className)}>
       {eyebrow && <Eyebrow light={light}>{eyebrow}</Eyebrow>}
       <h2 className={clsx('text-[26px] leading-[1.25] font-bold tracking-[-0.015em] md:text-[40px]', light ? 'text-white' : 'text-ink', titleClassName)}>
-        {title}
+        {typeof title === 'string' ? <SplitReveal text={title} /> : title}
       </h2>
       {desc && <p className={clsx('max-w-[640px] text-base leading-relaxed md:text-lg', light ? 'text-[#dce7ff]' : 'text-body')}>{desc}</p>}
     </div>
   );
 }
 
-export function CheckItem({ children, tone = 'brand', className }: { children: ReactNode; tone?: 'brand' | 'ok' | 'accent'; className?: string }) {
+export function CheckItem({ children, tone = 'brand', className, as: Tag = 'li' }: { children: ReactNode; tone?: 'brand' | 'ok' | 'accent'; className?: string; as?: 'li' | 'div' }) {
   const color = tone === 'ok' ? 'text-ok' : tone === 'accent' ? 'text-accent' : 'text-brand';
   return (
-    <li className={clsx('flex items-start gap-2.5 leading-normal', className)}>
+    <Tag className={clsx('flex items-start gap-2.5 leading-normal', className)}>
       <Check size={18} className={clsx('mt-0.5 shrink-0', color)} aria-hidden />
       <span>{children}</span>
-    </li>
+    </Tag>
   );
 }
 
@@ -127,14 +134,23 @@ export function TabletFrame({ src, alt, className, priority }: { src: string; al
   );
 }
 
-export function PageHero({ crumbs, title, desc, children }: { crumbs?: { label: string; href?: string }[]; title: ReactNode; desc?: ReactNode; children?: ReactNode }) {
+/** `animated`: judul & deskripsi muncul bertahap (CSS, jadi tetap terlihat tanpa JavaScript). */
+export function PageHero({ crumbs, title, desc, children, animated }: { crumbs?: { label: string; href?: string }[]; title: ReactNode; desc?: ReactNode; children?: ReactNode; animated?: boolean }) {
+  const fade = (ms: number) => (animated ? { className: 'hero-fade', style: { '--d': `${ms}ms` } as CSSProperties } : {});
   return (
-    <section className="bg-soft">
+    <section className={clsx('relative isolate bg-soft', animated && 'overflow-hidden')}>
+      {animated && (
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <div className="hero-aurora absolute -top-32 right-[-8%] h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(13,93,243,0.18),transparent_65%)] blur-2xl" />
+          <div className="hero-aurora absolute -bottom-40 left-[-10%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(255,201,60,0.2),transparent_65%)] blur-2xl [animation-delay:-7s]" />
+          <div className="hero-grid absolute inset-0" />
+        </div>
+      )}
       <Container className="flex flex-col gap-4 pt-7 pb-9 md:gap-5 md:pt-12 md:pb-16">
-        {crumbs && <Breadcrumb items={crumbs} />}
-        <h1 className="max-w-[900px] text-[32px] leading-[1.18] font-bold tracking-[-0.02em] md:text-5xl">{title}</h1>
-        {desc && <p className="max-w-[720px] text-base leading-relaxed text-body md:text-lg">{desc}</p>}
-        {children}
+        {crumbs && (animated ? <div {...fade(0)}><Breadcrumb items={crumbs} /></div> : <Breadcrumb items={crumbs} />)}
+        <h1 {...fade(100)} className={clsx('max-w-[900px] text-[32px] leading-[1.18] font-bold tracking-[-0.02em] md:text-5xl', animated && 'hero-fade md:text-[56px] md:leading-[1.1] md:tracking-[-0.03em]')}>{title}</h1>
+        {desc && <p {...fade(240)} className={clsx('max-w-[720px] text-base leading-relaxed text-body md:text-lg', animated && 'hero-fade')}>{desc}</p>}
+        {animated && children ? <div {...fade(380)}>{children}</div> : children}
       </Container>
     </section>
   );

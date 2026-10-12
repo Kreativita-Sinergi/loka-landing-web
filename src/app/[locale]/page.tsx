@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import clsx from 'clsx';
-import { ArrowDown, ArrowRight, CircleCheck, HardDrive, Info, MapPin, MonitorSmartphone, RefreshCw, WifiOff, PlayCircle } from 'lucide-react';
+import { ArrowDown, ArrowRight, HardDrive, Info, MapPin, RefreshCw, WifiOff, PlayCircle } from 'lucide-react';
 
 import { LOCALES, type Locale } from '@/data/localized';
 import { getFaqs } from '@/data/faq';
@@ -15,6 +15,12 @@ import { ButtonLink, CheckItem, Container, IconTile, SectionHeading, TabletFrame
 import { CtaBand, DownloadSection, FaqList, Testimonials, featureIcon } from '@/components/site/sections';
 import PricingPlans from '@/components/site/PricingPlans';
 import DemoKasir from '@/components/site/home/DemoKasir';
+import Hero from '@/components/site/home/Hero';
+import PinnedFeatures from '@/components/site/home/PinnedFeatures';
+import CountUp from '@/components/site/motion/CountUp';
+import { Reveal, RevealGroup, RevealItem } from '@/components/site/motion/Reveal';
+import { ScrollTilt, TiltCard } from '@/components/site/motion/Interactive';
+import { ScrollExpand, ScrollLine, ScrollWords, VelocityMarquee, VelocitySkew } from '@/components/site/motion/Velocity';
 
 /** Statistik pemakaian diperbarui tiap 10 menit (lihat lib/publicStats). */
 export const revalidate = 600;
@@ -46,6 +52,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const featuredGuides = ['buka-kasir', 'transaksi', 'tutup-shift']
     .map(slug => videoGuides.find(guide => guide.slug === slug))
     .filter(guide => guide !== undefined);
+  const allLabels = categories.flatMap(cat => cat.items.map(it => it.label));
+  const half = Math.ceil(allLabels.length / 2);
+  const marqueeA = allLabels.slice(0, half);
+  const marqueeB = allLabels.slice(half);
   const waAsk = l.whatsapp('Halo tim Loka, saya mau tanya tentang Loka Kasir.');
 
   const faqJsonLd = {
@@ -65,111 +75,120 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, '\\u003c') }} />
 
-      {/* Hero */}
-      <section className="pt-8 pb-10 md:pt-[72px] md:pb-[88px]">
-        <Container className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex flex-col gap-5 md:gap-7 lg:w-[580px]">
-            <h1 className="text-[38px] leading-[1.15] font-bold tracking-[-0.02em] md:text-[56px]">
-              {c.hero.titleA} <span className="text-brand">{c.hero.titleB}</span>
-            </h1>
-            <p className="max-w-[540px] text-base leading-relaxed text-body md:text-lg">{c.hero.desc}</p>
-            <div className="flex flex-col gap-2.5 sm:flex-row sm:gap-3">
-              <ButtonLink href={l.register} size="lg">{c.hero.primary}</ButtonLink>
-              <ButtonLink href={l.harga} tone="secondary" size="lg">{c.hero.secondary}</ButtonLink>
-            </div>
-            <ul className="flex flex-wrap gap-x-6 gap-y-2.5 text-sm text-body md:text-[15px]">
-              {c.hero.points.map(p => <li key={p} className="flex items-center gap-2"><CircleCheck size={18} className="text-ok" />{p}</li>)}
-            </ul>
-            <p className="flex items-start gap-2.5 text-[13px] leading-relaxed text-body md:text-sm"><MonitorSmartphone size={18} className="mt-px shrink-0" />{c.hero.caption}</p>
-          </div>
-          <Image src="/images/site/hero-perangkat.webp" alt={c.hero.imageAlt} width={1400} height={1344} priority sizes="(min-width: 1024px) 600px, 100vw" className="h-auto w-full lg:w-[600px]" />
-        </Container>
-      </section>
+      <Hero copy={c.hero} register={l.register} harga={l.harga} />
 
       {/* Angka */}
       <section className="pb-14 md:pb-[88px]">
         <Container>
-          <dl className="grid grid-cols-2 gap-5 rounded-2xl bg-soft p-5 md:gap-0 md:rounded-[20px] md:px-10 md:py-8 lg:grid-cols-4">
+          <RevealGroup as="dl" variant="scale" stagger={0.1} className="grid grid-cols-2 gap-5 rounded-2xl border border-white bg-soft/80 p-5 shadow-[0_20px_60px_-30px_rgba(13,93,243,0.35)] backdrop-blur md:gap-0 md:rounded-[20px] md:px-10 md:py-8 lg:grid-cols-4">
             {statItems.map((s, i) => (
-              <div key={s.small} className={clsx('flex flex-col gap-1', i > 0 && 'lg:border-l lg:border-line lg:pl-8')}>
+              <RevealItem key={s.small} className={clsx('flex flex-col gap-1', i > 0 && 'lg:border-l lg:border-line lg:pl-8')}>
                 <dt className="order-2 text-[13px] leading-snug text-body md:text-sm">{s.small}</dt>
-                <dd className="order-1 text-xl font-bold md:text-[28px]">{s.big}</dd>
-              </div>
+                <dd className="order-1 text-xl font-bold md:text-[28px]"><CountUp text={s.big} /></dd>
+              </RevealItem>
             ))}
-          </dl>
+          </RevealGroup>
         </Container>
       </section>
 
       {/* Demo */}
       <section className="bg-soft py-14 md:py-24">
-        <Container><DemoKasir copy={c.demo} /></Container>
+        <Container><Reveal variant="clip"><DemoKasir copy={c.demo} /></Reveal></Container>
       </section>
 
       {/* Jenis usaha */}
       <section id="jenis-usaha" className="scroll-mt-28 py-14 md:py-24">
         <Container className="flex flex-col gap-8 md:gap-12">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <SectionHeading eyebrow={c.business.eyebrow} title={c.business.title} titleClassName="md:max-w-[640px]" />
-            <p className="max-w-[420px] text-base leading-relaxed text-body">{c.business.desc}</p>
+            <Reveal variant="left"><SectionHeading eyebrow={c.business.eyebrow} title={c.business.title} titleClassName="md:max-w-[640px]" /></Reveal>
+            <Reveal variant="right" delay={0.1}><p className="max-w-[420px] text-base leading-relaxed text-body">{c.business.desc}</p></Reveal>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          <VelocitySkew>
+          <RevealGroup variant="flip" stagger={0.1} className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
             {c.business.items.map(b => (
-              <Link key={b.slug} href={l.usaha(b.slug)} className="group flex items-center gap-3.5 rounded-2xl border border-line bg-white p-2.5 transition hover:border-[#cdd2dc] hover:shadow-[0_12px_28px_rgba(16,24,40,0.10)] lg:flex-col lg:items-stretch lg:gap-0 lg:overflow-hidden lg:rounded-[18px] lg:p-0">
-                <Image src={b.image} alt={b.title} width={564} height={380} className="h-[88px] w-[88px] shrink-0 rounded-[10px] object-cover lg:h-[190px] lg:w-full lg:rounded-none" sizes="(min-width: 1024px) 282px, 88px" />
+              <RevealItem key={b.slug} className="h-full">
+              <TiltCard label={c.business.more} className="h-full rounded-2xl lg:rounded-[18px]">
+              <Link href={l.usaha(b.slug)} className="spotlight group flex h-full items-center gap-3.5 rounded-2xl border border-line bg-white p-2.5 hover:border-[#cdd2dc] hover:shadow-[0_24px_48px_-16px_rgba(16,24,40,0.18)] lg:flex-col lg:items-stretch lg:gap-0 lg:overflow-hidden lg:rounded-[18px] lg:p-0">
+                <span className="shrink-0 overflow-hidden rounded-[10px] lg:rounded-none">
+                  <Image src={b.image} alt={b.title} width={564} height={380} className="h-[88px] w-[88px] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06] lg:h-[190px] lg:w-full" sizes="(min-width: 1024px) 282px, 88px" />
+                </span>
                 <span className="flex flex-col gap-1.5 lg:gap-2.5 lg:p-[22px]">
                   <span className="font-bold group-hover:text-brand lg:text-lg">{b.title}</span>
                   <span className="text-[13px] leading-snug text-body lg:text-sm lg:leading-relaxed">{b.desc}</span>
-                  <span className="hidden text-sm font-semibold text-brand lg:inline">{c.business.more} →</span>
+                  <span className="hidden text-sm font-semibold text-brand lg:inline-flex lg:items-center lg:gap-1">{c.business.more} <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" aria-hidden /></span>
                 </span>
               </Link>
+              </TiltCard>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
+          </VelocitySkew>
         </Container>
       </section>
 
       {/* Fitur utama */}
       <section>
         <Container className="flex flex-col items-center pt-4 text-center md:pt-10">
-          <SectionHeading eyebrow={c.features.eyebrow} title={c.features.title} desc={c.features.desc} align="center" titleClassName="md:max-w-[900px]" />
+          <SectionHeading eyebrow={c.features.eyebrow} title={<ScrollWords text={c.features.title} />} desc={c.features.desc} align="center" titleClassName="md:max-w-[900px] md:text-[52px] md:leading-[1.12]" />
         </Container>
+        <PinnedFeatures rows={c.features.rows} />
+        {/* Versi bertumpuk untuk layar kecil; di desktop diganti versi menempel di atas. */}
+        <div className="lg:hidden">
         {c.features.rows.map((row, i) => (
           <div key={row.title} className={clsx('py-14 md:py-[88px]', i % 2 && 'bg-soft')}>
             <Container className={clsx('flex flex-col gap-8 lg:items-center lg:justify-between', i % 2 ? 'lg:flex-row-reverse' : 'lg:flex-row')}>
               <div className="flex flex-col gap-4 lg:w-[480px]">
-                <SectionHeading eyebrow={row.eyebrow} title={row.title} desc={row.desc} />
-                <ul className="flex flex-col gap-3 pt-1 text-[15px] text-ink">{row.bullets.map(b => <CheckItem key={b}>{b}</CheckItem>)}</ul>
+                <Reveal variant={i % 2 ? 'right' : 'left'}><SectionHeading eyebrow={row.eyebrow} title={row.title} desc={row.desc} /></Reveal>
+                <RevealGroup as="ul" variant={i % 2 ? 'right' : 'left'} className="flex flex-col gap-3 pt-1 text-[15px] text-ink">{row.bullets.map(b => <RevealItem as="li" key={b}><CheckItem as="div">{b}</CheckItem></RevealItem>)}</RevealGroup>
               </div>
-              <TabletFrame src={row.image} alt={row.alt} className="lg:w-[650px]" />
+              <ScrollTilt side={i % 2 ? 'left' : 'right'} className="lg:w-[650px]">
+                <TabletFrame src={row.image} alt={row.alt} />
+              </ScrollTilt>
             </Container>
           </div>
         ))}
+        </div>
+      </section>
+
+      {/* Pita fitur: kecepatannya mengikuti kecepatan scroll */}
+      <section aria-hidden className="flex flex-col gap-2 overflow-hidden border-y border-line bg-white py-8 md:gap-3 md:py-12">
+        <VelocityMarquee
+          items={marqueeA}
+          itemClassName="flex items-center gap-6 pr-6 text-[34px] font-bold tracking-[-0.03em] text-ink md:gap-10 md:pr-10 md:text-[64px]"
+        />
+        <VelocityMarquee
+          reverse
+          items={marqueeB}
+          itemClassName="marquee-outline flex items-center gap-6 pr-6 text-[34px] font-bold tracking-[-0.03em] md:gap-10 md:pr-10 md:text-[64px]"
+        />
       </section>
 
       {/* Offline */}
       <section className="py-14 md:py-24">
         <Container className="flex flex-col gap-8 md:gap-12">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <SectionHeading eyebrow={c.offline.eyebrow} title={c.offline.title} />
-            <p className="max-w-[440px] text-base leading-relaxed text-body">{c.offline.desc}</p>
+            <Reveal><SectionHeading eyebrow={c.offline.eyebrow} title={c.offline.title} /></Reveal>
+            <Reveal delay={0.1}><p className="max-w-[440px] text-base leading-relaxed text-body">{c.offline.desc}</p></Reveal>
           </div>
-          <ol className="flex flex-col items-stretch gap-3 lg:flex-row lg:items-stretch lg:gap-0">
+          <ScrollLine className="hidden h-1 lg:block" />
+          <RevealGroup as="ol" variant="scale" stagger={0.16} className="flex flex-col items-stretch gap-3 lg:flex-row lg:items-stretch lg:gap-0">
             {c.offline.steps.map((s, i) => {
               const icon = [<WifiOff key="a" size={26} />, <HardDrive key="b" size={26} />, <RefreshCw key="c" size={26} />][i];
               const tone = (['danger', 'brand', 'ok'] as const)[i];
               return (
                 <li key={s.title} className="contents">
-                  {i > 0 && <span aria-hidden className="flex items-center justify-center text-mute lg:w-[70px]"><ArrowDown size={22} className="lg:hidden" /><ArrowRight size={28} className="hidden lg:block" /></span>}
-                  <div className="flex items-center gap-3.5 rounded-2xl border border-line p-4 lg:flex-1 lg:flex-col lg:items-start lg:p-7">
+                  {i > 0 && <RevealItem variant="pop" className="flex items-center justify-center text-mute lg:w-[70px]"><span aria-hidden><ArrowDown size={22} className="lg:hidden" /><ArrowRight size={28} className="hidden lg:block" /></span></RevealItem>}
+                  <RevealItem className="spotlight flex items-center gap-3.5 rounded-2xl border border-line bg-white p-4 hover:shadow-[0_24px_48px_-16px_rgba(16,24,40,0.16)] lg:flex-1 lg:flex-col lg:items-start lg:p-7">
                     <IconTile size="lg" tone={tone}>{icon}</IconTile>
                     <div className="flex flex-col gap-1 lg:gap-3">
                       <h3 className="font-bold lg:text-lg">{s.title}</h3>
                       <p className="text-sm leading-relaxed text-body lg:text-[15px]">{s.desc}</p>
                     </div>
-                  </div>
+                  </RevealItem>
                 </li>
               );
             })}
-          </ol>
+          </RevealGroup>
           <p className="flex items-start gap-2.5 text-[13px] text-body md:text-sm"><Info size={18} className="shrink-0" />{c.offline.note}</p>
         </Container>
       </section>
@@ -178,43 +197,48 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <section className="bg-soft py-14 md:py-24 lg:bg-white">
         <Container className="flex flex-col gap-8 md:gap-12">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <SectionHeading eyebrow={c.allFeatures.eyebrow} title={c.allFeatures.title} />
+            <Reveal variant="scale"><SectionHeading eyebrow={c.allFeatures.eyebrow} title={c.allFeatures.title} /></Reveal>
             <ButtonLink href={l.fitur} tone="secondary" className="hidden md:inline-flex">{c.allFeatures.more}</ButtonLink>
           </div>
-          <div className="grid grid-cols-2 gap-3 lg:grid-cols-3 lg:gap-6">
+          <VelocitySkew max={4}>
+          <RevealGroup variant="scale" stagger={0.07} className="grid grid-cols-2 gap-3 lg:grid-cols-3 lg:gap-6">
             {categories.map(cat => (
-              <Link key={cat.key} href={`${l.fitur}#${cat.key}`} className="flex flex-col gap-3 rounded-[14px] border border-line bg-white p-4 transition hover:border-[#cdd2dc] hover:shadow-[0_12px_28px_rgba(16,24,40,0.10)] lg:gap-4 lg:rounded-[18px] lg:p-7">
+              <RevealItem key={cat.key} className="h-full">
+              <Link href={`${l.fitur}#${cat.key}`} className="spotlight lift flex h-full flex-col gap-3 rounded-[14px] border border-line bg-white p-4 hover:border-[#cdd2dc] hover:shadow-[0_24px_48px_-16px_rgba(16,24,40,0.18)] lg:gap-4 lg:rounded-[18px] lg:p-7">
                 <IconTile size="sm">{featureIcon(cat.icon, 20)}</IconTile>
                 <span className="text-sm leading-snug font-bold lg:text-lg">{cat.title}</span>
                 <ul className="hidden flex-col gap-2.5 text-sm text-body lg:flex">
                   {cat.items.slice(0, 4).map(it => <li key={it.label} className="flex items-center gap-2.5"><span className="h-[5px] w-[5px] rounded-full bg-mute" />{it.label}</li>)}
                 </ul>
               </Link>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
+          </VelocitySkew>
           <ButtonLink href={l.fitur} tone="secondary" block className="md:hidden">{c.allFeatures.more}</ButtonLink>
         </Container>
       </section>
 
-      <DownloadSection locale={locale} copy={c.download} />
+      <ScrollExpand><DownloadSection locale={locale} copy={c.download} /></ScrollExpand>
       <Testimonials />
 
       {/* Cara mulai */}
       <section className="py-14 md:py-24">
         <Container className="flex flex-col gap-8 md:gap-12">
-          <SectionHeading eyebrow={c.start.eyebrow} title={c.start.title} align="center" className="items-start text-left md:items-center md:text-center" />
-          <ol className="grid gap-5 md:grid-cols-3 md:gap-6">
+          <Reveal><SectionHeading eyebrow={c.start.eyebrow} title={c.start.title} align="center" className="items-start text-left md:items-center md:text-center" /></Reveal>
+          <ScrollLine className="hidden h-1 md:block" />
+          <RevealGroup as="ol" variant="flip" stagger={0.15} className="grid gap-5 md:grid-cols-3 md:gap-6">
             {c.start.steps.map((s, i) => (
-              <li key={s.title} className="flex gap-3.5 md:flex-col md:rounded-[18px] md:border md:border-line md:p-7">
-                <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink text-sm font-bold text-white md:h-10 md:w-10 md:text-base">{i + 1}</span>
+              <RevealItem as="li" key={s.title} className="spotlight flex gap-3.5 md:flex-col md:rounded-[18px] md:border md:border-line md:p-7 md:hover:shadow-[0_24px_48px_-16px_rgba(16,24,40,0.16)]">
+                <RevealItem as="span" variant="pop" className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink text-sm font-bold text-white md:h-10 md:w-10 md:text-base">{i + 1}</RevealItem>
                 <span className="flex flex-col gap-1 md:gap-3.5">
                   <span className="text-[17px] font-bold md:text-xl">{s.title}</span>
                   <span className="text-sm leading-relaxed text-body md:text-[15px]">{s.desc}</span>
                 </span>
-              </li>
+              </RevealItem>
             ))}
-          </ol>
-          <div className="flex flex-col gap-4 rounded-2xl bg-tint p-5 md:flex-row md:items-center md:justify-between md:rounded-[18px] md:px-9 md:py-7">
+          </RevealGroup>
+          <Reveal variant="right" className="flex flex-col gap-4 rounded-2xl bg-tint p-5 md:flex-row md:items-center md:justify-between md:rounded-[18px] md:px-9 md:py-7">
             <div className="flex items-center gap-4">
               <span className="hidden h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full bg-white text-brand md:inline-flex"><MapPin size={24} /></span>
               <div className="flex flex-col gap-1">
@@ -223,14 +247,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               </div>
             </div>
             <ButtonLink href={l.whatsapp(c.start.helpMessage)} tone="whatsapp" icon={<WhatsAppIcon />}>{c.start.helpCta}</ButtonLink>
-          </div>
+          </Reveal>
         </Container>
       </section>
 
       {/* Harga */}
       <section id="harga" className="bg-soft py-14 md:py-24">
         <Container className="flex flex-col items-center gap-8 md:gap-10">
-          <SectionHeading eyebrow={c.pricing.eyebrow} title={c.pricing.title} desc={c.pricing.desc} align="center" className="items-start self-stretch text-left md:items-center md:text-center" />
+          <Reveal variant="scale" className="self-stretch"><SectionHeading eyebrow={c.pricing.eyebrow} title={c.pricing.title} desc={c.pricing.desc} align="center" className="items-start text-left md:items-center md:text-center" /></Reveal>
           <PricingPlans locale={locale} />
         </Container>
       </section>
@@ -238,7 +262,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {/* Video panduan */}
       <section id="tutorial" aria-labelledby="tutorial-title" className="scroll-mt-28 pt-12 md:pt-16">
         <Container>
-          <div className="rounded-3xl border border-brand/10 bg-gradient-to-br from-tint via-[#f4f7ff] to-white p-5 sm:p-7 md:p-9">
+          <Reveal variant="clip" className="rounded-3xl border border-brand/10 bg-gradient-to-br from-tint via-[#f4f7ff] to-white p-5 sm:p-7 md:p-9">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
               <div className="max-w-[600px]">
                 <p className="mb-2 text-xs font-bold tracking-[0.1em] text-brand uppercase">Video panduan</p>
@@ -249,22 +273,25 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 Lihat semua video panduan <ArrowRight size={16} aria-hidden />
               </ButtonLink>
             </div>
-            <ol className="mt-6 grid gap-3 md:mt-7 md:grid-cols-3">
+            <RevealGroup as="ol" variant="flip" stagger={0.12} className="mt-6 grid gap-3 md:mt-7 md:grid-cols-3">
               {featuredGuides.map((guide, i) => (
-                <li key={guide.slug}>
-                  <Link href={`${l.panduan}/${guide.slug}`} className="group flex h-full flex-col gap-3 rounded-2xl border border-line bg-white p-4 transition duration-200 hover:border-brand/30 hover:shadow-[0_6px_20px_rgba(25,95,255,0.08)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand md:p-5">
+                <RevealItem as="li" key={guide.slug}>
+                  <Link href={`${l.panduan}/${guide.slug}`} className="spotlight lift group flex h-full flex-col gap-3 rounded-2xl border border-line bg-white p-4 transition duration-200 hover:border-brand/30 hover:shadow-[0_6px_20px_rgba(25,95,255,0.08)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand md:p-5">
                     <div className="flex items-center gap-2.5">
                       <span aria-hidden className="text-xs font-semibold tabular-nums text-mute">0{i + 1}</span>
                       <h3 className="flex-1 text-base leading-snug font-bold transition-colors group-hover:text-brand">{guide.title}</h3>
-                      <PlayCircle size={20} className="shrink-0 text-brand" aria-hidden />
+                      <span className="relative inline-flex shrink-0">
+                        <span aria-hidden className="absolute inset-0 animate-ping rounded-full bg-brand/30 opacity-0 group-hover:opacity-100 motion-reduce:hidden" />
+                        <PlayCircle size={20} className="relative text-brand transition-transform duration-300 group-hover:scale-125" aria-hidden />
+                      </span>
                     </div>
                     <p className="flex-1 text-sm leading-relaxed text-body">{guide.description}</p>
                     <span className="flex items-center gap-1.5 text-sm font-semibold text-brand">Tonton panduan <ArrowRight size={15} className="transition-transform motion-safe:group-hover:translate-x-1" aria-hidden /></span>
                   </Link>
-                </li>
+                </RevealItem>
               ))}
-            </ol>
-          </div>
+            </RevealGroup>
+          </Reveal>
         </Container>
       </section>
 
@@ -272,13 +299,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <section id="faq" className="py-14 md:py-24">
         <Container className="flex flex-col gap-8 lg:flex-row lg:justify-between">
           <div className="flex flex-col gap-4 lg:w-[400px]">
-            <SectionHeading eyebrow={c.faq.eyebrow} title={c.faq.title} desc={c.faq.desc} />
+            <Reveal variant="left"><SectionHeading eyebrow={c.faq.eyebrow} title={c.faq.title} desc={c.faq.desc} /></Reveal>
             <div className="hidden flex-col items-start gap-3 lg:flex">
               <ButtonLink href={waAsk} tone="whatsapp" icon={<WhatsAppIcon />}>{c.faq.cta}</ButtonLink>
               <Link href={l.faq} className="text-sm font-semibold text-brand hover:underline">{c.faq.more} →</Link>
             </div>
           </div>
-          <div className="lg:w-[720px]"><FaqList locale={locale} questions={HOME_FAQ} /></div>
+          <Reveal variant="right" delay={0.1} className="lg:w-[720px]"><FaqList locale={locale} questions={HOME_FAQ} /></Reveal>
           <div className="flex flex-col gap-3 lg:hidden">
             <ButtonLink href={waAsk} tone="whatsapp" block icon={<WhatsAppIcon />}>{c.faq.cta}</ButtonLink>
             <Link href={l.faq} className="text-center text-sm font-semibold text-brand">{c.faq.more} →</Link>
@@ -286,7 +313,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </Container>
       </section>
 
-      <CtaBand locale={locale} photo />
+      <ScrollExpand from={0.9}><CtaBand locale={locale} photo /></ScrollExpand>
     </>
   );
 }
