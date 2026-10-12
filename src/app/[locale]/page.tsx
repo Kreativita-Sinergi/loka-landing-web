@@ -17,6 +17,7 @@ import PricingPlans from '@/components/site/PricingPlans';
 import DemoKasir from '@/components/site/home/DemoKasir';
 import Hero from '@/components/site/home/Hero';
 import PinnedFeatures from '@/components/site/home/PinnedFeatures';
+import FeatureVideos from '@/components/site/videos/FeatureVideos';
 import CountUp from '@/components/site/motion/CountUp';
 import { Reveal, RevealGroup, RevealItem } from '@/components/site/motion/Reveal';
 import { ScrollTilt, TiltCard } from '@/components/site/motion/Interactive';
@@ -96,8 +97,19 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <Container><Reveal variant="clip"><DemoKasir copy={c.demo} /></Reveal></Container>
       </section>
 
+      {/* Video fitur unggulan (Remotion) */}
+      <section id="video-fitur" className="scroll-mt-28 py-14 md:py-24">
+        <Container className="flex flex-col gap-8 md:gap-12">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <Reveal variant="left"><SectionHeading eyebrow={c.videos.eyebrow} title={c.videos.title} titleClassName="md:max-w-[620px]" /></Reveal>
+            <Reveal variant="right" delay={0.1}><p className="max-w-[440px] text-base leading-relaxed text-body">{c.videos.desc}</p></Reveal>
+          </div>
+          <Reveal variant="clip"><FeatureVideos /></Reveal>
+        </Container>
+      </section>
+
       {/* Jenis usaha */}
-      <section id="jenis-usaha" className="scroll-mt-28 py-14 md:py-24">
+      <section id="jenis-usaha" className="scroll-mt-28 bg-soft py-14 md:py-24">
         <Container className="flex flex-col gap-8 md:gap-12">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <Reveal variant="left"><SectionHeading eyebrow={c.business.eyebrow} title={c.business.title} titleClassName="md:max-w-[640px]" /></Reveal>

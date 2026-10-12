@@ -87,6 +87,19 @@ const harga = {
         'Bantuan setup online lewat WhatsApp',
       ],
     },
+    referral: {
+      eyebrow: 'Program referal',
+      title: 'Ajak teman, langganan makin hemat',
+      desc: 'Bagikan kode referal Anda. Teman dapat potongan di pembayaran Pro pertamanya, Anda dapat saldo yang otomatis memotong tagihan langganan berikutnya.',
+      colPlan: 'Paket teman',
+      colFriend: 'Teman hemat',
+      colYou: 'Anda dapat',
+      rows: [
+        { plan: 'Pro bulanan', friend: 'Rp10.000', you: 'Rp15.000' },
+        { plan: 'Pro tahunan', friend: 'Rp50.000', you: 'Rp59.000' },
+      ],
+      note: 'Saldo tersedia 7 hari setelah pembayaran teman terverifikasi, tidak hangus, dan memotong maksimal 50% tagihan bulanan atau tahunan. Berlaku untuk usaha baru yang belum pernah berlangganan Pro.',
+    },
     faqTitle: 'Pertanyaan seputar harga',
     faqMore: 'Lihat semua FAQ',
     faq: [

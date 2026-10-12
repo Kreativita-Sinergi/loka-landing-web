@@ -10,7 +10,8 @@ import { getFeatureCategories } from '@/data/site/shared';
 import { getFiturCopy } from '@/data/site/fitur';
 import { siteLinks } from '@/data/site/links';
 import { alternatesFor } from '@/lib/hreflang';
-import { Container, IconTile, PageHero, ProBadge, TabletFrame } from '@/components/site/ui';
+import { Container, IconTile, PageHero, ProBadge, SectionHeading, TabletFrame } from '@/components/site/ui';
+import FeatureVideos from '@/components/site/videos/FeatureVideos';
 import { CtaBand, featureIcon } from '@/components/site/sections';
 import { ScrollTilt } from '@/components/site/motion/Interactive';
 import { Reveal, RevealGroup, RevealItem, type RevealVariant } from '@/components/site/motion/Reveal';
@@ -75,6 +76,14 @@ export default async function FiturPage({ params }: { params: Promise<{ locale: 
           items={labels}
           itemClassName="flex items-center gap-5 pr-5 text-[26px] font-bold tracking-[-0.03em] text-ink md:gap-8 md:pr-8 md:text-[44px]"
         />
+      </section>
+
+      {/* Video fitur unggulan (Remotion) */}
+      <section id="video-fitur" className="scroll-mt-24 bg-soft py-12 md:scroll-mt-28 md:py-20">
+        <Container className="flex flex-col gap-8 md:gap-12">
+          <Reveal variant="scale"><SectionHeading eyebrow={c.videosEyebrow} title={c.videosTitle} desc={c.videosDesc} /></Reveal>
+          <Reveal variant="clip"><FeatureVideos /></Reveal>
+        </Container>
       </section>
 
       {categories.map((cat, i) => {

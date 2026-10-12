@@ -13,6 +13,9 @@ const fitur = {
     jumpLabel: 'Lompat ke kategori',
     platformNote: 'Kasir tersedia di Android dan Windows. Pemilik mengatur semuanya lewat Web Admin di browser, tanpa instal apa pun.',
     platformLink: 'Lihat Web Admin',
+    videosEyebrow: 'Fitur unggulan',
+    videosTitle: 'Lihat langsung cara kerjanya',
+    videosDesc: 'Video singkat tentang fitur yang paling sering membuat pemilik usaha beralih ke Loka, dari QR order sampai laporan laba per produk.',
   },
 };
 

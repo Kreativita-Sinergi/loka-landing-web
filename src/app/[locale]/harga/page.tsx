@@ -13,6 +13,7 @@ import { CtaBand, FaqList } from '@/components/site/sections';
 import PricingPlans from '@/components/site/PricingPlans';
 import { Reveal, RevealGroup, RevealItem } from '@/components/site/motion/Reveal';
 import { ScrollExpand } from '@/components/site/motion/Velocity';
+import { SingleFeatureVideo } from '@/components/site/videos/FeatureVideos';
 
 export function generateStaticParams() {
   return LOCALES.map(locale => ({ locale }));
@@ -100,6 +101,37 @@ export default async function HargaPage({ params }: { params: Promise<{ locale: 
               <RevealGroup as="ul" variant="up" stagger={0.08} className="flex flex-col gap-3 text-[15px]">{box.items.map(i => <RevealItem as="li" key={i}><CheckItem as="div">{i}</CheckItem></RevealItem>)}</RevealGroup>
             </Reveal>
           ))}
+        </Container>
+      </section>
+
+      {/* Program referal */}
+      <section id="referal" className="scroll-mt-28 pb-12 md:pb-[88px]">
+        <Container className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-14">
+          <div className="flex flex-col gap-6 lg:w-[440px] lg:shrink-0">
+            <Reveal variant="left"><SectionHeading eyebrow={c.referral.eyebrow} title={c.referral.title} desc={c.referral.desc} /></Reveal>
+            <Reveal variant="left" delay={0.1} className="overflow-hidden rounded-2xl border border-line">
+              <table className="w-full border-collapse text-left text-sm md:text-[15px]">
+                <thead className="bg-soft text-xs font-bold tracking-[0.06em] text-mute uppercase">
+                  <tr>
+                    <th scope="col" className="px-4 py-3">{c.referral.colPlan}</th>
+                    <th scope="col" className="px-4 py-3">{c.referral.colFriend}</th>
+                    <th scope="col" className="px-4 py-3">{c.referral.colYou}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {c.referral.rows.map(r => (
+                    <tr key={r.plan} className="border-t border-line">
+                      <th scope="row" className="px-4 py-3.5 font-bold">{r.plan}</th>
+                      <td className="px-4 py-3.5 font-bold text-ok">{r.friend}</td>
+                      <td className="px-4 py-3.5 text-base font-extrabold text-brand md:text-lg">{r.you}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </Reveal>
+            <Reveal variant="up" delay={0.15}><p className="text-[13px] leading-relaxed text-body">{c.referral.note}</p></Reveal>
+          </div>
+          <Reveal variant="clip" className="min-w-0 flex-1"><SingleFeatureVideo id="Referal" /></Reveal>
         </Container>
       </section>
 

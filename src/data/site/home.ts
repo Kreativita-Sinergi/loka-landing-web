@@ -50,6 +50,11 @@ const id = {
       { name: 'Air mineral', price: 5000 },
     ],
   },
+  videos: {
+    eyebrow: 'Lihat cara kerjanya',
+    title: 'Fitur unggulan, langsung dalam video',
+    desc: 'QR order, rental PS & biliar, booking lapangan, produk PO, barang titipan, supplier, sampai laporan lengkap. Tonton cara kerjanya dalam hitungan detik.',
+  },
   business: {
     eyebrow: 'Jenis usaha',
     title: 'Cocok untuk usaha kecil sampai yang punya banyak cabang',
