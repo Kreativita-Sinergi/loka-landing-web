@@ -172,7 +172,14 @@ Both are permissions you control per role. By default a cashier can cancel, whil
     category: "Day to Day",
     question: "Can it print to a thermal printer?",
     answer:
-      `Yes — the common thermal printer brands, over Bluetooth or USB. Receipts print automatically once payment is settled, or on demand. Paper size and what appears on the receipt are configurable per outlet.`,
+      `Yes. Receipts print automatically once payment is settled, or on demand. Paper size (58 mm or 80 mm) and what appears on the receipt are set in Settings → Receipt.
+
+How to tell if your printer will work:
+• Android phone/tablet — a Bluetooth thermal printer that speaks ESC/POS (nearly every 58/80 mm receipt printer on the market). Pair it in your phone's Bluetooth settings, pick it in Settings → Receipt Printer, then tap Test Print.
+• Windows PC — any printer already installed in Windows (USB or network), as long as its driver is installed.
+• USB barcode scanners work on Windows straight away, like a keyboard.
+
+Not sure? Send us your printer's brand and model on WhatsApp and we'll check before you buy.`,
   },
 
   // ─── Products & Stock ───────────────────────────────────────────────────────

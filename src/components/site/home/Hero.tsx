@@ -40,6 +40,8 @@ export default function Hero({ copy, register, harga }: { copy: HomeCopy['hero']
             <ButtonLink href={register} size="lg" className="w-full shadow-[0_12px_30px_-8px_rgba(13,93,243,0.55)] sm:w-auto">{copy.primary}</ButtonLink>
             <ButtonLink href={harga} tone="secondary" size="lg" className="w-full sm:w-auto">{copy.secondary}</ButtonLink>
           </div>
+          {/* Jawab "setelah 30 hari bagaimana?" tepat di bawah tombolnya, sebelum ditanyakan ke CS. */}
+          <p className="-mt-2 text-[13px] text-body md:text-sm">{copy.trialNote}</p>
 
           <ul className="flex flex-wrap gap-x-6 gap-y-2.5 text-sm text-body md:text-[15px]">
             {copy.points.map(p => <li key={p} className="flex items-center gap-2"><CircleCheck size={18} className="text-ok" />{p}</li>)}

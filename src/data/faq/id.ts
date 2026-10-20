@@ -42,7 +42,9 @@ Untuk bisnis FNB: tambahkan juga data meja dan aktifkan Kitchen Display System (
     category: "Memulai",
     question: "Apakah ada masa percobaan gratis?",
     answer:
-      `Ya! Setiap akun baru mendapat 30 hari pertama gratis dengan akses penuh ke semua fitur Pro — tanpa batas transaksi, multi-outlet sampai 5 cabang, tanpa komitmen.
+      `Ya! Setiap akun baru mendapat 30 hari gratis dengan akses penuh ke semua fitur Pro — tanpa batas transaksi, multi-outlet sampai 5 cabang, tanpa kartu kredit dan tanpa komitmen. Masa 30 hari dihitung sejak transaksi pertama, bukan sejak mendaftar.
+
+Kalau tidak memilih paket apa pun, akun otomatis pindah ke paket Gratis — produk, pelanggan, dan riwayat transaksi tetap tersimpan.
 
 Setelah 30 hari, pilih paket yang sesuai:
 • Gratis — fitur POS inti, 1 outlet, maks. 50 transaksi/bulan, selamanya gratis
@@ -182,7 +184,14 @@ Kedua aksi ini memerlukan izin yang bisa dikonfigurasi per role. Secara default 
     category: "Operasi Harian",
     question: "Apakah bisa mencetak struk ke printer thermal?",
     answer:
-      `Ya. App Kasir mendukung berbagai printer thermal populer melalui koneksi Bluetooth maupun USB. Struk dicetak otomatis setelah pembayaran selesai, atau bisa manual. Ukuran dan konten struk bisa dikustomisasi dari pengaturan outlet.`,
+      `Ya. Struk dicetak otomatis setelah pembayaran selesai, atau bisa manual. Ukuran kertas (58 mm atau 80 mm) dan isi struk diatur di Pengaturan → Struk.
+
+Cara cek printer Anda cocok:
+• HP/tablet Android — printer thermal Bluetooth yang mendukung perintah ESC/POS (hampir semua printer struk 58/80 mm di pasaran). Pasangkan dulu di pengaturan Bluetooth HP, lalu pilih di Pengaturan → Printer Struk dan tekan Tes Cetak.
+• PC Windows — printer apa pun yang sudah terpasang di Windows (USB maupun jaringan), asal driver-nya sudah diinstal.
+• Scanner barcode USB langsung bisa dipakai di Windows, seperti keyboard.
+
+Belum yakin? Kirim merek dan tipe printer Anda lewat WhatsApp, tim kami bantu cek sebelum Anda membeli.`,
   },
 
   // ─── Produk & Inventori ──────────────────────────────────────────────────────
