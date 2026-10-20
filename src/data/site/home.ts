@@ -15,7 +15,11 @@ const id = {
     secondary: 'Lihat Harga',
     points: ['Bisa offline', 'Struk printer thermal', 'Ada paket gratis'],
     caption: 'Bisa dipakai di HP, tablet, PC, atau mesin POS Android yang sudah Anda punya.',
-    imageAlt: 'Aplikasi Loka Kasir di mesin POS desktop, POS handheld, dan tablet, bersama printer struk',
+    imageAlt: 'Pemilik kafe berhijab tersenyum sambil memegang tablet berisi aplikasi Loka Kasir',
+    cardLabel: 'Satu alur kasir',
+    cardTitle: 'Pembayaran berhasil.',
+    cardDesc: 'Struk tercetak, stok ikut berkurang.',
+    flow: ['Pesanan', 'Bayar', 'Struk'],
   },
   stats: {
     users: 'usaha sudah terdaftar',
