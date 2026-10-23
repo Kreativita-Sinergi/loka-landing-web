@@ -40,6 +40,9 @@ const START = 'Mulai di sini';
 const SETUP = 'Pengaturan';
 const OWNER = 'Untuk pemilik';
 const ORDERS = 'Pesanan & pembayaran';
+const STOCK = 'Produk & stok';
+const STAFF = 'Pegawai & absensi';
+const TROUBLE = 'Mengatasi masalah';
 
 function buildGuides(locale: Locale): Guide[] {
   void locale;
@@ -202,6 +205,174 @@ function buildGuides(locale: Locale): Guide[] {
       desc: 'Masa percobaan, batas outlet, dan biaya langganan.',
       faq: ['Apakah ada masa percobaan gratis?', 'Berapa banyak outlet dan pengguna yang bisa ditambahkan?', 'Apakah ada biaya tambahan di luar harga langganan?'],
       more: { label: 'Lihat halaman Harga', to: 'harga' },
+    },
+    {
+      slug: 'bahan-baku-stok-masuk',
+      group: STOCK,
+      title: 'Bahan Baku & Stok Masuk',
+      desc: 'Catat bahan baku dan stok yang masuk.',
+    },
+    {
+      slug: 'paket-resep',
+      group: STOCK,
+      title: 'Paket Produk dengan Resep Bahan Baku',
+      desc: 'Buat paket produk dan hubungkan dengan resep bahan baku.',
+    },
+    {
+      slug: 'harga-modal',
+      group: STOCK,
+      title: 'Mengisi Harga Modal Produk',
+      desc: 'Isi harga modal supaya laba terhitung.',
+    },
+    {
+      slug: 'stok-opname',
+      group: STOCK,
+      title: 'Menghitung dan Posting Stok Opname',
+      desc: 'Hitung stok fisik lalu posting hasil stok opname.',
+    },
+    {
+      slug: 'impor-produk-csv',
+      group: STOCK,
+      title: 'Impor Banyak Produk dari CSV',
+      desc: 'Masukkan banyak produk sekaligus dari file CSV.',
+    },
+    {
+      slug: 'retur-titipan',
+      group: STOCK,
+      title: 'Retur Barang Titipan',
+      desc: 'Kembalikan barang titipan kepada penitip.',
+    },
+    {
+      slug: 'setoran-penitip',
+      group: STOCK,
+      title: 'Setoran Penjualan kepada Penitip',
+      desc: 'Setorkan hasil penjualan barang titipan kepada penitip.',
+    },
+    {
+      slug: 'kasbon',
+      group: ORDERS,
+      title: 'Mencatat dan Melunasi Kasbon',
+      desc: 'Catat pembelian kasbon dan lunasi kemudian.',
+    },
+    {
+      slug: 'pembatalan-refund',
+      group: ORDERS,
+      title: 'Pembatalan Transaksi dan Refund',
+      desc: 'Batalkan transaksi atau kembalikan pembayaran pelanggan.',
+    },
+    {
+      slug: 'member-pelanggan',
+      group: ORDERS,
+      title: 'Menambahkan Member Pelanggan',
+      desc: 'Daftarkan pelanggan sebagai member.',
+    },
+    {
+      slug: 'diskon',
+      group: SETUP,
+      title: 'Menambahkan Diskon',
+      desc: 'Buat diskon untuk produk atau transaksi.',
+    },
+    {
+      slug: 'pajak',
+      group: SETUP,
+      title: 'Menambahkan Pajak',
+      desc: 'Atur pajak yang dikenakan pada transaksi.',
+    },
+    {
+      slug: 'cetak-otomatis-laci',
+      group: SETUP,
+      title: 'Mengatur Cetak Otomatis dan Laci Uang',
+      desc: 'Atur struk tercetak otomatis dan laci uang terbuka.',
+    },
+    {
+      slug: 'profil-fitur-toko',
+      group: SETUP,
+      title: 'Mengatur Profil dan Fitur Toko',
+      desc: 'Lengkapi profil toko dan pilih fitur yang dipakai.',
+    },
+    {
+      slug: 'pengaturan-transaksi',
+      group: SETUP,
+      title: 'Mengatur Transaksi dan Pembayaran',
+      desc: 'Atur alur transaksi dan metode pembayaran.',
+    },
+    {
+      slug: 'tampilan-struk',
+      group: SETUP,
+      title: 'Mengatur Tampilan Struk',
+      desc: 'Sesuaikan isi dan tampilan struk.',
+    },
+    {
+      slug: 'tampilkan-menu',
+      group: SETUP,
+      title: 'Menampilkan dan Menyembunyikan Menu',
+      desc: 'Pilih menu yang tampil di aplikasi.',
+    },
+    {
+      slug: 'absensi',
+      group: STAFF,
+      title: 'Absensi Masuk & Pulang',
+      desc: 'Pegawai mencatat absensi masuk dan pulang.',
+    },
+    {
+      slug: 'lokasi-absensi',
+      group: STAFF,
+      title: 'Mengatur Lokasi Absensi',
+      desc: 'Tentukan lokasi tempat pegawai boleh absen.',
+    },
+    {
+      slug: 'jam-kerja-libur',
+      group: STAFF,
+      title: 'Mengatur Jam Kerja dan Hari Libur',
+      desc: 'Atur jam kerja dan hari libur toko.',
+    },
+    {
+      slug: 'jadwal-shift',
+      group: STAFF,
+      title: 'Membuat Jadwal Shift Pegawai',
+      desc: 'Susun jadwal shift untuk pegawai.',
+    },
+    {
+      slug: 'gaji-absensi',
+      group: STAFF,
+      title: 'Gaji Pegawai Sesuai Absensi',
+      desc: 'Periksa gaji dan slip berdasarkan absensi.',
+    },
+    {
+      slug: 'ringkasan-penjualan',
+      group: OWNER,
+      title: 'Ringkasan dan Filter Penjualan',
+      desc: 'Lihat ringkasan penjualan dan saring datanya.',
+    },
+    {
+      slug: 'membership-loka',
+      group: OWNER,
+      title: 'Membership Aplikasi Loka',
+      desc: 'Kelola membership aplikasi Loka.',
+    },
+    {
+      slug: 'lupa-kata-sandi',
+      group: TROUBLE,
+      title: 'Lupa Kata Sandi dan Pemulihan Akun',
+      desc: 'Atur ulang kata sandi dan pulihkan akun.',
+    },
+    {
+      slug: 'printer-tidak-mencetak',
+      group: TROUBLE,
+      title: 'Memeriksa Printer yang Tidak Mencetak',
+      desc: 'Langkah memeriksa printer yang tidak mau mencetak.',
+    },
+    {
+      slug: 'transaksi-belum-sinkron',
+      group: TROUBLE,
+      title: 'Memeriksa Transaksi yang Belum Tersinkron',
+      desc: 'Temukan transaksi yang belum tersinkron dan kirim ulang.',
+    },
+    {
+      slug: 'absensi-ditolak-lokasi',
+      group: TROUBLE,
+      title: 'Mengatasi Absensi Ditolak karena Lokasi',
+      desc: 'Atasi absensi yang ditolak karena di luar lokasi.',
     },
   ];
   return guides.map(guide => {
