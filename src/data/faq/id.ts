@@ -198,6 +198,19 @@ Belum yakin? Kirim merek dan tipe printer Anda lewat WhatsApp, tim kami bantu ce
 
   {
     category: "Produk & Inventori",
+    question: "Bisakah satu produk punya level pedas, topping, dan pilihan panas/dingin?",
+    answer:
+      `Bisa, lewat Grup Ekstra. Buat grupnya sekali (misalnya Level, Topping, atau Panas/Dingin), lalu pasang ke banyak produk sekaligus.
+
+• Atur aturan pilihnya: pilih satu, boleh beberapa, maksimal sekian, atau wajib dipilih
+• Grup wajib yang belum dipilih ditandai merah di Kasir, dan tombol Tambah menyebut grup yang masih kosong, sehingga tidak ada pesanan tanpa level
+• Tiap ekstra punya tombol −/+ sendiri, misalnya Snack ×3 + Telur ×1 dalam satu porsi
+• Produk boleh tanpa harga sendiri ("harga dari ekstra"), cocok untuk seblak prasmanan atau minuman yang harganya ditentukan pilihan
+• Modal per ekstra bisa diisi, sehingga laba tetap akurat
+• Struk, PDF, WhatsApp, dan tiket dapur menulis ekstra satu per satu beserta jumlah dan harganya`,
+  },
+  {
+    category: "Produk & Inventori",
     question: "Bagaimana cara menambah produk ke dalam sistem?",
     answer:
       `Ada dua cara menambah produk:
@@ -394,7 +407,51 @@ Contoh: 1 poin per Rp 1.000 belanja, 1 poin = Rp 100. Pelanggan belanja Rp 50.00
 Di paket Pro, setiap pelanggan juga memiliki saldo poin loyalty yang bisa dipantau dan dikelola langsung dari Web Admin.`,
   },
 
+  {
+    category: "Loyalty & Pelanggan",
+    question: "Apakah pelanggan bisa menyimpan saldo (deposit) di toko?",
+    answer:
+      `Bisa, di paket Pro. Pelanggan menitipkan uang sebagai saldo, lalu memakainya untuk belanja berikutnya.
+
+• Isi saldo lewat tunai, transfer, atau QRIS. Isi saldo tunai otomatis masuk laci kasir di shift yang sedang buka.
+• Saat pelanggan bersaldo dipilih di layar bayar, muncul ajakan "Saldo bisa dipakai". Saldo boleh dipakai semua, setengah, atau nominal tertentu, sisanya dibayar tunai atau transfer. Saldo tidak pernah terpilih otomatis.
+• Sisa saldo tercetak di struk.
+• Pelanggan bisa cek saldo & poin sendiri lewat link WhatsApp atau QR di kartu member, yang bisa ditampilkan, disimpan sebagai gambar, atau dicetak.
+• Pemilik mendapat laporan saldo pelanggan: total saldo yang dititipkan dan yang sudah dipakai.`,
+  },
+
   // ─── Laporan & Analitik ──────────────────────────────────────────────────────
+
+  {
+    category: "Laporan & Analitik",
+    question: "Apa itu Rapor Toko dan Radar Kebocoran?",
+    answer:
+      `Keduanya bagian dari Wawasan Pemilik di paket Pro, tersedia sejak aplikasi versi 1.46.
+
+Rapor Toko memberi nilai 0–100 (A sampai E) dari lima pilar: penjualan, untung, menu, pelanggan, dan kontrol. Rapor baru dikirim tiap Senin pukul 08.00 WIB, lengkap dengan saran yang diurutkan dari perkiraan rupiah terbesar, misalnya:
+• Barang laris yang stoknya habis
+• Menu yang naik daun atau turun tajam
+• Produk yang sering dibeli bersama, siap dijadikan paket
+• Hari dan jam yang sepi
+• Potongan harga yang terlalu besar dibanding omzet
+
+Radar Kebocoran membandingkan batal nota, refund, diskon manual, dan selisih kas tiap kasir dengan rekan-rekannya, sehingga pola yang janggal cepat terlihat. Ada juga Rapor Kasir untuk menilai tiap kasir, dan Lab Harga untuk melihat dampak perubahan harga ke penjualan.
+
+Bila nota dalam periode itu masih di bawah 50, rapor memberi catatan bahwa data masih tipis, dan saran pola (jam sepi, paket, diskon) baru keluar setelah datanya cukup.`,
+  },
+  {
+    category: "Laporan & Analitik",
+    question: "Apakah Loka Kasir bisa membantu menghitung pajak UMKM (PPh Final 0,5%)?",
+    answer:
+      `Bisa, lewat Pojok Pajak di paket Pro (khusus pemilik). Pojok Pajak menghitung PPh Final 0,5% per bulan dari omzet yang tercatat di Loka, dan Anda bisa menambahkan omzet dari luar Loka.
+
+• Untuk wajib pajak orang pribadi, Rp500 juta pertama dalam setahun tidak dikenai pajak, dihitung kumulatif
+• Berlaku untuk omzet sampai Rp4,8 miliar setahun
+• Pengingat setor dikirim tiap tanggal 10, karena batas setor adalah tanggal 15 bulan berikutnya
+• Masa yang sudah disetor bisa ditandai lengkap dengan NTPN
+
+Pojok Pajak adalah alat bantu hitung, bukan nasihat pajak. Untuk kondisi khusus, tetap konsultasikan dengan konsultan pajak atau kantor pajak setempat.`,
+  },
 
   {
     category: "Laporan & Analitik",

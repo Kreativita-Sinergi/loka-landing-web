@@ -36,3 +36,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Audio Mixkit untuk video (unduh dengan remotion/fetch-audio.sh, jangan di-commit)
+/remotion/public/audio/mixkit/
+/remotion/public/audio/vo/

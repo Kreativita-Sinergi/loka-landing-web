@@ -2,13 +2,13 @@
 
 import clsx from 'clsx';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { CalendarDays, ChartColumn, Gift, Handshake, Package, QrCode, Scale, Store, Timer, Truck, Zap, type LucideIcon } from 'lucide-react';
+import { Award, CalendarDays, ChartColumn, Dices, Flame, Gift, Handshake, Package, QrCode, Ruler, Scale, Store, Timer, Truck, Wallet, Zap, type LucideIcon } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
 
 import { FEATURE_VIDEO_META, type FeatureVideoId, type FeatureVideoMeta } from './meta';
 
-const ICONS: Record<FeatureVideoMeta['icon'], LucideIcon> = { qr: QrCode, timer: Timer, calendar: CalendarDays, zap: Zap, package: Package, scale: Scale, handshake: Handshake, truck: Truck, chart: ChartColumn, gift: Gift, store: Store };
+const ICONS: Record<FeatureVideoMeta['icon'], LucideIcon> = { award: Award, flame: Flame, wallet: Wallet, ruler: Ruler, dices: Dices, qr: QrCode, timer: Timer, calendar: CalendarDays, zap: Zap, package: Package, scale: Scale, handshake: Handshake, truck: Truck, chart: ChartColumn, gift: Gift, store: Store };
 
 /** Kerangka selama Remotion Player dimuat, ukurannya sama dengan videonya. */
 function StageSkeleton() {
@@ -91,7 +91,10 @@ export default function FeatureVideos({ ids }: { ids?: FeatureVideoId[] }) {
                   <Icon size={18} aria-hidden />
                 </span>
                 <span className="flex flex-col">
-                  <span className={clsx('text-sm font-bold whitespace-nowrap lg:text-base', on ? 'text-ink' : 'text-body')}>{m.tab}</span>
+                  <span className={clsx('flex items-center gap-2 text-sm font-bold whitespace-nowrap lg:text-base', on ? 'text-ink' : 'text-body')}>
+                    {m.tab}
+                    {m.isNew && <span className="rounded-full bg-accent px-1.5 py-px text-[10px] font-extrabold tracking-wide text-ink uppercase">Baru</span>}
+                  </span>
                   <AnimatePresence initial={false}>
                     {on && (
                       <motion.span

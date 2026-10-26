@@ -24,6 +24,12 @@ export default function Hero({ copy, register, harga }: { copy: HomeCopy['hero']
 
       <Container className="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
         <div className="relative flex flex-col gap-5 md:gap-7 lg:w-[580px]">
+          {/* Pengumuman rilis terbaru, menuju section "Yang baru". */}
+          <a href="#yang-baru" className="group -mb-1 inline-flex items-center gap-2.5 self-start rounded-full border border-line bg-white py-1 pr-3.5 pl-1 text-[13px] font-medium text-ink shadow-[0_8px_24px_-12px_rgba(13,93,243,0.35)] transition-colors hover:border-brand/30 md:text-sm">
+            <span className="rounded-full bg-accent px-2.5 py-0.5 text-xs font-bold">{copy.news.tag}</span>
+            {copy.news.text}
+            <ArrowRight size={14} aria-hidden className="text-brand transition-transform group-hover:translate-x-0.5" />
+          </a>
           <h1 className="text-[38px] leading-[1.12] font-bold tracking-[-0.03em] md:text-[60px]">
             {copy.titleA}{' '}
             <span className="relative inline-block text-brand">

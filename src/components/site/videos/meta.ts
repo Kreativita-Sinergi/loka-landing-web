@@ -3,6 +3,11 @@
  * tampil seketika, sementara Remotion Player & isi video dimuat belakangan.
  */
 export type FeatureVideoId =
+  | 'RaporToko'
+  | 'GrupEkstra'
+  | 'SaldoMember'
+  | 'TokoBangunan'
+  | 'MejaGratis'
   | 'QrOrder'
   | 'RentalTimer'
   | 'BookingLapangan'
@@ -17,13 +22,20 @@ export type FeatureVideoId =
 
 export type FeatureVideoMeta = {
   id: FeatureVideoId;
-  icon: 'qr' | 'timer' | 'calendar' | 'zap' | 'package' | 'scale' | 'handshake' | 'truck' | 'chart' | 'gift' | 'store';
+  icon: 'award' | 'flame' | 'wallet' | 'ruler' | 'dices' | 'qr' | 'timer' | 'calendar' | 'zap' | 'package' | 'scale' | 'handshake' | 'truck' | 'chart' | 'gift' | 'store';
   tab: string;
   title: string;
   desc: string;
+  /** Fitur dari rilis terbaru (app 1.40–1.46); tabnya diberi label "Baru". */
+  isNew?: boolean;
 };
 
 export const FEATURE_VIDEO_META: FeatureVideoMeta[] = [
+  { id: 'RaporToko', icon: 'award', tab: 'Rapor Toko', isNew: true, title: 'Rapor toko tiap minggu, lengkap dengan saran', desc: 'Nilai A–E dari penjualan, untung, menu, pelanggan, dan kontrol. Saran diurutkan dari rupiah terbesar: stok habis, paket, menu turun. Radar Kebocoran dan Pojok Pajak ikut menjaga uang toko.' },
+  { id: 'GrupEkstra', icon: 'flame', tab: 'Grup Ekstra', isNew: true, title: 'Level, isian, dan jumlahnya tercatat rapi', desc: 'Buat grup ekstra sekali, pasang ke banyak produk. Tiap ekstra punya tombol −/+ sendiri, grup wajib ditandai sampai dipilih, dan struk merinci ekstra beserta harganya.' },
+  { id: 'SaldoMember', icon: 'wallet', tab: 'Saldo & Member', isNew: true, title: 'Saldo pelanggan, kartu member, dan QR penilaian', desc: 'Pelanggan bayar pakai saldo, sisanya tunai. Kartu member ber-QR untuk cek saldo & poin, dan QR di struk mengumpulkan penilaian langsung ke pemilik.' },
+  { id: 'TokoBangunan', icon: 'ruler', tab: 'Toko Bangunan', isNew: true, title: 'Jual per sak, batang, meter, sampai m²', desc: 'Ketik panjang kabel atau luas kaca, subtotal langsung jadi. Alamat kirim dan nama proyek tersimpan, surat jalan tanpa harga bisa dicetak atau dikirim PDF.' },
+  { id: 'MejaGratis', icon: 'dices', tab: 'Meja Gratis', isNew: true, title: 'Meja gratis hari ini, diundi di depan tamu', desc: 'Pilih atau acak meja biliar/PS yang gratis; QR mejanya menampilkan "GRATIS hari ini". Sewa "Bayar dulu" membuat waktu baru berjalan setelah lunas.' },
   { id: 'QrOrder', icon: 'qr', tab: 'QR Order', title: 'Pelanggan pesan sendiri dari meja', desc: 'Scan QR di meja, pilih menu dari HP, pesanan langsung masuk ke kasir dan papan dapur. Tamu bisa memantau statusnya sendiri.' },
   { id: 'RentalTimer', icon: 'timer', tab: 'Rental PS & Biliar', title: 'Timer sewa yang menagih sendiri', desc: 'Paket hitung mundur atau argo per jam. Tamu cek sisa waktu dan minta perpanjang lewat QR meja, promo jam sepi berlaku otomatis.' },
   { id: 'BookingLapangan', icon: 'calendar', tab: 'Booking Lapangan', title: 'Booking lapangan tanpa bentrok', desc: 'Padel, futsal, mini soccer, dan badminton dalam satu kalender. Tarif jam sibuk dan DP terhitung sendiri.' },

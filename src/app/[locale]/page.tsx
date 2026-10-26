@@ -17,6 +17,7 @@ import PricingPlans from '@/components/site/PricingPlans';
 import DemoKasir from '@/components/site/home/DemoKasir';
 import Hero from '@/components/site/home/Hero';
 import PinnedFeatures from '@/components/site/home/PinnedFeatures';
+import WhatsNew from '@/components/site/home/WhatsNew';
 import FeatureVideos from '@/components/site/videos/FeatureVideos';
 import CountUp from '@/components/site/motion/CountUp';
 import { Reveal, RevealGroup, RevealItem } from '@/components/site/motion/Reveal';
@@ -91,6 +92,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </RevealGroup>
         </Container>
       </section>
+
+      {/* Yang baru (app 1.40–1.46) */}
+      <WhatsNew copy={c.whatsNew} />
 
       {/* Demo */}
       <section className="bg-soft py-14 md:py-24">
