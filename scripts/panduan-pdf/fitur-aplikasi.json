@@ -1,18 +1,9 @@
 {
-  "_sumber": "Panduan 'Yang baru' aplikasi Loka Kasir (loka-kasir-app, lib/features/home/views/widgets/whats_new_sheet.dart), dikurasi 29 Okt 2026: jalur menu Pengaturan disesuaikan dengan pengelompokan 1.49; panduan fitur yang backend-nya belum di produksi tidak dimuat.",
+  "_sumber": "Panduan 'Yang baru' aplikasi Loka Kasir (loka-kasir-app, lib/features/home/views/widgets/whats_new_sheet.dart), dikurasi 29 Okt 2026: jalur menu Pengaturan disesuaikan dengan pengelompokan 1.49; panduan 'Cetak surat jalan' 1.43 dilewati karena digantikan panduan dokumen 1.49; panduan yang sudah dibahas di Bagian 1 (pisah tagihan, member saat transaksi, paket, printer, logo & alamat struk) tidak diulang.",
   "groups": [
     {
       "group": "Pesanan & pembayaran",
       "guides": [
-        {
-          "title": "Pisah tagihan per tamu",
-          "since": "1.48.0",
-          "steps": [
-            "Masukkan semua pesanan ke keranjang, lalu ketuk Pisah di sebelah Tahan.",
-            "Pilih item dan jumlah yang dibayar tamu pertama, ketuk Pisahkan, lalu bayar seperti biasa. Sisanya ditahan otomatis.",
-            "Setelah lunas, ketuk Lanjutkan di kartu \"Sisa tagihan belum dibayar\" untuk menagih sisanya, atau Pisah lagi untuk tamu berikutnya."
-          ]
-        },
         {
           "title": "Bayar pakai saldo",
           "since": "1.45.0",
@@ -56,16 +47,6 @@
             "Buka Lainnya → Kelola Toko → Kanal Ojol, nyalakan kanalnya, lalu atur markup atau komisinya.",
             "Bila perlu, isi harga khusus per produk untuk kanal itu.",
             "Di Kasir, pilih kanal pesanan sebelum menagih — harga kanal tampil di keranjang, layar bayar, dan struk."
-          ]
-        },
-        {
-          "title": "Jadikan pembeli member saat transaksi",
-          "since": "1.41.2",
-          "steps": [
-            "Di layar Kasir ketuk Pelanggan, lalu pilih pelanggan terdaftar.",
-            "Ketuk \"Jadikan member\" di bawah namanya.",
-            "Simpan — harga member langsung berlaku di nota itu.",
-            "Pembeli baru: ketuk \"Daftarkan\", isi nomor HP (wajib), centang Member, lalu Daftarkan."
           ]
         },
         {
@@ -166,15 +147,6 @@
           ]
         },
         {
-          "title": "Buat paket",
-          "since": "1.46.0",
-          "steps": [
-            "Buka Produk › Paket, lalu ketuk Tambah Paket. Dari Rapor Toko, ketuk \"Buat paket\" pada saran \"Jadikan paket\" — isinya sudah terisi.",
-            "Cari produk dan ketuk untuk menambahkannya; atur jumlahnya dengan − dan +. Produk bervarian tampil per varian (mis. Kaos · L), pilih varian yang dijual dalam paket.",
-            "Isi harga paket. Di bawahnya terlihat harga kalau dibeli satuan, hemat pembeli, serta modal dan untungnya. Simpan — paket muncul di Kasir di bawah kategori Paket."
-          ]
-        },
-        {
           "title": "Jual per dus/pak dengan harga sendiri",
           "since": "1.40.0",
           "steps": [
@@ -224,6 +196,15 @@
     {
       "group": "Pelanggan & member",
       "guides": [
+        {
+          "title": "Pasang QR Cek Saldo",
+          "since": "1.50.0",
+          "steps": [
+            "Buka Lainnya › Pelanggan & Bon › QR Cek Saldo. Ketuk Simpan / Bagikan untuk mencetaknya, lalu tempel di kasir — atau Tampilkan untuk dipindai langsung dari layar.",
+            "Saat mendaftarkan pelanggan baru, kode cek saldo 6 angka langsung muncul: bacakan, atau ketuk Kirim kode via WA. Kodenya juga ada di detail pelanggan — ikon kirim untuk mengirim ulang, ikon putar untuk mengganti bila tersebar.",
+            "Pelanggan memindai QR, mengisi nomor HP dan kodenya, lalu melihat saldo, poin, bon, dan sisa paketnya. Salah kode 5 kali, nomor itu dikunci 15 menit."
+          ]
+        },
         {
           "title": "Berikan kartu member",
           "since": "1.45.1",
@@ -338,6 +319,38 @@
       ]
     },
     {
+      "group": "Booking lapangan",
+      "guides": [
+        {
+          "title": "Buka booking online",
+          "since": "1.50.0",
+          "steps": [
+            "Buka Lainnya › Kelola Toko › Lapangan, lalu ketuk ikon link di kanan atas. Isi Nomor WhatsApp toko — wajib, dipakai tombol \"Hubungi toko\".",
+            "Nyalakan Aktifkan, lalu ketuk Bagikan untuk mengirim link ke bio Instagram, status, atau grup WhatsApp. Ketuk Lihat halaman untuk melihat persis yang dilihat pelanggan.",
+            "Atur Aturan untuk pelanggan: boleh ubah jadwal sendiri, boleh batal sendiri, paling lambat berapa jam sebelum main, dan berapa kali boleh dipindah."
+          ]
+        },
+        {
+          "title": "Pindahkan jadwal booking",
+          "since": "1.50.0",
+          "steps": [
+            "Buka Kalender Lapangan, ketuk booking-nya, lalu ketuk Ubah jadwal.",
+            "Pilih tanggal, lapangan, durasi, dan jam mulai — jam yang bentrok atau sudah lewat dicoret. Periksa total baru (harga lama tertulis di bawahnya), lalu Simpan.",
+            "Saat ditawari \"Kabari pelanggan?\", ketuk Kirim WA. Pesannya berisi jadwal baru beserta link kelola booking."
+          ]
+        },
+        {
+          "title": "Pelanggan pindah atau batal sendiri",
+          "since": "1.50.0",
+          "steps": [
+            "Setiap booking punya link kelola. Pelanggan online menerimanya setelah memesan; untuk booking dari kasir, ketuk Kirim konfirmasi WA di detail booking — link-nya ikut di pesan.",
+            "Dari link itu pelanggan melihat jadwalnya, menghubungi toko, memilih jam baru (jam yang penuh terlihat dicoret), atau membatalkan booking yang belum ada DP.",
+            "Setiap perubahan mengirim notifikasi ke kasir dan kalender langsung diperbarui. Booking yang sudah ada DP, sudah dibayar, atau terlalu mepet jam main diarahkan untuk menghubungi toko."
+          ]
+        }
+      ]
+    },
+    {
       "group": "Untuk pemilik",
       "guides": [
         {
@@ -400,15 +413,6 @@
           ]
         },
         {
-          "title": "Atur logo, alamat & telepon di struk",
-          "since": "1.47.0",
-          "steps": [
-            "Buka Pengaturan › Toko › Profil Toko, isi Alamat dan No. Telepon (bertanda \"Tercetak di struk\"), lalu Simpan.",
-            "Buka Pengaturan › Struk & Dokumen › Struk, pastikan logo dinyalakan, lalu pilih Ukuran logo di struk: Kecil, Sedang, atau Besar. Pratinjau di halaman itu langsung berubah.",
-            "Cetak struk transaksi berikutnya untuk melihat hasilnya. Pengaturan ini berlaku per outlet, jadi semua perangkat kasir di outlet yang sama ikut memakainya."
-          ]
-        },
-        {
           "title": "Cetak laporan Tutup Kasir dengan huruf besar",
           "since": "1.42.1",
           "steps": [
@@ -434,20 +438,6 @@
             "Ketuk tombol \"?\" di pojok kanan atas layar yang membingungkan.",
             "Bagian \"Tentang <nama layar>\" terbuka paling atas dengan istilah yang dipakai di layar itu.",
             "Gulir ke \"Kamus Istilah\" untuk semua istilah, atau ketuk Chat CS — CS langsung tahu layar mana yang Anda maksud."
-          ]
-        }
-      ]
-    },
-    {
-      "group": "Mengatasi masalah",
-      "guides": [
-        {
-          "title": "Printer belum mau mencetak?",
-          "since": "1.43.1",
-          "steps": [
-            "Buka Pengaturan → Printer Struk, ketuk \"Cara Menghubungkan Printer\".",
-            "Ikuti bagian \"Kalau belum berhasil\": pasangkan printer di Bluetooth HP (PIN biasanya 0000 atau 1234) dan izinkan \"Perangkat di sekitar\".",
-            "Tulisan terpotong? Samakan ukuran kertas 58 mm atau 80 mm di Pengaturan → Struk, lalu tekan Tes Cetak."
           ]
         }
       ]
