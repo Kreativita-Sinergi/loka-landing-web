@@ -14,7 +14,7 @@ export const faqsMs: IFAQ[] = [
 • Melalui pelayar — buka ${siteDetails.dashboardUrl}/register daripada komputer riba atau telefon, tanpa memasang apa-apa
 • Melalui aplikasi — pasang daripada Google Play (Android) atau Microsoft Store (Windows), kemudian daftar di dalamnya
 
-Kedua-duanya meminta maklumat pemilik, jenis perniagaan anda (makanan, runcit, atau perkhidmatan), dan cawangan pertama. Kod pengesahan dihantar ke e-mel anda. Selepas itu anda mendapat 30 hari percuma dengan semua ciri terbuka — tanpa kad, tanpa komitmen.
+Kedua-duanya meminta maklumat pemilik, jenis perniagaan anda (makanan, runcit, atau perkhidmatan), dan cawangan pertama. Kod pengesahan dihantar ke e-mel anda. Selepas itu anda mendapat 14 hari percuma dengan semua ciri terbuka — tanpa kad, tanpa komitmen.
 
 Susunan penyediaan yang munasabah:
 1. Buka akaun dan cipta cawangan pertama
@@ -43,9 +43,9 @@ Jika perniagaan anda menjual makanan, tambah juga meja dan hidupkan paparan dapu
     category: "Bermula",
     question: "Adakah tempoh percubaan percuma?",
     answer:
-      `Ya — 30 hari dengan semua ciri Pro terbuka, sehingga 5 cawangan, transaksi tanpa had, tiada apa-apa yang perlu dibatalkan.
+      `Ya — 14 hari dengan semua ciri Pro terbuka, sehingga 5 cawangan, transaksi tanpa had, tiada apa-apa yang perlu dibatalkan.
 
-Satu perkara yang baik diketahui: 30 hari itu dikira dari jualan pertama anda, bukan dari hari anda mendaftar. Jadi anda boleh membuka akaun, mengambil masa memasukkan produk, dan memasang aplikasi apabila benar-benar bersedia — semuanya tidak memakan tempoh percubaan.
+Satu perkara yang baik diketahui: 14 hari itu dikira dari jualan pertama anda, bukan dari hari anda mendaftar. Jadi anda boleh membuka akaun, mengambil masa memasukkan produk, dan memasang aplikasi apabila benar-benar bersedia — semuanya tidak memakan tempoh percubaan.
 
 Apabila tamat, anda memilih:
 • Percuma — kaunter asas, 1 cawangan, sehingga 50 jualan sebulan, percuma selamanya
@@ -466,7 +466,7 @@ Ia mengelakkan juruwang memerlukan kebenaran yang tidak sepatutnya, tanpa melamb
       `Cawangan bergantung pada pelan:
 
 • Percuma — 1 cawangan, sehingga 50 jualan sebulan
-• 30 hari percuma — akses Pro penuh, sehingga 5 cawangan
+• 14 hari percuma — akses Pro penuh, sehingga 5 cawangan
 • Pro — cawangan tanpa had; yang pertama sudah termasuk dan setiap tambahan dikenakan bayaran bulanan
 
 Pekerja tanpa had pada semua pelan, termasuk percuma. Anda boleh naik atau turun pelan bila-bila masa tanpa kehilangan data.`,

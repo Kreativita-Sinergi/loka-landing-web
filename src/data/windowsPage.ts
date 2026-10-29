@@ -38,7 +38,7 @@ const copyByLocale: Record<Locale, WindowsPageCopy> = {
   id: {
     metaTitle: "Download untuk Windows",
     metaDescription:
-      "Cara memasang aplikasi kasir Loka Kasir di PC atau laptop Windows 10/11 — lewat Microsoft Store atau perintah winget. Ringan, unduhan hanya ±30 MB. Gratis 30 hari pertama.",
+      "Cara memasang aplikasi kasir Loka Kasir di PC atau laptop Windows 10/11 — lewat Microsoft Store atau perintah winget. Ringan, unduhan hanya ±30 MB. Gratis 14 hari pertama.",
     eyebrow: "Loka Kasir untuk Windows",
     title: "Download aplikasi kasir untuk PC & laptop",
     intro:
@@ -48,7 +48,7 @@ const copyByLocale: Record<Locale, WindowsPageCopy> = {
     statMinRam: "RAM 2 GB",
     statMinRamLabel: "Sudah cukup",
     lightNote: "Ringan, jadi tetap lancar di PC atau laptop lama yang biasa dipakai di toko.",
-    freeNote: "Gratis 30 hari pertama",
+    freeNote: "Gratis 14 hari pertama",
     howToHeading: "Cara memasang",
     steps: [
       {
@@ -64,7 +64,7 @@ const copyByLocale: Record<Locale, WindowsPageCopy> = {
       {
         title: "Login, atau daftar bila belum punya akun",
         detail:
-          "Buka Loka Kasir dari Start Menu lalu login. Belum punya akun? Anda bisa mendaftar gratis di dalam aplikasi maupun lewat browser di app.lokakasir.id — 30 hari pertama gratis dengan akses penuh.",
+          "Buka Loka Kasir dari Start Menu lalu login. Belum punya akun? Anda bisa mendaftar gratis di dalam aplikasi maupun lewat browser di app.lokakasir.id — 14 hari pertama gratis dengan akses penuh.",
       },
     ],
     wingetHeading: "Pasang lewat winget",
@@ -87,7 +87,7 @@ const copyByLocale: Record<Locale, WindowsPageCopy> = {
   en: {
     metaTitle: "Download for Windows",
     metaDescription:
-      "How to install Loka Kasir on a Windows 10 or 11 PC or laptop — through the Microsoft Store or a winget command. Light: about a 30 MB download. Free for the first 30 days.",
+      "How to install Loka Kasir on a Windows 10 or 11 PC or laptop — through the Microsoft Store or a winget command. Light: about a 30 MB download. Free for the first 14 days.",
     eyebrow: "Loka Kasir for Windows",
     title: "The register app for a PC or laptop",
     intro:
@@ -97,7 +97,7 @@ const copyByLocale: Record<Locale, WindowsPageCopy> = {
     statMinRam: "2 GB RAM",
     statMinRamLabel: "Is enough",
     lightNote: "Light enough to stay responsive on the older PCs that shops tend to already own.",
-    freeNote: "Free for the first 30 days",
+    freeNote: "Free for the first 14 days",
     howToHeading: "How to install it",
     steps: [
       {
@@ -113,7 +113,7 @@ const copyByLocale: Record<Locale, WindowsPageCopy> = {
       {
         title: "Sign in, or create an account",
         detail:
-          "Open Loka Kasir from the Start menu and sign in. No account yet? You can create one free inside the app, or in a browser at app.lokakasir.id — the first 30 days come with everything unlocked.",
+          "Open Loka Kasir from the Start menu and sign in. No account yet? You can create one free inside the app, or in a browser at app.lokakasir.id — the first 14 days come with everything unlocked.",
       },
     ],
     wingetHeading: "Install with winget",
@@ -136,7 +136,7 @@ const copyByLocale: Record<Locale, WindowsPageCopy> = {
   ms: {
     metaTitle: "Muat Turun untuk Windows",
     metaDescription:
-      "Cara memasang Loka Kasir pada PC atau komputer riba Windows 10 atau 11 — melalui Microsoft Store atau arahan winget. Ringan: muat turun kira-kira 30 MB. Percuma 30 hari pertama.",
+      "Cara memasang Loka Kasir pada PC atau komputer riba Windows 10 atau 11 — melalui Microsoft Store atau arahan winget. Ringan: muat turun kira-kira 30 MB. Percuma 14 hari pertama.",
     eyebrow: "Loka Kasir untuk Windows",
     title: "Aplikasi kaunter untuk PC & komputer riba",
     intro:
@@ -146,7 +146,7 @@ const copyByLocale: Record<Locale, WindowsPageCopy> = {
     statMinRam: "RAM 2 GB",
     statMinRamLabel: "Sudah memadai",
     lightNote: "Cukup ringan untuk kekal lancar pada PC lama yang biasanya sudah ada di kedai.",
-    freeNote: "Percuma 30 hari pertama",
+    freeNote: "Percuma 14 hari pertama",
     howToHeading: "Cara memasangnya",
     steps: [
       {
@@ -162,7 +162,7 @@ const copyByLocale: Record<Locale, WindowsPageCopy> = {
       {
         title: "Log masuk, atau buka akaun",
         detail:
-          "Buka Loka Kasir daripada menu Start dan log masuk. Belum ada akaun? Anda boleh membukanya secara percuma dalam aplikasi, atau dalam pelayar di app.lokakasir.id — 30 hari pertama dengan semua ciri terbuka.",
+          "Buka Loka Kasir daripada menu Start dan log masuk. Belum ada akaun? Anda boleh membukanya secara percuma dalam aplikasi, atau dalam pelayar di app.lokakasir.id — 14 hari pertama dengan semua ciri terbuka.",
       },
     ],
     wingetHeading: "Pasang dengan winget",

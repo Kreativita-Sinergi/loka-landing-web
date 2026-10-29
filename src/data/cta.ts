@@ -2,19 +2,19 @@ import { pick, type Locale } from "./localized";
 
 const ctaByLocale: Record<Locale, { heading: string; subheading: string }> = {
   id: {
-    heading: "Gratis 30 Hari Pertama — Tanpa Risiko",
+    heading: "Gratis 14 Hari Pertama — Tanpa Risiko",
     subheading:
-      "Daftar gratis langsung dari browser ini, atau dari aplikasinya — akunnya sama. Pakai semua fitur Pro selama 30 hari, dihitung sejak transaksi pertama, tanpa kartu kredit. Setelah itu otomatis pindah ke paket Gratis — atau lanjutkan Pro Rp 59.000/bulan.",
+      "Daftar gratis langsung dari browser ini, atau dari aplikasinya — akunnya sama. Pakai semua fitur Pro selama 14 hari, dihitung sejak transaksi pertama, tanpa kartu kredit. Setelah itu otomatis pindah ke paket Gratis — atau lanjutkan Pro Rp 59.000/bulan.",
   },
   en: {
-    heading: "Your First 30 Days Are Free",
+    heading: "Your First 14 Days Are Free",
     subheading:
-      "Create your account right here in the browser, or from inside the app — it's the same account either way. Every Pro feature is open for the first 30 days. No contract, and nothing to cancel if you walk away.",
+      "Create your account right here in the browser, or from inside the app — it's the same account either way. Every Pro feature is open for the first 14 days. No contract, and nothing to cancel if you walk away.",
   },
   ms: {
-    heading: "30 Hari Pertama Percuma",
+    heading: "14 Hari Pertama Percuma",
     subheading:
-      "Daftar terus dari pelayar ini, atau dari dalam aplikasi — akaunnya sama. Semua ciri Pro terbuka untuk 30 hari pertama. Tanpa kontrak, dan tiada apa-apa yang perlu dibatalkan jika anda berhenti.",
+      "Daftar terus dari pelayar ini, atau dari dalam aplikasi — akaunnya sama. Semua ciri Pro terbuka untuk 14 hari pertama. Tanpa kontrak, dan tiada apa-apa yang perlu dibatalkan jika anda berhenti.",
   },
   ja: {
     heading: "最初の30日間は無料です",
@@ -40,15 +40,15 @@ export const ctaDetails = { ...ctaByLocale.id, dashboardUrl: "https://app.lokaka
 const signUpByLocale: Record<Locale, { label: string; note: string }> = {
   id: {
     label: "Daftar Gratis",
-    note: "Gratis 30 hari pertama · Bisa daftar dari browser atau aplikasi",
+    note: "Gratis 14 hari pertama · Bisa daftar dari browser atau aplikasi",
   },
   en: {
     label: "Start Free",
-    note: "30 days free · Sign up from your browser or the app",
+    note: "14 days free · Sign up from your browser or the app",
   },
   ms: {
     label: "Mula Percuma",
-    note: "30 hari percuma · Daftar dari pelayar atau aplikasi",
+    note: "14 hari percuma · Daftar dari pelayar atau aplikasi",
   },
   ja: {
     label: "無料ではじめる",
@@ -120,15 +120,15 @@ export const supportDetails = {
 const appDownloadByLocale: Record<Locale, { label: string; note: string }> = {
   id: {
     label: "Download di Google Play",
-    note: "Android & Windows · Gratis 30 hari pertama · Login dengan akun yang sama",
+    note: "Android & Windows · Gratis 14 hari pertama · Login dengan akun yang sama",
   },
   en: {
     label: "Get it on Google Play",
-    note: "Android & Windows · 30 days free · Same account on every device",
+    note: "Android & Windows · 14 days free · Same account on every device",
   },
   ms: {
     label: "Dapatkan di Google Play",
-    note: "Android & Windows · 30 hari percuma · Akaun sama pada semua peranti",
+    note: "Android & Windows · 14 hari percuma · Akaun sama pada semua peranti",
   },
   ja: {
     label: "Google Play で入手",

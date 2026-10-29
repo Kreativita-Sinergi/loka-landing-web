@@ -17,11 +17,11 @@ const harga = {
   id: {
     metaTitle: 'Harga Loka Kasir',
     metaDescription:
-      'Harga Loka Kasir jelas tanpa biaya tersembunyi. Paket Gratis untuk usaha yang baru mulai, paket Pro Rp59.000/bulan dengan semua fitur. Gratis 30 hari sejak transaksi pertama.',
+      'Harga Loka Kasir jelas tanpa biaya tersembunyi. Paket Gratis untuk usaha yang baru mulai, paket Pro Rp59.000/bulan dengan semua fitur. Gratis 14 hari sejak transaksi pertama.',
     crumbHome: 'Beranda',
     crumb: 'Harga',
     title: 'Harga jelas, tanpa biaya tersembunyi',
-    desc: 'Semua fitur Pro gratis 30 hari, dihitung sejak transaksi pertama. Setelah itu pilih paket yang pas.',
+    desc: 'Semua fitur Pro gratis 14 hari, dihitung sejak transaksi pertama. Setelah itu pilih paket yang pas.',
     compareTitle: 'Bandingkan paket',
     colFeature: 'Fitur',
     colFree: 'Gratis',
@@ -68,7 +68,7 @@ const harga = {
       },
     ] as CompareGroup[],
     trial: {
-      title: 'Uji coba gratis 30 hari',
+      title: 'Uji coba gratis 14 hari',
       items: [
         'Semua fitur Pro terbuka',
         'Transaksi tanpa batas',

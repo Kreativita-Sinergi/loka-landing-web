@@ -115,9 +115,9 @@ export function CtaBand({ locale, photo }: { locale: Locale; photo?: boolean }) 
           </div>
           <div className="flex flex-1 flex-col justify-center gap-4 p-6 md:gap-5 md:py-14 md:pl-16">
             <h2 className="text-2xl font-bold text-white md:text-[40px] md:leading-tight"><SplitReveal text={photo ? 'Mulai jualan lebih rapi hari ini' : 'Siap mencoba Loka Kasir?'} /></h2>
-            <p className="text-[15px] text-[#c9cbd1] md:text-[17px]">Gratis 30 hari untuk semua fitur Pro. Tidak ada komitmen.</p>
+            <p className="text-[15px] text-[#c9cbd1] md:text-[17px]">Gratis 14 hari untuk semua fitur Pro. Tidak ada komitmen.</p>
             <div className="flex flex-col gap-3 pt-1 sm:flex-row">
-              <Magnetic><ButtonLink href={l.register} tone="accent" size="lg" className="hero-cta relative w-full overflow-hidden sm:w-auto">Coba Gratis 30 Hari</ButtonLink></Magnetic>
+              <Magnetic><ButtonLink href={l.register} tone="accent" size="lg" className="hero-cta relative w-full overflow-hidden sm:w-auto">Coba Gratis 14 Hari</ButtonLink></Magnetic>
               <Magnetic strength={0.18}><ButtonLink href={l.whatsapp('Halo tim Loka, saya mau tanya tentang Loka Kasir.')} tone="ghostDark" size="lg" icon={<WhatsAppIcon />} className="w-full sm:w-auto">Chat WhatsApp</ButtonLink></Magnetic>
             </div>
           </div>

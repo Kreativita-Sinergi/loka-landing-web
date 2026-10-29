@@ -13,7 +13,7 @@ const id = {
   hub: {
     metaTitle: 'Download Aplikasi Kasir untuk Android & Windows',
     metaDescription:
-      'Download Loka Kasir untuk HP dan tablet Android (Google Play), PC atau laptop Windows, dan file APK untuk mesin POS tanpa Play Store. Satu akun untuk semua perangkat. Gratis 30 hari pertama.',
+      'Download Loka Kasir untuk HP dan tablet Android (Google Play), PC atau laptop Windows, dan file APK untuk mesin POS tanpa Play Store. Satu akun untuk semua perangkat. Gratis 14 hari pertama.',
     title: 'Download aplikasi Loka Kasir',
     desc: 'Pilih sesuai perangkat kasir Anda. Satu akun bisa dipakai di HP, tablet, komputer, dan mesin POS.',
     howToTitle: 'Cara memasang',

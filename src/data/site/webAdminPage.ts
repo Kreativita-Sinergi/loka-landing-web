@@ -9,7 +9,7 @@ const id = {
   home: 'Beranda',
   compareTitle: 'Dua aplikasi, satu akun',
   gridTitle: 'Yang bisa diatur dari Web Admin',
-  points: ['Tidak perlu instal, cukup buka browser', 'Termasuk di semua paket', 'Gratis 30 hari semua fitur Pro'],
+  points: ['Tidak perlu instal, cukup buka browser', 'Termasuk di semua paket', 'Gratis 14 hari semua fitur Pro'],
   downloadLink: 'Download aplikasi kasir',
 };
 

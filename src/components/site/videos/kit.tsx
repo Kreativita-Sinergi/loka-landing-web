@@ -237,7 +237,7 @@ export function QrGlyph({ size = 180, color = C.ink, seed = 7 }: { size?: number
 }
 
 /** Penutup semua video: logo, kalimat manfaat, dan alamat situs. */
-export function Outro({ from, line, sub = 'Coba gratis 30 hari · lokakasir.id' }: { from: number; line: string; sub?: string }) {
+export function Outro({ from, line, sub = 'Coba gratis 14 hari · lokakasir.id' }: { from: number; line: string; sub?: string }) {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const stage = useContext(StageMode);

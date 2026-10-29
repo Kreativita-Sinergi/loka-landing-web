@@ -102,7 +102,7 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
   return (
     <header ref={headerRef} className="sticky z-40" style={{ top: -bannerH }}>
       <div ref={bannerRef} className="bg-ink px-5 py-2.5 text-center text-xs text-white md:text-[13px]">
-        Gratis 30 hari semua fitur Pro, dihitung sejak transaksi pertama.{' '}
+        Gratis 14 hari semua fitur Pro, dihitung sejak transaksi pertama.{' '}
         <a href={links.register} target="_blank" rel="noopener noreferrer" className="font-semibold text-accent hover:underline" onClick={() => trackSignUpClick('announcement')}>
           Daftar sekarang →
         </a>
@@ -194,7 +194,7 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
             <div className="border-b border-line" />
           </nav>
           <div className="mt-auto flex flex-col gap-2.5 px-5 pb-8">
-            <ButtonLink href={links.register} block onClick={() => trackSignUpClick('mobile-menu')}>Coba Gratis 30 Hari</ButtonLink>
+            <ButtonLink href={links.register} block onClick={() => trackSignUpClick('mobile-menu')}>Coba Gratis 14 Hari</ButtonLink>
             <ButtonLink href={links.login} tone="secondary" block>Masuk</ButtonLink>
           </div>
         </div>

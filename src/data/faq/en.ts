@@ -48,9 +48,9 @@ If you run a food business, also add your tables and turn on the kitchen display
     category: "Getting Started",
     question: "Is there a free trial?",
     answer:
-      `Yes — 30 days with every Pro feature open, up to 5 outlets, unlimited transactions, nothing to cancel.
+      `Yes — 14 days with every Pro feature open, up to 5 outlets, unlimited transactions, nothing to cancel.
 
-One detail worth knowing: the 30 days are counted from your first sale, not from the day you sign up. So you can create the account, take your time entering products, and install the app when you're actually ready — none of that eats into the trial.
+One detail worth knowing: the 14 days are counted from your first sale, not from the day you sign up. So you can create the account, take your time entering products, and install the app when you're actually ready — none of that eats into the trial.
 
 When it ends, you choose:
 • Free — the core register, 1 outlet, up to 50 sales a month, free indefinitely

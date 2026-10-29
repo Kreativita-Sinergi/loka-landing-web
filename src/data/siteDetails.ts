@@ -43,12 +43,12 @@ const metadataByLocale: Record<Locale, { title: string; description: string }> =
   en: {
     title: 'Loka Kasir — POS App for Small Shops, Cafés & Restaurants',
     description:
-      'A complete point-of-sale app for small businesses. Ring up sales, track stock, manage shifts and staff, and read your numbers from anywhere. Free for 30 days.',
+      'A complete point-of-sale app for small businesses. Ring up sales, track stock, manage shifts and staff, and read your numbers from anywhere. Free for 14 days.',
   },
   ms: {
     title: 'Loka Kasir — Aplikasi POS untuk Kedai, Kafe & Restoran',
     description:
-      'Aplikasi mesin daftar tunai (POS) lengkap untuk perniagaan kecil. Urus jualan, stok, syif, dan pekerja, serta baca laporan dari mana-mana. Percuma 30 hari.',
+      'Aplikasi mesin daftar tunai (POS) lengkap untuk perniagaan kecil. Urus jualan, stok, syif, dan pekerja, serta baca laporan dari mana-mana. Percuma 14 hari.',
   },
   ja: {
     title: 'Loka Kasir — 個人店・カフェ・飲食店のためのPOSレジアプリ',

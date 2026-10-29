@@ -11,9 +11,9 @@ const id = {
     titleA: 'Aplikasi kasir yang bikin jualan',
     titleB: 'lebih rapi',
     desc: 'Catat penjualan, cetak struk, pantau stok, dan cocokkan kas setiap tutup shift. Tetap bisa jualan walau internet sedang mati.',
-    primary: 'Coba Gratis 30 Hari',
+    primary: 'Coba Gratis 14 Hari',
     secondary: 'Lihat Harga',
-    trialNote: 'Tanpa kartu kredit. 30 hari dihitung sejak transaksi pertama — setelah itu otomatis pindah ke paket Gratis, data tetap tersimpan.',
+    trialNote: 'Tanpa kartu kredit. 14 hari dihitung sejak transaksi pertama — setelah itu otomatis pindah ke paket Gratis, data tetap tersimpan.',
     points: ['Bisa offline', 'Struk printer thermal', 'Ada paket gratis'],
     caption: 'Bisa dipakai di HP, tablet, PC, atau mesin POS Android yang sudah Anda punya.',
     imageAlt: 'Pemilik kafe berhijab tersenyum sambil memegang tablet berisi aplikasi Loka Kasir',
@@ -171,7 +171,7 @@ const id = {
   pricing: {
     eyebrow: 'Harga',
     title: 'Harga jelas, tanpa biaya tersembunyi',
-    desc: 'Semua fitur Pro gratis 30 hari. Setelah itu pilih paket yang pas.',
+    desc: 'Semua fitur Pro gratis 14 hari. Setelah itu pilih paket yang pas.',
   },
   faq: {
     eyebrow: 'FAQ',
@@ -182,8 +182,8 @@ const id = {
   },
   cta: {
     title: 'Mulai jualan lebih rapi hari ini',
-    desc: 'Gratis 30 hari untuk semua fitur Pro. Tidak ada komitmen.',
-    primary: 'Coba Gratis 30 Hari',
+    desc: 'Gratis 14 hari untuk semua fitur Pro. Tidak ada komitmen.',
+    primary: 'Coba Gratis 14 Hari',
     secondary: 'Chat WhatsApp',
   },
 };

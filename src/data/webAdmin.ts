@@ -33,7 +33,7 @@ const detailsByLocale: Record<Locale, { eyebrow: string; title: string; descript
       "Kasir memakai aplikasi di toko. Anda sebagai pemilik memegang Web Admin di browser — dari laptop, PC, maupun tablet, tanpa perlu pasang apa pun. Semua yang diatur di sini langsung berlaku di semua terminal kasir Anda.",
     // Ditegaskan karena banyak calon pengguna mengira Web Admin dijual terpisah.
     includedNote:
-      "Web Admin sudah termasuk di semua paket, termasuk masa gratis 30 hari. Akunnya sama dengan yang dipakai di aplikasi.",
+      "Web Admin sudah termasuk di semua paket, termasuk masa gratis 14 hari. Akunnya sama dengan yang dipakai di aplikasi.",
   },
   en: {
     eyebrow: "Web Admin",
@@ -41,7 +41,7 @@ const detailsByLocale: Record<Locale, { eyebrow: string; title: string; descript
     description:
       "Your staff work the app at the counter. You keep Web Admin in a browser — laptop, desktop, or tablet, with nothing to install. Anything you change here reaches every register you own straight away.",
     includedNote:
-      "Web Admin is included in every plan, the free 30 days included. It's the same account you use in the app.",
+      "Web Admin is included in every plan, the free 14 days included. It's the same account you use in the app.",
   },
   ms: {
     eyebrow: "Web Admin",
@@ -49,7 +49,7 @@ const detailsByLocale: Record<Locale, { eyebrow: string; title: string; descript
     description:
       "Pekerja anda menggunakan aplikasi di kaunter. Anda memegang Web Admin dalam pelayar — komputer riba, PC, atau tablet, tanpa perlu memasang apa-apa. Apa sahaja yang anda ubah di sini sampai ke setiap kaunter dengan serta-merta.",
     includedNote:
-      "Web Admin disertakan dalam semua pelan, termasuk tempoh percuma 30 hari. Ia menggunakan akaun yang sama seperti dalam aplikasi.",
+      "Web Admin disertakan dalam semua pelan, termasuk tempoh percuma 14 hari. Ia menggunakan akaun yang sama seperti dalam aplikasi.",
   },
   ja: {
     eyebrow: "管理画面",
@@ -459,7 +459,7 @@ const pageCopyByLocale: Record<Locale, WebAdminPageCopy> = {
     featuresHeading: "Semua yang bisa Anda kerjakan di Web Admin",
     featuresNoteLead: "Fitur tanpa label tersedia di semua paket. Label ",
     featuresNoteTail:
-      " menandai fitur yang mengikuti paket berlangganan — semuanya bisa dicoba gratis selama 30 hari pertama.",
+      " menandai fitur yang mengikuti paket berlangganan — semuanya bisa dicoba gratis selama 14 hari pertama.",
     crossSellTitle: "Untuk melayani pembeli, pakai aplikasi kasirnya",
     crossSellBody:
       "Web Admin mengurus sisi pengelolaan. Transaksi di depan pembeli dikerjakan lewat aplikasi kasir di HP/tablet Android atau PC/laptop Windows — akunnya sama dengan yang ini.",
@@ -503,7 +503,7 @@ const pageCopyByLocale: Record<Locale, WebAdminPageCopy> = {
     featuresHeading: "Everything you can do in Web Admin",
     featuresNoteLead: "Features without a label are on every plan. A ",
     featuresNoteTail:
-      " label means the feature follows your subscription — and all of them are open during the free 30 days.",
+      " label means the feature follows your subscription — and all of them are open during the free 14 days.",
     crossSellTitle: "Serving customers happens in the register app",
     crossSellBody:
       "Web Admin is the management side. The counter itself runs on the register app — Android phone or tablet, or a Windows PC — using this same account.",
@@ -547,7 +547,7 @@ const pageCopyByLocale: Record<Locale, WebAdminPageCopy> = {
     featuresHeading: "Semua yang boleh anda lakukan di Web Admin",
     featuresNoteLead: "Ciri tanpa label ada pada semua pelan. Label ",
     featuresNoteTail:
-      " bermakna ciri itu mengikut langganan anda — dan kesemuanya terbuka sepanjang 30 hari percuma.",
+      " bermakna ciri itu mengikut langganan anda — dan kesemuanya terbuka sepanjang 14 hari percuma.",
     crossSellTitle: "Melayan pelanggan dilakukan dalam aplikasi kaunter",
     crossSellBody:
       "Web Admin ialah bahagian pengurusan. Kaunternya sendiri berjalan pada aplikasi kaunter — telefon atau tablet Android, atau PC Windows — menggunakan akaun yang sama.",

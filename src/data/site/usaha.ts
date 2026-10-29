@@ -59,7 +59,7 @@ const id: Record<BusinessSlug, BusinessPage> = {
       { icon: 'clock', title: 'Analisis jam ramai', desc: 'Atur jadwal karyawan sesuai jam paling sibuk.', pro: true },
     ],
     planTitle: 'Pro, Rp59.000/bulan',
-    planNote: 'QR order, layar dapur, resep & HPP ada di paket Pro. Coba gratis 30 hari dulu.',
+    planNote: 'QR order, layar dapur, resep & HPP ada di paket Pro. Coba gratis 14 hari dulu.',
     faq: [
       'Apa itu variasi produk dan bagaimana cara menggunakannya?',
       'Apakah stok bahan baku berkurang otomatis saat ada transaksi?',
@@ -92,7 +92,7 @@ const id: Record<BusinessSlug, BusinessPage> = {
       { icon: 'user', title: 'Mode pelayan', desc: 'Pelayan membuat pesanan dari meja tanpa akses pembayaran.' },
     ],
     planTitle: 'Pro, Rp59.000/bulan',
-    planNote: 'Denah meja, layar dapur, dan QR order per meja ada di paket Pro. Coba gratis 30 hari dulu.',
+    planNote: 'Denah meja, layar dapur, dan QR order per meja ada di paket Pro. Coba gratis 14 hari dulu.',
     faq: [
       'Bagaimana alur order untuk restoran dan kafe (FNB)?',
       'Apa saja peran (role) yang tersedia dan apa bedanya?',
@@ -171,7 +171,7 @@ const common = {
   id: {
     crumbHome: 'Beranda',
     crumbSection: 'Jenis Usaha',
-    primary: 'Coba Gratis 30 Hari',
+    primary: 'Coba Gratis 14 Hari',
     whatsapp: 'Chat WhatsApp',
     painEyebrow: 'Masalah yang sering terjadi',
     featEyebrow: 'Fitur unggulan',

@@ -36,13 +36,13 @@ const copyByLocale: Record<Locale, AndroidPageCopy> = {
   id: {
     metaTitle: "Download APK Android (Huawei)",
     metaDescription:
-      "Unduh APK Loka Kasir untuk tablet dan HP Android tanpa Google Play, seperti Huawei (HarmonyOS/EMUI). Lengkap dengan cara memasangnya. Gratis 30 hari pertama.",
+      "Unduh APK Loka Kasir untuk tablet dan HP Android tanpa Google Play, seperti Huawei (HarmonyOS/EMUI). Lengkap dengan cara memasangnya. Gratis 14 hari pertama.",
     eyebrow: "Loka Kasir untuk Huawei & Android tanpa Play Store",
     title: "Download APK aplikasi kasir",
     intro:
       "Tablet atau HP Huawei tidak bisa memasang dari Google Play. Unduh file APK di bawah ini dan pasang langsung — aplikasinya sama persis dengan versi Play Store, dengan akun dan data yang sama.",
     downloadLabel: "Download APK",
-    updateNote: "Gratis 30 hari pertama · Tidak diperbarui otomatis",
+    updateNote: "Gratis 14 hari pertama · Tidak diperbarui otomatis",
     howToHeading: "Cara memasang di tablet Huawei",
     steps: [
       {
@@ -89,13 +89,13 @@ const copyByLocale: Record<Locale, AndroidPageCopy> = {
   en: {
     metaTitle: "Download the Android APK (Huawei)",
     metaDescription:
-      "Download the Loka Kasir APK for Android tablets and phones without Google Play, such as Huawei devices (HarmonyOS/EMUI), with step-by-step install instructions. Free for the first 30 days.",
+      "Download the Loka Kasir APK for Android tablets and phones without Google Play, such as Huawei devices (HarmonyOS/EMUI), with step-by-step install instructions. Free for the first 14 days.",
     eyebrow: "Loka Kasir for Huawei & Android without Play Store",
     title: "Download the register app APK",
     intro:
       "Huawei tablets and phones can't install from Google Play. Download the APK below and install it directly — it's the exact same app as the Play Store version, with the same account and data.",
     downloadLabel: "Download APK",
-    updateNote: "Free for the first 30 days · Doesn't update itself",
+    updateNote: "Free for the first 14 days · Doesn't update itself",
     howToHeading: "Installing on a Huawei tablet",
     steps: [
       {
@@ -142,13 +142,13 @@ const copyByLocale: Record<Locale, AndroidPageCopy> = {
   ms: {
     metaTitle: "Muat Turun APK Android (Huawei)",
     metaDescription:
-      "Muat turun APK Loka Kasir untuk tablet dan telefon Android tanpa Google Play, seperti peranti Huawei (HarmonyOS/EMUI), berserta cara memasangnya. Percuma 30 hari pertama.",
+      "Muat turun APK Loka Kasir untuk tablet dan telefon Android tanpa Google Play, seperti peranti Huawei (HarmonyOS/EMUI), berserta cara memasangnya. Percuma 14 hari pertama.",
     eyebrow: "Loka Kasir untuk Huawei & Android tanpa Play Store",
     title: "Muat turun APK aplikasi kaunter",
     intro:
       "Tablet dan telefon Huawei tidak boleh memasang daripada Google Play. Muat turun APK di bawah dan pasang terus — aplikasinya sama seperti versi Play Store, dengan akaun dan data yang sama.",
     downloadLabel: "Muat turun APK",
-    updateNote: "Percuma 30 hari pertama · Tidak dikemas kini secara automatik",
+    updateNote: "Percuma 14 hari pertama · Tidak dikemas kini secara automatik",
     howToHeading: "Cara memasang pada tablet Huawei",
     steps: [
       {
