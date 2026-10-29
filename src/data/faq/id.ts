@@ -42,7 +42,7 @@ Untuk bisnis FNB: tambahkan juga data meja dan aktifkan Kitchen Display System (
     category: "Memulai",
     question: "Apakah ada masa percobaan gratis?",
     answer:
-      `Ya! Setiap akun baru mendapat 14 hari gratis dengan akses penuh ke semua fitur Pro — tanpa batas transaksi, multi-outlet sampai 5 cabang, tanpa kartu kredit dan tanpa komitmen. Masa 14 hari dihitung sejak transaksi pertama, bukan sejak mendaftar.
+      `Ya! Setiap akun baru mendapat 14 hari gratis dengan akses penuh ke semua fitur Pro — tanpa batas transaksi, multi-outlet sampai 5 cabang, dan tanpa komitmen. Masa 14 hari dihitung sejak transaksi pertama, bukan sejak mendaftar.
 
 Kalau tidak memilih paket apa pun, akun otomatis pindah ke paket Gratis — produk, pelanggan, dan riwayat transaksi tetap tersimpan.
 

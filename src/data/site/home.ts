@@ -13,7 +13,7 @@ const id = {
     desc: 'Catat penjualan, cetak struk, pantau stok, dan cocokkan kas setiap tutup shift. Tetap bisa jualan walau internet sedang mati.',
     primary: 'Coba Gratis 14 Hari',
     secondary: 'Lihat Harga',
-    trialNote: 'Tanpa kartu kredit. 14 hari dihitung sejak transaksi pertama — setelah itu otomatis pindah ke paket Gratis, data tetap tersimpan.',
+    trialNote: '14 hari dihitung sejak transaksi pertama — setelah itu otomatis pindah ke paket Gratis, data tetap tersimpan.',
     points: ['Bisa offline', 'Struk printer thermal', 'Ada paket gratis'],
     caption: 'Bisa dipakai di HP, tablet, PC, atau mesin POS Android yang sudah Anda punya.',
     imageAlt: 'Pemilik kafe berhijab tersenyum sambil memegang tablet berisi aplikasi Loka Kasir',
