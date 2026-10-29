@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowRight, PlayCircle } from 'lucide-react';
+import { statSync } from 'node:fs';
+import { join } from 'node:path';
+import { ArrowRight, FileDown, PlayCircle } from 'lucide-react';
 
 import { LOCALES, type Locale } from '@/data/localized';
 import { siteDetails } from '@/data/siteDetails';
@@ -27,6 +29,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+/** Panduan PDF — dibangkitkan dari data panduan yang sama (npm run panduan:pdf). */
+const PDF_HREF = '/downloads/panduan-loka-kasir.pdf';
+
+function pdfSize() {
+  try {
+    const mb = statSync(join(process.cwd(), 'public', PDF_HREF)).size / (1024 * 1024);
+    return `PDF · ${mb.toLocaleString('id-ID', { maximumFractionDigits: 1 })} MB`;
+  } catch {
+    return 'PDF';
+  }
+}
+
 export default async function PanduanPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: raw } = await params;
   if (!(LOCALES as readonly string[]).includes(raw)) notFound();
@@ -38,6 +52,19 @@ export default async function PanduanPage({ params }: { params: Promise<{ locale
   return (
     <PanduanShell locale={locale}>
       <div className="flex flex-col gap-12 md:gap-14">
+        <a href={PDF_HREF} download className="group flex items-center gap-4 rounded-2xl border border-line bg-white p-4 transition hover:border-[#cdd2dc] hover:shadow-[0_12px_28px_rgba(16,24,40,0.10)] md:gap-5 md:p-5">
+          <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand">
+            <FileDown size={24} aria-hidden />
+          </span>
+          <span className="flex min-w-0 flex-1 flex-col gap-1">
+            <span className="text-base font-bold group-hover:text-brand md:text-[17px]">{c.pdfTitle}</span>
+            <span className="text-[13px] leading-snug text-body md:text-sm">{c.pdfDesc}</span>
+            <span className="text-xs font-semibold text-mute">{pdfSize()}</span>
+          </span>
+          <span className="hidden shrink-0 items-center gap-1.5 rounded-xl bg-ink px-4 py-2.5 text-sm font-semibold text-white sm:inline-flex">
+            <FileDown size={16} aria-hidden />{c.pdfCta}
+          </span>
+        </a>
         <div className="flex flex-col gap-5 md:gap-6">
           <div className="flex flex-col gap-2">
             <p className="text-[13px] font-bold tracking-[0.1em] text-brand uppercase">{start.title}</p>

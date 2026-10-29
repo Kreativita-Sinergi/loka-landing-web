@@ -1,0 +1,456 @@
+{
+  "_sumber": "Panduan 'Yang baru' aplikasi Loka Kasir (loka-kasir-app, lib/features/home/views/widgets/whats_new_sheet.dart), dikurasi 29 Okt 2026: jalur menu Pengaturan disesuaikan dengan pengelompokan 1.49; panduan fitur yang backend-nya belum di produksi tidak dimuat.",
+  "groups": [
+    {
+      "group": "Pesanan & pembayaran",
+      "guides": [
+        {
+          "title": "Pisah tagihan per tamu",
+          "since": "1.48.0",
+          "steps": [
+            "Masukkan semua pesanan ke keranjang, lalu ketuk Pisah di sebelah Tahan.",
+            "Pilih item dan jumlah yang dibayar tamu pertama, ketuk Pisahkan, lalu bayar seperti biasa. Sisanya ditahan otomatis.",
+            "Setelah lunas, ketuk Lanjutkan di kartu \"Sisa tagihan belum dibayar\" untuk menagih sisanya, atau Pisah lagi untuk tamu berikutnya."
+          ]
+        },
+        {
+          "title": "Bayar pakai saldo",
+          "since": "1.45.0",
+          "steps": [
+            "Di layar pembayaran, pilih pelanggan terdaftar — saldonya tampil di samping poin.",
+            "Ketuk \"Saldo Pelanggan · Rp…\", lalu pilih Semua, Setengah, atau Nominal lain. Sisa saldo sesudahnya langsung terlihat.",
+            "Bila tagihan belum lunas, sisanya otomatis diarahkan ke Tunai — ketuk Bayar Pas lalu Proses Pembayaran. Sisa saldo tercetak di struk."
+          ]
+        },
+        {
+          "title": "Tagih ongkir untuk pesanan antar",
+          "since": "1.46.0",
+          "steps": [
+            "Buka Pengaturan › Penjualan › Transaksi & Pembayaran, lalu di bagian Antar Pesanan nyalakan \"Toko mengantar sendiri\" dan Simpan.",
+            "Di Kasir pilih Bawa Pulang (bukan Makan di Tempat), dan kanal Langsung — pesanan GoFood/GrabFood diantar platformnya, jadi kolom ongkir tidak muncul.",
+            "Isi kolom Ongkir di atas keranjang. Ongkir ditagih sebagai baris sendiri di nota, tanpa pajak dan diskon. Toko yang tidak mengantar cukup membiarkan saklarnya mati."
+          ]
+        },
+        {
+          "title": "Produk yang harganya diketik saat jual",
+          "since": "1.43.0",
+          "steps": [
+            "Buka Produk → Tambah atau ubah produk, nyalakan \"Harga diketik saat jual\".",
+            "Harga jual boleh dikosongkan — kalau diisi, menjadi saran saat menjual.",
+            "Di Kasir, ketuk produknya, ketik harganya, lalu tambahkan ke keranjang."
+          ]
+        },
+        {
+          "title": "Cetak ulang struk terakhir",
+          "since": "1.43.0",
+          "steps": [
+            "Selesaikan pembayaran seperti biasa.",
+            "Bila pembeli minta struk lagi, buka panel shift kasir dari layar Kasir.",
+            "Ketuk \"Cetak ulang struk terakhir\". Struk transaksi sebelumnya dicetak lagi tanpa mencari di Riwayat."
+          ]
+        },
+        {
+          "title": "Harga ojol (GoFood, GrabFood, ShopeeFood)",
+          "since": "1.40.0",
+          "steps": [
+            "Buka Lainnya → Kelola Toko → Kanal Ojol, nyalakan kanalnya, lalu atur markup atau komisinya.",
+            "Bila perlu, isi harga khusus per produk untuk kanal itu.",
+            "Di Kasir, pilih kanal pesanan sebelum menagih — harga kanal tampil di keranjang, layar bayar, dan struk."
+          ]
+        },
+        {
+          "title": "Jadikan pembeli member saat transaksi",
+          "since": "1.41.2",
+          "steps": [
+            "Di layar Kasir ketuk Pelanggan, lalu pilih pelanggan terdaftar.",
+            "Ketuk \"Jadikan member\" di bawah namanya.",
+            "Simpan — harga member langsung berlaku di nota itu.",
+            "Pembeli baru: ketuk \"Daftarkan\", isi nomor HP (wajib), centang Member, lalu Daftarkan."
+          ]
+        },
+        {
+          "title": "Buku Bon: rekap & terima bayar sekaligus",
+          "since": "1.40.0",
+          "steps": [
+            "Buka Lainnya → Pelanggan & Bon → Rekap Kasbon, lalu pilih rentang tanggalnya.",
+            "Ketuk nama pelanggan untuk membuka buku bonnya: bon, pembayaran, dan sisa berjalan.",
+            "Tekan Bayar, masukkan nominal yang diterima — otomatis dibagi ke bon terlama lebih dulu.",
+            "Batas bon dan tanggal tagih diatur di Pelanggan → pilih pelanggan → Syarat bon. Pengingat WhatsApp ada di buku bon."
+          ]
+        },
+        {
+          "title": "Faktur dengan alamat pembeli",
+          "since": "1.49.0",
+          "steps": [
+            "Buka transaksi di Riwayat, ketuk ⋮ › Cetak faktur.",
+            "Nama dan No. HP pelanggan terisi sendiri — ubah atau tambahkan alamat sesuai pembeli.",
+            "Pilih kertas: continuous form ½ atau penuh untuk printer dot-matrix, A4 untuk printer biasa. Ketuk Cetak, atau Kirim PDF ke WhatsApp pembeli."
+          ]
+        },
+        {
+          "title": "Penawaran harga sampai jadi transaksi",
+          "since": "1.49.0",
+          "steps": [
+            "Buka Pengaturan › Penjualan, nyalakan Penawaran Harga. Lalu masukkan barang ke keranjang dan ketuk Penawaran di sebelah Tahan.",
+            "Isi nama, alamat, dan No. HP, atur tanggal berlaku, lalu Cetak atau Kirim PDF. Keranjang dikosongkan untuk pembeli berikutnya.",
+            "Saat pembeli kembali, buka Riwayat › ⋮ › Penawaran Harga, pilih penawarannya, ketuk Jadikan transaksi, lalu bayar seperti biasa — harganya tetap harga penawaran. Pembeli minta ubah barang? Ketuk Revisi barang, ubah keranjang, lalu buat penawaran lagi."
+          ]
+        },
+        {
+          "title": "Surat jalan, kuitansi, tagihan, PO & transfer",
+          "since": "1.49.0",
+          "steps": [
+            "Surat jalan & kuitansi: buka transaksi di Riwayat, ketuk ⋮ › Surat jalan (dokumen) atau Cetak kuitansi. Alamat pembeli sama dengan yang diisi di faktur. Surat jalan untuk barang yang belum dibayar ada di Pesanan Berjalan.",
+            "Tagihan bon: buka Riwayat › ⋮ › Rekap kasbon per pelanggan, pilih pelanggan, lalu ketuk Cetak tagihan. Kuitansi nota yang dicicil: pilih pembayaran mana yang dibuatkan kuitansi.",
+            "PO ke supplier: di Pembelian ketuk ⋮ pada PO › Cetak / kirim PO. Surat jalan transfer: buka transfer di Transfer Stok, lalu ketuk Cetak surat jalan."
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Produk & stok",
+      "guides": [
+        {
+          "title": "Isi produk dari katalog",
+          "since": "1.43.1",
+          "steps": [
+            "Buka Kasir. Kalau belum ada produk, ketuk \"Tambah dari Katalog Bersama\" (atau dari Produk → Katalog).",
+            "Cari nama barangnya, pindai barcode kemasannya, atau telusuri per rak, lalu centang barang yang Anda jual.",
+            "Periksa harga jual dan stok awal, lalu ketuk \"Tambahkan\". Barangnya langsung muncul di Kasir."
+          ]
+        },
+        {
+          "title": "Pilihan varian produk",
+          "since": "1.41.0",
+          "steps": [
+            "Buka Produk, lalu Tambah Produk (atau ubah produk yang ada).",
+            "Nyalakan \"Punya Varian\" dan isi Nama pilihan, mis. Suhu.",
+            "Di kolom Pilihan ketik \"Panas\" lalu tekan Enter, ketik \"Dingin\" lalu Enter.",
+            "Ketuk × pada sebuah pilihan untuk menghapusnya. Isi harga tiap varian, lalu simpan."
+          ]
+        },
+        {
+          "title": "Pakai Grup Ekstra",
+          "since": "1.44.0",
+          "steps": [
+            "Buka Produk → tab Ekstra, ketuk \"+ Grup Ekstra\". Beri nama (mis. Level), pilih \"Pilih salah satu\" atau \"Pilih beberapa\", dan nyalakan Wajib bila perlu.",
+            "Isi pilihannya beserta harga tambahan, urutkan dengan panah, lalu centang produk yang memakainya.",
+            "Di Kasir, ketuk produknya: pilih ekstra, lalu \"Tambahkan ke Keranjang\". Grup wajib yang belum dipilih ditandai merah."
+          ]
+        },
+        {
+          "title": "Harga dari ekstra",
+          "since": "1.44.0",
+          "steps": [
+            "Buka produknya di Produk, gulir ke bagian Ekstra, lalu nyalakan \"Harga dari ekstra\".",
+            "Pasang grup yang menentukan harganya lewat \"Pasang grup yang ada\" — mis. Prasmanan, atau Panas/Dingin untuk minuman.",
+            "Di Kasir, totalnya dihitung dari ekstra yang dipilih. Produk ini baru bisa masuk keranjang setelah ekstranya dipilih."
+          ]
+        },
+        {
+          "title": "Atur jumlah per ekstra",
+          "since": "1.45.1",
+          "steps": [
+            "Di Kasir, ketuk produk yang punya ekstra (mis. Seblak Prasmanan), lalu ketuk ekstranya — muncul tombol − 1 + di dalam pilihan itu.",
+            "Ketuk + di pilihan itu untuk menambah jumlahnya (mis. Snack ×3). Ekstra lain yang dipilih sesudahnya mulai dari 1; ketuk − saat 1 untuk membatalkannya.",
+            "Angka di bawah layar adalah jumlah PORSI. Ketuk \"Tambahkan ke Keranjang\" — keranjang dan struk menulis tiap ekstra beserta jumlahnya."
+          ]
+        },
+        {
+          "title": "Isi modal ekstra",
+          "since": "1.45.0",
+          "steps": [
+            "Buka Produk → tab Ekstra → pilih grupnya (mis. Prasmanan atau Panas Dingin).",
+            "Isi kolom Modal di samping Harga tambahan untuk setiap pilihan — mis. Telur: harga Rp5.000, modal Rp2.500.",
+            "Simpan. Penjualan berikutnya menghitung modal topping ke laba kotor; produk \"harga dari ekstra\" tidak lagi tampil sebagai belum punya harga modal."
+          ]
+        },
+        {
+          "title": "Buat paket",
+          "since": "1.46.0",
+          "steps": [
+            "Buka Produk › Paket, lalu ketuk Tambah Paket. Dari Rapor Toko, ketuk \"Buat paket\" pada saran \"Jadikan paket\" — isinya sudah terisi.",
+            "Cari produk dan ketuk untuk menambahkannya; atur jumlahnya dengan − dan +. Produk bervarian tampil per varian (mis. Kaos · L), pilih varian yang dijual dalam paket.",
+            "Isi harga paket. Di bawahnya terlihat harga kalau dibeli satuan, hemat pembeli, serta modal dan untungnya. Simpan — paket muncul di Kasir di bawah kategori Paket."
+          ]
+        },
+        {
+          "title": "Jual per dus/pak dengan harga sendiri",
+          "since": "1.40.0",
+          "steps": [
+            "Buka Lainnya → Produk, ubah produknya, lalu tambahkan Satuan jual lain: nama (Dus), isi per dus, harga, dan barcode dus bila ada.",
+            "Di Kasir, ketuk produk itu dan pilih satuannya — atau pindai barcode dusnya langsung.",
+            "Stok tetap dihitung per satuan dasar (pcs); Stok Masuk juga bisa dicatat per dus."
+          ]
+        },
+        {
+          "title": "Jual per meter atau per m²",
+          "since": "1.43.0",
+          "steps": [
+            "Buka Produk → Tambah, nyalakan \"Dijual berdasarkan ukuran\".",
+            "Pilih jenis ukuran Panjang (meter/cm) atau Luas (m²), lalu isi harga per meter atau per m².",
+            "Di Kasir, ketuk produknya: ketik panjangnya, atau panjang × lebar untuk m². Totalnya dihitung otomatis."
+          ]
+        },
+        {
+          "title": "Pakai Loka untuk toko bangunan",
+          "since": "1.43.0",
+          "steps": [
+            "Pemilik baru: saat mendaftar pilih Ritel, lalu Bidang Usaha \"Toko Bangunan / Material\".",
+            "Toko yang sudah berjalan: Pengaturan → Profil & Akun → Bidang Usaha, pilih Toko Bangunan.",
+            "Saat menjual barang antar, ketuk \"Isian tambahan\" di keranjang dan isi Alamat Kirim serta Nama Proyek."
+          ]
+        },
+        {
+          "title": "Lihat mutasi stok satu produk",
+          "since": "1.47.0",
+          "steps": [
+            "Buka Produk, ketuk ⋮ di baris produk, lalu pilih Lihat mutasi stok.",
+            "Mutasi Stok terbuka khusus produk itu. Persempit dengan jenis (mis. Terjual), outlet, atau tanggal; ekspor CSV ikut penyaringnya.",
+            "Untuk ganti produk, ketuk chip nama produk di paling kiri dan cari nama, SKU, atau barcode. Tanda × kembali ke semua produk."
+          ]
+        },
+        {
+          "title": "Purchase Order untuk produk jadi",
+          "since": "1.40.0",
+          "steps": [
+            "Buka Lainnya → Pembelian & Stok → Purchase Order, lalu Tambah.",
+            "Pilih tab Produk, tambahkan produk/varian, jumlah, dan satuan belinya (mis. Dus). PO langsung berstatus Dipesan.",
+            "Saat barang datang, buka PO itu dan Terima barang: stok outlet bertambah dan harga modal bisa ikut diperbarui."
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Pelanggan & member",
+      "guides": [
+        {
+          "title": "Berikan kartu member",
+          "since": "1.45.1",
+          "steps": [
+            "Buka Pelanggan & Bon → Pelanggan → pilih pelanggan → Kartu member.",
+            "Ketuk Tampilkan lalu minta pelanggan memotret QR-nya, atau ketuk Simpan / Bagikan untuk mengirim gambarnya. Bisa juga dicetak.",
+            "Pelanggan cukup memindai QR itu kapan saja untuk melihat saldo dan poinnya. Bila kartunya hilang, ketuk Buat kartu baru — kartu lama langsung tidak berlaku."
+          ]
+        },
+        {
+          "title": "Izinkan kasir menandai member",
+          "since": "1.41.2",
+          "steps": [
+            "Masuk dengan akun pemilik, buka Pengaturan → Peran & Hak Akses.",
+            "Pilih peran Kasir.",
+            "Di kelompok Pelanggan, centang \"Tandai Member\", lalu simpan.",
+            "Minta kasir masuk ulang (Kunci Kasir lalu PIN) supaya izinnya terbaca."
+          ]
+        },
+        {
+          "title": "Isi saldo & kirim link cek saldo",
+          "since": "1.45.0",
+          "steps": [
+            "Buka Pelanggan & Bon → Pelanggan → pilih pelanggan → Isi saldo.",
+            "Isi nominal dan pilih cara bayarnya (Tunai, Transfer, QRIS). Tunai otomatis tercatat sebagai kas masuk di laci — kasir harus sedang buka.",
+            "Ketuk \"Kirim bukti ke WhatsApp\", atau \"Kirim link cek saldo\" di halaman pelanggan, supaya pelanggan bisa mengecek saldonya sendiri."
+          ]
+        },
+        {
+          "title": "Sapa pelanggan yang mulai jarang datang",
+          "since": "1.46.0",
+          "steps": [
+            "Buka Laporan › Panggil Balik. Pelanggan dikelompokkan: Mulai telat, Hilang, dan Baru sekali — menurut ritme datang masing-masing.",
+            "Ketuk Sapa pada pelanggan. Pesan sudah tersusun, termasuk menu kesukaannya bila tercatat; pilih voucher kangen bila mau (potongan Rp atau %).",
+            "Ketuk \"Kirim lewat WhatsApp\". Pelanggan yang kembali dalam 30 hari terhitung di angka \"Kembali (30 hari)\"."
+          ]
+        },
+        {
+          "title": "Nyalakan QR penilaian di struk",
+          "since": "1.46.0",
+          "steps": [
+            "Buka Laporan › Panggil Balik, lalu tab Penilaian.",
+            "Nyalakan \"QR penilaian di struk\". QR tercetak di bawah struk outlet ini, juga saat offline, dan ikut di struk PDF/WhatsApp.",
+            "Penilaian masuk ke tab yang sama. Nilai 1–3 bintang langsung dikabarkan ke pemilik lewat notifikasi; nomor WhatsApp pembeli masuk daftar pelanggan bila ia setuju."
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Meja & sewa",
+      "guides": [
+        {
+          "title": "Sewa meja/PS: Bayar dulu",
+          "since": "1.41.0",
+          "steps": [
+            "Buka Daftar Meja, lalu ketuk \"Mulai sewa\" pada meja yang kosong.",
+            "Pilih paketnya (mis. Paket 1 Jam).",
+            "Di bagian Pembayaran pilih \"Bayar dulu\". Atur jumlah paket dan nama pelanggan bila perlu.",
+            "Tekan \"Bayar Rp…\" dan selesaikan pembayarannya seperti biasa.",
+            "Waktu mulai berjalan setelah lunas. Bila main lewat dari paketnya, kelebihannya ditagih saat meja dihentikan."
+          ]
+        },
+        {
+          "title": "Sewa meja/PS: Gratis",
+          "since": "1.41.0",
+          "steps": [
+            "Buka Daftar Meja, lalu ketuk \"Mulai sewa\" pada meja yang kosong dan pilih paketnya.",
+            "Di bagian Pembayaran pilih \"Gratis\", lalu tulis alasannya (mis. Tamu pemilik).",
+            "Tekan \"Mulai gratis\". Kasir akan diminta PIN pemilik atau supervisor.",
+            "Saat main selesai, tekan \"Selesai\" — meja langsung kosong tanpa nota.",
+            "Semua sewa gratis tercatat di Log Aktivitas: siapa, kapan, alasan, dan yang menyetujui."
+          ]
+        },
+        {
+          "title": "Meja gratis hari ini",
+          "since": "1.42.0",
+          "steps": [
+            "Buka Daftar Meja, ketuk lama (atau ketuk ⋯) meja rental yang mau digratiskan.",
+            "Pilih \"Gratiskan meja ini hari ini\" — atau \"Acak meja gratis hari ini\" supaya sistem yang memilih.",
+            "Kartu mejanya berlabel GRATIS hari ini. Pelanggan yang memindai QR meja itu melihatnya dan bisa mengirim permintaan mulai.",
+            "Terima permintaannya seperti biasa; sesi pertama hari itu tercatat gratis. Besok meja kembali berbayar — pilih lagi bila mau."
+          ]
+        },
+        {
+          "title": "Harga member sewa meja",
+          "since": "1.48.0",
+          "steps": [
+            "Buka Produk, edit produk sewa meja, isi Harga member, lalu Simpan.",
+            "Di Daftar Meja, ketuk meja, pilih paket, lalu di bagian Pelanggan member pilih pelanggannya. Tarif member tampil dengan tarif biasa dicoret.",
+            "Pembeli yang scan QR meja cukup mengisi nomor HP member. Tarif dikunci saat meja menyala, jadi tagihannya otomatis memakai harga member."
+          ]
+        },
+        {
+          "title": "Atur siapa yang boleh mengubah meja & QR",
+          "since": "1.42.1",
+          "steps": [
+            "Masuk dengan akun pemilik, buka Pengaturan → Peran & Hak Akses, lalu pilih perannya (mis. Kasir).",
+            "Di kelompok Transaksi & Kasir: \"Kelola Meja\" untuk Tandai dipesan, \"Atur Meja & QR\" untuk Tambah, Edit, Hapus meja, dan Buat ulang QR.",
+            "Biarkan \"Atur Meja & QR\" tidak dicentang untuk kasir bila QR meja sudah ditempel, lalu simpan.",
+            "Minta karyawan masuk ulang (Kunci Kasir lalu PIN) supaya izinnya terbaca. Admin dan manajer yang tombol Tambah Meja-nya hilang juga cukup masuk ulang."
+          ]
+        },
+        {
+          "title": "Kembalikan meja yang terhapus beserta QR-nya",
+          "since": "1.42.1",
+          "steps": [
+            "Buka Daftar Meja di outlet tempat meja itu dihapus, lalu ketuk Tambah.",
+            "Isi nomor meja persis sama dengan yang terhapus (besar-kecil huruf tidak berpengaruh), pilih jenisnya, lalu simpan.",
+            "Meja kembali dengan QR lamanya. Pindai QR yang tertempel untuk memastikan menunya terbuka lagi."
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Untuk pemilik",
+      "guides": [
+        {
+          "title": "Baca Rapor Toko",
+          "since": "1.46.0",
+          "steps": [
+            "Buka Laporan › Rapor Toko, atau ketuk kartu \"Rapor toko minggu ini\" di Beranda.",
+            "Pilih 7 hari atau 30 hari. Lima kotak di bawah nilai menunjukkan pilar mana yang kuat dan mana yang belum terukur.",
+            "Saran dikelompokkan menjadi Tambah & perbanyak, Peluang, Benahi, dan Kurangi, diurutkan dari perkiraan rupiah terbesar. Ketuk tombol di bawah saran untuk langsung mengerjakannya (mis. Isi harga modal, Buat pesanan pembelian)."
+          ]
+        },
+        {
+          "title": "Hitung pajak di Pojok Pajak",
+          "since": "1.46.0",
+          "steps": [
+            "Buka Laporan › Pojok Pajak (hanya pemilik).",
+            "Isi Profil pajak: jenis wajib pajak (orang pribadi, PT perorangan, koperasi, atau CV / firma / PT biasa) dan omzet di luar Loka bila ada — ini menentukan bagian Rp500 juta yang bebas pajak.",
+            "Ketuk bulan yang terutang untuk menandai sudah setor (boleh isi NTPN). Biarkan \"Ingatkan setor tiap tanggal 10\" menyala supaya tidak terlewat. Ini perkiraan, bukan nasihat pajak."
+          ]
+        },
+        {
+          "title": "Rinci biaya operasional",
+          "since": "1.45.0",
+          "steps": [
+            "Buka Lainnya → Laporan → Pengaturan Keuangan.",
+            "Ketuk Sewa tempat, Gaji karyawan, Listrik & air, atau Biaya lain, lalu isi nominal per bulannya. Totalnya dihitung otomatis.",
+            "Simpan. Laba bersih di Profitabilitas memotong biaya ini sebanding panjang periode laporan."
+          ]
+        },
+        {
+          "title": "Atur komisi penjual",
+          "since": "1.47.0",
+          "steps": [
+            "Buka Produk, edit produk yang berkomisi, lalu di bagian Komisi penjual pilih Nominal (Rp per item) atau Persen dan isi besarannya. Simpan.",
+            "Di Kasir, begitu produk itu masuk keranjang muncul \"Siapa yang menjual?\" — pilih karyawannya, atau Kasir yang melayani. Penjual tampil di baris keranjang dan bisa diganti lewat \"Dijual oleh\".",
+            "Lihat hasilnya di Laporan › Komisi Karyawan. Besaran komisi dikunci saat transaksi, jadi mengubahnya nanti tidak mengubah nota lama."
+          ]
+        },
+        {
+          "title": "Keluarkan produk tertentu dari omzet karyawan",
+          "since": "1.42.0",
+          "steps": [
+            "Buka Lainnya → Produk → Kategori, lalu ubah kategori yang tidak mau dihitung (mis. Pulsa).",
+            "Nyalakan \"Tidak dihitung omzet karyawan\", lalu simpan. Untuk satu produk saja, saklar yang sama ada di form produk.",
+            "Mulai nota berikutnya, Beranda kasir dan laporan shift menampilkan omzet karyawan tanpa produk itu. Laporan toko tidak berubah."
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Pengaturan & tampilan",
+      "guides": [
+        {
+          "title": "Atur faktur toko",
+          "since": "1.49.0",
+          "steps": [
+            "Buka Pengaturan › Struk & Dokumen › Faktur & Dokumen. Pasang logo, teks kepala, catatan kaki (mis. nomor rekening), dan NPWP toko bila toko PKP — pratinjau di sampingnya langsung berubah.",
+            "Nomor faktur: ketuk penanda untuk menyusun pola. \"No. faktur bulanan\" + Bulan + Tahun memberi nomor urut yang mulai dari 0001 tiap bulan, mis. {NO}/TOKO/{MM}/{YY} → 0018/TOKO/10/26. Kosongkan untuk memakai nomor nota.",
+            "Isi termin (hari) supaya faktur nota kasbon mencetak jatuh tempo, nyalakan Tombol Faktur setelah pembayaran bila kasir sering diminta faktur, lalu Simpan. Punya beberapa outlet? Ketuk Terapkan ke semua outlet."
+          ]
+        },
+        {
+          "title": "Atur logo, alamat & telepon di struk",
+          "since": "1.47.0",
+          "steps": [
+            "Buka Pengaturan › Toko › Profil Toko, isi Alamat dan No. Telepon (bertanda \"Tercetak di struk\"), lalu Simpan.",
+            "Buka Pengaturan › Struk & Dokumen › Struk, pastikan logo dinyalakan, lalu pilih Ukuran logo di struk: Kecil, Sedang, atau Besar. Pratinjau di halaman itu langsung berubah.",
+            "Cetak struk transaksi berikutnya untuk melihat hasilnya. Pengaturan ini berlaku per outlet, jadi semua perangkat kasir di outlet yang sama ikut memakainya."
+          ]
+        },
+        {
+          "title": "Cetak laporan Tutup Kasir dengan huruf besar",
+          "since": "1.42.1",
+          "steps": [
+            "Tutup kasir seperti biasa: hitung uang di laci, isi jumlahnya, lalu tutup kasir.",
+            "Di laporan yang muncul, ketuk Cetak. Kertasnya keluar dari printer struk dengan huruf sebesar struk transaksi.",
+            "Untuk laporan hari sebelumnya: buka Tim → Riwayat Tutup Kasir, pilih laporannya, lalu ketuk Cetak.",
+            "Struk pelunasan dan retur penitip serta salinan resep ikut membesar. Cara mencetaknya tidak berubah."
+          ]
+        },
+        {
+          "title": "Perbesar huruf aplikasi",
+          "since": "1.43.0",
+          "steps": [
+            "Buka Pengaturan, lalu ketuk \"Ukuran huruf\".",
+            "Pilih Besar atau Sangat besar. Kotak contoh di bawahnya langsung menunjukkan hasilnya.",
+            "Tutup lembarnya — pilihan tersimpan otomatis dan hanya berlaku di HP/tablet ini."
+          ]
+        },
+        {
+          "title": "Bingung dengan sebuah istilah?",
+          "since": "1.43.0",
+          "steps": [
+            "Ketuk tombol \"?\" di pojok kanan atas layar yang membingungkan.",
+            "Bagian \"Tentang <nama layar>\" terbuka paling atas dengan istilah yang dipakai di layar itu.",
+            "Gulir ke \"Kamus Istilah\" untuk semua istilah, atau ketuk Chat CS — CS langsung tahu layar mana yang Anda maksud."
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Mengatasi masalah",
+      "guides": [
+        {
+          "title": "Printer belum mau mencetak?",
+          "since": "1.43.1",
+          "steps": [
+            "Buka Pengaturan → Printer Struk, ketuk \"Cara Menghubungkan Printer\".",
+            "Ikuti bagian \"Kalau belum berhasil\": pasangkan printer di Bluetooth HP (PIN biasanya 0000 atau 1234) dan izinkan \"Perangkat di sekitar\".",
+            "Tulisan terpotong? Samakan ukuran kertas 58 mm atau 80 mm di Pengaturan → Struk, lalu tekan Tes Cetak."
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -408,6 +408,9 @@ const copy = {
     helpDesc: 'Tim kami siap membantu lewat WhatsApp, termasuk untuk setup.',
     helpCta: 'Tanya via WhatsApp',
     helpMessage: 'Halo tim Loka, saya butuh bantuan memakai Loka Kasir.',
+    pdfTitle: 'Panduan lengkap dalam PDF',
+    pdfDesc: 'Semua langkah dasar, pengaturan, dan panduan fitur dalam satu berkas — simpan di HP atau cetak untuk kasir baru.',
+    pdfCta: 'Unduh PDF',
   },
 };
 
