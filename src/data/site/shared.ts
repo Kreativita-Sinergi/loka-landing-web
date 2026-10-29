@@ -28,7 +28,7 @@ const categories: FeatureCategory[] = [
 export const getFeatureCategories = (locale: Locale) => pick({ id: categories }, locale);
 
 export const plans = {
-  free: { name: 'Gratis', note: 'Untuk usaha yang baru mulai.', cta: 'Mulai Gratis', items: ['50 transaksi per bulan', '1 outlet', 'Produk & cetak struk', 'Laporan dasar & mode offline'] },
+  free: { name: 'Gratis', note: 'Untuk usaha yang baru mulai.', cta: 'Mulai Gratis', items: ['20 transaksi per bulan', '1 outlet', 'Produk & cetak struk', 'Laporan dasar & mode offline'] },
   pro: { name: 'Pro', badge: 'Gratis 14 hari', note: 'Outlet pertama termasuk.', cta: 'Coba Gratis 14 Hari', items: ['Transaksi tanpa batas', 'Stok, HPP & laporan lengkap', 'Karyawan, meja & QR order', 'Absensi & multi-role', 'Bantuan teknis prioritas'] },
   fineprint: 'Harga sudah termasuk PPN. Outlet tambahan Rp49.000/outlet/bulan. Bayar lewat transfer bank atau dompet digital.',
   monthly: 'Bulanan',

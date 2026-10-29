@@ -158,7 +158,7 @@ const id: Record<BusinessSlug, BusinessPage> = {
       { icon: 'chart', title: 'Laporan harian', desc: 'Lihat penjualan hari ini langsung di beranda.' },
     ],
     planTitle: 'Gratis, Rp0 selamanya',
-    planNote: 'Paket Gratis mencakup 50 transaksi per bulan, 1 outlet, cetak struk, dan mode offline.',
+    planNote: 'Paket Gratis mencakup 20 transaksi per bulan, 1 outlet, cetak struk, dan mode offline.',
     faq: [
       'Apakah ada masa percobaan gratis?',
       'Bagaimana jika koneksi internet terputus saat transaksi?',
