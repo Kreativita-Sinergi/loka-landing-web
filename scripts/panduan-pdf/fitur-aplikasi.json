@@ -218,7 +218,7 @@
           "title": "Izinkan kasir menandai member",
           "since": "1.41.2",
           "steps": [
-            "Masuk dengan akun pemilik, buka Pengaturan → Peran & Hak Akses.",
+            "Masuk dengan akun pemilik, buka Pengaturan → Kasir & Karyawan → Peran & Hak Akses.",
             "Pilih peran Kasir.",
             "Di kelompok Pelanggan, centang \"Tandai Member\", lalu simpan.",
             "Minta kasir masuk ulang (Kunci Kasir lalu PIN) supaya izinnya terbaca."
@@ -301,7 +301,7 @@
           "title": "Atur siapa yang boleh mengubah meja & QR",
           "since": "1.42.1",
           "steps": [
-            "Masuk dengan akun pemilik, buka Pengaturan → Peran & Hak Akses, lalu pilih perannya (mis. Kasir).",
+            "Masuk dengan akun pemilik, buka Pengaturan → Kasir & Karyawan → Peran & Hak Akses, lalu pilih perannya (mis. Kasir).",
             "Di kelompok Transaksi & Kasir: \"Kelola Meja\" untuk Tandai dipesan, \"Atur Meja & QR\" untuk Tambah, Edit, Hapus meja, dan Buat ulang QR.",
             "Biarkan \"Atur Meja & QR\" tidak dicentang untuk kasir bila QR meja sudah ditempel, lalu simpan.",
             "Minta karyawan masuk ulang (Kunci Kasir lalu PIN) supaya izinnya terbaca. Admin dan manajer yang tombol Tambah Meja-nya hilang juga cukup masuk ulang."
