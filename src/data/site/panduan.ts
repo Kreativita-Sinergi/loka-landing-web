@@ -13,6 +13,9 @@ import { pick, type Locale } from '@/data/localized';
  * - Panduan fitur lainnya (intro/steps/tip) disusun dari layar aplikasi
  *   1.50.0: label tombol dan jalur menu diambil dari teks aplikasi (app_id.arb)
  *   dan layar yang memakainya, bukan dari ingatan.
+ * - Panduan 1.51.0 (pembelian tanpa PO, produksi, grup Keuangan & pembukuan)
+ *   berasal dari panduan "Yang baru" 1.51.0 di aplikasi (whats_new_sheet.dart),
+ *   dicocokkan dengan app_id.arb dan catatan rilisnya.
  */
 
 export type GuideStep = { title: string; body: string };
@@ -45,6 +48,7 @@ const OWNER = 'Untuk pemilik';
 const ORDERS = 'Pesanan & pembayaran';
 const STOCK = 'Produk & stok';
 const STAFF = 'Pegawai & absensi';
+const FINANCE = 'Keuangan & pembukuan';
 const TROUBLE = 'Mengatasi masalah';
 
 function buildGuides(locale: Locale): Guide[] {
@@ -354,6 +358,37 @@ function buildGuides(locale: Locale): Guide[] {
       tip: 'Hak penitip dihitung dari nota lunas: jumlah terjual × harga setor. Nota yang batal dan direfund tidak ikut dihitung.',
     },
     {
+      slug: 'pembelian-tanpa-po',
+      group: STOCK,
+      title: 'Mencatat Pembelian tanpa Purchase Order',
+      desc: 'Beli dan terima barang sekaligus: sekali catat, stok langsung bertambah.',
+      intro:
+        'Kalau Anda membeli dan menerima barang pada saat yang sama (misalnya belanja ke pasar atau grosir), Purchase Order tidak perlu dipakai. Matikan saklarnya, dan menu berganti menjadi Pembelian. Stok dan harga modal langsung diperbarui saat pembelian disimpan.',
+      steps: [
+        { title: 'Matikan Pakai Purchase Order', body: 'Masuk dengan akun pemilik, buka Pengaturan › Toko, lalu matikan Pakai Purchase Order.' },
+        { title: 'Buka menu Pembelian', body: 'Buka Lainnya › Pembelian & Stok › Pembelian, lalu ketuk Catat Pembelian.' },
+        { title: 'Isi barang yang dibeli', body: 'Pilih supplier, lalu tambahkan barang beserta jumlah dan harga belinya.' },
+        { title: 'Tentukan cara bayar', body: 'Nyalakan Bayar sekarang bila langsung dibayar (uangnya bisa diambil dari Kas & Rekening). Matikan bila dibayar nanti, dan totalnya tercatat di Hutang Supplier.' },
+        { title: 'Simpan Pembelian', body: 'Ketuk Simpan Pembelian. Stok langsung bertambah dan harga modal ikut diperbarui.' },
+      ],
+      tip: 'Harga modal dihitung rata-rata setiap kali barang masuk, jadi harga beli yang berubah-ubah tetap tercermin di laporan laba.',
+    },
+    {
+      slug: 'produksi',
+      group: STOCK,
+      title: 'Mencatat Produksi Barang Jadi',
+      desc: 'Untuk produk yang dibuat duluan seperti roti, kue, atau parsel.',
+      intro:
+        'Produk yang dibuat duluan lalu dijual dari stok (roti, kue, parsel) dicatat lewat Produksi: bahan baku dipotong saat produksi, dan stok barang jadi bertambah. Saat terjual, yang dipotong hanya stok barang jadinya.',
+      steps: [
+        { title: 'Atur produknya', body: 'Buka form produk, isi Resep / Komposisi, lalu nyalakan Stok diproduksi dulu dan Simpan.' },
+        { title: 'Buka menu Produksi', body: 'Buka Lainnya › Pembelian & Stok › Produksi, lalu ketuk Catat produksi.' },
+        { title: 'Pilih produk dan jumlah hasil', body: 'Bahan terisi otomatis dari resep dikali jumlah hasil, dan masih boleh diubah atau ditambah.' },
+        { title: 'Simpan produksi', body: 'Ketuk Simpan produksi. Bahan baku berkurang, stok barang jadi bertambah, dan harga modalnya diperbarui. Rekapnya ada di Laporan Perakitan (ikon di kepala layar Produksi, atau lewat Lainnya › Laporan).' },
+      ],
+      tip: 'Selama Stok diproduksi dulu mati, bahan resep dipotong setiap kali produk terjual — cocok untuk menu yang dibuat saat dipesan, seperti kopi.',
+    },
+    {
       slug: 'kasbon',
       group: ORDERS,
       title: 'Mencatat dan Melunasi Kasbon',
@@ -614,6 +649,65 @@ function buildGuides(locale: Locale): Guide[] {
         { title: 'Tunggu konfirmasi', body: 'Setelah pembayaran dikonfirmasi, muncul Pembayaran Berhasil. Ketuk Selesai. Halaman pembayaran yang tertutup bisa dibuka lagi lewat Buka Lagi.' },
       ],
       tip: 'Menutup halaman pembayaran tidak membatalkan tagihan. Paket tetap aktif dengan sendirinya setelah pembayaran masuk. Outlet tambahan diaktifkan di bagian Langganan Outlet pada halaman yang sama.',
+    },
+    {
+      slug: 'kas-rekening',
+      group: FINANCE,
+      title: 'Kas Besar, Kas Kecil & Rekening Bank',
+      desc: 'Catat uang di luar laci kasir dan lihat mutasinya seperti buku besar.',
+      intro:
+        'Kas & Rekening mencatat uang milik usaha di luar laci kasir: kas besar, kas kecil, brankas, dan rekening bank seperti BCA atau Mandiri. Setiap akun punya mutasi lengkap: saldo awal, masuk, keluar, dan saldo akhir.',
+      steps: [
+        { title: 'Tambah akun', body: 'Buka Lainnya › Kas & Rekening, ketuk + Akun, lalu pilih Kas (misalnya Kas Besar, Kas Kecil) atau Rekening Bank (misalnya BCA Toko). Isi Saldo awal, lalu Simpan.' },
+        { title: 'Buka mutasinya', body: 'Ketuk akunnya untuk membuka Mutasi. Saldo awal, total Masuk, total Keluar, dan Saldo akhir tampil untuk periode yang dipilih.' },
+        { title: 'Catat uang masuk atau keluar', body: 'Ketuk Catat › Catat keluar untuk biaya (listrik, galon, ambil pribadi), atau Catat masuk untuk pemasukan lain dan tambahan modal.' },
+        { title: 'Pindah dana antar akun', body: 'Ketuk Catat › Pindah dana, pilih Dari Kas/Bank dan Ke Kas/Bank, lalu isi Nilai transfer. Nomornya dibuat otomatis, dan saldo kedua akun terlihat sebelum Anda mengetuk Pindahkan.' },
+      ],
+      tip: 'Salah catat? Batalkan mutasinya dengan alasan, misalnya "Terinput dua kali". Barisnya tidak dihapus, tetap tampil dicoret beserta alasannya. Mutasi juga bisa diekspor ke CSV.',
+    },
+    {
+      slug: 'transfer-ke-rekening',
+      group: FINANCE,
+      title: 'Menerima Transfer ke Rekening Tertentu',
+      desc: 'Pilih rekening tujuan saat pelanggan bayar Transfer, supaya mudah dicocokkan dengan mutasi bank.',
+      intro:
+        'Bila toko punya lebih dari satu rekening, kasir bisa memilih rekening tujuan setiap kali pelanggan membayar dengan Transfer. Uangnya langsung tercatat di mutasi rekening itu, dan Ringkasan Penjualan memisahkan transfer per rekening.',
+      steps: [
+        { title: 'Daftarkan rekening toko', body: 'Buka Lainnya › Kas & Rekening dan tambahkan akun berjenis Rekening Bank.' },
+        { title: 'Pilih Transfer Bank saat membayar', body: 'Di layar pembayaran pilih Transfer Bank. Di bawahnya muncul Masuk ke rekening.' },
+        { title: 'Pilih rekeningnya', body: 'Pilih rekening tujuan, lalu selesaikan pembayaran seperti biasa. Rekening terakhir diingat untuk transaksi berikutnya.' },
+        { title: 'Cocokkan dengan mutasi bank', body: 'Buka mutasi rekening itu di Kas & Rekening untuk mencocokkannya dengan mutasi dari bank Anda.' },
+      ],
+      tip: 'Rekening yang dinonaktifkan tidak muncul saat bayar. Aktifkan lagi lewat Ubah Akun bila rekeningnya dipakai kembali.',
+    },
+    {
+      slug: 'batalkan-kas-dobel',
+      group: FINANCE,
+      title: 'Membatalkan Kas Masuk/Keluar yang Terinput Dua Kali',
+      desc: 'Koreksi kas masuk atau keluar shift tanpa menghapus jejaknya.',
+      intro:
+        'Kas masuk atau keluar di luar penjualan (misalnya beli es batu dari laci) yang tidak sengaja dicatat dua kali bisa dibatalkan. Catatannya tidak hilang, sehingga pemilik tetap bisa melihat apa yang terjadi.',
+      steps: [
+        { title: 'Buka riwayat kas shift', body: 'Ketuk tombol Shift di atas layar, lalu pilih Riwayat kas masuk/keluar.' },
+        { title: 'Batalkan baris yang dobel', body: 'Di baris yang dobel ketuk ⋮ › Batalkan, tulis alasannya (misalnya "Terinput dua kali"), lalu ketuk Batalkan.' },
+        { title: 'Periksa kas diharapkan', body: 'Barisnya tetap tampil dicoret beserta alasannya, dan Kas Diharapkan di panel Shift dihitung ulang.' },
+      ],
+      tip: 'Kas keluar dari laci juga bisa langsung disetor ke Kas Besar atau rekening lewat pilihan Setor ke, sehingga saldonya ikut bertambah. Shift yang sudah ditutup hanya bisa dikoreksi oleh pemilik atau manajer.',
+    },
+    {
+      slug: 'laporan-keuangan',
+      group: FINANCE,
+      title: 'Laba Rugi, Neraca & Buku Besar',
+      desc: 'Laporan akuntansi yang jurnalnya dibuat otomatis dari transaksi.',
+      intro:
+        'Loka membuat jurnal secara otomatis dari penjualan, pembelian, kas, dan stok. Hasilnya bisa dibaca sebagai Laba Rugi, Neraca, Neraca Saldo, Buku Besar, Data Jurnal, dan Daftar Perkiraan, tanpa perlu menginput ulang di aplikasi akuntansi lain.',
+      steps: [
+        { title: 'Buka kelompok Akuntansi', body: 'Buka Lainnya › Laporan, lalu gulir ke kelompok Akuntansi: Laba Rugi, Neraca, Neraca Saldo, Buku Besar, Data Jurnal, dan Daftar Perkiraan.' },
+        { title: 'Pilih periode', body: 'Pilih periode di bagian atas laporan.' },
+        { title: 'Unduh atau cetak', body: 'Ketuk ikon unduh di kanan atas untuk CSV, atau ikon printer untuk mencetak dan menyimpan PDF.' },
+        { title: 'Koreksi dengan Jurnal Umum', body: 'Perlu koreksi? Di Data Jurnal ketuk + Jurnal Umum. Tombol Simpan baru aktif bila debit dan kredit sudah seimbang.' },
+      ],
+      tip: 'Di menu Laporan juga ada Laba per Nota, Laporan Pembelian, Hutang Supplier, Nilai Persediaan, Kartu Stok, Umur Piutang, dan Saldo Deposit. Akuntansi dihitung per usaha, belum per outlet.',
     },
     {
       slug: 'lupa-kata-sandi',

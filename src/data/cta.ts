@@ -224,12 +224,12 @@ export const androidDirectDownload: {
   minAndroid: string;
   sha256: string;
 } | null = {
-  url: "https://github.com/Kreativita-Sinergi/loka-landing-web/releases/download/android-v1.50.0/LokaKasir-1.50.0.apk",
+  url: "https://github.com/Kreativita-Sinergi/loka-landing-web/releases/download/android-v1.51.0/LokaKasir-1.51.0.apk",
   fileLabel: "APK Android",
-  size: "123 MB",
-  version: "1.50.0",
+  size: "126 MB",
+  version: "1.51.0",
   minAndroid: "7.0",
-  sha256: "c465d0277f8ee296ed05eca48f7490fc92e725dcf0f0c7511261d15948187c57",
+  sha256: "079d88b4c6cc03e1f3daee09d00ed376363c17175a819550204436c9de963189",
 };
 
 // Detail untuk menghubungi tim Loka Kasir (bantuan pemasangan, pertanyaan, dll).

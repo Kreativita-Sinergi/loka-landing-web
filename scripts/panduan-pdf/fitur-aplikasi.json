@@ -1,5 +1,5 @@
 {
-  "_sumber": "Panduan 'Yang baru' aplikasi Loka Kasir (loka-kasir-app, lib/features/home/views/widgets/whats_new_sheet.dart), dikurasi 29 Okt 2026: jalur menu Pengaturan disesuaikan dengan pengelompokan 1.49; panduan 'Cetak surat jalan' 1.43 dilewati karena digantikan panduan dokumen 1.49; panduan yang sudah dibahas di Bagian 1 (pisah tagihan, member saat transaksi, paket, printer, logo & alamat struk) tidak diulang.",
+  "_sumber": "Panduan 'Yang baru' aplikasi Loka Kasir (loka-kasir-app, lib/features/home/views/widgets/whats_new_sheet.dart), dikurasi 29 Okt 2026: jalur menu Pengaturan disesuaikan dengan pengelompokan 1.49; panduan 'Cetak surat jalan' 1.43 dilewati karena digantikan panduan dokumen 1.49; panduan yang sudah dibahas di Bagian 1 (pisah tagihan, member saat transaksi, paket, printer, logo & alamat struk) tidak diulang. Panduan 'Yang baru' 1.51.0 (kas & rekening, transfer ke rekening, kas dobel, pembelian tanpa PO, produksi, laporan keuangan) dimuat di Bagian 1 lewat src/data/site/panduan.ts, jadi tidak diulang di sini.",
   "groups": [
     {
       "group": "Pesanan & pembayaran",
