@@ -398,7 +398,7 @@ function buildGuides(locale: Locale): Guide[] {
         { title: 'Atau jadikan member saat transaksi', body: 'Di keranjang, ketuk Pelanggan › Pilih pelanggan terdaftar, lalu ketuk Jadikan member di bawah namanya. Harga member langsung berlaku di nota itu.' },
         { title: 'Berikan kartu member', body: 'Di detail pelanggan, ketuk Kartu member. Tunjukkan QR-nya ke pelanggan, atau simpan lalu bagikan gambarnya.' },
       ],
-      tip: 'Kalau sakelar Member atau tombol Jadikan member tidak muncul untuk kasir, beri izin menandai member pada perannya di Lainnya › Pengaturan › Kasir & Karyawan › Peran & Hak Akses.',
+      tip: 'Kalau sakelar Member atau tombol Jadikan member tidak muncul untuk kasir, beri izin menandai member pada perannya di Lainnya › Tim › tab Karyawan › ikon Peran & Hak Akses (kanan atas).',
     },
     {
       slug: 'diskon',
@@ -561,7 +561,7 @@ function buildGuides(locale: Locale): Guide[] {
       intro:
         'Jadwal shift menentukan jam kerja tiap karyawan, misalnya Kasir Pagi 07.00–15.00. Absensi memakai jadwal ini untuk menilai terlambat, dan kasir bisa memilihnya saat Buka Kasir. Di aplikasi namanya Jadwal Kasir.',
       steps: [
-        { title: 'Buka Jadwal Kasir', body: 'Buka Lainnya › Pengaturan › Kasir & Karyawan › Jadwal Kasir.' },
+        { title: 'Buka Jadwal Kasir', body: 'Buka Lainnya › Tim › tab Tutup Kasir › ikon Jadwal Kasir (kanan atas).' },
         { title: 'Tambah jadwal', body: 'Ketuk Tambah Jadwal (di tablet: + Tambah). Isi Nama Jadwal, misalnya "Kasir Pagi", pilih Jam Mulai dan Jam Selesai, lalu ketuk Simpan.' },
         { title: 'Pasang jadwal ke karyawan', body: 'Buka Lainnya › Tim › tab Karyawan dan ketuk nama karyawan. Di bagian Informasi Tambahan (Opsional), pilih Jadwal Kasir, lalu ketuk Simpan Perubahan.' },
         { title: 'Atau lewat Web Admin', body: 'Di Web Admin buka Tim, pilih tab Shift Kasir, lalu klik Tambah Jadwal. Isi Nama Jadwal, Jam Mulai, Jam Selesai, centang Melewati Tengah Malam bila perlu, lalu klik Buat Jadwal.' },
