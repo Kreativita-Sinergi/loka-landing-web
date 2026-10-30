@@ -57,7 +57,7 @@ const detailsByLocale: Record<Locale, { eyebrow: string; title: string; descript
     description:
       "スタッフは店頭でアプリを使い、オーナーはブラウザで管理画面を使います。ノートPCでもデスクトップでもタブレットでも、インストールは不要です。ここでの変更は、すべてのレジ端末にすぐ反映されます。",
     includedNote:
-      "管理画面はすべてのプランに含まれています（30日間の無料期間中も同様）。アプリと同じアカウントでご利用いただけます。",
+      "管理画面はすべてのプランに含まれています（14日間の無料期間中も同様）。アプリと同じアカウントでご利用いただけます。",
   },
 };
 
@@ -591,7 +591,7 @@ const pageCopyByLocale: Record<Locale, WebAdminPageCopy> = {
     featuresHeading: "管理画面でできること",
     featuresNoteLead: "ラベルのない機能はすべてのプランでお使いいただけます。",
     featuresNoteTail:
-      " のラベルが付いた機能はご契約プランに応じたものですが、30日間の無料期間中はいずれもお試しいただけます。",
+      " のラベルが付いた機能はご契約プランに応じたものですが、14日間の無料期間中はいずれもお試しいただけます。",
     crossSellTitle: "接客と会計は、レジアプリで",
     crossSellBody:
       "管理画面は運営側の道具です。お客様の前での会計は、Androidのスマホ・タブレット、またはWindows PCのレジアプリで行います。アカウントはこちらと同じです。",

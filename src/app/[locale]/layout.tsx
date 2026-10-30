@@ -101,16 +101,24 @@ function buildJsonLd(locale: Locale) {
           'Mode offline dan sinkronisasi cloud',
         ],
         offers: [
-          {
-            '@type': 'Offer',
-            name: 'Paket Gratis',
-            price: '0',
-            priceCurrency: 'IDR',
-          },
+          // Tidak ada paket gratis — hanya trial 14 hari, lalu wajib berlangganan.
+          // Angkanya sama dengan harga bawaan PricingPlans (fallback `/subscription-prices`).
           {
             '@type': 'Offer',
             name: 'Paket Pro Bulanan',
             price: '59000',
+            priceCurrency: 'IDR',
+          },
+          {
+            '@type': 'Offer',
+            name: 'Paket Pro Tahunan',
+            price: '590000',
+            priceCurrency: 'IDR',
+          },
+          {
+            '@type': 'Offer',
+            name: 'Paket Pro 3 Tahun',
+            price: '1490000',
             priceCurrency: 'IDR',
           },
         ],

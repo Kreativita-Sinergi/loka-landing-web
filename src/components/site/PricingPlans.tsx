@@ -33,7 +33,8 @@ function SwapText({ value, className }: { value: string; className?: string }) {
 }
 
 /**
- * Dua kartu paket dengan pilihan Bulanan/Tahunan.
+ * Kartu paket Pro dengan pilihan Bulanan/Tahunan. Tidak ada lagi paket Gratis:
+ * akun baru mendapat trial 14 hari, setelah itu wajib berlangganan.
  *
  * Angkanya dibaca dari `/subscription-prices` (sumber yang sama dengan
  * aplikasi dan dasbor). Selama permintaan belum selesai atau gagal, yang tampil
@@ -77,20 +78,7 @@ export default function PricingPlans({ locale, showThreeYear }: { locale: Locale
         ))}
       </div>
 
-      <RevealGroup variant="flip" stagger={0.15} className="flex w-full flex-col-reverse gap-4 md:w-auto md:flex-row md:items-stretch md:gap-6">
-        <RevealItem className="flex md:w-[440px]">
-        <article className="spotlight lift flex w-full flex-col gap-6 rounded-[20px] border border-line bg-white p-6 hover:shadow-[0_30px_60px_-24px_rgba(16,24,40,0.2)] md:rounded-[22px] md:p-9">
-          <h3 className="text-xl font-bold">{plans.free.name}</h3>
-          <div className="flex flex-col gap-1.5">
-            <p className="flex items-end gap-1.5"><span className="text-[34px] font-bold tracking-tight md:text-[40px]">Rp0</span><span className="pb-2 text-body">{plans.perMonth}</span></p>
-            <p className="text-sm text-body">{plans.free.note}</p>
-          </div>
-          <ButtonLink href={l.register} tone="secondary" block onClick={() => trackSignUpClick('pricing-free')}>{plans.free.cta}</ButtonLink>
-          <div className="h-px bg-line" />
-          <ul className="flex flex-col gap-3 text-[15px]">{plans.free.items.map(i => <CheckItem key={i}>{i}</CheckItem>)}</ul>
-        </article>
-        </RevealItem>
-
+      <RevealGroup variant="flip" stagger={0.15} className="flex w-full flex-col gap-4 md:w-auto md:flex-row md:items-stretch md:gap-6">
         <RevealItem className="flex md:w-[440px]">
         {/* Bingkai berpendar yang berputar pelan menandai paket unggulan. */}
         <div className="glow-border lift relative flex w-full rounded-[22px] p-[2px] md:rounded-[24px]">
@@ -109,7 +97,10 @@ export default function PricingPlans({ locale, showThreeYear }: { locale: Locale
               {showThreeYear && ` Paket 3 tahun ${threeYear}.`}
             </p>
           </div>
-          <ButtonLink href={l.register} block onClick={() => trackSignUpClick('pricing-pro')}>{plans.pro.cta}</ButtonLink>
+          <div className="flex flex-col gap-2.5">
+            <ButtonLink href={l.register} block onClick={() => trackSignUpClick('pricing-pro')}>{plans.pro.cta}</ButtonLink>
+            <p className="text-center text-[13px] text-body">{plans.trialNote}</p>
+          </div>
           <div className="h-px bg-line" />
           <ul className="flex flex-col gap-3 text-[15px]">{plans.pro.items.map(i => <CheckItem key={i}>{i}</CheckItem>)}</ul>
         </article>

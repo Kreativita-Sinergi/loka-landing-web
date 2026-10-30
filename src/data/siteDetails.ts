@@ -53,7 +53,7 @@ const metadataByLocale: Record<Locale, { title: string; description: string }> =
   ja: {
     title: 'Loka Kasir — 個人店・カフェ・飲食店のためのPOSレジアプリ',
     description:
-      'スマホやタブレットがそのままレジになるPOSアプリ。会計・在庫・シフト・スタッフ管理から売上レポートまで、これひとつで。初回30日間無料です。',
+      'スマホやタブレットがそのままレジになるPOSアプリ。会計・在庫・シフト・スタッフ管理から売上レポートまで、これひとつで。初回14日間無料です。',
   },
 };
 

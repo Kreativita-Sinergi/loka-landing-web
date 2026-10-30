@@ -4,22 +4,22 @@ const ctaByLocale: Record<Locale, { heading: string; subheading: string }> = {
   id: {
     heading: "Gratis 14 Hari Pertama — Tanpa Risiko",
     subheading:
-      "Daftar gratis langsung dari browser ini, atau dari aplikasinya — akunnya sama. Pakai semua fitur Pro selama 14 hari, dihitung sejak transaksi pertama. Setelah itu otomatis pindah ke paket Gratis — atau lanjutkan Pro Rp 59.000/bulan.",
+      "Daftar gratis langsung dari browser ini, atau dari aplikasinya — akunnya sama. Pakai semua fitur Pro selama 14 hari, dihitung sejak transaksi pertama. Setelah itu pilih paket langganan, mulai Rp 59.000/bulan, untuk terus berjualan. Data Anda tetap aman dan bisa dilihat kapan saja.",
   },
   en: {
     heading: "Your First 14 Days Are Free",
     subheading:
-      "Create your account right here in the browser, or from inside the app — it's the same account either way. Every Pro feature is open for the first 14 days. No contract, and nothing to cancel if you walk away.",
+      "Create your account right here in the browser, or from inside the app — it's the same account either way. Every Pro feature is open for the first 14 days. After that, pick a subscription to keep selling. Your data stays safe and you can still view it anytime.",
   },
   ms: {
     heading: "14 Hari Pertama Percuma",
     subheading:
-      "Daftar terus dari pelayar ini, atau dari dalam aplikasi — akaunnya sama. Semua ciri Pro terbuka untuk 14 hari pertama. Tanpa kontrak, dan tiada apa-apa yang perlu dibatalkan jika anda berhenti.",
+      "Daftar terus dari pelayar ini, atau dari dalam aplikasi — akaunnya sama. Semua ciri Pro terbuka untuk 14 hari pertama. Selepas itu, pilih pelan langganan untuk terus berniaga. Data anda kekal selamat dan boleh dilihat bila-bila masa.",
   },
   ja: {
-    heading: "最初の30日間は無料です",
+    heading: "最初の14日間は無料です",
     subheading:
-      "このブラウザからでも、アプリからでも登録できます（アカウントは同じです）。30日間はすべてのPro機能をお使いいただけます。契約期間の縛りはありません。",
+      "このブラウザからでも、アプリからでも登録できます（アカウントは同じです）。14日間はすべてのPro機能をお使いいただけます。その後も販売を続けるには、ご希望の有料プランをお選びください。データは安全に保管され、いつでも閲覧できます。",
   },
 };
 
@@ -52,7 +52,7 @@ const signUpByLocale: Record<Locale, { label: string; note: string }> = {
   },
   ja: {
     label: "無料ではじめる",
-    note: "30日間無料 · ブラウザからでもアプリからでも登録できます",
+    note: "14日間無料 · ブラウザからでもアプリからでも登録できます",
   },
 };
 
@@ -132,7 +132,7 @@ const appDownloadByLocale: Record<Locale, { label: string; note: string }> = {
   },
   ja: {
     label: "Google Play で入手",
-    note: "Android・Windows対応 · 30日間無料 · どの端末でも同じアカウント",
+    note: "Android・Windows対応 · 14日間無料 · どの端末でも同じアカウント",
   },
 };
 

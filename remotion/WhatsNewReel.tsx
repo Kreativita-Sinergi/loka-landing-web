@@ -230,7 +230,7 @@ export function Cta() {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 46, padding: '0 80px' }}>
         <Img src={staticFile('images/site/logo-white.svg')} style={{ height: 120, transform: `scale(${logo})` }} />
         <Headline text="Update gratis, langsung dari Play Store." from={12} size={80} color="#fff" style={{ justifyContent: 'center' }} />
-        <div style={{ fontSize: 48, fontWeight: 900, padding: '26px 54px', borderRadius: 999, background: C.accent, color: C.ink, transform: `scale(${pill * pulse})`, boxShadow: '0 30px 60px -20px rgba(0,0,0,0.45)' }}>Coba gratis 30 hari</div>
+        <div style={{ fontSize: 48, fontWeight: 900, padding: '26px 54px', borderRadius: 999, background: C.accent, color: C.ink, transform: `scale(${pill * pulse})`, boxShadow: '0 30px 60px -20px rgba(0,0,0,0.45)' }}>Coba gratis 14 hari</div>
         <div style={{ opacity: url, transform: `translateY(${(1 - url) * 30}px)`, display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={{ fontSize: 58, fontWeight: 900, letterSpacing: '-0.02em' }}>lokakasir.id</div>
           <div style={{ fontSize: 34, fontWeight: 600, color: 'rgba(255,255,255,0.85)' }}>Android · Windows · Web · link di bio</div>

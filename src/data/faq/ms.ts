@@ -47,9 +47,9 @@ Jika perniagaan anda menjual makanan, tambah juga meja dan hidupkan paparan dapu
 
 Satu perkara yang baik diketahui: 14 hari itu dikira dari jualan pertama anda, bukan dari hari anda mendaftar. Jadi anda boleh membuka akaun, mengambil masa memasukkan produk, dan memasang aplikasi apabila benar-benar bersedia — semuanya tidak memakan tempoh percubaan.
 
-Apabila tamat, anda memilih:
-• Percuma — kaunter asas, 1 cawangan, sehingga 50 jualan sebulan, percuma selamanya
-• Pro — semua ciri POS, berbilang cawangan, analitik, kehadiran, pembekal, pesanan belian, kos makanan, cadangan harga, keuntungan produk, dan kesetiaan pelanggan. Cawangan pertama disertakan.`,
+Tiada pelan percuma. Apabila tempoh percubaan tamat, pilih langganan Pro — bulanan, tahunan, atau 3 tahun — untuk terus berniaga. Pro merangkumi semua ciri POS, berbilang cawangan, analitik, kehadiran, pembekal, pesanan belian, kos makanan, cadangan harga, keuntungan produk, dan kesetiaan pelanggan. Cawangan pertama disertakan.
+
+Jika anda belum melanggan pada masa itu, akaun beralih ke mod lihat sahaja: produk, pelanggan, sejarah jualan, dan laporan kekal selamat dan boleh dilihat bila-bila masa. Jualan baharu dan perubahan data boleh dibuat semula sebaik sahaja anda melanggan.`,
   },
   {
     category: "Bermula",
@@ -350,7 +350,7 @@ Tiada aplikasi keahlian berasingan terlibat; semuanya berlaku di kaunter.`,
     category: "Pelanggan & Kesetiaan",
     question: "Adakah rekod pelanggan ada pada semua pelan?",
     answer:
-      `Rekod pelanggan — nama, telefon, e-mel, alamat — ada pada Pro. Pelan percuma tidak termasuk pengurusan pelanggan.
+      `Ya. Rekod pelanggan — nama, telefon, e-mel, alamat — disertakan dalam Pro, sama ada bulanan, tahunan, atau 3 tahun, dan sudah terbuka sepanjang tempoh percubaan 14 hari.
 
 Pada Pro, setiap pelanggan turut membawa baki mata kesetiaan yang boleh anda lihat dan laraskan dari Web Admin.`,
   },
@@ -361,16 +361,11 @@ Pada Pro, setiap pelanggan turut membawa baki mata kesetiaan yang boleh anda lih
     category: "Laporan",
     question: "Laporan apa yang saya dapat?",
     answer:
-      `Ia berlapis.
+      `Semua laporan ini disertakan dalam Pro, dan boleh dicuba sepanjang tempoh percubaan 14 hari:
 
-Semua pelan, termasuk percuma:
 • Sejarah transaksi 30 hari — boleh dicari dan ditapis, dengan butiran penuh
-
-Pro:
 • Laporan kewangan syif — wang permulaan, jualan, bayaran balik, perbezaan, dan pecahan mengikut kaedah bayaran
 • Eksport CSV bagi transaksi dan kewangan syif
-
-Pro sahaja:
 • Analitik lebih mendalam — waktu puncak, produk paling laris, perbandingan cawangan, aliran hasil mingguan dan bulanan
 • Sejarah penuh pergerakan stok — masuk, keluar, pelarasan, pembaziran, pemindahan
 • Keuntungan setiap produk — hasil, kos barang, untung kasar, margin
@@ -465,11 +460,10 @@ Ia mengelakkan juruwang memerlukan kebenaran yang tidak sepatutnya, tanpa melamb
     answer:
       `Cawangan bergantung pada pelan:
 
-• Percuma — 1 cawangan, sehingga 50 jualan sebulan
-• 14 hari percuma — akses Pro penuh, sehingga 5 cawangan
+• Tempoh percubaan 14 hari — akses Pro penuh, sehingga 5 cawangan
 • Pro — cawangan tanpa had; yang pertama sudah termasuk dan setiap tambahan dikenakan bayaran bulanan
 
-Pekerja tanpa had pada semua pelan, termasuk percuma. Anda boleh naik atau turun pelan bila-bila masa tanpa kehilangan data.`,
+Pekerja tanpa had pada semua pelan, termasuk sepanjang tempoh percubaan. Anda boleh bertukar antara bayaran bulanan, tahunan, dan 3 tahun bila-bila masa tanpa kehilangan data.`,
   },
   {
     category: "Teknikal & Pelan",
@@ -483,7 +477,7 @@ Satu-satunya tambahan ialah cawangan tambahan pada Pro, dikenakan bagi setiap ca
     category: "Teknikal & Pelan",
     question: "Aplikasi kaunter boleh berjalan pada peranti apa?",
     answer:
-      `Ia percuma pada dua platform:
+      `Ia boleh dimuat turun secara percuma pada dua platform:
 - Telefon dan tablet Android, daripada Google Play
 - PC dan komputer riba Windows 10 dan 11, daripada Microsoft Store
 

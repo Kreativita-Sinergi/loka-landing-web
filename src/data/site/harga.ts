@@ -10,21 +10,21 @@ import { pick, type Locale } from '@/data/localized';
 
 /** `true` = tersedia, `false` = tidak tersedia, string = nilai yang ditampilkan. */
 export type CompareValue = boolean | string;
-export type CompareRow = { label: string; free: CompareValue; pro: CompareValue; proShort?: string };
+export type CompareRow = { label: string; trial: CompareValue; pro: CompareValue; trialShort?: string; proShort?: string };
 export type CompareGroup = { title: string; rows: CompareRow[] };
 
 const harga = {
   id: {
     metaTitle: 'Harga Loka Kasir',
     metaDescription:
-      'Harga Loka Kasir jelas tanpa biaya tersembunyi. Paket Gratis untuk usaha yang baru mulai, paket Pro Rp59.000/bulan dengan semua fitur. Gratis 14 hari sejak transaksi pertama.',
+      'Harga Loka Kasir jelas tanpa biaya tersembunyi. Paket Pro Rp59.000/bulan dengan semua fitur, bisa bulanan, tahunan, atau 3 tahun. Coba gratis 14 hari sejak transaksi pertama.',
     crumbHome: 'Beranda',
     crumb: 'Harga',
     title: 'Harga jelas, tanpa biaya tersembunyi',
-    desc: 'Semua fitur Pro gratis 14 hari, dihitung sejak transaksi pertama. Setelah itu pilih paket yang pas.',
-    compareTitle: 'Bandingkan paket',
+    desc: 'Semua fitur Pro gratis 14 hari, dihitung sejak transaksi pertama. Setelah itu pilih paket langganan untuk terus berjualan.',
+    compareTitle: 'Trial dan Pro, fiturnya sama lengkap',
     colFeature: 'Fitur',
-    colFree: 'Gratis',
+    colTrial: 'Trial 14 hari',
     colPro: 'Pro',
     yes: 'Tersedia',
     no: 'Tidak tersedia',
@@ -32,38 +32,38 @@ const harga = {
       {
         title: 'Penjualan',
         rows: [
-          { label: 'Transaksi per bulan', free: '50', pro: 'Tanpa batas', proShort: '∞' },
-          { label: 'Outlet', free: '1', pro: '1 termasuk', proShort: '1+' },
-          { label: 'Produk, varian & cetak struk', free: true, pro: true },
-          { label: 'Tunai, QRIS, kartu & transfer', free: true, pro: true },
-          { label: 'Mode offline', free: true, pro: true },
-          { label: 'Diskon, refund & void', free: false, pro: true },
+          { label: 'Transaksi per bulan', trial: 'Tanpa batas', trialShort: '∞', pro: 'Tanpa batas', proShort: '∞' },
+          { label: 'Outlet', trial: 'Hingga 5', trialShort: '5', pro: '1 termasuk', proShort: '1+' },
+          { label: 'Produk, varian & cetak struk', trial: true, pro: true },
+          { label: 'Tunai, QRIS, kartu & transfer', trial: true, pro: true },
+          { label: 'Mode offline', trial: true, pro: true },
+          { label: 'Diskon, refund & void', trial: true, pro: true },
         ],
       },
       {
         title: 'Stok & HPP',
         rows: [
-          { label: 'Stok per outlet & peringatan menipis', free: true, pro: true },
-          { label: 'Bahan baku, resep & waste', free: false, pro: true },
-          { label: 'Supplier & purchase order', free: false, pro: true },
-          { label: 'HPP, profit produk & saran harga', free: false, pro: true },
+          { label: 'Stok per outlet & peringatan menipis', trial: true, pro: true },
+          { label: 'Bahan baku, resep & waste', trial: true, pro: true },
+          { label: 'Supplier & purchase order', trial: true, pro: true },
+          { label: 'HPP, profit produk & saran harga', trial: true, pro: true },
         ],
       },
       {
         title: 'Tim & operasional',
         rows: [
-          { label: 'Buka/tutup shift & PIN kasir', free: true, pro: true },
-          { label: 'Absensi karyawan', free: false, pro: true },
-          { label: 'Meja, QR order & layar dapur', free: false, pro: true },
+          { label: 'Buka/tutup shift & PIN kasir', trial: true, pro: true },
+          { label: 'Absensi karyawan', trial: true, pro: true },
+          { label: 'Meja, QR order & layar dapur', trial: true, pro: true },
         ],
       },
       {
         title: 'Laporan',
         rows: [
-          { label: 'Laporan dasar', free: true, pro: true },
-          { label: 'Laporan keuangan & ekspor CSV', free: false, pro: true },
-          { label: 'Analisis jam ramai & produk terlaris', free: false, pro: true },
-          { label: 'Bantuan teknis prioritas', free: false, pro: true },
+          { label: 'Laporan dasar', trial: true, pro: true },
+          { label: 'Laporan keuangan & ekspor CSV', trial: true, pro: true },
+          { label: 'Analisis jam ramai & produk terlaris', trial: true, pro: true },
+          { label: 'Bantuan teknis prioritas', trial: true, pro: true },
         ],
       },
     ] as CompareGroup[],
@@ -74,7 +74,8 @@ const harga = {
         'Transaksi tanpa batas',
         'Multi-outlet hingga 5 cabang',
         'Dihitung dari transaksi pertama, bukan saat daftar',
-        'Tanpa komitmen, bisa turun ke paket Gratis',
+        'Setelah itu pilih Pro bulanan, tahunan, atau 3 tahun untuk terus berjualan',
+        'Data tetap aman dan bisa dilihat kapan saja, walau belum berlangganan',
       ],
     },
     costs: {

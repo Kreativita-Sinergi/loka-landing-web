@@ -185,7 +185,7 @@ const copyByLocale: Record<Locale, WindowsPageCopy> = {
   ja: {
     metaTitle: "Windows版のダウンロード",
     metaDescription:
-      "Windows 10 / 11 のPC・ノートPCに Loka Kasir を導入する方法。Microsoft Store から、または winget コマンドから。ダウンロードは約30MBと軽量です。最初の30日間は無料。",
+      "Windows 10 / 11 のPC・ノートPCに Loka Kasir を導入する方法。Microsoft Store から、または winget コマンドから。ダウンロードは約30MBと軽量です。最初の14日間は無料。",
     eyebrow: "Windows版 Loka Kasir",
     title: "PC・ノートPC用のレジアプリ",
     intro:
@@ -195,7 +195,7 @@ const copyByLocale: Record<Locale, WindowsPageCopy> = {
     statMinRam: "メモリ2GB",
     statMinRamLabel: "で足ります",
     lightNote: "軽いので、お店にすでにある少し古いPCでも快適に動きます。",
-    freeNote: "最初の30日間は無料",
+    freeNote: "最初の14日間は無料",
     howToHeading: "導入の手順",
     steps: [
       {
@@ -211,7 +211,7 @@ const copyByLocale: Record<Locale, WindowsPageCopy> = {
       {
         title: "ログインする、またはアカウントを作る",
         detail:
-          "スタートメニューから Loka Kasir を開いてログインします。アカウントがまだの場合は、アプリ内でも、ブラウザ（app.lokakasir.id）でも無料で作成できます。最初の30日間はすべての機能をお使いいただけます。",
+          "スタートメニューから Loka Kasir を開いてログインします。アカウントがまだの場合は、アプリ内でも、ブラウザ（app.lokakasir.id）でも無料で作成できます。最初の14日間はすべての機能をお使いいただけます。",
       },
     ],
     wingetHeading: "winget で導入する",

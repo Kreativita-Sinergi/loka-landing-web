@@ -44,11 +44,10 @@ Untuk bisnis FNB: tambahkan juga data meja dan aktifkan Kitchen Display System (
     answer:
       `Ya! Setiap akun baru mendapat 14 hari gratis dengan akses penuh ke semua fitur Pro — tanpa batas transaksi, multi-outlet sampai 5 cabang, dan tanpa komitmen. Masa 14 hari dihitung sejak transaksi pertama, bukan sejak mendaftar.
 
-Kalau tidak memilih paket apa pun, akun otomatis pindah ke paket Gratis — produk, pelanggan, dan riwayat transaksi tetap tersimpan.
+Loka Kasir tidak punya paket gratis. Setelah masa trial habis, pilih paket langganan untuk terus berjualan:
+• Pro — Rp 59.000/bulan, Rp 590.000/tahun, atau Rp 1.490.000/3 tahun — semua fitur kasir, Analitik, Absensi, Supplier, PO, HPP, Smart Pricing, Profitabilitas, dan Loyalty. Outlet pertama termasuk. Biaya ini sudah mencakup server cloud, penyimpanan dan backup data, sinkronisasi, keamanan, pemeliharaan, serta pembaruan fitur.
 
-Setelah 14 hari, pilih paket yang sesuai:
-• Gratis — fitur POS inti, 1 outlet, maks. 20 transaksi/bulan, selamanya gratis
-• Pro — Rp 59.000/bulan, Rp 590.000/tahun, atau Rp 1.490.000/3 tahun — semua fitur kasir, Analitik, Absensi, Supplier, PO, HPP, Smart Pricing, Profitabilitas, dan Loyalty. Outlet pertama termasuk. Biaya ini sudah mencakup server cloud, penyimpanan dan backup data, sinkronisasi, keamanan, pemeliharaan, serta pembaruan fitur.`,
+Kalau belum berlangganan saat trial habis, akun masuk mode lihat saja: produk, pelanggan, riwayat transaksi, dan laporan tetap aman dan bisa dilihat kapan saja. Transaksi baru dan perubahan data bisa dilakukan lagi begitu langganan aktif.`,
   },
   {
     category: "Memulai",
@@ -402,7 +401,7 @@ Contoh: 1 poin per Rp 1.000 belanja, 1 poin = Rp 100. Pelanggan belanja Rp 50.00
     category: "Loyalty & Pelanggan",
     question: "Apakah database pelanggan tersedia di semua paket?",
     answer:
-      `Database pelanggan (nama, telepon, email, alamat) tersedia di paket Pro. Paket Gratis tidak menyertakan fitur manajemen pelanggan.
+      `Ya. Database pelanggan (nama, telepon, email, alamat) tersedia di paket Pro — bulanan, tahunan, maupun 3 tahun — dan sudah bisa dipakai selama masa trial 14 hari.
 
 Di paket Pro, setiap pelanggan juga memiliki saldo poin loyalty yang bisa dipantau dan dikelola langsung dari Web Admin.`,
   },
@@ -457,16 +456,11 @@ Pojok Pajak adalah alat bantu hitung, bukan nasihat pajak. Untuk kondisi khusus,
     category: "Laporan & Analitik",
     question: "Laporan apa saja yang tersedia di Loka Kasir?",
     answer:
-      `Loka Kasir menyediakan laporan berlapis sesuai paket:
+      `Semua laporan berikut tersedia di paket Pro, dan sudah bisa dicoba selama masa trial 14 hari:
 
-Tersedia di semua paket (Gratis ke atas):
 • Riwayat transaksi 30 hari — cari, filter, dan lihat detail setiap transaksi
-
-Tersedia di paket Pro:
 • Laporan Keuangan Shift — rekap kas per shift: kas awal, penjualan, refund, selisih kas, breakdown per metode bayar
 • Export CSV — laporan transaksi dan keuangan shift bisa diunduh sebagai spreadsheet
-
-Tersedia eksklusif di paket Pro:
 • Analitik Lanjutan — peak hours, performa produk terlaris, perbandingan antar outlet, tren pendapatan mingguan/bulanan
 • Riwayat Pergerakan Stok — semua mutasi stok: masuk, keluar, penyesuaian, waste, transfer antar outlet
 • Laporan Profitabilitas HPP — per produk: Revenue, COGS, Gross Profit, Margin %
@@ -570,11 +564,10 @@ Fitur ini mencegah kasir memiliki akses berlebihan sekaligus tidak mengganggu an
     answer:
       `Tergantung paket yang dipilih:
 
-• Gratis — 1 outlet, maks. 20 transaksi/bulan
-• Gratis 14 hari pertama — akses Pro penuh, sampai 5 outlet
+• Trial 14 hari pertama — akses Pro penuh, sampai 5 outlet
 • Pro — multi-outlet tanpa batas; outlet pertama sudah termasuk harga paket, outlet tambahan dikenakan Rp 49.000/outlet/bulan
 
-Untuk jumlah karyawan (user), semua paket tidak membatasi jumlah karyawan yang bisa didaftarkan. Upgrade atau downgrade paket bisa dilakukan kapan saja tanpa kehilangan data.`,
+Untuk jumlah karyawan (user), semua paket tidak membatasi jumlah karyawan yang bisa didaftarkan. Pindah antara paket bulanan, tahunan, dan 3 tahun bisa dilakukan kapan saja tanpa kehilangan data.`,
   },
   {
     category: "Teknis & Langganan",
@@ -588,7 +581,7 @@ Satu-satunya biaya tambahan yang mungkin berlaku adalah outlet tambahan pada pak
     category: "Teknis & Langganan",
     question: "Di perangkat apa saja App Kasir bisa dijalankan?",
     answer:
-      `App Kasir tersedia gratis untuk dua platform, lewat tombol "Download Aplikasi" di situs ini:
+      `App Kasir bisa diunduh gratis untuk dua platform, lewat tombol "Download Aplikasi" di situs ini:
 - Android (smartphone & tablet) — dari Google Play Store
 - Windows 10/11 (PC & laptop) — dari Microsoft Store
 

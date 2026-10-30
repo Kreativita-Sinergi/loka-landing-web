@@ -582,7 +582,7 @@ const EXPLAINERS: Record<ExplainerId, { track: WhatsNewTrack; scenes: Scene[] }>
       { len: 140, C: A1, taps: [95] },
       { len: 170, C: A2 },
       { len: 190, C: A3, taps: [130] },
-      { len: 120, C: resultScene(['Tahu toko sedang sehat atau tidak', 'Tahu apa yang harus dibenahi', 'Tanpa membaca laporan panjang'], 'Fitur Pro · bisa dicoba gratis 30 hari') },
+      { len: 120, C: resultScene(['Tahu toko sedang sehat atau tidak', 'Tahu apa yang harus dibenahi', 'Tanpa membaca laporan panjang'], 'Fitur Pro · bisa dicoba gratis 14 hari') },
     ],
   },
   Topping: {
@@ -602,7 +602,7 @@ const EXPLAINERS: Record<ExplainerId, { track: WhatsNewTrack; scenes: Scene[] }>
       { len: 165, C: C1, taps: [45, 92] },
       { len: 165, C: C2, taps: [60] },
       { len: 170, C: C3 },
-      { len: 120, C: resultScene(['Tidak perlu buku catatan', 'Sisa saldo selalu jelas', 'Pelanggan makin sering kembali'], 'Fitur Pro · bisa dicoba gratis 30 hari') },
+      { len: 120, C: resultScene(['Tidak perlu buku catatan', 'Sisa saldo selalu jelas', 'Pelanggan makin sering kembali'], 'Fitur Pro · bisa dicoba gratis 14 hari') },
     ],
   },
 };

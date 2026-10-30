@@ -70,7 +70,7 @@ export default async function HargaPage({ params }: { params: Promise<{ locale: 
               <thead className="bg-soft">
                 <tr>
                   <th scope="col" className="px-3.5 py-3.5 text-[13px] font-bold md:px-6 md:py-5 md:text-[15px]">{c.colFeature}</th>
-                  <th scope="col" className="py-3.5 text-center text-[13px] font-bold md:py-5 md:text-[15px]">{c.colFree}</th>
+                  <th scope="col" className="py-3.5 text-center text-[13px] font-bold md:py-5 md:text-[15px]">{c.colTrial}</th>
                   <th scope="col" className="py-3.5 pr-1 text-center text-[13px] font-bold text-brand md:py-5 md:pr-0 md:text-[15px]">{c.colPro}</th>
                 </tr>
               </thead>
@@ -82,7 +82,7 @@ export default async function HargaPage({ params }: { params: Promise<{ locale: 
                   {g.rows.map(r => (
                     <RevealItem as="tr" key={r.label} className="border-b border-line transition-colors last:border-b-0 hover:bg-soft/70">
                       <th scope="row" className="px-3.5 py-3 text-[13px] leading-snug font-normal md:px-6 md:py-4 md:text-[15px]">{r.label}</th>
-                      <td className="py-3 md:py-4"><span className="flex justify-center">{cell(r.free)}</span></td>
+                      <td className="py-3 md:py-4"><span className="flex justify-center">{cell(r.trial, r.trialShort)}</span></td>
                       <td className="py-3 md:py-4"><span className="flex justify-center">{cell(r.pro, r.proShort)}</span></td>
                     </RevealItem>
                   ))}

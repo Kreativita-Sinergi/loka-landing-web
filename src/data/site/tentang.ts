@@ -13,7 +13,7 @@ const id = {
     title: 'Kasir yang dibuat untuk usaha di sekitar kita',
     paragraphs: [
       'Banyak warung, kafe, dan toko masih mencatat penjualan di buku atau tidak mencatat sama sekali. Kami membuat Loka supaya pemilik usaha bisa fokus melayani pembeli, sementara penjualan, stok, dan kas tercatat sendiri.',
-      'Loka berjalan di perangkat yang sudah ada, tetap bisa dipakai saat internet putus, dan bisa dimulai gratis.',
+      'Loka berjalan di perangkat yang sudah ada, tetap bisa dipakai saat internet putus, dan bisa dicoba gratis 14 hari.',
     ],
     imageAlt: 'Warung makan kecil di pinggir jalan',
   },

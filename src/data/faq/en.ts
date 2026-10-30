@@ -19,7 +19,7 @@ export const faqsEn: IFAQ[] = [
 • In a browser — open ${siteDetails.dashboardUrl}/register from a laptop or phone, with nothing to install
 • In the app — install from Google Play (Android) or the Microsoft Store (Windows) and sign up inside it
 
-Either way you'll enter your owner details, your type of business (food, retail, or services), and your first outlet. A verification code goes to your email. After that you have 30 free days with everything unlocked — no commitment.
+Either way you'll enter your owner details, your type of business (food, retail, or services), and your first outlet. A verification code goes to your email. After that you have 14 free days with everything unlocked — no commitment.
 
 A sensible order to set things up:
 1. Create the account and your first outlet
@@ -52,9 +52,9 @@ If you run a food business, also add your tables and turn on the kitchen display
 
 One detail worth knowing: the 14 days are counted from your first sale, not from the day you sign up. So you can create the account, take your time entering products, and install the app when you're actually ready — none of that eats into the trial.
 
-When it ends, you choose:
-• Free — the core register, 1 outlet, up to 50 sales a month, free indefinitely
-• Pro — every POS feature, multiple outlets, analytics, attendance, suppliers, purchase orders, food cost, price suggestions, profitability, and loyalty. The first outlet is included.`,
+There's no free plan. When the trial ends, pick a Pro subscription — monthly, yearly, or 3 years — to keep selling. Pro covers every POS feature, multiple outlets, analytics, attendance, suppliers, purchase orders, food cost, price suggestions, profitability, and loyalty. The first outlet is included.
+
+If you haven't subscribed by then, your account switches to view-only: products, customers, sales history, and reports stay safe and you can still look at them anytime. New sales and changes open up again as soon as you subscribe.`,
   },
   {
     category: "Getting Started",
@@ -365,7 +365,7 @@ No separate membership app is involved; it all happens at the counter.`,
     category: "Customers & Loyalty",
     question: "Are customer records on every plan?",
     answer:
-      `Customer records — name, phone, email, address — are on Pro. The free plan doesn't include customer management.
+      `Yes. Customer records — name, phone, email, address — come with Pro, whether you pay monthly, yearly, or for 3 years, and they're already open during the 14-day trial.
 
 On Pro, each customer also carries a loyalty balance you can see and adjust from Web Admin.`,
   },
@@ -376,16 +376,11 @@ On Pro, each customer also carries a loyalty balance you can see and adjust from
     category: "Reports",
     question: "Which reports do I get?",
     answer:
-      `They come in layers.
+      `All of these come with Pro, and you can try every one of them during the 14-day trial:
 
-Every plan, free included:
 • 30 days of transaction history — searchable and filterable, with full detail
-
-Pro:
 • Shift financial report — opening float, sales, refunds, discrepancy, and a breakdown per payment method
 • CSV export of transactions and shift finances
-
-Pro only:
 • Deeper analytics — peak hours, best sellers, outlet comparison, weekly and monthly revenue trends
 • Full stock movement history — in, out, adjustments, waste, transfers
 • Per-product profitability — revenue, cost of goods, gross profit, margin
@@ -480,11 +475,10 @@ It keeps cashiers from needing permissions they shouldn't have, without holding 
     answer:
       `Outlets depend on the plan:
 
-• Free — 1 outlet, up to 50 sales a month
-• The 30 free days — full Pro access, up to 5 outlets
+• The 14-day trial — full Pro access, up to 5 outlets
 • Pro — unlimited outlets; the first is included and each additional one is charged monthly
 
-Staff are unlimited on every plan, including free. You can move up or down between plans at any time without losing data.`,
+Staff are unlimited on every plan, the trial included. You can switch between monthly, yearly, and 3-year billing at any time without losing data.`,
   },
   {
     category: "Technical & Plans",
@@ -498,7 +492,7 @@ The only thing that can be added is extra outlets on Pro, charged per outlet fro
     category: "Technical & Plans",
     question: "What devices does the register app run on?",
     answer:
-      `It's free on two platforms:
+      `It's a free download on two platforms:
 - Android phones and tablets, from Google Play
 - Windows 10 and 11 PCs and laptops, from the Microsoft Store
 

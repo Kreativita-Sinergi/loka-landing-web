@@ -195,13 +195,13 @@ const copyByLocale: Record<Locale, AndroidPageCopy> = {
   ja: {
     metaTitle: "Android版APKのダウンロード（Huawei）",
     metaDescription:
-      "Google Play を使えない Android タブレット・スマホ（Huawei の HarmonyOS/EMUI など）向けに、Loka Kasir の APK をダウンロードできます。導入手順つき。最初の30日間は無料。",
+      "Google Play を使えない Android タブレット・スマホ（Huawei の HarmonyOS/EMUI など）向けに、Loka Kasir の APK をダウンロードできます。導入手順つき。最初の14日間は無料。",
     eyebrow: "Huawei など Play ストアのない端末向け",
     title: "レジアプリの APK をダウンロード",
     intro:
       "Huawei のタブレットやスマホは Google Play からアプリを入れられません。下の APK をダウンロードして直接インストールしてください。Play ストア版とまったく同じアプリで、アカウントもデータも共通です。",
     downloadLabel: "APK をダウンロード",
-    updateNote: "最初の30日間は無料 · 自動更新はされません",
+    updateNote: "最初の14日間は無料 · 自動更新はされません",
     howToHeading: "Huawei タブレットへの導入手順",
     steps: [
       {
