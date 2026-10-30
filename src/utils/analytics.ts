@@ -33,3 +33,9 @@ export function trackDownloadClick(
 ) {
   trackEvent("app_download_click", { source, platform });
 }
+
+// Event khusus: pengunjung mengunduh Panduan Pengguna PDF. Terpisah dari
+// app_download_click supaya unduhan panduan tidak terhitung sebagai unduhan aplikasi.
+export function trackGuidePdfClick(source: string) {
+  trackEvent("guide_pdf_download", { source });
+}

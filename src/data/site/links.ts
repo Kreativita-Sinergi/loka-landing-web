@@ -2,6 +2,9 @@ import { getAppDownload, getSignUp, getSupport, getWindowsDownload, getCta } fro
 import { siteDetails } from '@/data/siteDetails';
 import { localePath, type Locale } from '@/data/localized';
 
+/** Panduan Pengguna PDF (npm run panduan:pdf) — berkas di public/, tanpa awalan bahasa. */
+export const PANDUAN_PDF = '/downloads/panduan-loka-kasir.pdf';
+
 /**
  * Semua alamat yang dipakai desain 2026 di satu tempat.
  *
@@ -17,6 +20,7 @@ export function siteLinks(locale: Locale) {
     harga: p('/harga'),
     faq: p('/faq'),
     panduan: p('/panduan'),
+    panduanPdf: PANDUAN_PDF,
     download: p('/download'),
     downloadWindows: p('/download/windows'),
     downloadAndroid: p('/download/android'),

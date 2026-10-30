@@ -6,12 +6,12 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { useMotionValueEvent, useScroll } from 'framer-motion';
-import { ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
+import { ChevronDown, ChevronRight, FileText, Menu, X } from 'lucide-react';
 import { FaAndroid, FaGooglePlay, FaWindows } from 'react-icons/fa';
 
 import { siteLinks } from '@/data/site/links';
 import type { Locale } from '@/data/localized';
-import { trackDownloadClick, trackSignUpClick } from '@/utils/analytics';
+import { trackDownloadClick, trackGuidePdfClick, trackSignUpClick } from '@/utils/analytics';
 import { setScrollLocked } from '@/lib/smoothScroll';
 import { ButtonLink } from './ui';
 
@@ -51,6 +51,22 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
     { icon: <FaWindows size={20} />, title: 'Windows', sub: 'PC & laptop kasir', href: links.downloadWindows, platform: 'windows' as const },
     { icon: <FaAndroid size={20} />, title: 'File APK', sub: 'Perangkat POS tanpa Play Store', href: links.downloadAndroid, platform: 'android-apk' as const },
   ];
+  // Panduan Pengguna PDF: diunduh langsung, bukan halaman — dan dicatat sebagai
+  // unduhan panduan, bukan unduhan aplikasi.
+  const guidePdf = (compact = false) => (
+    <a
+      href={links.panduanPdf}
+      download
+      className={clsx('flex items-center gap-3.5 rounded-[10px] p-3 transition-colors', compact ? 'bg-soft' : 'hover:bg-soft')}
+      onClick={() => trackGuidePdfClick(compact ? 'mobile-menu' : 'header')}
+    >
+      <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-tint text-brand"><FileText size={20} aria-hidden /></span>
+      <span className="flex flex-col">
+        <span className="text-[15px] font-semibold text-ink">Panduan Pengguna (PDF)</span>
+        <span className="text-[13px] text-body">Cara pakai langkah demi langkah</span>
+      </span>
+    </a>
+  );
 
   const isActive = (href: string) => !href.includes('#') && href !== links.home && pathname?.startsWith(href);
 
@@ -148,6 +164,8 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
                   <div className="rounded-2xl border border-line bg-white p-3 shadow-[0_16px_40px_rgba(16,24,40,0.14)]">
                     {downloads.map(d => downloadLink(d))}
                     <div className="my-1 h-px bg-line" />
+                    {guidePdf()}
+                    <div className="my-1 h-px bg-line" />
                     <Link href={links.webAdmin} className="flex items-center justify-between px-3 pt-3 pb-1.5 text-sm">
                       <span className="text-body">Web Admin untuk pemilik</span>
                       <span className="font-semibold text-brand">Buka →</span>
@@ -190,7 +208,7 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
             <button type="button" onClick={() => setDlOpen(v => !v)} aria-expanded={dlOpen} className={clsx('flex w-full items-center justify-between py-4 text-lg font-semibold', dlOpen && 'text-brand')}>
               Download <ChevronDown size={18} className={clsx('transition-transform', dlOpen && 'rotate-180')} />
             </button>
-            {dlOpen && <div className="flex flex-col gap-1 pb-3">{downloads.map(d => downloadLink(d, true))}</div>}
+            {dlOpen && <div className="flex flex-col gap-1 pb-3">{downloads.map(d => downloadLink(d, true))}{guidePdf(true)}</div>}
             <div className="border-b border-line" />
           </nav>
           <div className="mt-auto flex flex-col gap-2.5 px-5 pb-8">

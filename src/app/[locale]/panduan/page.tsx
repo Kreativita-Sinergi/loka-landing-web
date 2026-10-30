@@ -9,7 +9,7 @@ import { ArrowRight, FileDown, PlayCircle } from 'lucide-react';
 import { LOCALES, type Locale } from '@/data/localized';
 import { siteDetails } from '@/data/siteDetails';
 import { getGuideGroups, getPanduanCopy } from '@/data/site/panduan';
-import { siteLinks } from '@/data/site/links';
+import { PANDUAN_PDF, siteLinks } from '@/data/site/links';
 import { alternatesFor } from '@/lib/hreflang';
 import { ButtonLink, WhatsAppIcon } from '@/components/site/ui';
 import PanduanShell, { guideHref } from '@/components/site/panduan/PanduanShell';
@@ -29,12 +29,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-/** Panduan PDF — dibangkitkan dari data panduan yang sama (npm run panduan:pdf). */
-const PDF_HREF = '/downloads/panduan-loka-kasir.pdf';
-
 function pdfSize() {
   try {
-    const mb = statSync(join(process.cwd(), 'public', PDF_HREF)).size / (1024 * 1024);
+    const mb = statSync(join(process.cwd(), 'public', PANDUAN_PDF)).size / (1024 * 1024);
     return `PDF · ${mb.toLocaleString('id-ID', { maximumFractionDigits: 1 })} MB`;
   } catch {
     return 'PDF';
@@ -52,7 +49,7 @@ export default async function PanduanPage({ params }: { params: Promise<{ locale
   return (
     <PanduanShell locale={locale}>
       <div className="flex flex-col gap-12 md:gap-14">
-        <a href={PDF_HREF} download className="group flex items-center gap-4 rounded-2xl border border-line bg-white p-4 transition hover:border-[#cdd2dc] hover:shadow-[0_12px_28px_rgba(16,24,40,0.10)] md:gap-5 md:p-5">
+        <a href={PANDUAN_PDF} download className="group flex items-center gap-4 rounded-2xl border border-line bg-white p-4 transition hover:border-[#cdd2dc] hover:shadow-[0_12px_28px_rgba(16,24,40,0.10)] md:gap-5 md:p-5">
           <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand">
             <FileDown size={24} aria-hidden />
           </span>
