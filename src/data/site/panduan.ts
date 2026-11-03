@@ -16,6 +16,10 @@ import { pick, type Locale } from '@/data/localized';
  * - Panduan 1.51.0 (pembelian tanpa PO, produksi, grup Keuangan & pembukuan)
  *   berasal dari panduan "Yang baru" 1.51.0 di aplikasi (whats_new_sheet.dart),
  *   dicocokkan dengan app_id.arb dan catatan rilisnya.
+ * - Panduan 1.52.0 (kurangi stok, transaksi susulan, tulisan struk) berasal
+ *   dari panduan "Yang baru" 1.52.0 di aplikasi, dicocokkan dengan app_id.arb.
+ *   Panduan Kas Masuk & Kas Keluar disusun dari CashFlowDialog dan ShiftPanel
+ *   (loka-kasir-app, lib/features/shift) serta jawaban FAQ tentang kas keluar.
  */
 
 export type GuideStep = { title: string; body: string };
@@ -313,6 +317,21 @@ function buildGuides(locale: Locale): Guide[] {
       tip: 'Tombol Posting Selisih baru aktif setelah semua hitungan tersimpan. Kalau ingin membuang sesi tanpa mengubah stok, pilih Batalkan sesi.',
     },
     {
+      slug: 'kurangi-stok',
+      group: STOCK,
+      title: 'Mengurangi Stok Barang Rusak, Hilang, atau Gratis',
+      desc: 'Kurangi stok tanpa mencatatnya sebagai penjualan.',
+      intro:
+        'Untuk barang yang rusak, hilang, kedaluwarsa, atau diberikan gratis. Stok berkurang tanpa tercatat sebagai penjualan, jadi omzet tetap benar dan barang yang hilang tetap terlacak.',
+      steps: [
+        { title: 'Buka Atur Stok', body: 'Buka Lainnya › Produk, lalu ketuk angka stok barangnya. Bisa juga lewat ⋯ › Atur Stok di baris produk.' },
+        { title: 'Pilih tab Kurangi', body: 'Ketik jumlah yang dikurangi, misalnya 2. Jumlahnya tidak boleh melebihi stok yang ada.' },
+        { title: 'Pilih alasan', body: 'Pilih Hilang / rusak untuk barang yang benar-benar berkurang, atau Koreksi input bila stoknya hanya salah ketik. Isi catatan bila perlu, misalnya "pecah saat dikirim".' },
+        { title: 'Simpan pengurangan', body: 'Ketuk Simpan pengurangan. Stok langsung berkurang dan catatannya ikut tersimpan.' },
+      ],
+      tip: 'Pengurangan dengan alasan Hilang / rusak dihitung di laporan Penyusutan Stok (Laporan › Susut Stok). Koreksi input tidak dihitung sebagai barang hilang.',
+    },
+    {
       slug: 'impor-produk-csv',
       group: STOCK,
       title: 'Impor Banyak Produk dari CSV',
@@ -418,6 +437,21 @@ function buildGuides(locale: Locale): Guide[] {
         { title: 'Isi alasan dan konfirmasi', body: 'Isi alasannya di Catatan (Opsional), lalu ketuk tombol merah Kembalikan Dana atau Batalkan Transaksi. Transaksinya pindah ke tab Batal/Refund.' },
       ],
       tip: 'Supaya kasir tidak bisa membatalkan sendiri, nyalakan PIN Supervisor untuk Pembatalan di Lainnya › Pengaturan › Toko › Profil Toko (bagian FITUR OUTLET).',
+    },
+    {
+      slug: 'transaksi-susulan',
+      group: ORDERS,
+      title: 'Mencatat Transaksi yang Terlupa (Transaksi Susulan)',
+      desc: 'Catat penjualan kemarin di tanggal dan shift yang benar.',
+      intro:
+        'Lupa mencatat penjualan kemarin? Atur Waktu transaksi di layar bayar, paling lama 7 hari ke belakang. Transaksinya masuk ke tanggal dan shift kasir yang buka saat itu, jadi laporan harian dan kas laci hari ini tetap benar. Hanya untuk pemilik, manajer, dan supervisor.',
+      steps: [
+        { title: 'Masukkan barang ke keranjang', body: 'Di tab Kasir, pilih barang yang terjual seperti biasa, lalu buka layar bayar.' },
+        { title: 'Ketuk Waktu transaksi', body: 'Di bagian Informasi Tagihan, ketuk Waktu transaksi (awalnya tertulis Sekarang).' },
+        { title: 'Pilih tanggal dan jamnya', body: 'Di "Kapan transaksi ini terjadi?", pilih tanggal dan jam penjualan sebenarnya. Waktunya harus sebelum sekarang.' },
+        { title: 'Bayar seperti biasa', body: 'Pilih metode bayar dan selesaikan pembayaran. Transaksi tercatat pada waktu yang dipilih.' },
+      ],
+      tip: 'Transaksi susulan perlu internet. Salah pilih waktu? Ketuk Kembalikan ke sekarang sebelum membayar. Kasir biasa tidak melihat pilihan Waktu transaksi.',
     },
     {
       slug: 'member-pelanggan',
@@ -527,6 +561,21 @@ function buildGuides(locale: Locale): Guide[] {
         { title: 'Tes Cetak lalu simpan', body: 'Ketuk Tes Cetak untuk melihat hasilnya di kertas (perubahan disimpan lebih dulu), atau ketuk Simpan.' },
       ],
       tip: 'Nama toko, alamat, dan telepon di struk diubah lewat Pengaturan › Toko › Profil Toko, bukan di halaman Struk.',
+    },
+    {
+      slug: 'tulisan-struk',
+      group: SETUP,
+      title: 'Mengatur Ukuran dan Jenis Huruf Struk',
+      desc: 'Besarkan tulisan struk atau ganti jenis hurufnya.',
+      intro:
+        'Tulisan struk terlalu kecil untuk pembeli? Pilih ukuran tulisan dan jenis huruf sendiri. Berlaku untuk struk cetak dan struk WhatsApp di semua kasir outlet.',
+      steps: [
+        { title: 'Buka pengaturan Struk', body: 'Buka Lainnya › Pengaturan › Struk & Dokumen › Struk, lalu pilih tab Pengaturan.' },
+        { title: 'Pilih Ukuran tulisan', body: 'Di TULISAN STRUK, pilih Kecil, Normal, Besar, atau Sangat besar.' },
+        { title: 'Pilih Jenis huruf', body: 'Pilih Mesin kasir untuk huruf khas struk, atau Biasa untuk huruf yang lebih mirip tulisan di HP.' },
+        { title: 'Lihat Pratinjau lalu simpan', body: 'Periksa hasilnya di tab Pratinjau, lalu ketuk Simpan. Pengaturan berlaku untuk semua kasir di outlet ini.' },
+      ],
+      tip: 'Ketuk Tes Cetak untuk melihat hasilnya langsung di kertas sebelum dipakai melayani pembeli.',
     },
     {
       slug: 'tampilkan-menu',
@@ -679,6 +728,21 @@ function buildGuides(locale: Locale): Guide[] {
         { title: 'Cocokkan dengan mutasi bank', body: 'Buka mutasi rekening itu di Kas & Rekening untuk mencocokkannya dengan mutasi dari bank Anda.' },
       ],
       tip: 'Rekening yang dinonaktifkan tidak muncul saat bayar. Aktifkan lagi lewat Ubah Akun bila rekeningnya dipakai kembali.',
+    },
+    {
+      slug: 'kas-masuk-keluar',
+      group: FINANCE,
+      title: 'Mencatat Kas Masuk & Kas Keluar dari Laci',
+      desc: 'Catat uang yang masuk atau keluar laci di luar penjualan.',
+      intro:
+        'Setiap uang yang keluar dari laci di luar penjualan (misalnya beli gas, plastik, atau es batu) atau masuk ke laci (misalnya tambahan uang kembalian) perlu dicatat. Dengan begitu, uang di laci tetap cocok saat tutup kasir.',
+      steps: [
+        { title: 'Pastikan kasir sudah dibuka', body: 'Tombol Kas Masuk/Keluar hanya muncul selama shift kasir berjalan.' },
+        { title: 'Ketuk Kas Masuk/Keluar', body: 'Di Beranda, tombolnya ada di kartu kasir. Di layar Kasir ponsel, tombolnya ada di bagian atas. Bisa juga lewat tombol Shift › Kas Masuk/Keluar.' },
+        { title: 'Pilih Kas Masuk atau Kas Keluar', body: 'Untuk pengeluaran, pilih Kas Keluar, lalu isi Jumlah.' },
+        { title: 'Isi Keterangan, lalu simpan', body: 'Tulis untuk apa uangnya, misalnya "Beli gas", lalu ketuk Simpan.' },
+      ],
+      tip: 'Kas keluar dikurangkan dari kas yang seharusnya ada di laci saat Tutup Kasir. Bila toko memakai Kas & Rekening, kas keluar bisa langsung disetor ke Kas Besar atau rekening lewat Setor ke. Pengeluaran yang tidak diambil dari laci, misalnya bayar listrik dari rekening, dicatat lewat Lainnya › Kas & Rekening › pilih akun › Catat keluar.',
     },
     {
       slug: 'batalkan-kas-dobel',
