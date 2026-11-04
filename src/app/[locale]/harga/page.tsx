@@ -11,8 +11,6 @@ import { alternatesFor } from '@/lib/hreflang';
 import { CheckItem, Container, PageHero, SectionHeading } from '@/components/site/ui';
 import { CtaBand, FaqList } from '@/components/site/sections';
 import PricingPlans from '@/components/site/PricingPlans';
-import { Reveal, RevealGroup, RevealItem } from '@/components/site/motion/Reveal';
-import { ScrollExpand } from '@/components/site/motion/Velocity';
 import { SingleFeatureVideo } from '@/components/site/videos/FeatureVideos';
 
 export function generateStaticParams() {
@@ -49,7 +47,7 @@ export default async function HargaPage({ params }: { params: Promise<{ locale: 
 
   return (
     <>
-      <PageHero animated crumbs={[{ label: c.crumbHome, href: l.home }, { label: c.crumb }]} title={c.title} desc={c.desc} />
+      <PageHero decorated crumbs={[{ label: c.crumbHome, href: l.home }, { label: c.crumb }]} title={c.title} desc={c.desc} />
 
       <section className="py-10 md:py-[72px]">
         <Container className="flex flex-col items-center">
@@ -59,8 +57,8 @@ export default async function HargaPage({ params }: { params: Promise<{ locale: 
 
       <section className="pb-12 md:pb-[72px]">
         <Container className="flex flex-col gap-4 md:gap-6">
-          <Reveal variant="left"><h2 className="text-[26px] leading-[1.25] font-bold tracking-[-0.015em] md:text-[40px]">{c.compareTitle}</h2></Reveal>
-          <Reveal variant="clip" className="overflow-hidden rounded-[14px] border border-line md:rounded-[18px]">
+          <h2 className="text-[26px] leading-[1.25] font-bold tracking-[-0.015em] md:text-[40px]">{c.compareTitle}</h2>
+          <div className="card overflow-hidden rounded-[14px] md:rounded-[18px]">
             <table className="w-full table-fixed border-collapse text-left">
               <colgroup>
                 <col />
@@ -75,31 +73,31 @@ export default async function HargaPage({ params }: { params: Promise<{ locale: 
                 </tr>
               </thead>
               {c.groups.map(g => (
-                <RevealGroup as="tbody" key={g.title} variant="left" stagger={0.04}>
-                  <RevealItem as="tr">
+                <tbody key={g.title}>
+                  <tr>
                     <th scope="colgroup" colSpan={3} className="px-3.5 pt-[18px] pb-2 text-[11px] font-bold tracking-[0.08em] text-mute uppercase md:px-6 md:pt-7 md:pb-3 md:text-xs">{g.title}</th>
-                  </RevealItem>
+                  </tr>
                   {g.rows.map(r => (
-                    <RevealItem as="tr" key={r.label} className="border-b border-line transition-colors last:border-b-0 hover:bg-soft/70">
+                    <tr key={r.label} className="border-b border-line last:border-b-0 hover:bg-soft/70">
                       <th scope="row" className="px-3.5 py-3 text-[13px] leading-snug font-normal md:px-6 md:py-4 md:text-[15px]">{r.label}</th>
                       <td className="py-3 md:py-4"><span className="flex justify-center">{cell(r.trial, r.trialShort)}</span></td>
                       <td className="py-3 md:py-4"><span className="flex justify-center">{cell(r.pro, r.proShort)}</span></td>
-                    </RevealItem>
+                    </tr>
                   ))}
-                </RevealGroup>
+                </tbody>
               ))}
             </table>
-          </Reveal>
+          </div>
         </Container>
       </section>
 
       <section className="pb-12 md:pb-[88px]">
         <Container className="grid gap-3.5 md:grid-cols-2 md:gap-6">
-          {[{ box: c.trial, cls: 'bg-tint' }, { box: c.costs, cls: 'border border-line' }].map(({ box, cls }, n) => (
-            <Reveal key={box.title} variant={n ? 'right' : 'left'} className={`spotlight flex flex-col gap-3.5 rounded-2xl p-5 md:rounded-[18px] md:p-8 ${cls}`}>
+          {[{ box: c.trial, cls: 'bg-tint' }, { box: c.costs, cls: 'card' }].map(({ box, cls }) => (
+            <div key={box.title} className={`flex flex-col gap-3.5 rounded-2xl p-5 md:rounded-[18px] md:p-8 ${cls}`}>
               <h3 className="text-lg font-bold md:text-xl">{box.title}</h3>
-              <RevealGroup as="ul" variant="up" stagger={0.08} className="flex flex-col gap-3 text-[15px]">{box.items.map(i => <RevealItem as="li" key={i}><CheckItem as="div">{i}</CheckItem></RevealItem>)}</RevealGroup>
-            </Reveal>
+              <ul className="flex flex-col gap-3 text-[15px]">{box.items.map(i => <CheckItem key={i}>{i}</CheckItem>)}</ul>
+            </div>
           ))}
         </Container>
       </section>
@@ -108,8 +106,8 @@ export default async function HargaPage({ params }: { params: Promise<{ locale: 
       <section id="referal" className="scroll-mt-28 pb-12 md:pb-[88px]">
         <Container className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-14">
           <div className="flex flex-col gap-6 lg:w-[440px] lg:shrink-0">
-            <Reveal variant="left"><SectionHeading eyebrow={c.referral.eyebrow} title={c.referral.title} desc={c.referral.desc} /></Reveal>
-            <Reveal variant="left" delay={0.1} className="overflow-hidden rounded-2xl border border-line">
+            <SectionHeading eyebrow={c.referral.eyebrow} title={c.referral.title} desc={c.referral.desc} />
+            <div className="card overflow-hidden rounded-2xl">
               <table className="w-full border-collapse text-left text-sm md:text-[15px]">
                 <thead className="bg-soft text-xs font-bold tracking-[0.06em] text-mute uppercase">
                   <tr>
@@ -128,25 +126,25 @@ export default async function HargaPage({ params }: { params: Promise<{ locale: 
                   ))}
                 </tbody>
               </table>
-            </Reveal>
-            <Reveal variant="up" delay={0.15}><p className="text-[13px] leading-relaxed text-body">{c.referral.note}</p></Reveal>
+            </div>
+            <p className="text-[13px] leading-relaxed text-body">{c.referral.note}</p>
           </div>
-          <Reveal variant="clip" className="min-w-0 flex-1"><SingleFeatureVideo id="Referal" /></Reveal>
+          <div className="min-w-0 flex-1"><SingleFeatureVideo id="Referal" /></div>
         </Container>
       </section>
 
       <section className="bg-soft py-12 md:py-20">
         <Container className="flex flex-col gap-6 lg:flex-row lg:justify-between lg:gap-8">
           <div className="flex flex-col gap-3 lg:w-[400px]">
-            <Reveal variant="left"><SectionHeading eyebrow="FAQ" title={c.faqTitle} /></Reveal>
+            <SectionHeading eyebrow="FAQ" title={c.faqTitle} />
             <Link href={l.faq} className="hidden text-sm font-semibold text-brand hover:underline lg:inline">{c.faqMore} →</Link>
           </div>
-          <Reveal variant="right" delay={0.1} className="lg:w-[720px]"><FaqList locale={locale} questions={c.faq} /></Reveal>
+          <div className="lg:w-[720px]"><FaqList locale={locale} questions={c.faq} /></div>
           <Link href={l.faq} className="text-sm font-semibold text-brand lg:hidden">{c.faqMore} →</Link>
         </Container>
       </section>
 
-      <ScrollExpand from={0.9}><CtaBand locale={locale} /></ScrollExpand>
+      <CtaBand locale={locale} />
     </>
   );
 }

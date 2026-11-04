@@ -3,9 +3,7 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { Check } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
-import type { ComponentProps, CSSProperties, ReactNode } from 'react';
-
-import { GrowLine, SplitReveal } from './motion/SplitReveal';
+import type { ComponentProps, ReactNode } from 'react';
 
 /** Lebar konten 1200px dengan gutter 20px di mobile, sama seperti Figma. */
 export function Container({ className, children }: { className?: string; children: ReactNode }) {
@@ -15,7 +13,7 @@ export function Container({ className, children }: { className?: string; childre
 type Tone = 'primary' | 'secondary' | 'accent' | 'whatsapp' | 'ghostDark';
 
 const tones: Record<Tone, string> = {
-  primary: 'bg-brand text-white hover:bg-brand-dark active:bg-brand-darker',
+  primary: 'bg-brand text-white shadow-[0_1px_2px_rgba(13,93,243,0.2),inset_0_1px_0_rgba(255,255,255,0.12)] hover:bg-brand-dark active:bg-brand-darker',
   secondary: 'border-[1.5px] border-line bg-white text-ink hover:border-[#cdd2dc] hover:bg-soft',
   accent: 'bg-accent text-ink hover:brightness-95',
   whatsapp: 'bg-whatsapp text-white hover:brightness-95',
@@ -40,7 +38,7 @@ export function ButtonLink({ href, tone = 'primary', size = 'md', icon, block, e
   const display = className?.split(' ').includes('hidden') ? '' : 'inline-flex';
   const cls = clsx(
     display,
-    'items-center justify-center gap-2 rounded-[10px] font-semibold transition-colors whitespace-nowrap',
+    'items-center justify-center gap-2 rounded-[10px] font-semibold whitespace-nowrap transition-colors duration-150',
     size === 'sm' && 'px-4 py-2.5 text-sm',
     size === 'md' && 'px-6 py-3.5 text-[15px]',
     size === 'lg' && 'px-7 py-4 text-base',
@@ -70,7 +68,7 @@ export const WhatsAppIcon = ({ size = 18 }: { size?: number }) => <FaWhatsapp si
 export function Eyebrow({ children, light }: { children: ReactNode; light?: boolean }) {
   return (
     <p className={clsx('inline-flex items-center gap-2.5 text-[13px] font-bold tracking-[0.1em] uppercase', light ? 'text-accent' : 'text-brand')}>
-      <GrowLine light={light} />
+      <span aria-hidden className={clsx('inline-block h-[2px] w-[22px] rounded-full', light ? 'bg-accent' : 'bg-brand')} />
       {children}
     </p>
   );
@@ -98,7 +96,7 @@ export function SectionHeading({
     <div className={clsx('flex flex-col gap-3.5', align === 'center' && 'items-center text-center', className)}>
       {eyebrow && <Eyebrow light={light}>{eyebrow}</Eyebrow>}
       <h2 className={clsx('text-[26px] leading-[1.25] font-bold tracking-[-0.015em] md:text-[40px]', light ? 'text-white' : 'text-ink', titleClassName)}>
-        {typeof title === 'string' ? <SplitReveal text={title} /> : title}
+        {title}
       </h2>
       {desc && <p className={clsx('max-w-[640px] text-base leading-relaxed md:text-lg', light ? 'text-[#dce7ff]' : 'text-body')}>{desc}</p>}
     </div>
@@ -134,23 +132,22 @@ export function TabletFrame({ src, alt, className, priority }: { src: string; al
   );
 }
 
-/** `animated`: judul & deskripsi muncul bertahap (CSS, jadi tetap terlihat tanpa JavaScript). */
-export function PageHero({ crumbs, title, desc, children, animated }: { crumbs?: { label: string; href?: string }[]; title: ReactNode; desc?: ReactNode; children?: ReactNode; animated?: boolean }) {
-  const fade = (ms: number) => (animated ? { className: 'hero-fade', style: { '--d': `${ms}ms` } as CSSProperties } : {});
+/** Kepala halaman. `decorated`: latar kisi + cahaya lembut (statis) untuk halaman utama seperti Fitur & Harga. */
+export function PageHero({ crumbs, title, desc, children, decorated }: { crumbs?: { label: string; href?: string }[]; title: ReactNode; desc?: ReactNode; children?: ReactNode; decorated?: boolean }) {
   return (
-    <section className={clsx('relative isolate bg-soft', animated && 'overflow-hidden')}>
-      {animated && (
+    <section className={clsx('relative isolate border-b border-line/70 bg-soft', decorated && 'overflow-hidden')}>
+      {decorated && (
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div className="hero-aurora absolute -top-32 right-[-8%] h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(13,93,243,0.18),transparent_65%)]" />
-          <div className="hero-aurora absolute -bottom-40 left-[-10%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(255,201,60,0.2),transparent_65%)] [animation-delay:-7s]" />
+          <div className="absolute -top-32 right-[-8%] h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(13,93,243,0.14),transparent_65%)]" />
+          <div className="absolute -bottom-40 left-[-10%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(255,201,60,0.16),transparent_65%)]" />
           <div className="hero-grid absolute inset-0" />
         </div>
       )}
       <Container className="flex flex-col gap-4 pt-7 pb-9 md:gap-5 md:pt-12 md:pb-16">
-        {crumbs && (animated ? <div {...fade(0)}><Breadcrumb items={crumbs} /></div> : <Breadcrumb items={crumbs} />)}
-        <h1 {...fade(100)} className={clsx('max-w-[900px] text-[32px] leading-[1.18] font-bold tracking-[-0.02em] md:text-5xl', animated && 'hero-fade md:text-[56px] md:leading-[1.1] md:tracking-[-0.03em]')}>{title}</h1>
-        {desc && <p {...fade(240)} className={clsx('max-w-[720px] text-base leading-relaxed text-body md:text-lg', animated && 'hero-fade')}>{desc}</p>}
-        {animated && children ? <div {...fade(380)}>{children}</div> : children}
+        {crumbs && <Breadcrumb items={crumbs} />}
+        <h1 className={clsx('max-w-[900px] text-[32px] leading-[1.18] font-bold tracking-[-0.02em] md:text-5xl', decorated && 'md:text-[56px] md:leading-[1.1] md:tracking-[-0.03em]')}>{title}</h1>
+        {desc && <p className="max-w-[720px] text-base leading-relaxed text-body md:text-lg">{desc}</p>}
+        {children}
       </Container>
     </section>
   );

@@ -4,7 +4,6 @@ import { ArrowRight, Bike, Dices, Flame, FlaskConical, Landmark, NotebookPen, Pa
 
 import type { HomeCopy } from '@/data/site/home';
 import { Container, IconTile, ProBadge, SectionHeading } from '@/components/site/ui';
-import { Reveal, RevealGroup, RevealItem } from '@/components/site/motion/Reveal';
 
 type Copy = HomeCopy['whatsNew'];
 
@@ -84,39 +83,39 @@ export default function WhatsNew({ copy }: { copy: Copy }) {
     <section id="yang-baru" className="scroll-mt-28 py-14 md:py-24">
       <Container className="flex flex-col gap-8 md:gap-12">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-10">
-          <Reveal variant="left"><SectionHeading eyebrow={copy.eyebrow} title={copy.title} titleClassName="md:max-w-[680px]" /></Reveal>
-          <Reveal variant="right" delay={0.1} className="flex max-w-[420px] flex-col gap-3">
+          <SectionHeading eyebrow={copy.eyebrow} title={copy.title} titleClassName="md:max-w-[680px]" />
+          <div className="flex max-w-[420px] flex-col gap-3">
             <p className="text-base leading-relaxed text-body">{copy.desc}</p>
             <a href="#video-fitur" className="inline-flex items-center gap-2 text-sm font-semibold text-brand hover:underline"><PlayCircle size={18} aria-hidden />{copy.video}</a>
-          </Reveal>
+          </div>
         </div>
 
         <div className="grid gap-4 lg:grid-cols-[1.15fr_1fr] lg:gap-6">
-          <Reveal variant="clip" className="h-full"><ReportCard report={copy.report} /></Reveal>
-          <RevealGroup variant="scale" stagger={0.08} className="grid gap-3 sm:grid-cols-2 lg:gap-4">
+          <ReportCard report={copy.report} />
+          <div className="grid gap-3 sm:grid-cols-2 lg:gap-4">
             {copy.insights.map(it => {
               const Icon = ICONS[it.icon];
               return (
-                <RevealItem key={it.title} className="spotlight flex h-full flex-col gap-3 rounded-2xl border border-line bg-white p-5 hover:shadow-[0_24px_48px_-16px_rgba(16,24,40,0.16)] lg:p-6">
+                <div key={it.title} className="card flex h-full flex-col gap-3 rounded-2xl p-5 lg:p-6">
                   <span className="flex items-center justify-between">
                     <IconTile>{Icon && <Icon size={22} aria-hidden />}</IconTile>
                     <ProBadge />
                   </span>
                   <h3 className="text-[17px] font-bold">{it.title}</h3>
                   <p className="text-sm leading-relaxed text-body">{it.desc}</p>
-                </RevealItem>
+                </div>
               );
             })}
-          </RevealGroup>
+          </div>
         </div>
 
         <div className="flex flex-col gap-5">
-          <Reveal><h3 className="text-xl font-bold tracking-[-0.01em] md:text-2xl">{copy.moreTitle}</h3></Reveal>
-          <RevealGroup as="ul" variant="up" stagger={0.05} className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <h3 className="text-xl font-bold tracking-[-0.01em] md:text-2xl">{copy.moreTitle}</h3>
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {copy.more.map(it => {
               const Icon = ICONS[it.icon];
               return (
-                <RevealItem as="li" key={it.title} className="flex h-full gap-3.5 rounded-2xl border border-line bg-soft p-4">
+                <li key={it.title} className="flex h-full gap-3.5 rounded-2xl border border-line bg-soft p-4">
                   <IconTile size="sm">{Icon && <Icon size={19} aria-hidden />}</IconTile>
                   <span className="flex flex-col gap-1">
                     <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[15px] leading-snug font-bold">
@@ -126,10 +125,10 @@ export default function WhatsNew({ copy }: { copy: Copy }) {
                     <span className="text-[13px] leading-relaxed text-body">{it.desc}</span>
                     <span className="mt-1 text-[11px] font-semibold tracking-wide text-mute">Sejak versi {it.version}</span>
                   </span>
-                </RevealItem>
+                </li>
               );
             })}
-          </RevealGroup>
+          </ul>
           <Link href="#video-fitur" className="inline-flex items-center gap-1.5 self-start text-sm font-semibold text-brand hover:underline">{copy.video} <ArrowRight size={15} aria-hidden /></Link>
         </div>
       </Container>

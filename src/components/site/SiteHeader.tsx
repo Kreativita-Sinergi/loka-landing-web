@@ -5,14 +5,12 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
-import { useMotionValueEvent, useScroll } from 'framer-motion';
 import { ChevronDown, ChevronRight, FileText, Menu, X } from 'lucide-react';
 import { FaAndroid, FaGooglePlay, FaWindows } from 'react-icons/fa';
 
 import { siteLinks } from '@/data/site/links';
 import type { Locale } from '@/data/localized';
 import { trackDownloadClick, trackGuidePdfClick, trackSignUpClick } from '@/utils/analytics';
-import { setScrollLocked } from '@/lib/smoothScroll';
 import { ButtonLink } from './ui';
 
 export default function SiteHeader({ locale }: { locale: Locale }) {
@@ -28,8 +26,12 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
   const [bannerH, setBannerH] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   const [menuTop, setMenuTop] = useState(96);
-  const { scrollY } = useScroll();
-  useMotionValueEvent(scrollY, 'change', y => setScrolled(y > bannerH + 8));
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > bannerH + 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [bannerH]);
   useEffect(() => {
     const el = bannerRef.current;
     if (!el) return;
@@ -91,8 +93,7 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
   useEffect(() => {
     const root = document.documentElement;
     root.style.overflow = menuOpen ? 'hidden' : '';
-    setScrollLocked(menuOpen);
-    return () => { root.style.overflow = ''; setScrollLocked(false); };
+    return () => { root.style.overflow = ''; };
   }, [menuOpen]);
 
   const downloadLink = (d: (typeof downloads)[number], compact = false) => {
@@ -126,13 +127,13 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
 
       <div
         className={clsx(
-          'border-b transition-[background-color,box-shadow,border-color] duration-500',
-          scrolled ? 'border-white/60 bg-white/95 shadow-[0_10px_30px_-14px_rgba(16,24,40,0.22)]' : 'border-line bg-white',
+          'border-b bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/85',
+          scrolled ? 'border-line shadow-[0_8px_24px_-16px_rgba(16,24,40,0.2)]' : 'border-line/70',
         )}
       >
         <div className="mx-auto flex h-[60px] max-w-[1240px] items-center justify-between px-5 md:h-[76px]">
           <Link href={links.home} aria-label="Loka Kasir, beranda" className="shrink-0">
-            <Image src="/images/site/logo.svg" alt="Loka Kasir" width={124} height={37} priority className={clsx('h-[30px] w-auto origin-left transition-transform duration-500 md:h-[37px]', scrolled && 'scale-[0.88]')} />
+            <Image src="/images/site/logo.svg" alt="Loka Kasir" width={124} height={37} priority className="h-[30px] w-auto md:h-[34px]" />
           </Link>
 
           <nav aria-label="Menu utama" className="hidden lg:block">
@@ -157,7 +158,7 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
                   onClick={() => setDlOpen(v => !v)}
                   className={clsx('flex items-center gap-1 transition-colors hover:text-brand', (dlOpen || pathname?.includes('/download')) && 'text-brand')}
                 >
-                  Download <ChevronDown size={16} className={clsx('transition-transform', dlOpen && 'rotate-180')} />
+                  Download <ChevronDown size={16} className={clsx(dlOpen && 'rotate-180')} />
                 </button>
                 {dlOpen && (
                   <div className="absolute top-full right-0 w-[360px] pt-4">
@@ -206,7 +207,7 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
               </Link>
             ))}
             <button type="button" onClick={() => setDlOpen(v => !v)} aria-expanded={dlOpen} className={clsx('flex w-full items-center justify-between py-4 text-lg font-semibold', dlOpen && 'text-brand')}>
-              Download <ChevronDown size={18} className={clsx('transition-transform', dlOpen && 'rotate-180')} />
+              Download <ChevronDown size={18} className={clsx(dlOpen && 'rotate-180')} />
             </button>
             {dlOpen && <div className="flex flex-col gap-1 pb-3">{downloads.map(d => downloadLink(d, true))}{guidePdf(true)}</div>}
             <div className="border-b border-line" />

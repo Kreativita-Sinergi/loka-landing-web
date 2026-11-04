@@ -1,7 +1,6 @@
 'use client';
 
 import clsx from 'clsx';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Award, CalendarDays, ChartColumn, Dices, Flame, Gift, Handshake, Package, QrCode, Ruler, Scale, Store, Timer, Truck, Wallet, Zap, type LucideIcon } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
@@ -15,9 +14,22 @@ function StageSkeleton() {
   return (
     <div className="relative flex aspect-video w-full items-center justify-center overflow-hidden bg-[#f7f9ff]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(13,93,243,0.16),transparent_45%),radial-gradient(circle_at_20%_85%,rgba(255,201,60,0.22),transparent_40%)]" />
-      <span className="relative h-10 w-10 animate-spin rounded-full border-4 border-brand/20 border-t-brand" aria-hidden />
+      <span className="relative text-sm font-medium text-mute">Memuat video…</span>
     </div>
   );
+}
+
+/** Preferensi "kurangi gerakan" dari sistem: video tidak diputar otomatis. */
+function useReducedMotionPref() {
+  const [reduce, setReduce] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReduce(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+  return reduce;
 }
 
 const VideoStage = dynamic(() => import('./VideoStage'), { ssr: false, loading: StageSkeleton });
@@ -51,7 +63,7 @@ function StageFrame({ children }: { children: React.ReactNode }) {
 export default function FeatureVideos({ ids }: { ids?: FeatureVideoId[] }) {
   const items = ids ? FEATURE_VIDEO_META.filter(m => ids.includes(m.id)) : FEATURE_VIDEO_META;
   const [active, setActive] = useState(0);
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionPref();
   const [ref, near] = useNearViewport<HTMLDivElement>();
   const bars = useRef<(HTMLSpanElement | null)[]>([]);
   const tabsRow = useRef<HTMLDivElement>(null);
@@ -66,7 +78,7 @@ export default function FeatureVideos({ ids }: { ids?: FeatureVideoId[] }) {
   useEffect(() => {
     const row = tabsRow.current;
     const btn = row?.children[active] as HTMLElement | undefined;
-    if (row && btn && row.scrollWidth > row.clientWidth) row.scrollTo({ left: btn.offsetLeft - 16, behavior: 'smooth' });
+    if (row && btn && row.scrollWidth > row.clientWidth) row.scrollTo({ left: btn.offsetLeft - 16 });
   }, [active]);
 
   return (
@@ -83,9 +95,8 @@ export default function FeatureVideos({ ids }: { ids?: FeatureVideoId[] }) {
               role="tab"
               aria-selected={on}
               onClick={() => select(i)}
-              className={clsx('relative shrink-0 snap-start overflow-hidden rounded-full border text-left transition-colors lg:rounded-2xl', on ? 'border-brand/30' : 'border-line bg-white hover:border-[#cdd2dc]')}
+              className={clsx('relative shrink-0 snap-start overflow-hidden rounded-full border text-left transition-colors lg:rounded-2xl', on ? 'border-brand/30 bg-tint' : 'border-line bg-white hover:border-[#cdd2dc]')}
             >
-              {on && <motion.span layoutId="video-tab-bg" className="absolute inset-0 bg-tint" transition={{ type: 'spring', stiffness: 380, damping: 34 }} />}
               <span className="relative flex items-center gap-2.5 px-4 py-2.5 lg:gap-3.5 lg:px-4 lg:py-3">
                 <span className={clsx('inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors lg:h-10 lg:w-10 lg:rounded-xl', on ? 'bg-brand text-white' : 'bg-soft text-brand')}>
                   <Icon size={18} aria-hidden />
@@ -95,19 +106,7 @@ export default function FeatureVideos({ ids }: { ids?: FeatureVideoId[] }) {
                     {m.tab}
                     {m.isNew && <span className="rounded-full bg-accent px-1.5 py-px text-[10px] font-extrabold tracking-wide text-ink uppercase">Baru</span>}
                   </span>
-                  <AnimatePresence initial={false}>
-                    {on && (
-                      <motion.span
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                        className="hidden overflow-hidden text-sm leading-relaxed text-body lg:block"
-                      >
-                        <span className="block pt-1.5">{m.desc}</span>
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
+                  {on && <span className="hidden pt-1.5 text-sm leading-relaxed text-body lg:block">{m.desc}</span>}
                 </span>
               </span>
               {/* Progres video aktif */}
@@ -137,12 +136,10 @@ export default function FeatureVideos({ ids }: { ids?: FeatureVideoId[] }) {
           )}
         </StageFrame>
         {/* Judul & penjelasan untuk ponsel (di desktop ada di tab) */}
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div key={cur.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.3 }} className="lg:hidden">
-            <h3 className="text-lg font-bold">{cur.title}</h3>
-            <p className="mt-1 text-sm leading-relaxed text-body">{cur.desc}</p>
-          </motion.div>
-        </AnimatePresence>
+        <div className="lg:hidden">
+          <h3 className="text-lg font-bold">{cur.title}</h3>
+          <p className="mt-1 text-sm leading-relaxed text-body">{cur.desc}</p>
+        </div>
       </div>
     </div>
   );
@@ -150,7 +147,7 @@ export default function FeatureVideos({ ids }: { ids?: FeatureVideoId[] }) {
 
 /** Satu video fitur, diulang terus selama terlihat. */
 export function SingleFeatureVideo({ id }: { id: FeatureVideoId }) {
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionPref();
   const [ref, near] = useNearViewport<HTMLDivElement>();
   const meta = FEATURE_VIDEO_META.find(m => m.id === id);
   return (
