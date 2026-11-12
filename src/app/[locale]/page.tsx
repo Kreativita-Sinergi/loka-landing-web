@@ -16,7 +16,6 @@ import { CtaBand, DownloadSection, FaqList, Testimonials, featureIcon } from '@/
 import PricingPlans from '@/components/site/PricingPlans';
 import DemoKasir from '@/components/site/home/DemoKasir';
 import Hero from '@/components/site/home/Hero';
-import WhatsNew from '@/components/site/home/WhatsNew';
 import FeatureVideos from '@/components/site/videos/FeatureVideos';
 import ProBusinesses from '@/components/site/home/ProBusinesses';
 import { fetchProBusinesses } from '@/lib/proBusinesses';
@@ -87,9 +86,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       <ProBusinesses businesses={proBusinesses} locale={locale} />
-
-      {/* Yang baru */}
-      <WhatsNew copy={c.whatsNew} />
 
       {/* Demo */}
       <section className="bg-soft py-14 md:py-24">
