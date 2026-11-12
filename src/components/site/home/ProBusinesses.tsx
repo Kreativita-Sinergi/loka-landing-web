@@ -16,7 +16,7 @@ export default function ProBusinesses({ businesses, locale }: { businesses: ProB
             <SectionHeading eyebrow={copy.eyebrow} title={copy.title} align="center" titleClassName="text-2xl md:text-[32px]" />
             <p className="mt-3 text-sm leading-relaxed text-body">{copy.desc}</p>
           </div>
-          <ProBusinessList businesses={businesses} more={copy.more} less={copy.less} locationUnavailable={copy.locationUnavailable} />
+          <ProBusinessList businesses={businesses} more={copy.more} less={copy.less} />
         </div>
       </Container>
     </section>

@@ -4,11 +4,10 @@ import { useState } from 'react';
 import type { ProBusiness } from '@/lib/proBusinesses';
 import ProBusinessCard from './ProBusinessCard';
 
-export default function ProBusinessList({ businesses, more, less, locationUnavailable }: {
+export default function ProBusinessList({ businesses, more, less }: {
   businesses: ProBusiness[];
   more: string;
   less: string;
-  locationUnavailable: string;
 }) {
   const [expanded, setExpanded] = useState(false);
   const withLogos = businesses.filter(business => business.image?.trim());
@@ -20,7 +19,7 @@ export default function ProBusinessList({ businesses, more, less, locationUnavai
     <>
       <ul id="pro-businesses-list" className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
         {visible.map((business, index) => (
-          <ProBusinessCard key={`${business.name}-${index}`} business={business} requireLogo={!expanded} locationUnavailable={locationUnavailable} />
+          <ProBusinessCard key={`${business.name}-${index}`} business={business} requireLogo={!expanded} />
         ))}
       </ul>
       {businesses.length > featured.length && (

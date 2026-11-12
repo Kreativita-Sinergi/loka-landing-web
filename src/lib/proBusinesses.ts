@@ -9,7 +9,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.lokaka
 /** Public identities only; the page remains available when the API is down. */
 export async function fetchProBusinesses(): Promise<ProBusiness[]> {
   try {
-    const res = await fetch(`${API_BASE_URL}/public/pro-businesses?include=location`, {
+    const res = await fetch(`${API_BASE_URL}/public/pro-businesses?include=ip-location`, {
       headers: { Accept: 'application/json' },
       next: { revalidate: 600 },
       signal: AbortSignal.timeout(5000),
