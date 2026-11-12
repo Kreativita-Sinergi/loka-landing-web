@@ -5,10 +5,11 @@ import { Container, SectionHeading } from '@/components/site/ui';
 import ProBusinessCard from './ProBusinessCard';
 
 export default function ProBusinesses({ businesses, locale }: { businesses: ProBusiness[]; locale: Locale }) {
-  if (!businesses.length) return null;
+  const withLogos = businesses.filter(business => business.image?.trim());
+  if (!withLogos.length) return null;
   const copy = getProBusinessesCopy(locale);
-  const featured = businesses.slice(0, 12);
-  const remaining = businesses.slice(12);
+  const featured = withLogos.slice(0, 12);
+  const remaining = withLogos.slice(12);
   const gridClass = 'grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4';
 
   return (
@@ -25,7 +26,7 @@ export default function ProBusinesses({ businesses, locale }: { businesses: ProB
           {remaining.length > 0 && (
             <details className="group mt-3">
               <summary className="mx-auto w-fit cursor-pointer rounded-lg px-4 py-3 text-sm font-semibold text-brand hover:text-brand-dark marker:text-brand">
-                {copy.more} <span className="tabular-nums">({businesses.length})</span>
+                {copy.more} <span className="tabular-nums">({withLogos.length})</span>
               </summary>
               <ul className={`${gridClass} mt-3`}>
                 {remaining.map((business, index) => <ProBusinessCard key={`${business.name}-${index}`} business={business} />)}
