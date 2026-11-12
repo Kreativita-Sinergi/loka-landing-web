@@ -18,6 +18,8 @@ import DemoKasir from '@/components/site/home/DemoKasir';
 import Hero from '@/components/site/home/Hero';
 import WhatsNew from '@/components/site/home/WhatsNew';
 import FeatureVideos from '@/components/site/videos/FeatureVideos';
+import ProBusinesses from '@/components/site/home/ProBusinesses';
+import { fetchProBusinesses } from '@/lib/proBusinesses';
 
 /** Statistik pemakaian diperbarui tiap 10 menit (lihat lib/publicStats). */
 export const revalidate = 600;
@@ -44,7 +46,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const locale = raw as Locale;
   const c = getHomeCopy(locale);
   const l = siteLinks(locale);
-  const stats = await fetchPublicStats();
+  const [stats, proBusinesses] = await Promise.all([fetchPublicStats(), fetchProBusinesses()]);
   const categories = getFeatureCategories(locale);
   const featuredGuides = ['buka-kasir', 'transaksi', 'tutup-shift']
     .map(slug => videoGuides.find(guide => guide.slug === slug))
@@ -83,6 +85,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </dl>
         </Container>
       </section>
+
+      <ProBusinesses businesses={proBusinesses} locale={locale} />
 
       {/* Yang baru */}
       <WhatsNew copy={c.whatsNew} />
