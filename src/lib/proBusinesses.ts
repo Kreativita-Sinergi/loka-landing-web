@@ -9,6 +9,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.lokaka
 export async function fetchProBusinesses(): Promise<ProBusiness[]> {
   try {
     const res = await fetch(`${API_BASE_URL}/public/pro-businesses`, {
+      headers: { Accept: 'application/json' },
       next: { revalidate: 600 },
       signal: AbortSignal.timeout(5000),
     });
