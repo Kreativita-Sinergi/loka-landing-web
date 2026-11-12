@@ -24,7 +24,7 @@ export default function ProBusinessCard({ business, requireLogo = false, locatio
         />}
       <span className="flex min-w-0 flex-col gap-1 text-center break-words">
         <span className="text-[13px] leading-relaxed font-semibold text-ink md:text-sm">{business.name}</span>
-        <span className="text-xs leading-relaxed text-body">{business.location || locationUnavailable}</span>
+        <span className="line-clamp-2 text-xs leading-relaxed text-body" title={business.location}>{business.location || locationUnavailable}</span>
       </span>
     </li>
   );
