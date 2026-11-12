@@ -26,6 +26,9 @@ export default function ProBusinessCard({ business, requireLogo = false }: { bus
       )}
       <span className="flex min-w-0 flex-col gap-1 text-center break-words">
         <span className="text-[13px] leading-relaxed font-semibold text-ink md:text-sm">{business.name}</span>
+        {business.businessType && (
+          <span className="text-xs leading-relaxed font-medium text-brand">{business.businessType}</span>
+        )}
         {business.location && (
           <span className="line-clamp-2 text-xs leading-relaxed text-body" title={business.location}>{business.location}</span>
         )}
