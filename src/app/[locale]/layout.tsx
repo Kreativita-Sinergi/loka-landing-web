@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import SiteHeader from "@/components/site/SiteHeader";
 import SiteFooter from "@/components/site/SiteFooter";
 import FloatingWa from "@/components/site/FloatingWa";
-import { siteDetails, getSiteMetadata } from '@/data/siteDetails';
+import { siteDetails, getSiteMetadata, getHomeShareMetadata } from '@/data/siteDetails';
 import { HTML_LANG, LOCALES, OG_LOCALE, localePath, type Locale } from '@/data/localized';
 import { alternatesFor } from '@/lib/hreflang';
 
@@ -25,6 +25,7 @@ export async function generateMetadata(
   if (!(LOCALES as readonly string[]).includes(locale)) notFound();
   const active = locale as Locale;
   const meta = getSiteMetadata(active);
+  const { image } = getHomeShareMetadata(active);
   const canonicalUrl = `${siteDetails.siteUrl}${localePath(active, '/')}`;
 
   return {
@@ -44,13 +45,13 @@ export async function generateMetadata(
       type: 'website',
       siteName: siteDetails.siteName,
       locale: OG_LOCALE[active],
-      // Gambar OG dibuat dinamis lewat opengraph-image.tsx (otomatis dipasang Next.js).
+      images: [{ ...image, type: 'image/jpeg' }],
     },
     twitter: {
       card: 'summary_large_image',
       title: meta.title,
       description: meta.description,
-      // Gambar Twitter dibuat dinamis lewat twitter-image.tsx.
+      images: [image],
     },
     robots: {
       index: true,

@@ -11,7 +11,8 @@
     "run_worker_first": [
       "/*",
       "!/_next/static/*",
-      "!/*/_next/static/*"
+      "!/*/_next/static/*",
+      "!/images/share/*"
     ]
   },
   "kv_namespaces": [

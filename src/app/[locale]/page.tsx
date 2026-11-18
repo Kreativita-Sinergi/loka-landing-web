@@ -1,13 +1,15 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import clsx from 'clsx';
 import { ArrowDown, ArrowRight, HardDrive, Info, MapPin, RefreshCw, WifiOff, PlayCircle } from 'lucide-react';
 
-import { LOCALES, type Locale } from '@/data/localized';
+import { LOCALES, OG_LOCALE, localePath, type Locale } from '@/data/localized';
 import { getFaqs } from '@/data/faq';
 import { guides as videoGuides } from '@/data/guides';
 import { getHomeCopy } from '@/data/site/home';
+import { getHomeShareMetadata, siteDetails } from '@/data/siteDetails';
 import { getFeatureCategories } from '@/data/site/shared';
 import { siteLinks } from '@/data/site/links';
 import { fetchPublicStats, formatNumber } from '@/lib/publicStats';
@@ -19,6 +21,31 @@ import Hero from '@/components/site/home/Hero';
 import FeatureVideos from '@/components/site/videos/FeatureVideos';
 import ProBusinesses from '@/components/site/home/ProBusinesses';
 import { fetchProBusinesses } from '@/lib/proBusinesses';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale: raw } = await params;
+  if (!(LOCALES as readonly string[]).includes(raw)) notFound();
+  const locale = raw as Locale;
+  const { title, description, image } = getHomeShareMetadata(locale);
+
+  return {
+    openGraph: {
+      title,
+      description,
+      url: new URL(localePath(locale), siteDetails.siteUrl),
+      siteName: siteDetails.siteName,
+      locale: OG_LOCALE[locale],
+      type: 'website',
+      images: [{ ...image, type: 'image/jpeg' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
 
 /** Statistik pemakaian diperbarui tiap 10 menit (lihat lib/publicStats). */
 export const revalidate = 600;

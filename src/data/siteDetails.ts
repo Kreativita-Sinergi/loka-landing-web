@@ -2,7 +2,7 @@ import { pick, type Locale } from './localized';
 
 export const siteDetails = {
   siteName: 'Loka Kasir',
-  // Vercel mengarahkan domain apex ke www. Seluruh canonical, hreflang,
+  // Domain apex mengarah ke www. Seluruh canonical, hreflang,
   // sitemap, OpenGraph, dan structured data harus menunjuk langsung ke host
   // final agar sinyal ranking tidak melewati redirect.
   siteUrl: 'https://www.lokakasir.id',
@@ -58,3 +58,40 @@ const metadataByLocale: Record<Locale, { title: string; description: string }> =
 };
 
 export const getSiteMetadata = (locale: Locale) => pick(metadataByLocale, locale);
+
+const homeShareByLocale = {
+  id: {
+    title: 'Loka Kasir | Kasir, Stok & Laporan Usaha',
+    description: 'Aplikasi kasir untuk toko, kafe, dan restoran. Catat transaksi meski offline, pantau stok, dan cek laporan. Coba gratis 14 hari.',
+    alt: 'Perangkat dengan aplikasi Loka Kasir dan kartu fitur transaksi offline, kelola stok, serta laporan penjualan.',
+  },
+  en: {
+    title: 'Loka Kasir | Sales, Stock & Reports',
+    description: 'A POS app for shops, cafés, and restaurants. Ring up sales offline, track stock, and review your sales. Try it free for 14 days.',
+    alt: 'Devices running Loka Kasir alongside feature cards for offline sales, stock tracking, and sales reports.',
+  },
+  ms: {
+    title: 'Loka Kasir | Jualan, Stok & Laporan',
+    description: 'Aplikasi POS untuk kedai, kafe dan restoran. Rekod jualan luar talian, urus stok dan semak laporan. Cuba percuma 14 hari.',
+    alt: 'Peranti dengan aplikasi Loka Kasir serta kad ciri jualan luar talian, pengurusan stok dan laporan jualan.',
+  },
+  ja: {
+    title: 'Loka Kasir | 会計・在庫・売上をひとつに',
+    description: 'お店・カフェ・飲食店向けのPOSレジ。オフライン会計、在庫管理、売上レポートをひとつのアプリで。14日間無料で試せます。',
+    alt: 'Loka Kasirの画面を表示した端末と、オフライン会計・在庫管理・売上レポートの機能カード。',
+  },
+} satisfies Record<Locale, { title: string; description: string; alt: string }>;
+
+export function getHomeShareMetadata(locale: Locale) {
+  const { title, description, alt } = homeShareByLocale[locale];
+  return {
+    title,
+    description,
+    image: {
+      url: new URL(`/images/share/loka-kasir-${locale}-v1.jpg`, siteDetails.siteUrl),
+      width: 1200,
+      height: 630,
+      alt,
+    },
+  };
+}
