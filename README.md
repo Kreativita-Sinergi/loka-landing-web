@@ -1,3 +1,17 @@
+## Deploy Loka Kasir ke Cloudflare Workers
+
+Gunakan Node.js 22.12 atau lebih baru dan akun Cloudflare Loka Kasir.
+
+```sh
+npm ci
+npm run build:vinext
+npm run deploy:vinext
+```
+
+Produksi berjalan di `https://www.lokakasir.id`. Worker mengalihkan `lokakasir.id` ke domain tersebut dan memakai Workers KV untuk cache vinext.
+
+---
+
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnexi-launch%2Ffinwise-landing-page)
 
 # Finwise - Next.js + Tailwind Landing Page Template
