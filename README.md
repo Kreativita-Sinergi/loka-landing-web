@@ -1,6 +1,6 @@
 ## Deploy Loka Kasir ke Cloudflare Workers
 
-Gunakan Node.js 22.12 atau lebih baru dan akun Cloudflare Loka Kasir.
+Push ke `main` menjalankan build dan deploy otomatis melalui GitHub Actions. Untuk deploy manual, gunakan Node.js 22.12 atau lebih baru dan akun Cloudflare Loka Kasir.
 
 ```sh
 npm ci
