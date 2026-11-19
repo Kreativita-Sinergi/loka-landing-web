@@ -12,12 +12,12 @@ export const ACCOUNTING_APP_URL = 'https://accounting.lokakasir.id';
 const id = {
   metaTitle: 'Loka Kasir Accounting — Software Akuntansi Online untuk UMKM',
   metaDescription:
-    'Loka Kasir Accounting: jurnal, buku besar, kas & bank, persediaan, aset tetap, hingga laba rugi dan neraca. Terhubung dengan Loka Kasir. Trial 30 hari.',
+    'Loka Kasir Accounting: jurnal, buku besar, kas & bank, persediaan, aset tetap, hingga laba rugi dan neraca. Terhubung dengan Loka Kasir. Trial 14 hari.',
   home: 'Beranda',
   badge: 'Produk baru',
   title: 'Pembukuan rapi, langsung dari transaksi kasir',
   desc: 'Loka Kasir Accounting adalah aplikasi akuntansi online untuk usaha Anda. Penjualan dari Loka Kasir masuk ke jurnal, lalu jadi laporan keuangan yang siap dibaca — tanpa salin angka ke spreadsheet.',
-  ctaPrimary: 'Coba gratis 30 hari',
+  ctaPrimary: 'Coba gratis 14 hari',
   ctaSecondary: 'Lihat fitur',
   heroNote: 'Akun Accounting terpisah dari akun kasir. Integrasi dengan Loka Kasir bisa dinyalakan kapan saja.',
   flowTitle: 'Dari kasir ke laporan keuangan',
@@ -40,7 +40,7 @@ const id = {
   pricingTitle: 'Harga',
   pricingAmount: 'Rp149.000',
   pricingUnit: '/ organisasi / bulan',
-  pricingPoints: ['Trial 30 hari dengan seluruh fitur', 'Tidak diperpanjang otomatis', 'Undang tim dengan peran berbeda', 'Integrasi Loka Kasir opsional'],
+  pricingPoints: ['Trial 14 hari dengan seluruh fitur', 'Tidak diperpanjang otomatis', 'Undang tim dengan peran berbeda', 'Integrasi Loka Kasir opsional'],
   pricingNote: 'Langganan Accounting terpisah dari paket Loka Kasir.',
   faqTitle: 'Pertanyaan umum',
   faqs: [
