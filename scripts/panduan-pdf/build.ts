@@ -67,6 +67,7 @@ const BAB_ORDER = [
   'Mulai di sini',
   'Pesanan & pembayaran',
   'Pelanggan & member',
+  'Member gym',
   'Meja & sewa',
   'Booking lapangan',
   'Produk & stok',
@@ -79,6 +80,7 @@ const BAB_ORDER = [
 const FEATURE_GROUP_ALIAS: Record<string, string> = { 'Pengaturan & tampilan': 'Pengaturan' };
 const BAB_INTRO: Record<string, string> = {
   'Mulai di sini': 'Lima langkah harian kasir, dari login sampai tutup shift. Baca bab ini lebih dulu.',
+  'Member gym': 'Untuk gym dan fitness: paket member, check-in, kelas grup, dan check-in mandiri di pintu.',
   'Mengatasi masalah': 'Langkah yang bisa dicoba sendiri sebelum menghubungi tim Loka.',
 };
 /** Pintasan di halaman daftar isi — hal yang paling sering ditanyakan ke CS. */

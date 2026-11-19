@@ -1,9 +1,27 @@
 {
-  "_sumber": "Panduan 'Yang baru' aplikasi Loka Kasir (loka-kasir-app, lib/features/home/views/widgets/whats_new_sheet.dart), dikurasi 29 Okt 2026: jalur menu Pengaturan disesuaikan dengan pengelompokan 1.49; panduan 'Cetak surat jalan' 1.43 dilewati karena digantikan panduan dokumen 1.49; panduan yang sudah dibahas di Bagian 1 (pisah tagihan, member saat transaksi, paket, printer, logo & alamat struk) tidak diulang. Panduan 'Yang baru' 1.51.0 (kas & rekening, transfer ke rekening, kas dobel, pembelian tanpa PO, produksi, laporan keuangan) dimuat di Bagian 1 lewat src/data/site/panduan.ts, jadi tidak diulang di sini. Ditambah 3 Nov 2026: panduan 'Yang baru' 1.51.1 (bayar pakai Saldo Member dari QR) dan 1.51.2 (awalan nomor nota). Panduan 1.52.0 (kurangi stok, transaksi susulan, tulisan struk) dimuat di Bagian 1 lewat src/data/site/panduan.ts.",
+  "_sumber": "Panduan 'Yang baru' aplikasi Loka Kasir (loka-kasir-app, lib/features/home/views/widgets/whats_new_sheet.dart), dikurasi 29 Okt 2026: jalur menu Pengaturan disesuaikan dengan pengelompokan 1.49; panduan 'Cetak surat jalan' 1.43 dilewati karena digantikan panduan dokumen 1.49; panduan yang sudah dibahas di Bagian 1 (pisah tagihan, member saat transaksi, paket, printer, logo & alamat struk) tidak diulang. Panduan 'Yang baru' 1.51.0 (kas & rekening, transfer ke rekening, kas dobel, pembelian tanpa PO, produksi, laporan keuangan) dimuat di Bagian 1 lewat src/data/site/panduan.ts, jadi tidak diulang di sini. Ditambah 3 Nov 2026: panduan 'Yang baru' 1.51.1 (bayar pakai Saldo Member dari QR) dan 1.51.2 (awalan nomor nota). Panduan 1.52.0 (kurangi stok, transaksi susulan, tulisan struk) dimuat di Bagian 1 lewat src/data/site/panduan.ts. Ditambah 19 Nov 2026: panduan 'Yang baru' 1.53.0 (buka kasir tanpa PIN, QR bernominal otomatis, keyboard Windows), 1.56.0 (ubah varian), 1.56.1 (biometrik), dan 1.57.0: bab Member gym ditulis lebih rinci dari panduan aplikasi (mulai pakai, check-in, cuti & kartu, perpanjang sendiri, kelas, Mode Kiosk, kuota), plus Latihan kasir dan Kesehatan perangkat.",
   "groups": [
     {
       "group": "Pesanan & pembayaran",
       "guides": [
+        {
+          "title": "QR bernominal otomatis",
+          "since": "1.53.0",
+          "steps": [
+            "Buka Pengaturan › Transaksi & Pembayaran, bagian QRIS.",
+            "Unggah foto QRIS toko Anda. Teks QRIS akan terisi sendiri.",
+            "Nyalakan \"QR bernominal otomatis\", lalu Simpan. Coba bayar Rp1.000 dengan QRIS untuk memastikan nominalnya muncul di aplikasi bank."
+          ]
+        },
+        {
+          "title": "Bayar cepat pakai keyboard (Windows)",
+          "since": "1.53.0",
+          "steps": [
+            "Tekan F1 kapan saja untuk melihat semua pintasan. Di Kasir, ganti tampilan produk ke Daftar, tekan F3, ketik nama produk, pilih dengan panah atas/bawah, lalu Enter.",
+            "Kosongkan kolom cari lalu tekan Enter (atau F4) untuk lanjut. Di layar bayar, tekan Enter untuk membuka nominal.",
+            "Ketik uang yang diterima, mis. 50000, tekan Enter, lalu Enter sekali lagi untuk menyelesaikan."
+          ]
+        },
         {
           "title": "Bayar pakai saldo",
           "since": "1.45.0",
@@ -91,6 +109,16 @@
     {
       "group": "Produk & stok",
       "guides": [
+        {
+          "title": "Ubah varian tanpa memutus stok & riwayat",
+          "since": "1.56.0",
+          "steps": [
+            "Buka Lainnya › Produk › Varian. Tab ini berada di sebelah Bundle dan menampilkan semua varian dari seluruh produk.",
+            "Ubah nama, SKU, barcode, atau harga pada kartu varian yang diinginkan, lalu ketuk Simpan. Nama baru berlaku untuk katalog dan transaksi berikutnya; nota lama tetap memakai nama saat transaksi dibuat.",
+            "Nyalakan Lacak stok per varian bila penjualan harus mengurangi stok varian tersebut. Untuk mengubah jumlah fisiknya, tetap gunakan menu Stok atau Stok Opname agar mutasinya tercatat.",
+            "Di dashboard web, buka Produk lalu tekan Kelola varian pada baris produknya. Kolom yang tersedia mengikuti halaman di aplikasi."
+          ]
+        },
         {
           "title": "Isi produk dari katalog",
           "since": "1.43.1",
@@ -263,6 +291,85 @@
       ]
     },
     {
+      "group": "Member gym",
+      "guides": [
+        {
+          "title": "Mulai pakai Member Gym",
+          "since": "1.57.0",
+          "steps": [
+            "Menu Member Gym muncul untuk jenis usaha Gym & Fitness. Saat mengisi produk, pilih Isi dari katalog: paket seperti \"Member 1 Bulan\" langsung terisi masa aktifnya.",
+            "Untuk paket buatan sendiri, buka Member Gym, ketuk ikon kartu di kanan atas (Paket member), lalu ketuk Jadikan paket member. Pilih produknya, isi Masa aktif (hari) dan Kuota kunjungan (0 = tanpa batas), lalu Simpan.",
+            "Jual paket di Kasir seperti biasa. Bila belum ada pelanggan, pemilih pelanggan terbuka sendiri: pilih pelanggan atau daftarkan yang baru. Masa aktif terbuka begitu nota lunas, dan perpanjangan sebelum habis menyambung sisa hari.",
+            "Di layar pembayaran berhasil, ketuk Kirim kartu member lewat WhatsApp supaya member punya halaman member dengan QR di HP-nya.",
+            "Pelanggan yang masa aktifnya berjalan otomatis mendapat harga member di kasir."
+          ]
+        },
+        {
+          "title": "Check-in member",
+          "since": "1.57.0",
+          "steps": [
+            "Saat member datang, ketuk Check-in Member di Beranda.",
+            "Pindai QR dari halaman member di HP-nya atau dari kartu cetak. Bisa juga mengetik kode kartu, atau ketuk Cari member lalu cari nama atau nomor HP.",
+            "Hijau berarti silakan masuk. Merah menyebut alasannya: masa aktif habis, sedang cuti, kuota kunjungan habis, atau QR kedaluwarsa. Bila yang dipindai kartu cetak, cocokkan nama dan foto dengan orangnya.",
+            "Bila member tetap boleh masuk (mis. cutinya selesai lebih cepat), ketuk Izinkan masuk dan tulis alasannya. Izin ini tercatat atas nama kasir yang menekan.",
+            "Check-in tetap jalan tanpa internet. Hasilnya dikirim otomatis ke server begitu koneksi kembali."
+          ]
+        },
+        {
+          "title": "Cuti, tambah hari, dan kartu member",
+          "since": "1.57.0",
+          "steps": [
+            "Buka Member Gym lalu ketuk nama member untuk membuka detailnya.",
+            "Cuti: ketuk Cuti dan pilih tanggalnya. Masa aktif bertambah sebanyak hari cuti. Bila member kembali lebih cepat, ketuk Selesaikan di bagian Cuti; hari yang belum terpakai tidak ikut ditambahkan.",
+            "Tambah hari: untuk bonus atau kompensasi gym tutup. Isi jumlah hari dan catatannya.",
+            "Ketuk Tambah foto untuk memotret wajah member. Foto tampil besar di hasil check-in, juga saat offline.",
+            "Kartu member berisi QR untuk dicetak dan tombol Kirim halaman member lewat WhatsApp. Bila kartu hilang atau tautannya tersebar, ketuk Ganti kartu; kartu dan tautan lama langsung tidak berlaku.",
+            "Di daftar Member Gym, tab Akan habis berisi member yang perlu diingatkan. Ketuk Ingatkan untuk mengirim pesan WhatsApp."
+          ]
+        },
+        {
+          "title": "Member perpanjang sendiri dari halaman member",
+          "since": "1.57.0",
+          "steps": [
+            "Member membuka halaman membernya dari tautan WhatsApp, lalu memilih paket di bagian perpanjang.",
+            "Bila outlet sudah memasang QRIS, member bisa langsung Bayar QRIS. Masa aktif bertambah otomatis setelah pembayaran diterima.",
+            "Bila outlet belum memasang QRIS, member diarahkan ke WhatsApp toko untuk perpanjang di kasir."
+          ]
+        },
+        {
+          "title": "Kelas grup",
+          "since": "1.57.0",
+          "steps": [
+            "Buka Member Gym, ketuk ikon kalender di kanan atas (Kelas), lalu Kelola kelas › Kelas baru.",
+            "Isi nama kelas, pelatih, siapa yang boleh ikut, kapasitas, durasi, hari, jam mulai, dan batas batal (jam sebelum mulai), lalu Simpan.",
+            "Di kartu kelas, ketuk Buat jadwal dan pilih jumlah minggu. Sesi untuk minggu-minggu itu langsung dibuat.",
+            "Member memesan tempat dari halaman membernya. Petugas juga bisa menambah peserta dari sesi kelas lewat Tambah peserta.",
+            "Kehadiran tercatat otomatis saat member check-in sekitar jam kelas. Untuk peserta yang tidak datang, ketuk ⋮ di barisnya lalu pilih Tandai tidak datang."
+          ]
+        },
+        {
+          "title": "Mode Kiosk: member check-in sendiri",
+          "since": "1.57.0",
+          "steps": [
+            "Pasang tablet atau HP di dekat pintu. Buka Check-in Member, lalu ketuk Mode Kiosk dan izinkan kamera.",
+            "Member menunjukkan QR dari HP-nya atau kartu cetaknya ke kamera depan. Scanner USB/Bluetooth juga bisa dipakai.",
+            "Atau member memindai QR pintu di layar dengan kamera HP-nya sendiri. QR ini berganti tiap 30 detik, jadi foto QR tidak bisa dipakai dari tempat lain. Pertama kali, member perlu membuka halaman membernya dari tautan WhatsApp gym.",
+            "Hasil tampil besar lalu hilang sendiri. Bila merah, member diminta menghubungi petugas. Check-in dari HP member juga muncul di layar kiosk.",
+            "Untuk keluar, ketuk Keluar kiosk lalu masukkan PIN kasir."
+          ]
+        },
+        {
+          "title": "Kuota member",
+          "since": "1.57.0",
+          "steps": [
+            "Paket Pro sudah termasuk 50 member aktif. Pemakaiannya tampil di kartu kuota di atas daftar Member Gym.",
+            "Bila member aktif melewati kuota, ada masa tenggang 14 hari. Setelah itu hanya pendaftaran member baru yang ditahan; check-in dan perpanjangan member lama tetap jalan.",
+            "Untuk menambah kuota, ketuk Tambah kuota lalu pilih 150, 400, atau tanpa batas, bulanan atau tahunan, dan bayar. Bisa juga dari halaman Langganan di Web Admin."
+          ]
+        }
+      ]
+    },
+    {
       "group": "Meja & sewa",
       "guides": [
         {
@@ -412,6 +519,43 @@
     {
       "group": "Pengaturan & tampilan",
       "guides": [
+        {
+          "title": "Latihan kasir",
+          "since": "1.57.0",
+          "steps": [
+            "Di Beranda, buka langkah persiapan dan pilih Latihan kasir. Bila langkah persiapan sudah disembunyikan, buka Lainnya › Bantuan & Panduan › Tampilkan Langkah Persiapan.",
+            "Pilih barang contoh, ketuk Lanjut bayar, lalu pilih uang tunai dari pembeli contoh.",
+            "Ketuk Selesaikan latihan untuk melihat struk latihan. Latihan ini tidak mengubah stok, penjualan, maupun kas toko."
+          ]
+        },
+        {
+          "title": "Kesehatan perangkat",
+          "since": "1.57.0",
+          "steps": [
+            "Buka Lainnya › Pengaturan › Akun & Aplikasi › Kesehatan perangkat.",
+            "Periksa koneksi internet, server Loka, transaksi offline, dan perubahan yang belum terkirim. Ketuk Sinkronkan atau Lihat antrean bila ada yang tertunda.",
+            "Ketuk Tes cetak untuk memastikan printer struk benar-benar mencetak, dan Tes push untuk memastikan notifikasi sampai ke perangkat ini."
+          ]
+        },
+        {
+          "title": "Buka kasir tanpa PIN",
+          "since": "1.53.0",
+          "steps": [
+            "Buka Pengaturan › Profil Toko.",
+            "Matikan \"PIN saat Buka Kasir\", lalu Simpan.",
+            "Berlaku untuk outlet ini. Nyalakan lagi bila HP kasir mulai dipakai bergantian."
+          ]
+        },
+        {
+          "title": "Masuk dengan verifikasi biometrik",
+          "since": "1.56.1",
+          "steps": [
+            "Masuk dengan email atau username dan kata sandi, lalu aktifkan Face ID / Sidik Jari dari Pengaturan bila belum aktif.",
+            "Setelah keluar akun, ketuk Masuk dengan biometrik pada layar login.",
+            "Selesaikan verifikasi melalui dialog sistem yang muncul. Proses masuk hanya dilanjutkan setelah verifikasi berhasil.",
+            "Jika verifikasi dibatalkan atau gagal, tetap gunakan layar login. Coba lagi atau masuk dengan kata sandi."
+          ]
+        },
         {
           "title": "Atur faktur toko",
           "since": "1.49.0",
