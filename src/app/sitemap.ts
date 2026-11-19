@@ -23,6 +23,7 @@ const paths = [
   { path: "/usaha/toko", changeFrequency: "monthly" as const, priority: 0.8 },
   { path: "/usaha/warung", changeFrequency: "monthly" as const, priority: 0.8 },
   { path: "/web-admin", changeFrequency: "monthly" as const, priority: 0.9 },
+  { path: "/accounting", changeFrequency: "monthly" as const, priority: 0.8 },
   { path: "/download", changeFrequency: "monthly" as const, priority: 0.8 },
   { path: "/faq", changeFrequency: "monthly" as const, priority: 0.7 },
   { path: "/panduan", changeFrequency: "monthly" as const, priority: 0.7 },

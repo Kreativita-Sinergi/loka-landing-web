@@ -25,6 +25,7 @@ export function siteLinks(locale: Locale) {
     downloadWindows: p('/download/windows'),
     downloadAndroid: p('/download/android'),
     webAdmin: p('/web-admin'),
+    accounting: p('/accounting'),
     privasi: p('/privacy-policy'),
     hapusAkun: p('/hapus-akun'),
     syarat: p('/syarat-ketentuan'),

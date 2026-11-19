@@ -46,6 +46,7 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
     { label: 'Fitur', href: links.fitur },
     { label: 'Jenis Usaha', href: links.jenisUsaha },
     { label: 'Harga', href: links.harga },
+    { label: 'Accounting', href: links.accounting },
     { label: 'FAQ', href: links.faq },
   ];
   const downloads = [

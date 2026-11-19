@@ -10,7 +10,7 @@ import { Container, WhatsAppIcon } from './ui';
 export default function SiteFooter({ locale }: { locale: Locale }) {
   const l = siteLinks(locale);
   const columns: { title: string; items: { label: string; href: string }[] }[] = [
-    { title: 'Produk', items: [{ label: 'Fitur', href: l.fitur }, { label: 'Harga', href: l.harga }, { label: 'Panduan Pengguna', href: l.panduan }, { label: 'YouTube Loka Kasir', href: l.youtube }, { label: 'Web Admin', href: l.webAdmin }] },
+    { title: 'Produk', items: [{ label: 'Fitur', href: l.fitur }, { label: 'Harga', href: l.harga }, { label: 'Panduan Pengguna', href: l.panduan }, { label: 'YouTube Loka Kasir', href: l.youtube }, { label: 'Web Admin', href: l.webAdmin }, { label: 'Loka Kasir Accounting', href: l.accounting }] },
     { title: 'Download', items: [{ label: 'Android (Google Play)', href: l.playStore }, { label: 'Windows', href: l.downloadWindows }, { label: 'Android APK', href: l.downloadAndroid }] },
     { title: 'Bantuan', items: [{ label: 'FAQ', href: l.faq }, { label: SUPPORT_EMAIL, href: l.email }, { label: `WA ${WHATSAPP_DISPLAY}`, href: l.whatsapp() }, { label: INSTAGRAM_HANDLE, href: l.instagram }] },
     { title: 'Lainnya', items: [{ label: 'Tentang Kami', href: l.tentang }, { label: 'Blog', href: l.blog }, { label: 'Syarat & Ketentuan', href: l.syarat }, { label: 'Kebijakan Privasi', href: l.privasi }, { label: 'Hapus Akun', href: l.hapusAkun }] },

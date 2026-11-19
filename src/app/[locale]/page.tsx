@@ -3,12 +3,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import clsx from 'clsx';
-import { ArrowDown, ArrowRight, HardDrive, Info, MapPin, RefreshCw, WifiOff, PlayCircle } from 'lucide-react';
+import { ArrowDown, ArrowRight, Check, HardDrive, Info, MapPin, RefreshCw, WifiOff, PlayCircle } from 'lucide-react';
 
 import { LOCALES, OG_LOCALE, localePath, type Locale } from '@/data/localized';
 import { getFaqs } from '@/data/faq';
 import { guides as videoGuides } from '@/data/guides';
 import { getHomeCopy } from '@/data/site/home';
+import { getAccountingCopy } from '@/data/site/accounting';
 import { getHomeShareMetadata, siteDetails } from '@/data/siteDetails';
 import { getFeatureCategories } from '@/data/site/shared';
 import { siteLinks } from '@/data/site/links';
@@ -71,6 +72,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   if (!(LOCALES as readonly string[]).includes(raw)) notFound();
   const locale = raw as Locale;
   const c = getHomeCopy(locale);
+  const accounting = getAccountingCopy(locale);
   const l = siteLinks(locale);
   const [stats, proBusinesses] = await Promise.all([fetchPublicStats(), fetchProBusinesses()]);
   const categories = getFeatureCategories(locale);
@@ -224,6 +226,26 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             ))}
           </div>
           <ButtonLink href={l.fitur} tone="secondary" block className="md:hidden">{c.allFeatures.more}</ButtonLink>
+        </Container>
+      </section>
+
+      {/* Loka Kasir Accounting */}
+      <section className="py-14 md:py-24">
+        <Container>
+          <div className="relative isolate flex flex-col gap-8 overflow-hidden rounded-[20px] bg-ink p-6 text-white md:rounded-[28px] md:p-12 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+            <div aria-hidden className="pointer-events-none absolute -top-24 -right-24 -z-10 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(13,93,243,0.45),transparent_65%)]" />
+            <div className="flex max-w-[560px] flex-col gap-4">
+              <span className="inline-flex w-fit items-center rounded-full bg-accent px-3 py-1 text-[13px] font-semibold text-ink">{accounting.teaserEyebrow}</span>
+              <h2 className="text-[28px] leading-[1.2] font-bold tracking-[-0.02em] md:text-4xl">{accounting.teaserTitle}</h2>
+              <p className="text-[15px] leading-relaxed text-[#c4c7cf] md:text-base">{accounting.teaserDesc}</p>
+              <div className="pt-2"><ButtonLink href={l.accounting} icon={<ArrowRight size={18} />}>{accounting.teaserCta}</ButtonLink></div>
+            </div>
+            <ul className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/5 p-5 text-[15px] md:p-7 lg:min-w-[340px]">
+              {accounting.teaserPoints.map(p => (
+                <li key={p} className="flex items-start gap-2.5"><Check size={18} className="mt-0.5 shrink-0 text-accent" aria-hidden />{p}</li>
+              ))}
+            </ul>
+          </div>
         </Container>
       </section>
 
