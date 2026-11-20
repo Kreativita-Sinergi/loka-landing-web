@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
-import { ChevronDown, ChevronRight, FileText, Menu, X } from 'lucide-react';
+import { BookOpen, ChevronDown, ChevronRight, FileText, Menu, X } from 'lucide-react';
 import { FaAndroid, FaGooglePlay, FaWindows } from 'react-icons/fa';
 
 import { siteLinks } from '@/data/site/links';
@@ -46,7 +46,7 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
     { label: 'Fitur', href: links.fitur },
     { label: 'Jenis Usaha', href: links.jenisUsaha },
     { label: 'Harga', href: links.harga },
-    { label: 'Accounting', href: links.accounting },
+    { label: 'Accounting', href: links.accounting, featured: true },
     { label: 'FAQ', href: links.faq },
   ];
   const downloads = [
@@ -138,10 +138,11 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
           </Link>
 
           <nav aria-label="Menu utama" className="hidden lg:block">
-            <ul className="flex items-center gap-9 text-[15px] font-medium">
+            <ul className="flex items-center gap-5 text-[15px] font-medium xl:gap-8">
               {nav.map(item => (
                 <li key={item.label}>
-                  <Link href={item.href} className={clsx('transition-colors hover:text-brand', isActive(item.href) ? 'font-bold text-brand' : 'text-ink')}>
+                  <Link href={item.href} aria-current={isActive(item.href) ? 'page' : undefined} className={clsx('transition-colors hover:text-brand', item.featured ? 'inline-flex items-center gap-1.5 rounded-lg bg-tint px-3 py-2 font-semibold text-brand hover:bg-brand/10' : isActive(item.href) ? 'font-bold text-brand' : 'text-ink')}>
+                    {item.featured && <BookOpen size={16} aria-hidden />}
                     {item.label}
                   </Link>
                 </li>
@@ -203,8 +204,8 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
         <div style={{ top: menuTop }} className="fixed inset-x-0 bottom-0 z-40 flex flex-col overflow-y-auto bg-white lg:hidden">
           <nav aria-label="Menu mobile" className="px-5 py-3">
             {nav.map(item => (
-              <Link key={item.label} href={item.href} className="flex items-center justify-between border-b border-line py-4 text-lg font-semibold">
-                {item.label} <ChevronRight size={18} className="text-mute" />
+              <Link key={item.label} href={item.href} aria-current={isActive(item.href) ? 'page' : undefined} className={clsx('flex items-center justify-between py-4 text-lg font-semibold', item.featured ? 'my-2 rounded-xl bg-tint px-3 text-brand' : 'border-b border-line')}>
+                <span className="flex items-center gap-2">{item.featured && <BookOpen size={18} aria-hidden />}{item.label}</span><ChevronRight size={18} aria-hidden className={item.featured ? 'text-brand' : 'text-mute'} />
               </Link>
             ))}
             <button type="button" onClick={() => setDlOpen(v => !v)} aria-expanded={dlOpen} className={clsx('flex w-full items-center justify-between py-4 text-lg font-semibold', dlOpen && 'text-brand')}>

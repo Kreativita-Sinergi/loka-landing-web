@@ -3,12 +3,11 @@ import { notFound } from 'next/navigation';
 import { ArrowRight, Boxes, ChartColumn, Check, ExternalLink, FileText, Landmark, Receipt, ShieldCheck, Store, BookOpen, type LucideIcon } from 'lucide-react';
 
 import { siteDetails } from '@/data/siteDetails';
-import { ACCOUNTING_APP_URL, getAccountingCopy } from '@/data/site/accounting';
+import { ACCOUNTING_REGISTER_URL, getAccountingCopy } from '@/data/site/accounting';
 import { siteLinks } from '@/data/site/links';
 import { LOCALES, type Locale } from '@/data/localized';
 import { alternatesFor } from '@/lib/hreflang';
 import { ButtonLink, Container, IconTile, PageHero, SectionHeading } from '@/components/site/ui';
-import { CtaBand } from '@/components/site/sections';
 
 export function generateStaticParams() {
   return LOCALES.map(locale => ({ locale }));
@@ -51,7 +50,7 @@ export default async function AccountingPage({ params }: { params: Promise<{ loc
         desc={c.desc}
       >
         <div className="flex flex-col gap-2.5 pt-2 sm:flex-row sm:gap-3">
-          <ButtonLink href={ACCOUNTING_APP_URL} external icon={<ExternalLink size={18} />}>{c.ctaPrimary}</ButtonLink>
+          <ButtonLink href={ACCOUNTING_REGISTER_URL} icon={<ExternalLink size={18} aria-hidden />}>{c.ctaPrimary}</ButtonLink>
           <ButtonLink href="#fitur-accounting" tone="secondary">{c.ctaSecondary}</ButtonLink>
         </div>
         <p className="max-w-[720px] text-[13px] leading-relaxed text-body md:text-sm">{c.heroNote}</p>
@@ -114,7 +113,7 @@ export default async function AccountingPage({ params }: { params: Promise<{ loc
                 <li key={p} className="flex items-start gap-2.5"><Check size={18} className="mt-0.5 shrink-0 text-ok" aria-hidden />{p}</li>
               ))}
             </ul>
-            <ButtonLink href={ACCOUNTING_APP_URL} external block>{c.ctaPrimary}</ButtonLink>
+            <ButtonLink href={ACCOUNTING_REGISTER_URL} block>{c.ctaPrimary}</ButtonLink>
             <p className="text-[13px] leading-relaxed text-body">{c.pricingNote}</p>
           </div>
           <div className="flex flex-col gap-5">
@@ -133,8 +132,6 @@ export default async function AccountingPage({ params }: { params: Promise<{ loc
           </div>
         </Container>
       </section>
-
-      <CtaBand locale={locale} />
     </>
   );
 }

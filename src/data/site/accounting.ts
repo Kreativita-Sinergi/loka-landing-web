@@ -2,6 +2,7 @@ import { pick, type Locale } from '@/data/localized';
 
 /** Alamat aplikasi Loka Kasir Accounting (web terpisah dari Web Admin kasir). */
 export const ACCOUNTING_APP_URL = 'https://accounting.lokakasir.id';
+export const ACCOUNTING_REGISTER_URL = `${ACCOUNTING_APP_URL}/register`;
 
 /**
  * Copy halaman `/accounting` dan teaser di beranda.
@@ -10,13 +11,12 @@ export const ACCOUNTING_APP_URL = 'https://accounting.lokakasir.id';
  * Baru tersedia dalam bahasa Indonesia; bahasa lain jatuh ke versi ini.
  */
 const id = {
-  metaTitle: 'Loka Kasir Accounting — Software Akuntansi Online untuk UMKM',
+  metaTitle: 'Loka Kasir Accounting — Software Akuntansi Online',
   metaDescription:
-    'Loka Kasir Accounting: jurnal, buku besar, kas & bank, persediaan, aset tetap, hingga laba rugi dan neraca. Terhubung dengan Loka Kasir. Trial 14 hari.',
+    'Kelola jurnal, penjualan, pembelian, kas dan bank, persediaan, aset, dan laporan keuangan dengan Loka Kasir Accounting. Coba gratis 14 hari.',
   home: 'Beranda',
-  badge: 'Produk baru',
-  title: 'Pembukuan rapi, langsung dari transaksi kasir',
-  desc: 'Loka Kasir Accounting adalah aplikasi akuntansi online untuk usaha Anda. Penjualan dari Loka Kasir masuk ke jurnal, lalu jadi laporan keuangan yang siap dibaca — tanpa salin angka ke spreadsheet.',
+  title: 'Loka Kasir Accounting',
+  desc: 'Kelola pembukuan dari penjualan, pembelian, dan kas sampai jurnal dan laporan keuangan. Gunakan secara mandiri atau hubungkan dengan Loka Kasir.',
   ctaPrimary: 'Coba gratis 14 hari',
   ctaSecondary: 'Lihat fitur',
   heroNote: 'Akun Accounting terpisah dari akun kasir. Integrasi dengan Loka Kasir bisa dinyalakan kapan saja.',
@@ -35,7 +35,7 @@ const id = {
     { icon: 'bank', title: 'Kas & bank', desc: 'Penerimaan, pembayaran, transfer, impor mutasi, dan rekonsiliasi bank.' },
     { icon: 'box', title: 'Persediaan & aset', desc: 'Kartu stok, multi-gudang, penyesuaian, dan penyusutan aset tetap.' },
     { icon: 'shield', title: 'Kontrol tim', desc: 'Hak akses per peran, kunci periode, jejak audit, dan autentikasi dua faktor.' },
-    { icon: 'chart', title: 'Analisis', desc: 'Proyek, departemen, anggaran, pajak, dan multi mata uang.' },
+    { icon: 'chart', title: 'Pajak & analisis', desc: 'Siapkan XML e-Faktur, tinjau SPT Masa PPN, dan pantau anggaran serta profitabilitas proyek.' },
   ],
   pricingTitle: 'Harga',
   pricingAmount: 'Rp149.000',
@@ -49,11 +49,13 @@ const id = {
     { q: 'Apakah cocok untuk bisnis Indonesia?', a: 'Ya. Tersedia chart of accounts awal, format Rupiah, profil pajak Indonesia, dan periode fiskal.' },
     { q: 'Bagaimana memindahkan data yang sudah ada?', a: 'Gunakan template impor untuk akun dan saldo awal. Data laporan juga dapat diekspor.' },
   ],
-  teaserEyebrow: 'Baru · Loka Kasir Accounting',
-  teaserTitle: 'Penjualan tercatat. Pembukuan ikut rapi.',
-  teaserDesc: 'Hubungkan Loka Kasir dengan Loka Kasir Accounting: transaksi kasir menjadi jurnal, lalu laba rugi dan neraca — tanpa input ulang.',
-  teaserPoints: ['Jurnal otomatis dari transaksi kasir', 'Laba rugi, neraca & arus kas', 'Kas & bank, utang-piutang, aset'],
-  teaserCta: 'Kenali Accounting',
+  teaserEyebrow: 'Pembukuan usaha',
+  teaserTitle: 'Loka Kasir Accounting',
+  teaserDesc: 'Catat transaksi, pantau piutang dan utang, lalu baca laporan keuangan dari satu tempat. Accounting bisa dipakai mandiri atau terhubung dengan Loka Kasir.',
+  teaserPoints: ['Penjualan, pembelian, dan rekonsiliasi bank', 'Persediaan, aset tetap, dan e-Faktur', 'Laba rugi, neraca, dan arus kas'],
+  teaserCta: 'Lihat fitur Accounting',
+  heroLink: 'Kenali Loka Kasir Accounting',
+  previewCaption: 'Tampilan akun demo Loka Kasir Accounting',
 };
 
 export const getAccountingCopy = (locale: Locale) => pick({ id }, locale);

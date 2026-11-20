@@ -9,7 +9,7 @@ import { LOCALES, OG_LOCALE, localePath, type Locale } from '@/data/localized';
 import { getFaqs } from '@/data/faq';
 import { guides as videoGuides } from '@/data/guides';
 import { getHomeCopy } from '@/data/site/home';
-import { getAccountingCopy } from '@/data/site/accounting';
+import { ACCOUNTING_REGISTER_URL, getAccountingCopy } from '@/data/site/accounting';
 import { getHomeShareMetadata, siteDetails } from '@/data/siteDetails';
 import { getFeatureCategories } from '@/data/site/shared';
 import { siteLinks } from '@/data/site/links';
@@ -98,7 +98,35 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, '\\u003c') }} />
 
-      <Hero copy={c.hero} register={l.register} harga={l.harga} />
+      <Hero copy={c.hero} register={l.register} harga={l.harga} accountingLabel={accounting.heroLink} />
+
+      <section id="loka-kasir-accounting" aria-labelledby="accounting-title" className="scroll-mt-24 pb-12 md:pb-16">
+        <Container>
+          <div className="grid items-center gap-8 overflow-hidden rounded-[24px] bg-[#0B1B3F] bg-[radial-gradient(ellipse_at_100%_15%,#214FB1,transparent_62%)] p-6 text-white md:rounded-[32px] md:p-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-12 lg:p-12">
+            <div className="flex flex-col items-start gap-4">
+              <p className="text-sm font-bold tracking-[0.12em] text-[#BBD8FF] uppercase">{accounting.teaserEyebrow}</p>
+              <h2 id="accounting-title" className="text-[32px] leading-[1.14] font-bold tracking-[-0.025em] md:text-[44px]">{accounting.teaserTitle}</h2>
+              <p className="max-w-[510px] leading-relaxed text-[#E0EBFF]">{accounting.teaserDesc}</p>
+              <ul className="grid gap-2 text-sm text-[#EAF1FF] md:text-[15px]">
+                {accounting.teaserPoints.map(point => (
+                  <li key={point} className="flex items-start gap-2.5"><Check size={18} className="mt-0.5 shrink-0 text-accent" aria-hidden />{point}</li>
+                ))}
+              </ul>
+              <div className="flex w-full flex-col gap-2.5 pt-2 sm:w-auto sm:flex-row sm:flex-wrap">
+                <ButtonLink href={l.accounting} tone="accent" icon={<ArrowRight size={18} aria-hidden />}>{accounting.teaserCta}</ButtonLink>
+                <ButtonLink href={ACCOUNTING_REGISTER_URL} tone="ghostDark">{accounting.ctaPrimary}</ButtonLink>
+              </div>
+            </div>
+            <figure className="min-w-0 overflow-hidden rounded-[18px] border border-white/20 bg-[#F0F5FF] p-2 text-ink shadow-[0_20px_55px_-20px_rgba(0,0,0,0.65)] md:p-3">
+              <div className="grid gap-2 overflow-hidden rounded-xl border border-line bg-[#F6F8FC] p-2">
+                <Image src="/images/site/accounting-dashboard.png" width={1494} height={446} alt="Dashboard Loka Kasir Accounting dengan pendapatan, laba, aset, dan kewajiban" unoptimized className="h-auto w-full rounded-md" />
+                <Image src="/images/site/accounting-piutang.png" width={1494} height={426} alt="Daftar piutang dan utang pada Loka Kasir Accounting" unoptimized className="h-auto w-full rounded-md" />
+              </div>
+              <figcaption className="px-1 pt-2.5 pb-1 text-xs font-medium text-body md:text-[13px]">{accounting.previewCaption}</figcaption>
+            </figure>
+          </div>
+        </Container>
+      </section>
 
       {/* Angka */}
       <section className="pb-14 md:pb-[88px]">
@@ -226,26 +254,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             ))}
           </div>
           <ButtonLink href={l.fitur} tone="secondary" block className="md:hidden">{c.allFeatures.more}</ButtonLink>
-        </Container>
-      </section>
-
-      {/* Loka Kasir Accounting */}
-      <section className="py-14 md:py-24">
-        <Container>
-          <div className="relative isolate flex flex-col gap-8 overflow-hidden rounded-[20px] bg-ink p-6 text-white md:rounded-[28px] md:p-12 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
-            <div aria-hidden className="pointer-events-none absolute -top-24 -right-24 -z-10 h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,rgba(13,93,243,0.45),transparent_65%)]" />
-            <div className="flex max-w-[560px] flex-col gap-4">
-              <span className="inline-flex w-fit items-center rounded-full bg-accent px-3 py-1 text-[13px] font-semibold text-ink">{accounting.teaserEyebrow}</span>
-              <h2 className="text-[28px] leading-[1.2] font-bold tracking-[-0.02em] md:text-4xl">{accounting.teaserTitle}</h2>
-              <p className="text-[15px] leading-relaxed text-[#c4c7cf] md:text-base">{accounting.teaserDesc}</p>
-              <div className="pt-2"><ButtonLink href={l.accounting} icon={<ArrowRight size={18} />}>{accounting.teaserCta}</ButtonLink></div>
-            </div>
-            <ul className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/5 p-5 text-[15px] md:p-7 lg:min-w-[340px]">
-              {accounting.teaserPoints.map(p => (
-                <li key={p} className="flex items-start gap-2.5"><Check size={18} className="mt-0.5 shrink-0 text-accent" aria-hidden />{p}</li>
-              ))}
-            </ul>
-          </div>
         </Container>
       </section>
 

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Fragment } from 'react';
-import { ArrowRight, Check, CircleCheck, MonitorSmartphone, Printer, Receipt, Sparkles, WifiOff } from 'lucide-react';
+import { ArrowRight, BookOpen, Check, CircleCheck, MonitorSmartphone, Printer, Receipt, Sparkles, WifiOff } from 'lucide-react';
 
 import type { HomeCopy } from '@/data/site/home';
 import { ButtonLink, Container } from '@/components/site/ui';
@@ -14,7 +14,7 @@ const chipPlaces = [
 ];
 
 // Sengaja statis: animasi dan scene 3D sebelumnya terlalu berat untuk hero.
-export default function Hero({ copy, register, harga }: { copy: HomeCopy['hero']; register: string; harga: string }) {
+export default function Hero({ copy, register, harga, accountingLabel }: { copy: HomeCopy['hero']; register: string; harga: string; accountingLabel: string }) {
   return (
     <section className="relative isolate overflow-hidden pt-8 pb-12 md:pt-[72px] md:pb-[104px]">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
@@ -48,6 +48,12 @@ export default function Hero({ copy, register, harga }: { copy: HomeCopy['hero']
           </div>
           {/* Jawab "setelah 14 hari bagaimana?" tepat di bawah tombolnya, sebelum ditanyakan ke CS. */}
           <p className="-mt-2 text-[13px] text-body md:text-sm">{copy.trialNote}</p>
+
+          <a href="#loka-kasir-accounting" className="group inline-flex min-h-11 items-center gap-2.5 self-start rounded-[10px] border border-brand/20 bg-tint px-3.5 py-2 text-sm font-semibold text-brand transition-colors hover:border-brand/50 hover:bg-white md:text-[15px]">
+            <BookOpen size={18} aria-hidden />
+            {accountingLabel}
+            <ArrowRight size={16} aria-hidden className="transition-transform group-hover:translate-x-0.5" />
+          </a>
 
           <ul className="flex flex-wrap gap-x-6 gap-y-2.5 text-sm text-body md:text-[15px]">
             {copy.points.map(p => <li key={p} className="flex items-center gap-2"><CircleCheck size={18} className="text-ok" />{p}</li>)}
