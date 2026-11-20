@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 import { ArrowRight, BookOpen, Check, CircleCheck, MonitorSmartphone, Printer, Receipt, Sparkles, WifiOff } from 'lucide-react';
 
 import type { HomeCopy } from '@/data/site/home';
+import { ACCOUNTING_APP_URL } from '@/data/site/accounting';
 import { ButtonLink, Container } from '@/components/site/ui';
 
 const chipIcons = [WifiOff, Printer, Sparkles];
@@ -49,7 +50,7 @@ export default function Hero({ copy, register, harga, accountingLabel }: { copy:
           {/* Jawab "setelah 14 hari bagaimana?" tepat di bawah tombolnya, sebelum ditanyakan ke CS. */}
           <p className="-mt-2 text-[13px] text-body md:text-sm">{copy.trialNote}</p>
 
-          <a href="#loka-kasir-accounting" className="group inline-flex min-h-11 items-center gap-2.5 self-start rounded-[10px] border border-brand/20 bg-tint px-3.5 py-2 text-sm font-semibold text-brand transition-colors hover:border-brand/50 hover:bg-white md:text-[15px]">
+          <a href={ACCOUNTING_APP_URL} className="group inline-flex min-h-11 items-center gap-2.5 self-start rounded-[10px] border border-brand/20 bg-tint px-3.5 py-2 text-sm font-semibold text-brand transition-colors hover:border-brand/50 hover:bg-white md:text-[15px]">
             <BookOpen size={18} aria-hidden />
             {accountingLabel}
             <ArrowRight size={16} aria-hidden className="transition-transform group-hover:translate-x-0.5" />

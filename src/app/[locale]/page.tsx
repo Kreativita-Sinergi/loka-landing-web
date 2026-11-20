@@ -9,7 +9,7 @@ import { LOCALES, OG_LOCALE, localePath, type Locale } from '@/data/localized';
 import { getFaqs } from '@/data/faq';
 import { guides as videoGuides } from '@/data/guides';
 import { getHomeCopy } from '@/data/site/home';
-import { ACCOUNTING_REGISTER_URL, getAccountingCopy } from '@/data/site/accounting';
+import { getAccountingCopy } from '@/data/site/accounting';
 import { getHomeShareMetadata, siteDetails } from '@/data/siteDetails';
 import { getFeatureCategories } from '@/data/site/shared';
 import { siteLinks } from '@/data/site/links';
@@ -112,9 +112,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   <li key={point} className="flex items-start gap-2.5"><Check size={18} className="mt-0.5 shrink-0 text-accent" aria-hidden />{point}</li>
                 ))}
               </ul>
-              <div className="flex w-full flex-col gap-2.5 pt-2 sm:w-auto sm:flex-row sm:flex-wrap">
-                <ButtonLink href={l.accounting} tone="accent" icon={<ArrowRight size={18} aria-hidden />}>{accounting.teaserCta}</ButtonLink>
-                <ButtonLink href={ACCOUNTING_REGISTER_URL} tone="ghostDark">{accounting.ctaPrimary}</ButtonLink>
+              <div className="w-full pt-2 sm:w-auto">
+                <ButtonLink href={l.accounting} tone="accent" icon={<ArrowRight size={18} aria-hidden />} className="w-full sm:w-auto">{accounting.ctaPrimary}</ButtonLink>
               </div>
             </div>
             <figure className="min-w-0 overflow-hidden rounded-[18px] border border-white/20 bg-[#F0F5FF] p-2 text-ink shadow-[0_20px_55px_-20px_rgba(0,0,0,0.65)] md:p-3">

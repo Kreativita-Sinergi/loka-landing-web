@@ -1,6 +1,7 @@
 import { getAppDownload, getSignUp, getSupport, getWindowsDownload, getCta } from '@/data/cta';
 import { siteDetails } from '@/data/siteDetails';
 import { localePath, type Locale } from '@/data/localized';
+import { ACCOUNTING_APP_URL } from '@/data/site/accounting';
 
 /** Panduan Pengguna PDF (npm run panduan:pdf) — berkas di public/, tanpa awalan bahasa. */
 export const PANDUAN_PDF = '/downloads/panduan-loka-kasir.pdf';
@@ -25,7 +26,7 @@ export function siteLinks(locale: Locale) {
     downloadWindows: p('/download/windows'),
     downloadAndroid: p('/download/android'),
     webAdmin: p('/web-admin'),
-    accounting: p('/accounting'),
+    accounting: ACCOUNTING_APP_URL,
     privasi: p('/privacy-policy'),
     hapusAkun: p('/hapus-akun'),
     syarat: p('/syarat-ketentuan'),

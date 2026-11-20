@@ -1,8 +1,7 @@
 import { pick, type Locale } from '@/data/localized';
 
 /** Alamat aplikasi Loka Kasir Accounting (web terpisah dari Web Admin kasir). */
-export const ACCOUNTING_APP_URL = 'https://accounting.lokakasir.id';
-export const ACCOUNTING_REGISTER_URL = `${ACCOUNTING_APP_URL}/register`;
+export const ACCOUNTING_APP_URL = 'https://accounting.lokakasir.id/';
 
 /**
  * Copy halaman `/accounting` dan teaser di beranda.
@@ -17,7 +16,7 @@ const id = {
   home: 'Beranda',
   title: 'Loka Kasir Accounting',
   desc: 'Kelola pembukuan dari penjualan, pembelian, dan kas sampai jurnal dan laporan keuangan. Gunakan secara mandiri atau hubungkan dengan Loka Kasir.',
-  ctaPrimary: 'Coba gratis 14 hari',
+  ctaPrimary: 'Buka Loka Kasir Accounting',
   ctaSecondary: 'Lihat fitur',
   heroNote: 'Akun Accounting terpisah dari akun kasir. Integrasi dengan Loka Kasir bisa dinyalakan kapan saja.',
   flowTitle: 'Dari kasir ke laporan keuangan',
@@ -53,7 +52,6 @@ const id = {
   teaserTitle: 'Loka Kasir Accounting',
   teaserDesc: 'Catat transaksi, pantau piutang dan utang, lalu baca laporan keuangan dari satu tempat. Accounting bisa dipakai mandiri atau terhubung dengan Loka Kasir.',
   teaserPoints: ['Penjualan, pembelian, dan rekonsiliasi bank', 'Persediaan, aset tetap, dan e-Faktur', 'Laba rugi, neraca, dan arus kas'],
-  teaserCta: 'Lihat fitur Accounting',
   heroLink: 'Kenali Loka Kasir Accounting',
   previewCaption: 'Tampilan akun demo Loka Kasir Accounting',
 };
