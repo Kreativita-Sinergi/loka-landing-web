@@ -6,7 +6,7 @@
  * situs dan aplikasi:
  * - Bagian 1 dari src/data/site/panduan.ts (+ jawaban FAQ yang dirujuknya) —
  *   sama persis dengan halaman /panduan.
- * - Bagian 2 dari fitur-aplikasi.json — panduan "Yang baru" di aplikasi,
+ * - Bagian 2 dari src/data/site/fitur-aplikasi.json — panduan "Yang baru" di aplikasi,
  *   dikurasi (lihat kunci `_sumber` di berkasnya).
  * - Panduan yang di situs hanya berupa video dicantumkan beserta tautannya.
  *
@@ -25,6 +25,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { getFaqs } from '@/data/faq';
+import { featureGuideGroups, featureGuideId, type FeatureGuide } from '@/data/site/featureGuides';
 import { getGuideGroups, type Guide } from '@/data/site/panduan';
 import { SUPPORT_EMAIL, WHATSAPP_DISPLAY, siteLinks } from '@/data/site/links';
 import { siteDetails } from '@/data/siteDetails';
@@ -34,17 +35,11 @@ const root = resolve(here, '../..');
 const publicDir = join(root, 'public');
 const outFile = join(publicDir, 'downloads', 'panduan-loka-kasir.pdf');
 
-type FeatureGuide = { title: string; since: string; steps: string[] };
-const features = JSON.parse(readFileSync(join(here, 'fitur-aplikasi.json'), 'utf8')) as {
-  groups: { group: string; guides: FeatureGuide[] }[];
-};
-
 const esc = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 /** Teks berparagraf (jawaban FAQ memakai baris baru sebagai pemisah). */
 const paras = (s: string) => esc(s).replace(/\n{2,}/g, '</p><p>').replace(/\n/g, '<br>');
 const img = (src: string) => pathToFileURL(join(publicDir, src)).href;
-const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 const locale = 'id' as const;
 const links = siteLinks(locale);
@@ -105,12 +100,12 @@ const addBab = (t: string) => {
   babTitles.splice(trouble < 0 ? babTitles.length : trouble, 0, t);
 };
 written.forEach(gr => addBab(gr.title));
-features.groups.forEach(gr => addBab(FEATURE_GROUP_ALIAS[gr.group] ?? gr.group));
+featureGuideGroups.forEach(gr => addBab(FEATURE_GROUP_ALIAS[gr.group] ?? gr.group));
 
 const babs: Bab[] = babTitles
   .map(title => {
     const basics = written.find(gr => gr.title === title)?.guides ?? [];
-    const feats = features.groups.filter(gr => (FEATURE_GROUP_ALIAS[gr.group] ?? gr.group) === title).flatMap(gr => gr.guides);
+    const feats = featureGuideGroups.filter(gr => (FEATURE_GROUP_ALIAS[gr.group] ?? gr.group) === title).flatMap(gr => gr.guides);
     return { title, basics, feats };
   })
   .filter(b => b.basics.length || b.feats.length)
@@ -118,7 +113,7 @@ const babs: Bab[] = babTitles
     const num = i + 1;
     const items = [
       ...b.basics.map(g => ({ id: g.slug, title: g.title, render: (n: string, pre: string) => guideHtml(g, n, pre) })),
-      ...b.feats.map(f => ({ id: `fitur-${slugify(f.title)}`, title: f.title, render: (n: string, pre: string) => featureHtml(f, n, pre) })),
+      ...b.feats.map(f => ({ id: featureGuideId(f.title), title: f.title, render: (n: string, pre: string) => featureHtml(f, n, pre) })),
     ];
     // Kepala bab ditaruh di dalam topik pertamanya supaya tidak pernah
     // tertinggal sendirian di halaman kosong.
@@ -154,7 +149,7 @@ function guideHtml(g: Guide, num: string, prefix = '') {
 
 function featureHtml(f: FeatureGuide, num: string, prefix = '') {
   return `
-  <article class="guide feature" id="fitur-${slugify(f.title)}">
+  <article class="guide feature" id="${featureGuideId(f.title)}">
     ${prefix}
     <h3><span class="num">${num}</span> ${esc(f.title)}</h3>
     <ol class="steps">${f.steps.map(s => `<li><span>${esc(s)}</span></li>`).join('')}</ol>
@@ -387,6 +382,6 @@ if (missing.length) {
   process.exit(1);
 }
 
-const featureCount = features.groups.reduce((n, g) => n + g.guides.length, 0);
+const featureCount = featureGuideGroups.reduce((n, g) => n + g.guides.length, 0);
 const lastPage = Math.max(...pages.values());
 console.log(`✅ ${outFile.replace(root + '/', '')} — ${babs.length} bab, ${written.reduce((n, g) => n + g.guides.length, 0)} panduan dasar, ${featureCount} panduan fitur, ${videoOnly.length} video, ±${lastPage} halaman`);

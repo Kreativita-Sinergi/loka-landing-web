@@ -6,13 +6,15 @@ import { Bot, MessageCircle, Send, X } from 'lucide-react';
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
 
 import type { Locale } from '@/data/localized';
-import { chatSuggestions, matchChatTopic, supportChatCopy, type ChatTopic } from '@/data/site/supportChat';
+import { chatSuggestions, isChatIssue, matchChatTopic, supportChatCopy, technicalChatCopy, type ChatTopic } from '@/data/site/supportChat';
+import type { GuideAnswer } from '@/lib/supportGuideSearch';
 import { trackContactClick } from '@/utils/analytics';
 import FloatingWa from './FloatingWa';
 import { WhatsAppIcon } from './ui';
 
 type ChatLinks = Record<'pricing' | 'register' | 'download' | 'faq' | 'whatsapp', string>;
-type Turn = { question: string; topic?: ChatTopic };
+type Reply = { kind: 'topic'; topic: ChatTopic } | { kind: 'guide'; guide: GuideAnswer } | { kind: 'pending' } | { kind: 'fallback' };
+type Turn = { id: number; question: string; reply: Reply };
 
 const actionLinks: Partial<Record<ChatTopic, keyof ChatLinks>> = {
   trial: 'pricing',
@@ -22,6 +24,33 @@ const actionLinks: Partial<Record<ChatTopic, keyof ChatLinks>> = {
 };
 
 const botBubble = 'w-fit max-w-[94%] rounded-2xl rounded-tl-sm border border-line bg-white px-3.5 py-3 text-base leading-relaxed';
+const answerLink = 'mt-2 inline-block text-sm font-bold text-brand-dark underline underline-offset-2';
+const suggestionButton = 'min-h-10 rounded-full border border-brand/25 bg-white px-3 text-sm font-semibold text-brand-dark hover:bg-tint';
+
+function GuideReply({ guide, closeChat }: { guide: GuideAnswer; closeChat: () => void }) {
+  return (
+    <div lang="id">
+      <p className="font-bold">{guide.title}</p>
+      {guide.text && <p className="mt-2 whitespace-pre-line">{guide.text}</p>}
+      {guide.steps && guide.steps.length > 0 && (
+        <ol className="mt-2 list-decimal space-y-2 pl-5 marker:font-bold marker:text-brand-dark">
+          {guide.steps.map((step, index) => (
+            <li key={index}>
+              {step.title && <strong className="block">{step.title}</strong>}
+              {step.body}
+            </li>
+          ))}
+        </ol>
+      )}
+      {guide.tip && <p className="mt-3 rounded-lg bg-tint p-2.5 text-sm">{guide.tip}</p>}
+      {guide.pdf ? (
+        <a href={guide.href} target="_blank" rel="noopener noreferrer" className={answerLink}>{technicalChatCopy.pdf}</a>
+      ) : (
+        <Link href={guide.href} onClick={closeChat} className={answerLink}>{technicalChatCopy.guide}</Link>
+      )}
+    </div>
+  );
+}
 
 export default function SupportChat({ locale, links }: { locale: Locale; links: ChatLinks }) {
   const copy = supportChatCopy[locale];
@@ -33,6 +62,8 @@ export default function SupportChat({ locale, links }: { locale: Locale; links: 
   const closeButton = useRef<HTMLButtonElement>(null);
   const input = useRef<HTMLInputElement>(null);
   const conversation = useRef<HTMLDivElement>(null);
+  const latestReply = useRef<HTMLDivElement>(null);
+  const nextId = useRef(0);
 
   useEffect(() => {
     if (open) closeButton.current?.focus({ preventScroll: true });
@@ -40,7 +71,8 @@ export default function SupportChat({ locale, links }: { locale: Locale; links: 
 
   useEffect(() => {
     const log = conversation.current;
-    if (log) log.scrollTop = log.scrollHeight;
+    const reply = latestReply.current;
+    if (log && reply) log.scrollTop = reply.offsetTop - 12;
   }, [open, turns]);
 
   function closeChat() {
@@ -48,8 +80,20 @@ export default function SupportChat({ locale, links }: { locale: Locale; links: 
     launcher.current?.focus({ preventScroll: true });
   }
 
-  function ask(question: string, topic = matchChatTopic(copy, question)) {
-    setTurns((current) => [...current, { question, topic }]);
+  function ask(question: string, suggestion?: ChatTopic) {
+    const id = nextId.current++;
+    const topic = suggestion ?? matchChatTopic(copy, question);
+    const fallback: Reply = topic ? { kind: 'topic', topic } : { kind: 'fallback' };
+    const asksSubscriptionPrice = topic === 'pricing' && /\b(?:langganan|berlangganan|paket pro|tarif)\b/i.test(question);
+    const search = locale === 'id' && !suggestion && !asksSubscriptionPrice;
+    setTurns((current) => [...current, { id, question, reply: search ? { kind: 'pending' } : fallback }]);
+    if (!search) return;
+
+    const finish = (reply: Reply) => setTurns((current) => current.map((turn) => turn.id === id ? { ...turn, reply } : turn));
+    void import('@/lib/supportGuideSearch').then(({ findGuideAnswer }) => {
+      const guide = findGuideAnswer(question, isChatIssue(copy, question));
+      finish(guide ? { kind: 'guide', guide } : fallback);
+    }).catch(() => finish(fallback));
   }
 
   function sendQuestion(event: FormEvent<HTMLFormElement>) {
@@ -103,33 +147,39 @@ export default function SupportChat({ locale, links }: { locale: Locale; links: 
             ><X size={20} aria-hidden /></button>
           </header>
 
-          <div ref={conversation} className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto overscroll-contain bg-soft p-4 [overflow-wrap:anywhere]">
+          <div ref={conversation} className="relative flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto overscroll-contain bg-soft p-4 [overflow-wrap:anywhere]">
             <p className={botBubble}>{copy.welcome}</p>
             <div className="flex flex-wrap gap-2">
-              {chatSuggestions.map((topic) => (
+              {locale === 'id' && technicalChatCopy.suggestions.map((question) => (
+                <button key={question} type="button" onClick={() => ask(question)} className={suggestionButton}>{question}</button>
+              ))}
+              {(locale === 'id' ? ['pricing'] as const : chatSuggestions).map((topic) => (
                 <button
                   key={topic}
                   type="button"
                   onClick={() => ask(copy.topics[topic].label, topic)}
-                  className="min-h-10 rounded-full border border-brand/25 bg-white px-3 text-sm font-semibold text-brand-dark hover:bg-tint"
+                  className={suggestionButton}
                 >
                   {copy.topics[topic].label}
                 </button>
               ))}
             </div>
             <div role="log" aria-labelledby={`${panelId}-title`} className="flex flex-col gap-3">
-              {turns.map(({ question, topic }, index) => {
-                const response = topic && copy.topics[topic];
-                const link = topic && actionLinks[topic];
+              {turns.map(({ id, question, reply }, index) => {
+                const response = reply.kind === 'topic' && copy.topics[reply.topic];
+                const link = reply.kind === 'topic' && actionLinks[reply.topic];
                 return (
-                  <div key={index} className="flex flex-col gap-3">
+                  <div key={id} className="flex flex-col gap-3">
                     <p className="max-w-[90%] self-end rounded-2xl rounded-tr-sm bg-brand px-3.5 py-2.5 text-base leading-relaxed text-white">
                       <span className="sr-only">{copy.you}: </span>{question}
                     </p>
-                    <div className={botBubble}>
-                      <p><span className="sr-only">{copy.bot}: </span>{response ? response.answer : copy.fallback}</p>
+                    <div ref={index === turns.length - 1 ? latestReply : undefined} className={botBubble}>
+                      <span className="sr-only">{copy.bot}: </span>
+                      {reply.kind === 'guide' ? <GuideReply guide={reply.guide} closeChat={closeChat} /> : (
+                        <p>{reply.kind === 'pending' ? technicalChatCopy.searching : response ? response.answer : copy.fallback}</p>
+                      )}
                       {response && response.action && link && (
-                        <Link href={links[link]} onClick={closeChat} className="mt-2 inline-block text-sm font-bold text-brand-dark underline underline-offset-2">
+                        <Link href={links[link]} onClick={closeChat} className={answerLink}>
                           {response.action}
                         </Link>
                       )}

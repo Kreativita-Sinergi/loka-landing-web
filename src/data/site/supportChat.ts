@@ -27,19 +27,26 @@ type ChatCopy = {
 
 export const chatSuggestions = ['pricing', 'trial', 'download', 'qris'] as const;
 
+export const technicalChatCopy = {
+  suggestions: ['Buka shift', 'Printer tidak mencetak', 'Refund transaksi'],
+  searching: 'Mencari di Buku Panduan Loka…',
+  guide: 'Buka panduan lengkap',
+  pdf: 'Buka bagian ini di Buku Panduan (PDF)',
+};
+
 export const supportChatCopy: Record<Locale, ChatCopy> = {
   id: {
     title: 'Tanya Loka',
     bot: 'Bot bantuan',
     you: 'Anda',
-    welcome: 'Halo! Mau tahu soal Loka Kasir? Pilih topik atau tulis pertanyaan Anda.',
+    welcome: 'Halo! Tanyakan cara pakai Loka Kasir. Saya bisa mencarikan langkah dari Buku Panduan Loka.',
     placeholder: 'Tulis pertanyaan Anda',
     send: 'Kirim pertanyaan',
     close: 'Tutup chat',
     whatsapp: 'Hubungi admin via WhatsApp',
     faq: 'Lihat FAQ',
-    fallback: 'Saya belum punya jawaban untuk pertanyaan itu. Coba lihat FAQ atau tanyakan langsung ke admin lewat WhatsApp.',
-    support: /\b(?:error|gagal|masalah|bermasalah|kendala|lupa|komplain|tidak bisa|nggak bisa|gak bisa|belum masuk|tidak masuk|sudah bayar|sudah transfer|terpotong)\b/u,
+    fallback: 'Saya belum menemukan jawaban yang cocok. Coba sebutkan fitur atau kendalanya lebih spesifik, atau hubungi admin lewat WhatsApp.',
+    support: /\b(?:error|gagal|masalah|bermasalah|kendala|lupa|komplain|(?:tidak|nggak|gak|ga|tak) (?:bisa|mau|mencetak|keluar|terdeteksi|tersambung|sinkron|masuk|muncul|terkirim)|belum (?:masuk|muncul|tersinkron|terkirim)|sudah bayar|sudah transfer|terpotong|ditolak|macet)\b/u,
     topics: {
       trial: {
         label: 'Trial gratis',
@@ -247,7 +254,15 @@ export const supportChatCopy: Record<Locale, ChatCopy> = {
 };
 
 export function matchChatTopic(copy: ChatCopy, question: string): ChatTopic | undefined {
-  const text = question.normalize('NFKC').toLowerCase().replace(/\s+/g, ' ');
+  const text = normalizeQuestion(question);
   if (copy.support.test(text)) return;
   return topics.find((topic) => copy.topics[topic].matches.test(text));
+}
+
+export function isChatIssue(copy: ChatCopy, question: string) {
+  return copy.support.test(normalizeQuestion(question));
+}
+
+function normalizeQuestion(question: string) {
+  return question.normalize('NFKC').toLowerCase().replace(/\s+/g, ' ');
 }
