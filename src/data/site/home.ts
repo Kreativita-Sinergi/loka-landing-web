@@ -14,9 +14,9 @@ const id = {
     desc: 'Layani pembeli dan cetak struk dari HP, tablet, atau PC yang sudah Anda punya. Pantau penjualan tiap outlet lewat Web Admin.',
     primary: 'Coba Gratis 14 Hari',
     secondary: 'Coba demo kasir',
-    trialNote: 'Setelah masa coba, lanjutkan dengan paket berlangganan.',
+    trialNote: 'Gratis sejak transaksi pertama. Setelah 14 hari, pilih paket.',
     pricing: 'Lihat harga',
-    productsLabel: 'Juga dari Loka Kasir',
+    productsLabel: 'Produk lain dari Loka Kasir',
     imageAlt: 'Layar transaksi Loka Kasir pada terminal kasir, mesin kasir genggam, dan tablet, dengan printer struk di sampingnya',
     benefits: [
       { title: 'Jualan saat offline', desc: 'Transaksi tunai tetap tersimpan. Data tersinkron saat internet kembali.' },

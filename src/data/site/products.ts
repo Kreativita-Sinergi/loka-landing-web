@@ -5,7 +5,7 @@ export const companionProducts = [
     key: 'hris',
     name: 'LokaKasir HRIS',
     shortName: 'HRIS',
-    use: 'Tim & gaji',
+    use: 'Absensi & gaji',
     url: 'https://hris.lokakasir.id/',
   },
   {

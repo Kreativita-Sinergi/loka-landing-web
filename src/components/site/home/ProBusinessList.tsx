@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 import type { ProBusiness } from '@/lib/proBusinesses';
 import ProBusinessCard from './ProBusinessCard';
 
@@ -24,9 +25,9 @@ export default function ProBusinessList({ businesses, more, less }: {
         ))}
       </ul>
       {businesses.length > featured.length && (
-        <button type="button" aria-expanded={expanded} aria-controls="pro-businesses-list" onClick={() => setExpanded(!expanded)} className="mx-auto flex cursor-pointer items-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold text-brand hover:text-brand-dark">
-          <span aria-hidden>{expanded ? '▴' : '▾'}</span>
+        <button type="button" aria-expanded={expanded} aria-controls="pro-businesses-list" onClick={() => setExpanded(!expanded)} className="mx-auto flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-brand/25 bg-white px-5 py-2 text-sm font-semibold text-brand-dark hover:border-brand">
           {expanded ? less : more}
+          <ChevronDown size={16} aria-hidden className={expanded ? 'rotate-180' : undefined} />
         </button>
       )}
     </>

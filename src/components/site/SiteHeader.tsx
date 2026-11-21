@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
-import { ChevronDown, ChevronRight, FileText, Menu, X } from 'lucide-react';
+import { ArrowRight, ChevronDown, ChevronRight, FileText, Menu, X } from 'lucide-react';
 import { FaAndroid, FaGooglePlay, FaWindows } from 'react-icons/fa';
 
 import { siteLinks } from '@/data/site/links';
@@ -16,6 +16,7 @@ import { ButtonLink } from './ui';
 export default function SiteHeader({ locale }: { locale: Locale }) {
   const links = siteLinks(locale);
   const pathname = usePathname();
+  const isHome = pathname === links.home || pathname === `/${locale}`;
   const [menuOpen, setMenuOpen] = useState(false);
   const [dlOpen, setDlOpen] = useState(false);
   const dlRef = useRef<HTMLLIElement>(null);
@@ -119,11 +120,26 @@ export default function SiteHeader({ locale }: { locale: Locale }) {
 
   return (
     <header ref={headerRef} className="sticky z-40" style={{ top: -bannerH }}>
-      <div ref={bannerRef} className="bg-ink px-5 py-2.5 text-center text-xs text-white md:text-[13px]">
-        Gratis 14 hari semua fitur Pro, dihitung sejak transaksi pertama.{' '}
-        <a href={links.register} target="_blank" rel="noopener noreferrer" className="font-semibold text-accent hover:underline" onClick={() => trackSignUpClick('announcement')}>
-          Daftar sekarang →
-        </a>
+      <div ref={bannerRef} className={isHome ? 'bg-accent text-ink' : 'bg-ink px-5 py-2.5 text-center text-xs text-white md:text-[13px]'}>
+        {isHome ? (
+          <a href="#produk-lain" onClick={() => setMenuOpen(false)} className="group mx-auto flex min-h-11 w-fit items-center gap-2.5 px-4 py-2 text-[13px] leading-snug sm:gap-3 sm:text-sm">
+            <span className="rounded bg-ink px-1.5 py-1 text-[10px] font-extrabold tracking-widest text-white uppercase">Baru</span>
+            <span className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+              <span><strong>HRIS</strong> untuk tim &amp; gaji</span>
+              <span aria-hidden className="hidden sm:inline">·</span>
+              <span><strong>Billing</strong> untuk rental PS &amp; PC</span>
+            </span>
+            <span className="hidden border-l border-ink/30 pl-3 font-bold group-hover:underline sm:inline">Lihat produk</span>
+            <ArrowRight size={16} aria-hidden className="shrink-0" />
+          </a>
+        ) : (
+          <>
+            Gratis 14 hari semua fitur Pro, dihitung sejak transaksi pertama.{' '}
+            <a href={links.register} target="_blank" rel="noopener noreferrer" className="font-semibold text-accent hover:underline" onClick={() => trackSignUpClick('announcement')}>
+              Daftar sekarang →
+            </a>
+          </>
+        )}
       </div>
 
       <div

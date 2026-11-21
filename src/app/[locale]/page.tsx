@@ -50,7 +50,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const l = siteLinks(locale);
   return (
     <>
-      <Hero copy={c.hero} register={l.register} harga={l.harga} />
+      <Hero locale={locale} copy={c.hero} register={l.register} harga={l.harga} />
 
       <Suspense fallback={null}>
         <ProBusinesses locale={locale} />

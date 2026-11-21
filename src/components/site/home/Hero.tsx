@@ -1,19 +1,29 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight, Play } from 'lucide-react';
+import { Suspense } from 'react';
+import { ArrowRight, ArrowUpRight, BookOpen, Gamepad2, Play, Users } from 'lucide-react';
 
+import type { Locale } from '@/data/localized';
 import type { HomeCopy } from '@/data/site/home';
 import { companionProducts } from '@/data/site/products';
 import { ButtonLink, Container, Eyebrow } from '@/components/site/ui';
+import { ProBusinessProof } from './ProBusinesses';
 
-export default function Hero({ copy, register, harga }: { copy: HomeCopy['hero']; register: string; harga: string }) {
+const productIcons = { hris: Users, billing: Gamepad2, accounting: BookOpen };
+
+export default function Hero({ locale, copy, register, harga }: { locale: Locale; copy: HomeCopy['hero']; register: string; harga: string }) {
+  const fallback = <Eyebrow>{copy.eyebrow}</Eyebrow>;
   return (
     <section className="relative isolate overflow-hidden bg-gradient-to-b from-white via-white to-soft pt-10 pb-8 md:py-12">
       <div aria-hidden className="hero-grid pointer-events-none absolute inset-0 -z-10" />
       <Container>
         <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
           <div className="flex flex-col items-start gap-5 md:gap-6">
-            <Eyebrow>{copy.eyebrow}</Eyebrow>
+            <div className="flex min-h-11 items-center">
+              <Suspense fallback={fallback}>
+                <ProBusinessProof locale={locale} fallback={fallback} />
+              </Suspense>
+            </div>
             <h1 className="text-[clamp(30px,10vw,40px)] leading-[1.08] font-bold tracking-[-0.045em] sm:text-6xl xl:text-[68px]">
               {copy.titleA}{' '}
               <span className="relative block w-fit text-brand">
@@ -32,19 +42,23 @@ export default function Hero({ copy, register, harga }: { copy: HomeCopy['hero']
               {copy.trialNote}{' '}
               <Link href={harga} className="inline-flex items-center gap-1 font-semibold text-brand hover:underline">{copy.pricing} <ArrowRight size={14} aria-hidden /></Link>
             </p>
-            <nav id="produk-lain" aria-labelledby="produk-lain-title" className="w-full max-w-[510px] rounded-xl border border-brand/10 bg-tint/80 px-3 py-2.5 sm:px-4">
-              <h2 id="produk-lain-title" className="text-[11px] font-bold tracking-[0.1em] text-body uppercase">{copy.productsLabel}</h2>
-              <ul className="mt-1 grid grid-cols-3">
-                {companionProducts.map(product => (
-                  <li key={product.key} id={`loka-kasir-${product.key}`}>
-                    <a href={product.url} className="group flex min-h-11 flex-col justify-center rounded-md">
-                      <span className="flex items-center gap-1 text-[13px] font-bold text-brand group-hover:underline sm:text-sm">
-                        {product.shortName}<ArrowUpRight size={13} aria-hidden className="hidden sm:block" />
-                      </span>
-                      <span className="text-xs text-body">{product.use}</span>
-                    </a>
-                  </li>
-                ))}
+            <nav id="produk-lain" aria-labelledby="produk-lain-title" className="w-full max-w-[510px]">
+              <h2 id="produk-lain-title" className="mb-2 text-sm font-bold text-ink">{copy.productsLabel}</h2>
+              <ul className="grid grid-cols-[1fr_1fr_1.12fr] gap-1.5 sm:gap-2">
+                {companionProducts.map(product => {
+                  const Icon = productIcons[product.key];
+                  return (
+                    <li key={product.key} id={`loka-kasir-${product.key}`} className="min-w-0">
+                      <a href={product.url} className="group flex h-full flex-col rounded-xl border border-brand/20 bg-white px-2 py-2.5 hover:border-brand hover:bg-tint sm:px-3.5">
+                        <span className="mb-2 flex items-center justify-between text-brand">
+                          <Icon size={20} aria-hidden /><ArrowUpRight size={14} aria-hidden />
+                        </span>
+                        <span className="text-sm font-bold tracking-tight text-ink group-hover:text-brand sm:text-base">{product.shortName}</span>
+                        <span className="text-xs leading-snug text-body">{product.use}</span>
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </nav>
           </div>
