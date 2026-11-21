@@ -3,21 +3,32 @@
 import Link from 'next/link';
 import clsx from 'clsx';
 import { Bot, MessageCircle, Send, X } from 'lucide-react';
-import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
+import { useEffect, useId, useRef, useState, useSyncExternalStore, type FormEvent } from 'react';
 
 import type { Locale } from '@/data/localized';
-import { chatSuggestions, isChatIssue, matchChatTopic, supportChatCopy, technicalChatCopy, type ChatTopic } from '@/data/site/supportChat';
-import type { GuideAnswer, GuideMatch } from '@/lib/supportGuideSearch';
+import { chatSuggestions, matchChatTopic, supportChatCopy, technicalChatCopy, type ChatTopic } from '@/data/site/supportChat';
+import { fetchPrices, formatPrice } from '@/lib/pricing';
+import { guideReply, quickReply, type ChatReply } from '@/lib/supportChatReply';
+import type { GuideAnswer } from '@/lib/supportGuideSearch';
 import { trackContactClick } from '@/utils/analytics';
 import FloatingWa from './FloatingWa';
 import { WhatsAppIcon } from './ui';
 
 type ChatLinks = Record<'pricing' | 'register' | 'download' | 'guide' | 'faq' | 'whatsapp', string>;
-type DirectReply = { kind: 'topic'; topic: ChatTopic } | GuideMatch;
-type Reply = DirectReply | { kind: 'pending' } | { kind: 'fallback' } | { kind: 'unavailable' };
-type Turn = { id: number; question: string; reply: Reply };
+type ProPrice = { monthly: string; yearly: string };
+type Reply = ChatReply | { kind: 'pending' } | { kind: 'unavailable' };
+type Turn = { id: number; question: string; reply: Reply; price?: ProPrice };
+
+// Jeda sebelum balasan tampil. Jawaban yang muncul di milidetik yang sama
+// dengan pertanyaannya terbaca seperti tempelan, bukan balasan.
+const typingDelay = 550;
 
 const backofficeOrigin = 'https://app.lokakasir.id';
+
+// Dibuka di dalam panel Web Admin, yang sudah punya tombol tutupnya sendiri.
+const subscribeNever = () => () => {};
+const isFramed = () => window.parent !== window;
+const notFramed = () => false;
 
 const actionLinks: Partial<Record<ChatTopic, keyof ChatLinks>> = {
   trial: 'pricing',
@@ -41,6 +52,31 @@ function ChatLink({ href, embedded, onClick, className, children }: {
     <a href={href} target="_blank" rel="noopener noreferrer" className={className}>{children}</a>
   ) : (
     <Link href={href} onClick={onClick} className={className}>{children}</Link>
+  );
+}
+
+function TypingDots({ label }: { label: string }) {
+  return (
+    <p className="flex h-7 items-center gap-1.5">
+      <span className="sr-only">{label}</span>
+      {[0, 150, 300].map((delay) => (
+        <span key={delay} aria-hidden className="size-2 rounded-full bg-body/60 motion-safe:animate-bounce" style={{ animationDelay: `${delay}ms` }} />
+      ))}
+    </p>
+  );
+}
+
+function WhatsAppReply({ href, children }: { href: string; children: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => trackContactClick('whatsapp', 'support_chat_reply')}
+      className={`${suggestionButton} mt-3 inline-flex items-center gap-2`}
+    >
+      <WhatsAppIcon size={16} />{children}
+    </a>
   );
 }
 
@@ -81,6 +117,8 @@ export default function SupportChat({ locale, links, embedded = false }: { local
   const conversation = useRef<HTMLDivElement>(null);
   const latestReply = useRef<HTMLDivElement>(null);
   const nextId = useRef(0);
+  const framed = useSyncExternalStore(subscribeNever, isFramed, notFramed);
+  const prices = useRef<Promise<ProPrice | undefined>>(undefined);
 
   useEffect(() => {
     if (open && !embedded) closeButton.current?.focus({ preventScroll: true });
@@ -106,20 +144,50 @@ export default function SupportChat({ locale, links, embedded = false }: { local
     launcher.current?.focus({ preventScroll: true });
   }
 
-  function ask(question: string, direct?: DirectReply) {
-    const id = nextId.current++;
-    const topic = matchChatTopic(copy, question);
-    const fallback: Reply = direct ?? (topic ? { kind: 'topic', topic } : { kind: 'fallback' });
-    const search = locale === 'id' && !direct && topic !== 'pricing';
-    setTurns((current) => [...current, { id, question, reply: search ? { kind: 'pending' } : fallback }]);
-    if (!search) return;
+  function loadPrice() {
+    prices.current ??= Promise.race([
+      fetchPrices('ID'),
+      new Promise<null>((resolve) => window.setTimeout(resolve, 2500, null)),
+    ]).then((list) => {
+      const amount = (plan: string) => list?.find((price) => price.plan === plan)?.charge_amount;
+      const [monthly, yearly] = [amount('pro'), amount('pro-yearly')];
+      if (monthly && yearly) {
+        const rupiah = (value: number) => formatPrice(value, 'IDR', 'ID').replace(/^Rp\s+/, 'Rp');
+        return { monthly: rupiah(monthly), yearly: rupiah(yearly) };
+      }
+      // Harga yang gagal dimuat dicoba lagi di pertanyaan berikutnya.
+      prices.current = undefined;
+    });
+    return prices.current;
+  }
 
-    const previous = turns.at(-1)?.reply;
-    const context = previous?.kind === 'guide' || previous?.kind === 'choices' ? previous : undefined;
-    const finish = (reply: Reply) => setTurns((current) => current.map((turn) => turn.id === id ? { ...turn, reply } : turn));
+  function ask(question: string, direct?: ChatReply) {
+    const id = nextId.current++;
+    const last = turns.at(-1)?.reply;
+    const previous = last && last.kind !== 'pending' && last.kind !== 'unavailable' ? last : undefined;
+    const quick = direct ?? quickReply(copy, locale, question, previous);
+    setTurns((current) => [...current, { id, question, reply: { kind: 'pending' } }]);
+
+    const typed = new Promise((resolve) => window.setTimeout(resolve, typingDelay));
+    const finish = (reply: Reply, price?: ProPrice) => void typed.then(() => {
+      setTurns((current) => current.map((turn) => turn.id === id ? { ...turn, reply, price } : turn));
+    });
+    if (quick) {
+      // Harga rupiah diambil dari sumber yang sama dengan halaman harga.
+      if (locale === 'id' && quick.kind === 'topic' && quick.topic === 'pricing') void loadPrice().then((price) => finish(quick, price));
+      else finish(quick);
+      return;
+    }
     void import('@/lib/supportGuideSearch').then(({ findGuideMatch }) => {
-      finish(findGuideMatch(question, isChatIssue(copy, question), context) ?? fallback);
-    }).catch(() => finish(topic ? fallback : { kind: 'unavailable' }));
+      finish(guideReply(copy, question, previous, findGuideMatch));
+    }).catch(() => {
+      const topic = matchChatTopic(copy, question);
+      finish(topic ? { kind: 'topic', topic } : { kind: 'unavailable' });
+    });
+  }
+
+  function whatsappAbout(question: string) {
+    return `${links.whatsapp.split('?')[0]}?text=${encodeURIComponent(technicalChatCopy.handoffMessage(question))}`;
   }
 
   function sendQuestion(event: FormEvent<HTMLFormElement>) {
@@ -130,6 +198,24 @@ export default function SupportChat({ locale, links, embedded = false }: { local
     setDraft('');
     input.current?.focus({ preventScroll: true });
   }
+
+  const suggestions = (
+    <div className="flex flex-wrap gap-2">
+      {locale === 'id' && technicalChatCopy.suggestions.map((question) => (
+        <button key={question} type="button" onClick={() => ask(question)} className={suggestionButton}>{question}</button>
+      ))}
+      {(locale === 'id' ? ['pricing'] as const : chatSuggestions).map((topic) => (
+        <button
+          key={topic}
+          type="button"
+          onClick={() => ask(copy.topics[topic].label, { kind: 'topic', topic })}
+          className={suggestionButton}
+        >
+          {copy.topics[topic].label}
+        </button>
+      ))}
+    </div>
+  );
 
   return (
     <div className={embedded ? 'h-dvh w-full' : clsx('fixed right-5 bottom-[calc(1.5rem+env(safe-area-inset-bottom))] flex items-center gap-3 md:right-8 md:bottom-[calc(2rem+env(safe-area-inset-bottom))]', open ? 'z-50' : 'z-30')}>
@@ -164,36 +250,25 @@ export default function SupportChat({ locale, links, embedded = false }: { local
               <h2 id={`${panelId}-title`} className="font-bold">{copy.title}</h2>
               <p className="text-sm text-white">{copy.bot}</p>
             </div>
-            <button
+            {/* Di panel Web Admin tombol tutup milik panelnya; dua tombol ✕
+                bertumpuk membuat orang ragu mana yang menutup apa. */}
+            {!(embedded && framed) && <button
               ref={closeButton}
               type="button"
               aria-label={copy.close}
               onClick={closeChat}
               className="grid size-11 shrink-0 place-items-center rounded-lg hover:bg-white/15 focus-visible:-outline-offset-4 focus-visible:outline-white"
-            ><X size={20} aria-hidden /></button>
+            ><X size={20} aria-hidden /></button>}
           </header>
 
           <div ref={conversation} className="relative flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto overscroll-contain bg-soft p-4 [overflow-wrap:anywhere]">
             <p className={botBubble}>{copy.welcome}</p>
-            <div className="flex flex-wrap gap-2">
-              {locale === 'id' && technicalChatCopy.suggestions.map((question) => (
-                <button key={question} type="button" onClick={() => ask(question)} className={suggestionButton}>{question}</button>
-              ))}
-              {(locale === 'id' ? ['pricing'] as const : chatSuggestions).map((topic) => (
-                <button
-                  key={topic}
-                  type="button"
-                  onClick={() => ask(copy.topics[topic].label, { kind: 'topic', topic })}
-                  className={suggestionButton}
-                >
-                  {copy.topics[topic].label}
-                </button>
-              ))}
-            </div>
+            {suggestions}
             <div role="log" aria-labelledby={`${panelId}-title`} className="flex flex-col gap-3">
-              {turns.map(({ id, question, reply }, index) => {
+              {turns.map(({ id, question, reply, price }, index) => {
                 const response = reply.kind === 'topic' && copy.topics[reply.topic];
                 const link = reply.kind === 'topic' && actionLinks[reply.topic];
+                const talk = reply.kind === 'talk' && copy.talk[reply.talk];
                 return (
                   <div key={id} className="flex flex-col gap-3">
                     <p className="max-w-[90%] self-end rounded-2xl rounded-tr-sm bg-brand px-3.5 py-2.5 text-base leading-relaxed text-white">
@@ -204,7 +279,7 @@ export default function SupportChat({ locale, links, embedded = false }: { local
                       {reply.kind === 'guide' && <GuideReply guide={reply.guide} closeChat={closeChat} embedded={embedded} />}
                       {reply.kind === 'choices' && (
                         <div>
-                          <p>{reply.prompt === 'platform' ? technicalChatCopy.choosePlatform : technicalChatCopy.chooseTopic}</p>
+                          <p>{{ platform: technicalChatCopy.choosePlatform, topic: technicalChatCopy.chooseTopic, maybe: technicalChatCopy.chooseNearest }[reply.prompt]}</p>
                           <div className="mt-2 flex flex-wrap gap-2">
                             {reply.choices.map(({ label, match }) => (
                               <button key={label} type="button" className={`${suggestionButton} text-left`} onClick={() => ask(label, match)}>{label}</button>
@@ -218,9 +293,21 @@ export default function SupportChat({ locale, links, embedded = false }: { local
                           <ChatLink href={links.guide} onClick={closeChat} embedded={embedded} className={answerLink}>{technicalChatCopy.guide}</ChatLink>
                         </>
                       )}
-                      {reply.kind === 'pending' && <p>{technicalChatCopy.searching}</p>}
+                      {reply.kind === 'pending' && <TypingDots label={copy.typing} />}
+                      {reply.kind === 'talk' && <p>{reply.text}</p>}
+                      {talk && talk.suggest && <div className="mt-3">{suggestions}</div>}
+                      {talk && talk.whatsapp && <WhatsAppReply href={links.whatsapp}>{copy.whatsapp}</WhatsAppReply>}
+                      {reply.kind === 'handoff' && (
+                        <>
+                          <p>{technicalChatCopy.handoff}</p>
+                          <WhatsAppReply href={whatsappAbout(question)}>{technicalChatCopy.handoffAction}</WhatsAppReply>
+                        </>
+                      )}
                       {reply.kind === 'fallback' && <p>{copy.fallback}</p>}
-                      {response && <p>{response.answer}</p>}
+                      {reply.kind === 'fallback' && locale === 'id' && (
+                        <WhatsAppReply href={whatsappAbout(question)}>{technicalChatCopy.handoffAction}</WhatsAppReply>
+                      )}
+                      {response && <p>{price ? technicalChatCopy.price(price.monthly, price.yearly) : response.answer}</p>}
                       {response && response.action && link && (
                         <ChatLink href={links[link]} onClick={closeChat} embedded={embedded} className={answerLink}>
                           {response.action}
