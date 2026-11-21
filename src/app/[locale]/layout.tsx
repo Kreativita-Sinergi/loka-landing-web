@@ -5,7 +5,9 @@ import { notFound } from "next/navigation";
 
 import SiteHeader from "@/components/site/SiteHeader";
 import SiteFooter from "@/components/site/SiteFooter";
-import FloatingWa from "@/components/site/FloatingWa";
+import SupportChat from "@/components/site/SupportChat";
+import { getAppRequest } from '@/data/cta';
+import { siteLinks } from '@/data/site/links';
 import { siteDetails, getSiteMetadata, getHomeShareMetadata } from '@/data/siteDetails';
 import { HTML_LANG, LOCALES, OG_LOCALE, localePath, type Locale } from '@/data/localized';
 import { alternatesFor } from '@/lib/hreflang';
@@ -170,6 +172,7 @@ export default async function RootLayout({
   const { locale } = await params;
   if (!(LOCALES as readonly string[]).includes(locale)) notFound();
   const active = locale as Locale;
+  const links = siteLinks(active);
 
   return (
     <html lang={HTML_LANG[active]}>
@@ -190,7 +193,13 @@ export default async function RootLayout({
           {children}
         </main>
         <SiteFooter locale={active} />
-        <FloatingWa locale={active} />
+        <SupportChat key={active} locale={active} links={{
+          pricing: links.harga,
+          register: links.register,
+          download: links.download,
+          faq: links.faq,
+          whatsapp: links.whatsapp(getAppRequest(active).whatsappMessage),
+        }} />
       </body>
     </html>
   );
