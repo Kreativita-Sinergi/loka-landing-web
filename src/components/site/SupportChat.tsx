@@ -17,6 +17,8 @@ type DirectReply = { kind: 'topic'; topic: ChatTopic } | GuideMatch;
 type Reply = DirectReply | { kind: 'pending' } | { kind: 'fallback' } | { kind: 'unavailable' };
 type Turn = { id: number; question: string; reply: Reply };
 
+const backofficeOrigin = 'https://app.lokakasir.id';
+
 const actionLinks: Partial<Record<ChatTopic, keyof ChatLinks>> = {
   trial: 'pricing',
   pricing: 'pricing',
@@ -28,7 +30,21 @@ const botBubble = 'w-fit max-w-[94%] rounded-2xl rounded-tl-sm border border-lin
 const answerLink = 'mt-2 inline-block text-sm font-bold text-brand-dark underline underline-offset-2';
 const suggestionButton = 'min-h-10 rounded-full border border-brand/25 bg-white px-3 text-sm font-semibold text-brand-dark hover:bg-tint';
 
-function GuideReply({ guide, closeChat }: { guide: GuideAnswer; closeChat: () => void }) {
+function ChatLink({ href, embedded, onClick, className, children }: {
+  href: string;
+  embedded: boolean;
+  onClick: () => void;
+  className: string;
+  children: string;
+}) {
+  return embedded ? (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>{children}</a>
+  ) : (
+    <Link href={href} onClick={onClick} className={className}>{children}</Link>
+  );
+}
+
+function GuideReply({ guide, closeChat, embedded }: { guide: GuideAnswer; closeChat: () => void; embedded: boolean }) {
   return (
     <div lang="id">
       <p className="font-bold">{guide.title}</p>
@@ -47,15 +63,15 @@ function GuideReply({ guide, closeChat }: { guide: GuideAnswer; closeChat: () =>
       {guide.pdf ? (
         <a href={guide.href} target="_blank" rel="noopener noreferrer" className={answerLink}>{technicalChatCopy.pdf}</a>
       ) : (
-        <Link href={guide.href} onClick={closeChat} className={answerLink}>{guide.faq ? technicalChatCopy.faq : technicalChatCopy.guide}</Link>
+        <ChatLink href={guide.href} embedded={embedded} onClick={closeChat} className={answerLink}>{guide.faq ? technicalChatCopy.faq : technicalChatCopy.guide}</ChatLink>
       )}
     </div>
   );
 }
 
-export default function SupportChat({ locale, links }: { locale: Locale; links: ChatLinks }) {
+export default function SupportChat({ locale, links, embedded = false }: { locale: Locale; links: ChatLinks; embedded?: boolean }) {
   const copy = supportChatCopy[locale];
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(embedded);
   const [draft, setDraft] = useState('');
   const [turns, setTurns] = useState<Turn[]>([]);
   const panelId = useId();
@@ -67,8 +83,12 @@ export default function SupportChat({ locale, links }: { locale: Locale; links: 
   const nextId = useRef(0);
 
   useEffect(() => {
-    if (open) closeButton.current?.focus({ preventScroll: true });
-  }, [open]);
+    if (open && !embedded) closeButton.current?.focus({ preventScroll: true });
+  }, [open, embedded]);
+
+  useEffect(() => {
+    if (embedded && window.parent !== window) window.parent.postMessage('loka:support-chat:ready', backofficeOrigin);
+  }, [embedded]);
 
   useEffect(() => {
     const log = conversation.current;
@@ -77,6 +97,11 @@ export default function SupportChat({ locale, links }: { locale: Locale; links: 
   }, [open, turns]);
 
   function closeChat() {
+    if (embedded) {
+      if (window.parent !== window) window.parent.postMessage('loka:support-chat:close', backofficeOrigin);
+      else window.location.assign(links.guide);
+      return;
+    }
     setOpen(false);
     launcher.current?.focus({ preventScroll: true });
   }
@@ -107,8 +132,8 @@ export default function SupportChat({ locale, links }: { locale: Locale; links: 
   }
 
   return (
-    <div className={clsx('fixed right-5 bottom-[calc(1.5rem+env(safe-area-inset-bottom))] flex items-center gap-3 md:right-8 md:bottom-[calc(2rem+env(safe-area-inset-bottom))]', open ? 'z-50' : 'z-30')}>
-      <button
+    <div className={embedded ? 'h-dvh w-full' : clsx('fixed right-5 bottom-[calc(1.5rem+env(safe-area-inset-bottom))] flex items-center gap-3 md:right-8 md:bottom-[calc(2rem+env(safe-area-inset-bottom))]', open ? 'z-50' : 'z-30')}>
+      {!embedded && <button
         ref={launcher}
         type="button"
         aria-expanded={open}
@@ -119,7 +144,7 @@ export default function SupportChat({ locale, links }: { locale: Locale; links: 
       >
         <MessageCircle size={21} aria-hidden />
         {copy.title}
-      </button>
+      </button>}
       {open && (
         <section
           id={panelId}
@@ -131,7 +156,7 @@ export default function SupportChat({ locale, links }: { locale: Locale; links: 
               closeChat();
             }
           }}
-          className="absolute right-0 bottom-full mb-3 flex h-[33rem] max-h-[calc(100dvh-6.5rem-env(safe-area-inset-bottom))] w-[min(25rem,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-[0_20px_60px_rgba(16,24,40,0.24)] md:max-h-[calc(100dvh-7.25rem-env(safe-area-inset-bottom))]"
+          className={clsx('flex flex-col overflow-hidden bg-white', embedded ? 'h-full w-full' : 'absolute right-0 bottom-full mb-3 h-[33rem] max-h-[calc(100dvh-6.5rem-env(safe-area-inset-bottom))] w-[min(25rem,calc(100vw-2.5rem))] rounded-2xl border border-line shadow-[0_20px_60px_rgba(16,24,40,0.24)] md:max-h-[calc(100dvh-7.25rem-env(safe-area-inset-bottom))]')}
         >
           <header className="flex shrink-0 items-center gap-3 bg-brand py-3 pr-2 pl-4 text-white">
             <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-white/15"><Bot size={22} aria-hidden /></span>
@@ -176,7 +201,7 @@ export default function SupportChat({ locale, links }: { locale: Locale; links: 
                     </p>
                     <div ref={index === turns.length - 1 ? latestReply : undefined} className={botBubble}>
                       <span className="sr-only">{copy.bot}: </span>
-                      {reply.kind === 'guide' && <GuideReply guide={reply.guide} closeChat={closeChat} />}
+                      {reply.kind === 'guide' && <GuideReply guide={reply.guide} closeChat={closeChat} embedded={embedded} />}
                       {reply.kind === 'choices' && (
                         <div>
                           <p>{reply.prompt === 'platform' ? technicalChatCopy.choosePlatform : technicalChatCopy.chooseTopic}</p>
@@ -190,16 +215,16 @@ export default function SupportChat({ locale, links }: { locale: Locale; links: 
                       {reply.kind === 'unavailable' && (
                         <>
                           <p>{technicalChatCopy.unavailable}</p>
-                          <Link href={links.guide} onClick={closeChat} className={answerLink}>{technicalChatCopy.guide}</Link>
+                          <ChatLink href={links.guide} onClick={closeChat} embedded={embedded} className={answerLink}>{technicalChatCopy.guide}</ChatLink>
                         </>
                       )}
                       {reply.kind === 'pending' && <p>{technicalChatCopy.searching}</p>}
                       {reply.kind === 'fallback' && <p>{copy.fallback}</p>}
                       {response && <p>{response.answer}</p>}
                       {response && response.action && link && (
-                        <Link href={links[link]} onClick={closeChat} className={answerLink}>
+                        <ChatLink href={links[link]} onClick={closeChat} embedded={embedded} className={answerLink}>
                           {response.action}
-                        </Link>
+                        </ChatLink>
                       )}
                     </div>
                   </div>
@@ -233,12 +258,12 @@ export default function SupportChat({ locale, links }: { locale: Locale; links: 
               <a href={links.whatsapp} target="_blank" rel="noopener noreferrer" onClick={() => trackContactClick('whatsapp', 'support_chat')} className="inline-flex min-h-8 items-center gap-1.5 text-sm font-semibold text-brand-dark hover:underline">
                 <WhatsAppIcon size={16} />{copy.whatsapp}
               </a>
-              <Link href={links.faq} onClick={closeChat} className="inline-flex min-h-8 items-center text-sm font-semibold text-body hover:underline">{copy.faq}</Link>
+              <ChatLink href={links.faq} onClick={closeChat} embedded={embedded} className="inline-flex min-h-8 items-center text-sm font-semibold text-body hover:underline">{copy.faq}</ChatLink>
             </div>
           </footer>
         </section>
       )}
-      <FloatingWa href={links.whatsapp} label={copy.whatsapp} />
+      {!embedded && <FloatingWa href={links.whatsapp} label={copy.whatsapp} />}
     </div>
   );
 }
