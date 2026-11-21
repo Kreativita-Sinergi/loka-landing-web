@@ -4,13 +4,12 @@ import Image from 'next/image';
 import { useState } from 'react';
 import type { ProBusiness } from '@/lib/proBusinesses';
 
-export default function ProBusinessCard({ business, requireLogo = false }: { business: ProBusiness; requireLogo?: boolean }) {
+export default function ProBusinessCard({ business }: { business: ProBusiness }) {
   const [failedImage, setFailedImage] = useState<string>();
   const image = business.image && failedImage !== business.image ? business.image : undefined;
-  if (requireLogo && !image) return null;
 
   return (
-    <li className="flex min-h-[88px] min-w-0 items-center justify-center gap-3 rounded-2xl border border-line bg-white px-4 py-4 md:min-h-[96px] md:px-5">
+    <li className="flex min-w-0 flex-col items-center justify-center gap-2.5 rounded-2xl border border-line bg-white p-4 sm:flex-row sm:justify-start">
       {image && (
         <Image
           src={image}
@@ -24,7 +23,7 @@ export default function ProBusinessCard({ business, requireLogo = false }: { bus
           onError={() => setFailedImage(image)}
         />
       )}
-      <span className="flex min-w-0 flex-col gap-1 text-center break-words">
+      <span className="flex min-w-0 flex-col gap-1 text-center break-words sm:text-left">
         <span className="text-[13px] leading-relaxed font-semibold text-ink md:text-sm">{business.name}</span>
         {business.businessType && (
           <span className="text-xs leading-relaxed font-medium text-brand">{business.businessType}</span>

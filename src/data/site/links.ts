@@ -34,6 +34,7 @@ export function siteLinks(locale: Locale) {
     blog: p('/blog'),
     usaha: (slug: string) => p(`/usaha/${slug}`),
     jenisUsaha: `${p('/')}#jenis-usaha`,
+    produkLain: `${p('/')}#produk-lain`,
     register: getSignUp(locale).url,
     login: getCta(locale).dashboardUrl,
     playStore: getAppDownload(locale).url,

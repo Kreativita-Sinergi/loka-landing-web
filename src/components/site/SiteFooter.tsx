@@ -4,15 +4,16 @@ import { Mail } from 'lucide-react';
 import { FaInstagram, FaYoutube } from 'react-icons/fa';
 
 import { siteLinks, SUPPORT_EMAIL, WHATSAPP_DISPLAY, INSTAGRAM_HANDLE } from '@/data/site/links';
+import { companionProducts } from '@/data/site/products';
 import type { Locale } from '@/data/localized';
 import { Container, WhatsAppIcon } from './ui';
 
 export default function SiteFooter({ locale }: { locale: Locale }) {
   const l = siteLinks(locale);
   const columns: { title: string; items: { label: string; href: string }[] }[] = [
-    { title: 'Produk', items: [{ label: 'Fitur', href: l.fitur }, { label: 'Harga', href: l.harga }, { label: 'Panduan Pengguna', href: l.panduan }, { label: 'YouTube Loka Kasir', href: l.youtube }, { label: 'Web Admin', href: l.webAdmin }, { label: 'Loka Kasir Accounting', href: l.accounting }] },
-    { title: 'Download', items: [{ label: 'Android (Google Play)', href: l.playStore }, { label: 'Windows', href: l.downloadWindows }, { label: 'Android APK', href: l.downloadAndroid }] },
-    { title: 'Bantuan', items: [{ label: 'FAQ', href: l.faq }, { label: SUPPORT_EMAIL, href: l.email }, { label: `WA ${WHATSAPP_DISPLAY}`, href: l.whatsapp() }, { label: INSTAGRAM_HANDLE, href: l.instagram }] },
+    { title: 'Loka Kasir', items: [{ label: 'Fitur kasir', href: l.fitur }, { label: 'Harga', href: l.harga }, { label: 'Download aplikasi', href: l.download }, { label: 'Web Admin', href: l.webAdmin }] },
+    { title: 'Produk lain', items: companionProducts.map(p => ({ label: p.name, href: p.url })) },
+    { title: 'Bantuan', items: [{ label: 'Panduan Pengguna', href: l.panduan }, { label: 'FAQ', href: l.faq }, { label: SUPPORT_EMAIL, href: l.email }, { label: `WA ${WHATSAPP_DISPLAY}`, href: l.whatsapp() }, { label: INSTAGRAM_HANDLE, href: l.instagram }] },
     { title: 'Lainnya', items: [{ label: 'Tentang Kami', href: l.tentang }, { label: 'Blog', href: l.blog }, { label: 'Syarat & Ketentuan', href: l.syarat }, { label: 'Kebijakan Privasi', href: l.privasi }, { label: 'Hapus Akun', href: l.hapusAkun }] },
   ];
   const linkEl = (item: { label: string; href: string }) =>
@@ -35,7 +36,7 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
           <div className="flex max-w-[320px] flex-col gap-4">
             <Image src="/images/site/logo-white.svg" alt="Loka Kasir" width={124} height={37} className="h-[30px] w-auto self-start md:h-[37px]" />
             <p className="text-sm leading-relaxed md:text-[15px]">
-              Teman di meja kasir. Loka Kasir membantu warung, kafe, resto, dan toko mencatat penjualan, mengatur stok, dan menutup kas dengan rapi setiap hari, tetap jalan walau internet sedang putus.
+              Aplikasi kasir untuk warung, toko, dan tempat makan. Catat penjualan, pantau stok, dan cocokkan kas setiap tutup shift.
             </p>
             <div className="flex gap-2.5">
               {social.map(s => (
