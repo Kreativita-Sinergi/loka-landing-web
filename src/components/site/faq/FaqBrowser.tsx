@@ -4,12 +4,12 @@ import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 import { Search, X } from 'lucide-react';
 
+import { faqCategoryId } from '@/data/faq/categoryId';
 import type { FaqPageCopy } from '@/data/site/faqPage';
 import { ButtonLink, Container, PageHero, WhatsAppIcon } from '../ui';
 
 type Faq = { category: string; question: string; answer: string };
 
-const slugify = (s: string) => s.toLowerCase().replace(/&/g, 'dan').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
 /**
@@ -118,7 +118,7 @@ export default function FaqBrowser({ faqs, copy, crumbs, waHref, email }: { faqs
               </p>
             )}
             {groups.map(g => (
-              <div key={g.name} id={slugify(g.name)} className="flex scroll-mt-32 flex-col gap-3">
+              <div key={g.name} id={faqCategoryId(g.name)} className="flex scroll-mt-32 flex-col gap-3">
                 <h2 className="text-[22px] font-bold md:text-2xl">{g.name}</h2>
                 <div className="border-t border-line">
                   {g.items.map(f => (

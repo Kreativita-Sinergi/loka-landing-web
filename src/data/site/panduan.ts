@@ -24,6 +24,8 @@ import { pick, type Locale } from '@/data/localized';
 
 export type GuideStep = { title: string; body: string };
 
+export const PRINTER_WINDOWS_CHECK = 'Di Windows, pastikan driver terpasang dan printer muncul di Settings › Printers & scanners.';
+
 export type Guide = {
   slug: string;
   group: string;
@@ -802,7 +804,7 @@ function buildGuides(locale: Locale): Guide[] {
         { title: 'Periksa kertas dan ukurannya', body: 'Kertas thermal hanya tercetak di satu sisi, jadi pastikan tidak terbalik. Bila tulisan terpotong, samakan ukuran kertas (58 mm atau 80 mm) di Pengaturan › Struk & Dokumen › Struk.' },
         { title: 'Masih gagal? Hubungi CS', body: 'Buka Lainnya › Bantuan & Panduan › Hubungi CS dan sebutkan merek printer Anda.' },
       ],
-      tip: 'Kalau struk sering terpotong di tengah, nyalakan Mode printer lambat di halaman Printer Struk. Langkah Bluetooth ini untuk Android; di Windows, pastikan driver terpasang dan printer muncul di Settings › Printers & scanners.',
+      tip: `Kalau struk sering terpotong di tengah, nyalakan Mode printer lambat di halaman Printer Struk. Langkah Bluetooth ini untuk Android. ${PRINTER_WINDOWS_CHECK}`,
     },
     {
       slug: 'transaksi-belum-sinkron',

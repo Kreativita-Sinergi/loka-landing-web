@@ -7,13 +7,14 @@ import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
 
 import type { Locale } from '@/data/localized';
 import { chatSuggestions, isChatIssue, matchChatTopic, supportChatCopy, technicalChatCopy, type ChatTopic } from '@/data/site/supportChat';
-import type { GuideAnswer } from '@/lib/supportGuideSearch';
+import type { GuideAnswer, GuideMatch } from '@/lib/supportGuideSearch';
 import { trackContactClick } from '@/utils/analytics';
 import FloatingWa from './FloatingWa';
 import { WhatsAppIcon } from './ui';
 
-type ChatLinks = Record<'pricing' | 'register' | 'download' | 'faq' | 'whatsapp', string>;
-type Reply = { kind: 'topic'; topic: ChatTopic } | { kind: 'guide'; guide: GuideAnswer } | { kind: 'pending' } | { kind: 'fallback' };
+type ChatLinks = Record<'pricing' | 'register' | 'download' | 'guide' | 'faq' | 'whatsapp', string>;
+type DirectReply = { kind: 'topic'; topic: ChatTopic } | GuideMatch;
+type Reply = DirectReply | { kind: 'pending' } | { kind: 'fallback' } | { kind: 'unavailable' };
 type Turn = { id: number; question: string; reply: Reply };
 
 const actionLinks: Partial<Record<ChatTopic, keyof ChatLinks>> = {
@@ -46,7 +47,7 @@ function GuideReply({ guide, closeChat }: { guide: GuideAnswer; closeChat: () =>
       {guide.pdf ? (
         <a href={guide.href} target="_blank" rel="noopener noreferrer" className={answerLink}>{technicalChatCopy.pdf}</a>
       ) : (
-        <Link href={guide.href} onClick={closeChat} className={answerLink}>{technicalChatCopy.guide}</Link>
+        <Link href={guide.href} onClick={closeChat} className={answerLink}>{guide.faq ? technicalChatCopy.faq : technicalChatCopy.guide}</Link>
       )}
     </div>
   );
@@ -80,20 +81,20 @@ export default function SupportChat({ locale, links }: { locale: Locale; links: 
     launcher.current?.focus({ preventScroll: true });
   }
 
-  function ask(question: string, suggestion?: ChatTopic) {
+  function ask(question: string, direct?: DirectReply) {
     const id = nextId.current++;
-    const topic = suggestion ?? matchChatTopic(copy, question);
-    const fallback: Reply = topic ? { kind: 'topic', topic } : { kind: 'fallback' };
-    const asksSubscriptionPrice = topic === 'pricing' && /\b(?:langganan|berlangganan|paket pro|tarif)\b/i.test(question);
-    const search = locale === 'id' && !suggestion && !asksSubscriptionPrice;
+    const topic = matchChatTopic(copy, question);
+    const fallback: Reply = direct ?? (topic ? { kind: 'topic', topic } : { kind: 'fallback' });
+    const search = locale === 'id' && !direct && topic !== 'pricing';
     setTurns((current) => [...current, { id, question, reply: search ? { kind: 'pending' } : fallback }]);
     if (!search) return;
 
+    const previous = turns.at(-1)?.reply;
+    const context = previous?.kind === 'guide' || previous?.kind === 'choices' ? previous : undefined;
     const finish = (reply: Reply) => setTurns((current) => current.map((turn) => turn.id === id ? { ...turn, reply } : turn));
-    void import('@/lib/supportGuideSearch').then(({ findGuideAnswer }) => {
-      const guide = findGuideAnswer(question, isChatIssue(copy, question));
-      finish(guide ? { kind: 'guide', guide } : fallback);
-    }).catch(() => finish(fallback));
+    void import('@/lib/supportGuideSearch').then(({ findGuideMatch }) => {
+      finish(findGuideMatch(question, isChatIssue(copy, question), context) ?? fallback);
+    }).catch(() => finish(topic ? fallback : { kind: 'unavailable' }));
   }
 
   function sendQuestion(event: FormEvent<HTMLFormElement>) {
@@ -157,7 +158,7 @@ export default function SupportChat({ locale, links }: { locale: Locale; links: 
                 <button
                   key={topic}
                   type="button"
-                  onClick={() => ask(copy.topics[topic].label, topic)}
+                  onClick={() => ask(copy.topics[topic].label, { kind: 'topic', topic })}
                   className={suggestionButton}
                 >
                   {copy.topics[topic].label}
@@ -175,9 +176,26 @@ export default function SupportChat({ locale, links }: { locale: Locale; links: 
                     </p>
                     <div ref={index === turns.length - 1 ? latestReply : undefined} className={botBubble}>
                       <span className="sr-only">{copy.bot}: </span>
-                      {reply.kind === 'guide' ? <GuideReply guide={reply.guide} closeChat={closeChat} /> : (
-                        <p>{reply.kind === 'pending' ? technicalChatCopy.searching : response ? response.answer : copy.fallback}</p>
+                      {reply.kind === 'guide' && <GuideReply guide={reply.guide} closeChat={closeChat} />}
+                      {reply.kind === 'choices' && (
+                        <div>
+                          <p>{reply.prompt === 'platform' ? technicalChatCopy.choosePlatform : technicalChatCopy.chooseTopic}</p>
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {reply.choices.map(({ label, match }) => (
+                              <button key={label} type="button" className={`${suggestionButton} text-left`} onClick={() => ask(label, match)}>{label}</button>
+                            ))}
+                          </div>
+                        </div>
                       )}
+                      {reply.kind === 'unavailable' && (
+                        <>
+                          <p>{technicalChatCopy.unavailable}</p>
+                          <Link href={links.guide} onClick={closeChat} className={answerLink}>{technicalChatCopy.guide}</Link>
+                        </>
+                      )}
+                      {reply.kind === 'pending' && <p>{technicalChatCopy.searching}</p>}
+                      {reply.kind === 'fallback' && <p>{copy.fallback}</p>}
+                      {response && <p>{response.answer}</p>}
                       {response && response.action && link && (
                         <Link href={links[link]} onClick={closeChat} className={answerLink}>
                           {response.action}

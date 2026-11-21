@@ -30,7 +30,11 @@ export const chatSuggestions = ['pricing', 'trial', 'download', 'qris'] as const
 export const technicalChatCopy = {
   suggestions: ['Buka shift', 'Printer tidak mencetak', 'Refund transaksi'],
   searching: 'Mencari di Buku Panduan Loka…',
+  unavailable: 'Panduan di chat belum bisa dimuat. Anda bisa membuka Buku Panduan atau menghubungi admin.',
+  chooseTopic: 'Maksud Anda yang mana?',
+  choosePlatform: 'Printer terhubung ke perangkat apa?',
   guide: 'Buka panduan lengkap',
+  faq: 'Buka FAQ terkait',
   pdf: 'Buka bagian ini di Buku Panduan (PDF)',
 };
 
@@ -46,7 +50,7 @@ export const supportChatCopy: Record<Locale, ChatCopy> = {
     whatsapp: 'Hubungi admin via WhatsApp',
     faq: 'Lihat FAQ',
     fallback: 'Saya belum menemukan jawaban yang cocok. Coba sebutkan fitur atau kendalanya lebih spesifik, atau hubungi admin lewat WhatsApp.',
-    support: /\b(?:error|gagal|masalah|bermasalah|kendala|lupa|komplain|(?:tidak|nggak|gak|ga|tak) (?:bisa|mau|mencetak|keluar|terdeteksi|tersambung|sinkron|masuk|muncul|terkirim)|belum (?:masuk|muncul|tersinkron|terkirim)|sudah bayar|sudah transfer|terpotong|ditolak|macet)\b/u,
+    support: /\b(?:error|gagal|masalah|bermasalah|kendala|lupa|komplain|(?:tidak|ngg?k|nggak|gak|ga|tak) (?:bisa|mau|mencetak|tercetak|keluar|terdeteksi|tersambung|nyambung|connect|sinkron|masuk|muncul|terkirim|balik)|belum (?:masuk|muncul|tersinkron|terkirim|balik)|sudah bayar|sudah transfer|terpotong|ditolak|macet)\b/u,
     topics: {
       trial: {
         label: 'Trial gratis',
@@ -56,7 +60,7 @@ export const supportChatCopy: Record<Locale, ChatCopy> = {
       },
       pricing: {
         label: 'Harga langganan',
-        matches: /\b(?:harga(?! jual| produk| barang| modal)|langganan|berlangganan|biaya|tarif|per bulan|per tahun)\b/u,
+        matches: /\b(?:harga|biaya|tarif)\s+(?:(?:paket\s+)?loka(?:\s+kasir)?|paket\s+pro|langganan)\b|\b(?:langganan|berlangganan|paket pro)\b|^(?:berapa\s+)?(?:harga(?:nya)?|biaya(?:nya)?|tarif|harga paket)(?:\s+(?:berapa|ya|kak|min))?[?!.\s]*$/u,
         answer: 'Loka Kasir menyediakan paket Pro bulanan, tahunan, dan tiga tahun. Buka halaman harga untuk melihat tarif dan membandingkan paket.',
         action: 'Buka halaman harga',
       },
@@ -68,7 +72,7 @@ export const supportChatCopy: Record<Locale, ChatCopy> = {
       },
       download: {
         label: 'Unduh aplikasi',
-        matches: /\b(?:unduh|download|instal|install|pasang aplikasi|apk|android|windows)\b/u,
+        matches: /\b(?:unduh|download|instal|install|pasang aplikasi|apk)\b|^(?:android|windows)[?!.\s]*$/u,
         answer: 'Loka Kasir tersedia untuk Android dan Windows. Pilih versi yang sesuai dengan perangkat Anda di halaman unduhan.',
         action: 'Pilih unduhan',
       },

@@ -197,6 +197,7 @@ export default async function RootLayout({
           pricing: links.harga,
           register: links.register,
           download: links.download,
+          guide: links.panduan,
           faq: links.faq,
           whatsapp: links.whatsapp(getAppRequest(active).whatsappMessage),
         }} />
